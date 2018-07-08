@@ -15,6 +15,7 @@ use App\Models\Role;
 use App\Events\UserRegisteredEmail;
 use App\Notifications\ActivateUserEmail;
 use Illuminate\Support\Facades\Schema;
+use Yajra\Datatables\Datatables;
 
 class UserService
 {
@@ -205,7 +206,6 @@ class UserService
                 $userMetaResult = (isset($payload['meta'])) ? $user->meta->update($payload['meta']) : true;
 
                 $user->update($payload);
-
                 if (isset($payload['roles'])) {
                     $this->unassignAllRoles($userId);
                     $this->assignRole($payload['roles'], $userId);
@@ -409,5 +409,20 @@ class UserService
     {
         $user = $this->model->find($userId);
         $user->teams()->detach();
+    }
+
+    public function getJSONData($roleId = null, $search = "")
+    {
+        return DataTables::of(
+            $this->model->with('roles')->where('id', '!=', auth()->id())
+        )
+            ->filter(function ($query) use ($search, $roleId) {
+                if(!empty($search))
+                {
+                    $search = strtolower(trim($search));
+                    $query->whereRaw('(LOWER(`users`.`name`) LIKE "%' . $search . '%" OR LOWER(`users`.`email`) LIKE "%' . $search . '%")');
+                }
+            })
+            ->make(true);
     }
 }

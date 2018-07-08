@@ -118,7 +118,7 @@ Route::group(['middleware' => ['auth', 'active']], function () {
         Route::get('users/invite', ['uses' => 'UserController@getInvite', 'as' => 'users.invite']);
         Route::get('users/switch/{id}', 'UserController@switchToUser');
         Route::post('users/invite', 'UserController@postInvite');
-
+        Route::get('users/getJSONData', ['as'=>'users.datatable', 'uses'=>'UserController@getJSONData']);
         /*
         |--------------------------------------------------------------------------
         | Roles
@@ -127,5 +127,6 @@ Route::group(['middleware' => ['auth', 'active']], function () {
         Route::resource('roles', 'RoleController', ['except' => ['show']]);
         Route::post('roles/search', 'RoleController@search');
         Route::get('roles/search', 'RoleController@index');
+        
     });
 });

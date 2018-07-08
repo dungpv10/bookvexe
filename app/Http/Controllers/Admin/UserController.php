@@ -5,14 +5,16 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Services\UserService;
+use App\Services\RoleService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserInviteRequest;
-
+use Log;
 class UserController extends Controller
 {
-    public function __construct(UserService $userService)
+    public function __construct(UserService $userService, RoleService $roleService)
     {
         $this->service = $userService;
+        $this->roleService = $roleService;
     }
 
     /**
@@ -22,8 +24,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = $this->service->all();
-        return view('admin.users.index')->with('users', $users);
+        $roles = $this->roleService->all();
+        return view('admin.users.index')->with('roles', $roles);
     }
 
     /**
@@ -104,7 +106,8 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = $this->service->find($id);
-        return view('admin.users.edit')->with('user', $user);
+        $roles = $this->roleService->all();
+        return view('admin.users.edit')->with('user', $user)->with('roles', $roles);
     }
 
     /**
@@ -119,10 +122,10 @@ class UserController extends Controller
         $result = $this->service->update($id, $request->except(['_token', '_method']));
 
         if ($result) {
-            return back()->with('message', 'Successfully updated');
+            return back()->with('success', 'Cập nhật thành công');
         }
 
-        return back()->with('errors', ['Failed to update']);
+        return back()->with('err', 'Cập nhật thất bại');
     }
 
     /**
@@ -131,14 +134,28 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
         $result = $this->service->destroy($id);
-
         if ($result) {
+            if($request->ajax())
+            {
+                return response()->json(['code' => 200, 'message' => 'Xoá Thành công']);
+            }
             return redirect('admin/users')->with('message', 'Successfully deleted');
         }
+        if($request->ajax())
+        {
+            return response()->json(['code' => 500, 'message' => 'Xoá Thất bại']);
+        }
 
-        return redirect('admin/users')->with('errors', ['Failed to delete']);
+        return redirect('admin/users')->with('message', 'Failed to delete');
+    }
+
+    public function getJSONData(Request $request)
+    {
+        $roleId = $request->get('role_id');
+        $search = $request->get('search')['value'];
+        return $this->service->getJSONData($roleId, $search);
     }
 }

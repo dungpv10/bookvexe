@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>bOOK - XE</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -19,6 +20,12 @@
     <link href="{{asset('css/panel.css')}}" rel="stylesheet" type="text/css"/>
     <link href="{{asset('css/metisMenu.css')}}" rel="stylesheet" type="text/css"/>
     <!--end of page level css-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('vendors/datatables/css/dataTables.bootstrap.css') }}" />
+
+    <link href="{{ asset('css/pages/tables.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('vendors/select2/select2.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('vendors/select2/select2-bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('vendors/validation/css/bootstrapValidator.min.css') }}" rel="stylesheet" type="text/css" />
 
     @yield('css')
 </head>
@@ -60,7 +67,25 @@
    <script src="{{asset('js/josh.js')}}" type="text/javascript"></script>
     <script src="{{asset('js/metisMenu.js')}}" type="text/javascript"> </script>
     <script src="{{asset('vendors/holder/holder.js')}}" type="text/javascript"></script>
-   
+    <script type="text/javascript" src="{{ asset('vendors/datatables/js/jquery.dataTables.min.js') }}" >
+        
+    </script>
+    <script type="text/javascript" src="{{ asset('vendors/datatables/js/dataTables.bootstrap.js') }}" ></script>
+    <script type="text/javascript" src="{{ asset('vendors/validation/js/bootstrapValidator.min.js') }}" ></script>
+    <script type="text/javascript" src="{{ asset('vendors/select2/select2.min.js') }}" ></script>
+    <script src="{{ asset("js/sweetalert2.all.js") }}"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('body').on('hidden.bs.modal', '.modal', function () {
+                $(this).removeData('bs.modal');
+            });
+        });
+        $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+    </script>
     <!-- end of page level js -->
     @yield("js")
 </body>
