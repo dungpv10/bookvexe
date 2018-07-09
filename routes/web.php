@@ -127,6 +127,7 @@ Route::group(['middleware' => ['auth', 'active']], function () {
         Route::resource('roles', 'RoleController', ['except' => ['show']]);
         Route::post('roles/search', 'RoleController@search');
         Route::get('roles/search', 'RoleController@index');
+        Route::get('roles/getJSONData', ['as'=>'roles.datatable', 'uses'=>'RoleController@getJSONData']);
         
     });
 });

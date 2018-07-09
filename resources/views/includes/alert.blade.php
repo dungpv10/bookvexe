@@ -11,18 +11,17 @@
 	</div>
 @endif
 @if (session('err') || session('errors'))
-	@if (session('errors'))
-		<ul>
-		    @foreach ($errors->all() as $error)
-		        <li style="color:red">{{ $error }}</li>
-		    @endforeach
-		</ul>
-	@else
 	<div class="alert alert-danger  alert-dismissable">
+	@if (session('errors'))
+		    @foreach ($errors->all() as $error)
+		    	<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+	   			 {{ $error }}
+		    @endforeach
+	@else
 	    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 	    <strong>Thất bại!</strong> {{ session('err') }}
-	</div>
 	@endif
+	</div>
 @endif
 @if (session('info'))
 <div class="alert alert-info alert-dismissable">

@@ -45,13 +45,34 @@
                         <li>
                             <a href="{{route('users.index')}}">
                                 <i class="fa fa-angle-double-right"></i>
-                                Users
+                                List Users
                             </a>
                         </li>
                         <li>
                             <a href="{{route('users.invite')}}">
                                 <i class="fa fa-angle-double-right"></i>
                                 Add New User
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="livicon" data-name="users" data-size="18" data-c="#418BCA" data-hc="#418BCA" data-loop="true"></i>
+                        <span class="title">Roles</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li>
+                            <a href="{{route('roles.index')}}">
+                                <i class="fa fa-angle-double-right"></i>
+                                List Roles
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{route('roles.create')}}">
+                                <i class="fa fa-angle-double-right"></i>
+                                Add New Roles
                             </a>
                         </li>
                     </ul>

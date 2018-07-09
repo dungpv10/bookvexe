@@ -8,6 +8,7 @@ use Config;
 use Exception;
 use App\Services\UserService;
 use App\Models\Role;
+use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\Schema;
 
 class RoleService
@@ -157,5 +158,20 @@ class RoleService
         }
 
         return $result;
+    }
+
+    public function getJSONData($search = "")
+    {
+        return DataTables::of(
+            $this->model->where('id', '!=', 0)
+        )
+            ->filter(function ($query) use ($search) {
+                if(!empty($search))
+                {
+                    $search = strtolower(trim($search));
+                    $query->whereRaw('(LOWER(`roles`.`name`) LIKE "%' . $search . '%" OR LOWER(`roles`.`label`) LIKE "%' . $search . '%")');
+                }
+            })
+            ->make(true);
     }
 }
