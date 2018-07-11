@@ -141,4 +141,8 @@ class User extends Authenticatable
     {
         $this->notify(new ResetPassword($token));
     }
+
+    public function promotions(){
+        return $this->hasMany(Promotion::class, 'agent_id', 'id');
+    }
 }

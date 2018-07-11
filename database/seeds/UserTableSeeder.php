@@ -31,7 +31,7 @@ class UserTableSeeder extends Seeder
         for ($i = 1; $i < 50; $i ++) {
             $user = User::create([
                 'name' => 'User' . $i,
-                'username' => 'username_' . substr(time(), 0, 4),
+                'username' => 'username_' . $i,
                 'email' => 'user' . $i . '@example.com',
                 'password' => bcrypt('user'),
                 'dob' => '1990-11-11',
@@ -39,6 +39,19 @@ class UserTableSeeder extends Seeder
             ]);
 
             $service->create($user, 'user', 'member', false);
+        }
+
+        for ($i = 1; $i < 50; $i ++) {
+            $user = User::create([
+                'name' => 'Agent ' . $i,
+                'username' => 'agent_' . $i,
+                'email' => 'agent' . $i . '@example.com',
+                'password' => bcrypt('user'),
+                'dob' => '1990-11-11',
+                'mobile' => '123123123'
+            ]);
+
+            $service->create($user, 'user', 'agent', false);
         }
 
     }
