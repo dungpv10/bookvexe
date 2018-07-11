@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('username', 255)->comment('username to login');
             $table->string('password');
             $table->date('dob')->nullable();
             $table->string('mobile', 45)->nullable();
@@ -26,6 +27,9 @@ class CreateUsersTable extends Migration
                 ->comment('Active/Inactive');
             $table->string('avatar')->nullable()
                 ->comment('ID of image in images table');
+
+            $table->string('address', 255)->nullable();
+
             $table->rememberToken();
             $table->timestamps();
         });

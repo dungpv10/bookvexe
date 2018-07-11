@@ -11,14 +11,9 @@
 |
 */
 
-$factory->define(App\Models\User::class, function (Faker\Generator $faker) {
-    static $password;
+$factory->define(App\Models\BusImage::class, function (Faker\Generator $faker) {
 
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'username' => $faker->userName,
-        'password' => $password ?: $password = bcrypt('secret'),
-        'remember_token' => str_random(10),
+        'image_path' => $faker->imageUrl(200, 200)
     ];
 });

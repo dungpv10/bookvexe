@@ -11,14 +11,15 @@
 |
 */
 
-$factory->define(App\Models\User::class, function (Faker\Generator $faker) {
-    static $password;
+$factory->define(App\Models\Bus::class, function (Faker\Generator $faker) {
 
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'username' => $faker->userName,
-        'password' => $password ?: $password = bcrypt('secret'),
-        'remember_token' => str_random(10),
+        'bus_name' => $faker->name,
+        'bus_reg_number' => '30F-' . $faker->randomDigit,
+        'number_seats' => random_int(30, 40),
+        'start_point' => $faker->countryCode,
+        'end_point' => $faker->countryCode,
+        'start_time' => 0,
+        'end_time' => random_int(2, 23)
     ];
 });

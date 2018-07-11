@@ -11,14 +11,12 @@
 |
 */
 
-$factory->define(App\Models\User::class, function (Faker\Generator $faker) {
-    static $password;
-
+$factory->define(App\Models\Point::class, function (Faker\Generator $faker) {
+    $routes = \App\Models\Route::pluck('id');
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'username' => $faker->userName,
-        'password' => $password ?: $password = bcrypt('secret'),
-        'remember_token' => str_random(10),
+        'drop_time' => random_int(0, 23),
+        'address' => $faker->address,
+        'landmark' => $faker->address,
+        'route_id' => $routes->random()
     ];
 });

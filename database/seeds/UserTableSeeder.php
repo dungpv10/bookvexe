@@ -18,6 +18,7 @@ class UserTableSeeder extends Seeder
         if (!User::where('name', 'admin')->first()) {
             $user = User::create([
                 'name' => 'Admin',
+                'username' => 'admin',
                 'email' => 'admin@example.com',
                 'password' => bcrypt('admin'),
                 'dob' => '1990-11-11',
@@ -30,6 +31,7 @@ class UserTableSeeder extends Seeder
         for ($i = 1; $i < 50; $i ++) {
             $user = User::create([
                 'name' => 'User' . $i,
+                'username' => 'username_' . substr(time(), 0, 4),
                 'email' => 'user' . $i . '@example.com',
                 'password' => bcrypt('user'),
                 'dob' => '1990-11-11',

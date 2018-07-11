@@ -21,6 +21,10 @@ class RolesTableSeeder extends Seeder
                 'name' => 'admin',
                 'label' => 'Admin',
             ]);
+            Role::create([
+                'name' => 'agent',
+                'label' => 'Agent',
+            ]);
         }
     }
 }

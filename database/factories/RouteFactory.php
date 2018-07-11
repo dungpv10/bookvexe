@@ -11,14 +11,13 @@
 |
 */
 
-$factory->define(App\Models\User::class, function (Faker\Generator $faker) {
-    static $password;
+$factory->define(App\Models\Route::class, function (Faker\Generator $faker) {
 
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'username' => $faker->userName,
-        'password' => $password ?: $password = bcrypt('secret'),
-        'remember_token' => str_random(10),
+        'price' => random_int(300, 400),
+        'from_place' => $faker->countryCode,
+        'arrived_place' => $faker->countryCode,
+        'start_time' => 0,
+        'arrived_time' => random_int(2, 23)
     ];
 });

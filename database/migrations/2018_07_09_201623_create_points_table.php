@@ -22,6 +22,7 @@ class CreatePointsTable extends Migration
 
             $table->integer('drop_time')->comment('time to drop customer'); // 00 -> 23
             $table->string('address', 255)->comment('address of drop point');
+            $table->string('landmark')->comment('Address to pick customer');
             $table->softDeletes();
             $table->timestamps();
         });

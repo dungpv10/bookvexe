@@ -14,9 +14,24 @@ class DatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        $this->call(RolesTableSeeder::class);
-        $this->call(UserTableSeeder::class);
+        $this->callSeeder();
 
         Model::reguard();
+    }
+
+    private function callSeeder()
+    {
+        $seeders = [
+            RolesTableSeeder::class,
+            UserTableSeeder::class,
+            AmenityTableSeeder::class,
+            BusTypeTableSeeder::class,
+            PointTypeTableSeeder::class,
+
+        ];
+
+        foreach ($seeders as $seeder) {
+            $this->call($seeder);
+        }
     }
 }

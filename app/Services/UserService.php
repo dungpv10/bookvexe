@@ -170,7 +170,8 @@ class UserService
 
             return $user;
         } catch (Exception $e) {
-            throw new Exception("We were unable to generate your profile, please try again later.", 1);
+            throw $e;
+//            throw new Exception("We were unable to generate your profile, please try again later.", 1);
         }
     }
 
@@ -310,7 +311,7 @@ class UserService
             'activation_token' => $token
         ]);
 
-        $user->notify(new ActivateUserEmail($token));
+//        $user->notify(new ActivateUserEmail($token));
     }
 
     /*
