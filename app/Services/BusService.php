@@ -34,7 +34,7 @@ class BusService
     public function getJSONData($search = "")
     {
         return DataTables::of(
-            $this->busModel->select('bus_name', 'bus_reg_number', 'bus_type_id', DB::raw('(select bus_type_name from bus_types where bus_types.id = buses.bus_type_id) AS bus_type'), 'number_seats', 'start_point', 'end_point', 'start_time', 'end_time')
+            $this->busModel->select('id', 'bus_name', 'bus_reg_number', 'bus_type_id', DB::raw('(select bus_type_name from bus_types where bus_types.id = buses.bus_type_id) AS bus_type'), 'number_seats', 'start_point', 'end_point', 'start_time', 'end_time')
                 ->where('id', '!=', 0)
         )
             ->filter(function ($query) use ($search) {
