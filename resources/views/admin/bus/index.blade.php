@@ -47,7 +47,7 @@
                 columns: [
                     { data: 'bus_name', name: 'bus_name', title: 'Bus Name' },
                     { data: 'bus_reg_number', name: 'bus_reg_number', title: 'Bus RegiNumber' },
-                    { data: 'bus_type_id', name: 'bus_type_id', title: 'Bus Type' },
+                    { data: 'bus_type', name: 'bus_type', title: 'Bus Type' },
                     { data: 'number_seats', name: 'number_seats', title: 'Number Seats' },
                     { data: 'start_point', name: 'start_point', title: 'Start Point' },
                     { data: 'end_point', name: 'end_point', title: 'End Point'},
