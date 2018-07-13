@@ -59,4 +59,33 @@ class BusService
     {
         return $this->busAmenityModel->select('amenity_id')->where('bus_id', $id)->groupBy('amenity_id')->pluck('amenity_id')->toarray();
     }
+
+    public function updateBus($id = null, $dataRequest){
+        if ($id == null){
+            abort('404');
+        }
+        try {
+            DB::beginTransaction();
+            $bus = $this->busModel->find($id);
+            $dataRequest['data']['start_time'] = $this->getTime($dataRequest['data']['start_time']);
+            $dataRequest['data']['end_time'] = $this->getTime($dataRequest['data']['end_time']);
+            $bus->update($dataRequest['data']);
+            DB::commit();
+            return true;
+        } catch (\Exception $e) {
+            DB::rollback();
+            return false;
+        }
+    }
+
+    public function getTime($time)
+    {
+        $chunks = explode(':', $time);
+        if (strpos( $time, 'AM') === false && $chunks[0] !== '12') {
+            $chunks[0] = $chunks[0] + 12;
+        } else if (strpos( $time, 'PM') === false && $chunks[0] == '12') {
+            $chunks[0] = '00';
+        }
+        return preg_replace('/\s[A-Z]+/s', '', implode(':', $chunks));
+    }
 }

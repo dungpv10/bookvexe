@@ -98,7 +98,12 @@ class BusController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $dataRequest = $request->input();
+        $result = $this->busService->updateBus($id, $dataRequest);
+        if ($result == true) {
+            return redirect()->back()->with('success', 'save data bus');
+        }
+        return redirect()->back()->with('error', "can't save data bus");
     }
 
     /**
