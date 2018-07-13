@@ -4,9 +4,15 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Services\BusService;
 
 class BusController extends Controller
 {
+    public $busService;
+
+    public function __construct(BusService $busService) {
+        $this->busService = $busService;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +20,9 @@ class BusController extends Controller
      */
     public function index()
     {
-        //
+        // show view list bus
+        $result = $this->busService->all();
+        return view('admin.bus.index')->with('listBus', $result);
     }
 
     /**
