@@ -58,7 +58,7 @@
                             var busId = "'" + data + "'";
                             var urlEdit = '{!! route('bus.index') !!}' + '/' + data + '/edit';
                             var switchUrl = '{!! route('bus.create') !!}';
-                            var actionLink = '<a href="javascript:;" data-toggle="tooltip" title="Xoá '+ row['name'] +'!" onclick="deleteUserById('+ busId +')"><i class=" fa-2x fa fa-trash" aria-hidden="true"></i></a>';
+                            var actionLink = '<a href="javascript:;" data-toggle="tooltip" title="Xoá '+ row['name'] +'!" onclick="deleteBusById('+ busId +')"><i class=" fa-2x fa fa-trash" aria-hidden="true"></i></a>';
                             actionLink += '&nbsp;&nbsp;&nbsp;<a href="' + urlEdit + '" data-toggle="tooltip" title="Sửa '+ row['name'] +'!" ><i class="fa fa-2x fa-pencil-square-o" aria-hidden="true"></i></a>';
                             actionLink += '&nbsp;&nbsp;&nbsp;<a href="' + switchUrl + '" data-toggle="tooltip" title="Đăng nhập bằng '+ row['name'] +'!" ><i class="fa fa-2x fa-sign-in" aria-hidden="true"></i></a>';
                             return actionLink;
@@ -68,5 +68,58 @@
             });
 
         });
+        function deleteBusById(id) {
+            swal({
+                title: "Bạn có muốn xóa bus này?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                cancelButtonText: 'Bỏ qua',
+                confirmButtonText: "Đồng ý",
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url: '{!! route('bus.index') !!}' + '/' + id,
+                        method: 'DELETE'
+                    }).success(function(data){
+                        console.log(data);
+                        if(data.code == 200)
+                        {
+                            swal(
+                                'Đã Xoá!',
+                                'Bạn đã xoá thành công người dùng!',
+                                'success'
+                            ).then(function(){
+                                busTable.ajax.reload();
+                            })
+                        }
+                        else {
+                            swal(
+                                'Thất bại',
+                                'Thao tác thất bại',
+                                'error'
+                            ).then(function(){
+                                busTable.ajax.reload();
+                            })
+                        }
+                    }).error(function(data){
+                        swal(
+                            'Thất bại',
+                            'Thao tác thất bại',
+                            'error'
+                        ).then(function(){
+                            busTable.ajax.reload();
+                        })
+                    });
+                    // result.dismiss can be 'overlay', 'cancel', 'close', 'esc', 'timer'
+                } else if (result.dismiss === 'cancel') {
+                    swal(
+                        'Bỏ Qua',
+                        'Bạn đã không xoá bus nữa',
+                        'error'
+                    )
+                }
+            });
+        }
     </script>
 @stop

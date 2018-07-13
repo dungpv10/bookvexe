@@ -98,4 +98,14 @@ class BusService
         }
         return preg_replace('/\s[A-Z]+/s', '', implode(':', $chunks));
     }
+
+    public function destroy($id)
+    {
+        try {
+            $this->busModel->find($id)->delete();
+            return true;
+        } catch (\Exception $e) {
+            return false;
+        }
+    }
 }
