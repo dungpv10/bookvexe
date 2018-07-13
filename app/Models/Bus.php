@@ -27,4 +27,10 @@ class Bus extends Model
     public function rates(){
         return $this->hasMany(Rate::class, 'bus_id', 'id');
     }
+
+
+    public function busType(){
+        return $this->belongsTo(BusType::class, 'bus_type_id', 'id');
+    }
+
 }

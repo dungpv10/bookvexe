@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\BusType;
 use DB;
 use App\Models\Bus;
 use Yajra\Datatables\Datatables;
@@ -37,17 +38,11 @@ class BusService
     public function getJSONData($search = "")
     {
         return DataTables::of(
-            $this->busModel->select('id', 'bus_name', 'bus_reg_number', 'bus_type_id', DB::raw('(select bus_type_name from bus_types where bus_types.id = buses.bus_type_id) AS bus_type'), 'number_seats', 'start_point', 'end_point', 'start_time', 'end_time')
+            $this->busModel->with('busType')->select('id', 'bus_name', 'bus_reg_number', 'bus_type_id', 'number_seats', 'start_point', 'end_point', 'start_time', 'end_time')
                 ->where('id', '!=', 0)
-        )
-            ->filter(function ($query) use ($search) {
-                if(!empty($search))
-                {
-                    $search = strtolower(trim($search));
-                    $query->whereRaw('(LOWER(`roles`.`name`) LIKE "%' . $search . '%" OR LOWER(`roles`.`label`) LIKE "%' . $search . '%")');
-                }
-            })
-            ->make(true);
+        )->addColumn('busType', function(Bus $bus){
+            return $bus->busType->bus_type_name;
+        })->make(true);
     }
 
     public function findById($id = null)
