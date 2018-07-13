@@ -33,7 +33,7 @@
 
 <body class="skin-josh">
     <header class="header">
-        <a href="index.html" class="logo">
+        <a href="/" class="logo">
             <!-- Add the class icon to your logo image or logo icon to add the margining -->
             <img src="{{asset('img/logo.png')}}" alt="logo"></a>
         <nav class="navbar navbar-static-top" role="navigation">
@@ -43,17 +43,25 @@
                     <div class="responsive_nav"></div>
                 </a>
             </div>
-            @include('admin.navbar_right')
+            @include('admin.layouts.includes.navbar_right')
         </nav>
     </header>
     <div class="wrapper row-offcanvas row-offcanvas-left">
         <!-- Left side column. contains the logo and sidebar -->
-        @include('admin.sidebar')
+        @include('admin.layouts.includes.sidebar')
         <!-- Right side column. Contains the navbar and content of the page -->
         <aside class="right-side">
-            @yield('content')
+            @include('admin.layouts.includes.breadcrumb')
+
+            <section class="content">
+                @include('includes.alert')
+                <div class="row">
+                    @yield('content')
+                </div>
+            </section>
+
         </aside>
-        <!-- right-side --> 
+        <!-- right-side -->
     </div>
     <!-- ./wrapper -->
     <a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button" title="Return to top" data-toggle="tooltip" data-placement="left">
@@ -70,7 +78,7 @@
     <script src="{{asset('js/metisMenu.js')}}" type="text/javascript"> </script>
     <script src="{{asset('vendors/holder/holder.js')}}" type="text/javascript"></script>
     <script type="text/javascript" src="{{ asset('vendors/datatables/js/jquery.dataTables.min.js') }}" >
-        
+
     </script>
     <script type="text/javascript" src="{{ asset('vendors/datatables/js/dataTables.bootstrap.js') }}" ></script>
     <script type="text/javascript" src="{{ asset('vendors/validation/js/bootstrapValidator.min.js') }}" ></script>

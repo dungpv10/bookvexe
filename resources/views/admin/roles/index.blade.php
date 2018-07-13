@@ -1,37 +1,17 @@
-@extends('admin.dashboard')
+@extends('admin.layouts.dashboard')
 
 @section('content')
-    
-    <section class="content-header">
-        <!--section starts-->
-        <h1>Roles</h1>
-        <ol class="breadcrumb">
-            <li>
-                <a href="/admin/dashboard">
-                    <i class="livicon" data-name="home" data-size="14" data-c="#000" data-loop="true"></i>
-                    Dashboard
-                </a>
-            </li>
-            <li class="active">Roles</li>
-        </ol>
-    </section>
+    <div class="col-md-12">
 
-    <section class="content">
-            @include('includes.alert')
-        <div class="row">
-            <div class="col-md-12">
-                
-                <div class="table-responsive">
+        <div class="table-responsive">
 
-                    <table class="table table-bordered " id="role_table">
-                        
-                    </table>
+            <table class="table table-bordered " id="role_table">
 
-                </div>
+            </table>
 
-            </div>
         </div>
-    </section>
+
+    </div>
 @stop
 @section('js')
     <script type="text/javascript">

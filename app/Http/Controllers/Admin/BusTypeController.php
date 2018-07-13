@@ -14,7 +14,7 @@ class BusTypeController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.bus_type.index');
     }
 
     /**

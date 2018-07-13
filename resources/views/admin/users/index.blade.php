@@ -1,50 +1,33 @@
-@extends('admin.dashboard')
+@extends('admin.layouts.dashboard')
 
 @section('content')
-	
-	<section class="content-header">
-        <!--section starts-->
-        <h1>Users</h1>
-        <ol class="breadcrumb">
-            <li>
-                <a href="/admin/dashboard">
-                    <i class="livicon" data-name="home" data-size="14" data-c="#000" data-loop="true"></i>
-                    Dashboard
-                </a>
-            </li>
-            <li class="active">List User</li>
-        </ol>
-    </section>
 
-    <section class="content">
-    	@include('includes.alert')
-    	<div class="row">
-    		<div class="col-md-2">
-	            <div class="form-group">
-	              <label for="role_id">Select Role</label>
-	              <select class="form-control" id="role_id">
-	                <option value="">Select Role</option>
-	                @foreach($roles as $role)
-	                    <option value="{{ $role->id }}">{{ $role->name }}</option>
-	                @endforeach
-	              </select>
-	            </div>
-	        </div>
-    	</div>
-    	<div class="row">
-    		<div class="col-md-12">
-    			
-    			<div class="table-responsive">
+    <div class="row">
+        <div class="col-md-2">
+            <div class="form-group">
+                <label for="role_id">Select Role</label>
+                <select class="form-control" id="role_id">
+                    <option value="">Select Role</option>
+                    @foreach($roles as $role)
+                        <option value="{{ $role->id }}">{{ $role->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
 
-	                <table class="table table-bordered " id="user_table">
-	                    
-	                </table>
+            <div class="table-responsive">
 
-	            </div>
+                <table class="table table-bordered " id="user_table">
 
-    		</div>
-    	</div>
-    </section>
+                </table>
+
+            </div>
+
+        </div>
+    </div>
 @stop
 @section('js')
 	<script type="text/javascript">

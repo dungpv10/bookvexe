@@ -1,7 +1,7 @@
-@extends('admin.dashboard')
+@extends('admin.layouts.dashboard')
 
 @section('content')
-    
+
     <section class="content-header">
         <!--section starts-->
         <h1>Users</h1>
@@ -23,7 +23,7 @@
         @include('includes.alert')
         <div class="row">
             <div class="col-md-12">
-                
+
                 <form method="POST" action="{{ route('users.update', $user->id) }}" id="frmEditUser">
                     <input name="_method" type="hidden" value="PATCH">
                     <input type="hidden" name="_token" value="{{csrf_token()}}">

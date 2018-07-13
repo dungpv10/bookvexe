@@ -15,5 +15,7 @@ return [
 
     'admin' => 'Admin',
     'regular' => 'Regular',
-
+    'agent' => 'Agent',
+    'staff' => 'Staff',
+    'member' => 'Member'
 ];
