@@ -106,7 +106,7 @@ class BusController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function updateBus(Request $request, $id)
     {
         $dataRequest = $request->input();
         $result = $this->busService->updateBus($id, $dataRequest);

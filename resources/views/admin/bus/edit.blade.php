@@ -24,8 +24,7 @@
         <div class="row">
             <div class="col-md-12">
 
-                <form method="post" action="{{ route('bus.update', $busDetail->id) }}" id="frmEditBus" enctype="multipart/form-data">
-                    <input name="_method" type="hidden" value="PATCH">
+                <form method="post" action="{{ route('bus.update.bus', $busDetail->id) }}" id="frmEditBus" enctype="multipart/form-data">
                     <input type="hidden" name="_token" value="{{csrf_token()}}">
                     <div class="row">
                         <div class="col-md-6">
