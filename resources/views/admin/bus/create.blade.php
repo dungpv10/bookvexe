@@ -49,6 +49,10 @@
                                     </span>
                                 </div>
                             </div>
+                            <div class="row form-group">
+                                <label for="amenities">Amenities</label>
+                                {!! Form::select('amenities[]', $amenities, null, ['class' => 'form-control js-example-basic-multiple', 'id' => 'amenities', 'multiple' => 'multiple', 'required']) !!}
+                            </div>
                         </div>
                         <div class="col-md-6">
                             <div class="row form-group">
@@ -71,10 +75,6 @@
                                         <span class="glyphicon glyphicon-time"></span>
                                     </span>
                                 </div>
-                            </div>
-                            <div class="row form-group">
-                                <label for="amenities">Amenities</label>
-                                {!! Form::select('amenities[]', $amenities, null, ['class' => 'form-control', 'id' => 'amenities', 'multiple' => 'multiple', 'required']) !!}
                             </div>
                         </div>
                     </div>
