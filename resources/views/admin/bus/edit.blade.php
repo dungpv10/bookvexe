@@ -74,8 +74,8 @@
                                 </div>
                             </div>
                             <div class="row form-group">
-                                <label for="Email">Amenities</label>
-                                <input id="bus_name" class="form-control" type="text" name="bus_name" value="{{ $busDetail->bus_name }}" placeholder="bus name" required>
+                                <label for="amenities">Amenities</label>
+                                {!! Form::select('amenities', $amenities, $amenityInIds, ['class' => 'form-control', 'id' => 'amenities', 'multiple' => 'multiple']) !!}
                             </div>
                         </div>
                     </div>

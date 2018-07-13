@@ -6,18 +6,24 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Services\BusService;
 use App\Services\BusTypeService;
+use App\Services\AmenityService;
 
 class BusController extends Controller
 {
     public $busService;
     public $busTypeService;
+    public $amenityService;
+
     /**
      * BusController constructor.
      * @param BusService $busService
+     * @param BusTypeService $busTypeService
+     * @param AmenityService $amenityService
      */
-    public function __construct(BusService $busService, BusTypeService $busTypeService) {
+    public function __construct(BusService $busService, BusTypeService $busTypeService, AmenityService $amenityService) {
         $this->busService = $busService;
         $this->busTypeService = $busTypeService;
+        $this->amenityService = $amenityService;
     }
     /**
      * Display a listing of the resource.
@@ -73,9 +79,13 @@ class BusController extends Controller
     {
         $busDetail = $this->busService->findById($id);
         $busTypes = $this->busTypeService->getAllBusType();
+        $amenities = $this->amenityService->getAllAmenity();
+        $amenityInIds = $this->busService->getAmenityById($id);
         return view('admin.bus.edit',[
             'busDetail' => $busDetail,
-            'busTypes' => $busTypes
+            'busTypes' => $busTypes,
+            'amenities' => $amenities,
+            'amenityInIds' => $amenityInIds
         ]);
     }
 

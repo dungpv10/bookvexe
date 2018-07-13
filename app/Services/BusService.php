@@ -5,6 +5,7 @@ namespace App\Services;
 use DB;
 use App\Models\Bus;
 use Yajra\Datatables\Datatables;
+use App\Models\BusAmenity;
 
 class BusService
 {
@@ -14,14 +15,16 @@ class BusService
      * @var UserService
      */
     protected $busModel;
+    protected $busAmenityModel;
 
     /**
-     * Construct
-     *
-     * @param UserService $userService
+     * BusService constructor.
+     * @param Bus $busModel
+     * @param BusAmenity $busAmenityModel
      */
-    public function __construct(Bus $busModel) {
+    public function __construct(Bus $busModel, BusAmenity $busAmenityModel) {
         $this->busModel = $busModel;
+        $this->busAmenityModel = $busAmenityModel;
     }
 
     /**
@@ -50,5 +53,10 @@ class BusService
     public function findById($id = null)
     {
         return $this->busModel->find($id);
+    }
+
+    public function getAmenityById($id = null)
+    {
+        return $this->busAmenityModel->select('amenity_id')->where('bus_id', $id)->groupBy('amenity_id')->pluck('amenity_id')->toarray();
     }
 }
