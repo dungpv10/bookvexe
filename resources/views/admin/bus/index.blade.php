@@ -50,8 +50,8 @@
                     { data: 'bus_type', name: 'bus_type', title: 'Bus Type' },
                     { data: 'number_seats', name: 'number_seats', title: 'Number Seats' },
                     { data: 'start_point', name: 'start_point', title: 'Start Point' },
-                    { data: 'end_point', name: 'end_point', title: 'End Point'},
                     { data: 'start_time', name: 'start_time', title: 'Start Time'},
+                    { data: 'end_point', name: 'end_point', title: 'End Point'},
                     { data: 'end_time', name: 'end_time', title: 'End Time'},
                     { data: 'id', name: 'id', title: 'Action', searchable: false,className: 'text-center', "orderable": false,
                         render: function(data, type, row, meta){
