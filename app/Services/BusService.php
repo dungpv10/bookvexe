@@ -4,7 +4,7 @@ namespace App\Services;
 
 use DB;
 use App\Models\Bus;
-
+use Yajra\Datatables\Datatables;
 
 class BusService
 {
@@ -29,5 +29,20 @@ class BusService
     */
     public function all() {
     	return $this->busModel->all();
+    }
+
+    public function getJSONData($search = "")
+    {
+        return DataTables::of(
+            $this->busModel->where('id', '!=', 0)
+        )
+            ->filter(function ($query) use ($search) {
+                if(!empty($search))
+                {
+                    $search = strtolower(trim($search));
+                    $query->whereRaw('(LOWER(`roles`.`name`) LIKE "%' . $search . '%" OR LOWER(`roles`.`label`) LIKE "%' . $search . '%")');
+                }
+            })
+            ->make(true);
     }
 }

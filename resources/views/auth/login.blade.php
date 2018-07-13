@@ -23,7 +23,7 @@
                     <div id="wrapper">
                     <!-- login form -->
                         <div id="login" class="animate form">
-                            <form action="/login" autocomplete="on" method="post">
+                            <form action="{{ route('login') }}" autocomplete="on" method="post">
                                 <h3 class="black_bg">
                                     <img src="img/logo.png" alt="josh logo">
                                     <br>Log in</h3>

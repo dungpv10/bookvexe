@@ -144,7 +144,8 @@ Route::group(['middleware' => ['auth', 'active']], function () {
         |--------------------------------------------------------------------------
         */
 
-        Route::resource('bus', 'BusController');
+        Route::resource('bus', 'BusController', ['except' => ['show']]);
+        Route::get('bus/getJSONData', ['as'=>'bus.datatable', 'uses'=>'BusController@getJSONData']);
 
         /*
         |--------------------------------------------------------------------------

@@ -90,4 +90,10 @@ class BusController extends Controller
     {
         //
     }
+
+    public function getJSONData(Request $request)
+    {
+        $search = $request->get('search')['value'];
+        return $this->busService->getJSONData($search);
+    }
 }
