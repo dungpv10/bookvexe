@@ -51,7 +51,7 @@
                             </div>
                             <div class="row form-group">
                                 <label for="amenities">Amenities</label>
-                                {!! Form::select('amenities[]', $amenities, $amenityInIds, ['class' => 'form-control', 'id' => 'amenities', 'multiple' => 'multiple']) !!}
+                                {!! Form::select('amenities[]', $amenities, $amenityInIds, ['class' => 'form-control', 'id' => 'amenities', 'multiple' => 'multiple', 'required']) !!}
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -91,6 +91,7 @@
 @stop
 @section('js')
     <script type="text/javascript">
+        $('#frmEditBus').bootstrapValidator({});
         $('#bus_type_id').select2({
             placeholder: "Chọn Bus Type",
         });
