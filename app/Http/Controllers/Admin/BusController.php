@@ -44,7 +44,12 @@ class BusController extends Controller
      */
     public function create()
     {
-        //
+        $busTypes = $this->busTypeService->getAllBusType();
+        $amenities = $this->amenityService->getAllAmenity();
+        return view('admin.bus.create',[
+            'busTypes' => $busTypes,
+            'amenities' => $amenities,
+        ]);
     }
 
     /**
@@ -55,7 +60,12 @@ class BusController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $dataRequest = $request->input();
+        $result = $this->busService->insertBus($dataRequest);
+        if ($result) {
+            return redirect()->route('bus.index')->with('success', 'save data bus');
+        }
+        return redirect()->back()->with('error', "can't save data bus");
     }
 
     /**

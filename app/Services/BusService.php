@@ -79,7 +79,10 @@ class BusService
                     'amenity_id' => $amenity
                 ];
             }
-            $this->busAmenityModel->insert($saveAmenity);
+            if(!empty($saveAmenity)) {
+                die();
+                $this->busAmenityModel->insert($saveAmenity);
+            }
             DB::commit();
             return true;
         } catch (\Exception $e) {
@@ -105,6 +108,32 @@ class BusService
             $this->busModel->find($id)->delete();
             return true;
         } catch (\Exception $e) {
+            return false;
+        }
+    }
+
+    public function insertBus($dataRequest){
+        try {
+            DB::beginTransaction();
+            //insert data for bus
+            $dataRequest['data']['start_time'] = $this->getTime($dataRequest['data']['start_time']);
+            $dataRequest['data']['end_time'] = $this->getTime($dataRequest['data']['end_time']);
+            $busId = $this->busModel->insertGetId($dataRequest['data']);
+            //update data for amenity
+            $saveAmenity = [];
+            foreach ($dataRequest['amenities'] as $amenity) {
+                $saveAmenity[] = [
+                    'bus_id' => $busId,
+                    'amenity_id' => $amenity
+                ];
+            }
+            if (!empty($saveAmenity)) {
+                $this->busAmenityModel->insert($saveAmenity);
+            }
+            DB::commit();
+            return true;
+        } catch (\Exception $e) {
+            DB::rollback();
             return false;
         }
     }

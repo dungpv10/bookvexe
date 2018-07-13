@@ -26,8 +26,8 @@ class BusTypeService
      * @return mixed
      */
     public function getAllBusType() {
-        return array_replace(['' => 'Chon bus type'],$this->busTypeModel->select('id', 'bus_type_name')
+        return $this->busTypeModel->select('id', 'bus_type_name')
             ->orderBy('bus_type_name', 'asc')
-            ->pluck('bus_type_name', 'id')->toArray());
+            ->pluck('bus_type_name', 'id')->toArray();
     }
 }
