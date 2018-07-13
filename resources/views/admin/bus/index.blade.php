@@ -55,10 +55,10 @@
                     { data: 'end_time', name: 'end_time', title: 'End Time'},
                     { data: 'id', name: 'id', title: 'Action', searchable: false,className: 'text-center', "orderable": false,
                         render: function(data, type, row, meta){
-                            var userId = "'" + row['id'] + "'";
+                            var busId = "'" + data + "'";
                             var urlEdit = '{!! route('bus.index') !!}' + '/' + data + '/edit';
                             var switchUrl = '{!! route('bus.create') !!}';
-                            var actionLink = '<a href="javascript:;" data-toggle="tooltip" title="Xoá '+ row['name'] +'!" onclick="deleteUserById('+ userId +')"><i class=" fa-2x fa fa-trash" aria-hidden="true"></i></a>';
+                            var actionLink = '<a href="javascript:;" data-toggle="tooltip" title="Xoá '+ row['name'] +'!" onclick="deleteUserById('+ busId +')"><i class=" fa-2x fa fa-trash" aria-hidden="true"></i></a>';
                             actionLink += '&nbsp;&nbsp;&nbsp;<a href="' + urlEdit + '" data-toggle="tooltip" title="Sửa '+ row['name'] +'!" ><i class="fa fa-2x fa-pencil-square-o" aria-hidden="true"></i></a>';
                             actionLink += '&nbsp;&nbsp;&nbsp;<a href="' + switchUrl + '" data-toggle="tooltip" title="Đăng nhập bằng '+ row['name'] +'!" ><i class="fa fa-2x fa-sign-in" aria-hidden="true"></i></a>';
                             return actionLink;
