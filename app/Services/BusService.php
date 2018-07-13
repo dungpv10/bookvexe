@@ -75,7 +75,6 @@ class BusService
                 ];
             }
             if(!empty($saveAmenity)) {
-                die();
                 $this->busAmenityModel->insert($saveAmenity);
             }
             DB::commit();
