@@ -66,10 +66,20 @@ class BusService
         }
         try {
             DB::beginTransaction();
+            //update data for bus
             $bus = $this->busModel->find($id);
             $dataRequest['data']['start_time'] = $this->getTime($dataRequest['data']['start_time']);
             $dataRequest['data']['end_time'] = $this->getTime($dataRequest['data']['end_time']);
             $bus->update($dataRequest['data']);
+            //update data for amenity
+            $saveAmenity = [];
+            foreach ($dataRequest['amenities'] as $amenity) {
+                $saveAmenity[] = [
+                    'bus_id' => $id,
+                    'amenity_id' => $amenity
+                ];
+            }
+            $this->busAmenityModel->insert($saveAmenity);
             DB::commit();
             return true;
         } catch (\Exception $e) {
