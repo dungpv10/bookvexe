@@ -45,4 +45,9 @@ class BusService
             })
             ->make(true);
     }
+
+    public function findById($id = null)
+    {
+        return $this->busModel->find($id);
+    }
 }

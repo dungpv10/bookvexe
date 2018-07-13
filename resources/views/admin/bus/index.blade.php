@@ -45,9 +45,9 @@
                     "url": '{!! route('bus.datatable') !!}'
                 },
                 columns: [
-                    { data: 'id', name: 'id', title: 'id' },
                     { data: 'bus_name', name: 'bus_name', title: 'Bus Name' },
                     { data: 'bus_reg_number', name: 'bus_reg_number', title: 'Bus RegiNumber' },
+                    { data: 'bus_type_id', name: 'bus_type_id', title: 'Bus Type' },
                     { data: 'number_seats', name: 'number_seats', title: 'Number Seats' },
                     { data: 'start_point', name: 'start_point', title: 'Start Point' },
                     { data: 'end_point', name: 'end_point', title: 'End Point'},
@@ -56,8 +56,8 @@
                     { data: 'id', name: 'id', title: 'Action', searchable: false,className: 'text-center', "orderable": false,
                         render: function(data, type, row, meta){
                             var userId = "'" + row['id'] + "'";
-                            var urlEdit = window.location.origin + '/admin/bus/edit/' + data;
-                            var switchUrl = window.location.origin + '/admin/bus/switch/' + data;
+                            var urlEdit = '{!! route('bus.index') !!}' + '/' + data + '/edit';
+                            var switchUrl = '{!! route('bus.create') !!}';
                             var actionLink = '<a href="javascript:;" data-toggle="tooltip" title="Xoá '+ row['name'] +'!" onclick="deleteUserById('+ userId +')"><i class=" fa-2x fa fa-trash" aria-hidden="true"></i></a>';
                             actionLink += '&nbsp;&nbsp;&nbsp;<a href="' + urlEdit + '" data-toggle="tooltip" title="Sửa '+ row['name'] +'!" ><i class="fa fa-2x fa-pencil-square-o" aria-hidden="true"></i></a>';
                             actionLink += '&nbsp;&nbsp;&nbsp;<a href="' + switchUrl + '" data-toggle="tooltip" title="Đăng nhập bằng '+ row['name'] +'!" ><i class="fa fa-2x fa-sign-in" aria-hidden="true"></i></a>';
