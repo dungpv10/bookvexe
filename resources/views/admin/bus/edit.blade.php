@@ -95,6 +95,9 @@
         $('#bus_type_id').select2({
             placeholder: "Chọn Bus Type",
         });
+        $('#amenities').select2({
+            
+        });
         $("#datetimepicker").datetimepicker({
             format: 'LT'
         });
