@@ -47,7 +47,7 @@ class BusService
 
     public function findById($id = null)
     {
-        return $this->busModel->find($id);
+        return $this->busModel->with('busType')->find($id);
     }
 
     public function getAmenityById($id = null)

@@ -1,6 +1,4 @@
-@extends('admin.layouts.dashboard')
-
-@section('content')
+<div class="row">
 <div class="col-md-6">
     <div class="box box-primary">
         <div class="box-header with-border">
@@ -44,7 +42,7 @@
                 <dt>Kiểu xe buýt</dt>
                 <dd>{{ $busTypes[$busDetail->bus_type_id] }}</dd>
                 <dt>Status</dt>
-                <dd>{{ $busDetail->number_seats }}</dd>
+                <dd>{{ $busDetail->busType->status }}</dd>
                 <dt>Ngày tạo</dt>
                 <dd>{{ $busDetail->created_at }}</dd>
                 <dt>Tiện nghi</dt>
@@ -59,8 +57,4 @@
         </div>
     </div>
 </div>
-@stop
-@section('js')
-    <script type="text/javascript">
-    </script>
-@stop
+</div>

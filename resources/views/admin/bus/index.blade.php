@@ -121,7 +121,7 @@
                 url: '{!! route('bus.index') !!}' + '/detail/' + id,
                 method: 'GET'
             }).success(function(data){
-                console.log(data);
+                $('#detailBusModal .modal-body').html(data);
             }).error(function(data){
 
             });
