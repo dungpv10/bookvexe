@@ -76,7 +76,7 @@ class BusController extends Controller
      */
     public function show($id)
     {
-        //
+        die('xxx');
     }
 
     /**
@@ -144,5 +144,19 @@ class BusController extends Controller
     {
         $search = $request->get('search')['value'];
         return $this->busService->getJSONData($search);
+    }
+
+    public function detail($id = null)
+    {
+        $busDetail = $this->busService->findById($id);
+        $amenities = $this->amenityService->getAllAmenity();
+        $amenityInIds = $this->busService->getAmenityById($id);
+        $busTypes = $this->busTypeService->getAllBusType();
+        return view('admin.bus.detail',[
+            'busDetail' => $busDetail,
+            'busTypes' => $busTypes,
+            'amenities' => $amenities,
+            'amenityInIds' => $amenityInIds
+        ]);
     }
 }

@@ -34,7 +34,7 @@
                         </div>
                     </div>
                     <div class="row form-group">
-                        <label for="amenities">Amenities</label>
+                        <label for="amenities">Tiện nghi</label>
                         {!! Form::select('amenities[]', $amenities, $amenityInIds, ['class' => 'form-control', 'id' => 'amenities', 'multiple' => 'multiple', 'required']) !!}
                     </div>
                 </div>
