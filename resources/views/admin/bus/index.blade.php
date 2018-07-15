@@ -38,9 +38,8 @@
                         render: function(data, type, row, meta){
                             var busId = "'" + data + "'";
                             var urlEdit = '{!! route('bus.index') !!}' + '/' + data + '/edit';
-                            var actionLink = '<a href="javascript:;" data-toggle="tooltip" title="Xoá '+ row['name'] +'!" onclick="deleteBusById('+ busId +')"><i class=" fa-2x fa fa-trash" aria-hidden="true"></i></a>';
-                            actionLink += '&nbsp;&nbsp;&nbsp;<a href="' + urlEdit + '" data-toggle="tooltip" title="Sửa '+ row['name'] +'!" ><i class="fa fa-2x fa-pencil-square-o" aria-hidden="true"></i></a>';
-                            actionLink += '&nbsp;&nbsp;&nbsp;<a href="javascript:;" data-toggle="tooltip" title="view detail" ><i class="fa fa-2x fa-sign-in" aria-hidden="true"></i></a>';
+                            var actionLink = '<a href="javascript:;" data-toggle="tooltip" title="Xoá '+ row['bus_name'] +'!" onclick="deleteBusById('+ busId +')"><i class=" fa-2x fa fa-trash" aria-hidden="true"></i></a>';
+                            actionLink += '&nbsp;&nbsp;&nbsp;<a href="' + urlEdit + '" data-toggle="tooltip" title="Sửa '+ row['bus_name'] +'!" ><i class="fa fa-2x fa-pencil-square-o" aria-hidden="true"></i></a>';
                             return actionLink;
                         }
                     }

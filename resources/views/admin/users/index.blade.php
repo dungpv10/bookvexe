@@ -54,8 +54,9 @@
             columns: [
                 { data: 'id', name: 'id', searchable: false, title: 'ID' },
                 { data: 'name', name: 'name', title: 'Name' },
-                { data: 'email', name: 'email', title: 'Email' },
                 { data: 'mobile', name: 'mobile', title: 'Mobile' },
+                { data: 'email', name: 'email', title: 'Email' },
+                { data: 'rName', name: 'role', title: 'Role', searchable: false, sortable:false },
                 { data: 'status', name: 'status', title: 'Status'},
                 { data: 'created_at', name: 'created_at', title: 'Created'},
                 { data: 'updated_at', name: 'updated_at', title: 'Updated'},

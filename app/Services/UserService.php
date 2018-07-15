@@ -42,17 +42,20 @@ class UserService
      * @var RoleService
      */
     protected $role;
+    protected $datatable;
 
     public function __construct(
         User $model,
         UserMeta $userMeta,
         Team $team,
-        Role $role
+        Role $role,
+        DataTables $datatable
     ) {
         $this->model = $model;
         $this->userMeta = $userMeta;
         $this->team = $team;
         $this->role = $role;
+        $this->datatable = $datatable;
     }
 
     /**
@@ -414,9 +417,16 @@ class UserService
 
     public function getJSONData($roleId = null, $search = "")
     {
-        return DataTables::of(
-            $this->model->with('roles')->where('id', '!=', auth()->id())
-        )
+        $builder = $this->model->with('roles')
+            ->join('role_user', 'users.id', '=', 'role_user.user_id')
+            ->join('roles', 'roles.id', '=', 'role_user.role_id')
+            ->orderBy('users.id', 'asc')
+            ->where('users.id', '!=', auth()->id())
+            ->select('users.*');
+        if (!empty($roleId)) {
+            $builder = $builder->where('roles.id', '=', $roleId);
+        }
+        return $this->datatable->eloquent($builder)
             ->filter(function ($query) use ($search, $roleId) {
                 if(!empty($search))
                 {
@@ -424,6 +434,11 @@ class UserService
                     $query->whereRaw('(LOWER(`users`.`name`) LIKE "%' . $search . '%" OR LOWER(`users`.`email`) LIKE "%' . $search . '%")');
                 }
             })
+            ->addColumn('rName', function (User $user) {
+                    return $user->roles->map(function($role) {
+                        return str_limit($role->name);
+                    })->implode(' | ');
+                })
             ->make(true);
     }
 }
