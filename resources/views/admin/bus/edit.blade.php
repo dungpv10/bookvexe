@@ -38,7 +38,7 @@
                     </div>
                     <div class="row form-group">
                         <label for="amenities">Tiện nghi</label>
-                        {!! Form::select('amenities[]', $amenities, $amenityInIds, ['class' => 'form-control', 'id' => 'amenities', 'multiple' => 'multiple', 'required']) !!}
+                        {{--{!! Form::select('amenities[]', null, null, ['class' => 'form-control', 'id' => 'amenities', 'multiple' => 'multiple', 'required']) !!}--}}
                     </div>
                 </div>
                 <div class="col-md-6">

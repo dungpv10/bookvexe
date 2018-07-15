@@ -47,9 +47,10 @@
                 <dd>{{ $busDetail->created_at }}</dd>
                 <dt>Tiện nghi</dt>
                 <dd>
-                    @foreach($amenityInIds as $amenityInId)
-                        {{ $amenities[$amenityInId] . "  "}}
-                    @endforeach
+                    ""
+                    {{--@foreach($amenityInIds as $amenityInId)--}}
+                        {{--{{ $amenities[$amenityInId] . "  "}}--}}
+                    {{--@endforeach--}}
                 </dd>
                 <dt>Thời gian kết thúc</dt>
                 <dd>{{ $busDetail->end_time }}</dd>

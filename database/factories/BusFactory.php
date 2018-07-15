@@ -11,9 +11,18 @@
 |
 */
 
-$factory->define(App\Models\BusImage::class, function (Faker\Generator $faker) {
+$factory->define(App\Models\Bus::class, function (Faker\Generator $faker) {
 
     return [
-        'image_path' => $faker->imageUrl(200, 200)
+        'bus_name' => $faker->name,
+        'bus_reg_number' => '30F-' . $faker->randomDigit,
+        'number_seats' => random_int(30, 40),
+        'start_point' => $faker->countryCode,
+        'end_point' => $faker->countryCode,
+        'start_time' => 0,
+        'amenities' => 'Nước uống, Wifi, Điều hoà',
+        'end_time' => random_int(2, 23)
     ];
+
+
 });
