@@ -67,7 +67,10 @@ class BusTypeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $busTypeDetail = $this->busTypeService->findById($id);
+        return view('admin.bus_type.edit',[
+            'busTypeDetail' => $busTypeDetail,
+        ]);
     }
 
     /**
@@ -79,14 +82,19 @@ class BusTypeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $dataRequest = $request->input();
+        $result = $this->busTypeService->updateBusType($id, $dataRequest);
+        if ($result == true) {
+            return redirect()->route('bus-type.index')->with('success', 'save data bus');
+        }
+        return redirect()->back()->with('error', "can't save data bus");
     }
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
     public function destroy(Request $request, $id)
     {
@@ -106,6 +114,10 @@ class BusTypeController extends Controller
         return redirect('admin/bus')->with('message', 'Failed to delete');
     }
 
+    /**
+     * @param Request $request
+     * @return mixed
+     */
     public function getJSONData(Request $request)
     {
         $search = $request->get('search')['value'];
