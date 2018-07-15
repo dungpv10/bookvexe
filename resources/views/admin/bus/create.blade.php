@@ -4,7 +4,7 @@
 
     <div class="col-md-12">
         <div class="box box-warning">
-            <div class="box-header with-border">
+            <div class="box-header with-border margin-bottom-10">
                 <h3 class="box-title">Tạo mới xe bus</h3>
             </div>
             <form method="POST" action="{{ route('bus.store') }}" id="frmCreateNewBus" enctype="multipart/form-data">

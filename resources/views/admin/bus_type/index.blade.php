@@ -22,8 +22,8 @@
             </form>
         </div>
         {{--list bus type--}}
-        <div class="box box-warning">
-            <div class="box-header with-border">
+        <div class="box">
+            <div class="box-header with-border margin-bottom-10">
                 <h3 class="box-title">Danh sách kiểu xe bus</h3>
             </div>
             <div class="table-responsive">
