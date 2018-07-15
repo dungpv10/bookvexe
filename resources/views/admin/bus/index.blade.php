@@ -3,15 +3,18 @@
 @section('content')
 
     <div class="col-md-12">
+        <div class="box box-warning">
+            <div class="box-header with-border">
+                <h3 class="box-title">Danh sách xe bus</h3>
+            </div>
+            <div class="table-responsive">
 
-        <div class="table-responsive">
+                <table class="table table-bordered " id="bus_table">
 
-            <table class="table table-bordered " id="bus_table">
+                </table>
 
-            </table>
-
+            </div>
         </div>
-
     </div>
     <div class="modal fade" id="detailBusModal" role="dialog">
         <div class="modal-dialog">

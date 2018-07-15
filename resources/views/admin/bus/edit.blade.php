@@ -3,8 +3,11 @@
 @section('content')
 
     <div class="col-md-12">
-
-        <form method="post" action="{{ route('bus.update.bus', $busDetail->id) }}" id="frmEditBus"
+        <div class="box box-warning">
+            <div class="box-header with-border">
+                <h3 class="box-title">Sửa thông tin xe bus</h3>
+            </div>
+            <form method="post" action="{{ route('bus.update.bus', $busDetail->id) }}" id="frmEditBus"
               enctype="multipart/form-data">
             <input type="hidden" name="_token" value="{{csrf_token()}}">
             <div class="row">
@@ -76,7 +79,7 @@
                 </button>
             </div>
         </form>
-
+        </div>
     </div>
 @stop
 @section('js')
