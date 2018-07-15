@@ -24,7 +24,6 @@ class DatabaseSeeder extends Seeder
         $seeders = [
             RolesTableSeeder::class,
             UserTableSeeder::class,
-            AmenityTableSeeder::class,
             BusTypeTableSeeder::class,
             PointTypeTableSeeder::class,
 

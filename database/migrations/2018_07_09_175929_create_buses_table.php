@@ -23,7 +23,7 @@ class CreateBusesTable extends Migration
             $table->string('end_point', 100)->comment('Place bus stop');
             $table->integer('start_time')->comment('Time bus start');
             $table->integer('end_time')->comment('Time bus stop');
-
+            $table->string('amenities')->nullable()->comment('all services of the bus');
             $table->softDeletes();
             $table->timestamps();
         });

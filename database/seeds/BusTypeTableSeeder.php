@@ -40,12 +40,10 @@ class BusTypeTableSeeder extends Seeder
             );
 
 
-            $amenities = \App\Models\Amenity::pluck('id');
-            \App\Models\Bus::all()->each(function($bus) use ($amenities) {
+            \App\Models\Bus::all()->each(function($bus) {
                 $bus->routes()->saveMany(factory(\App\Models\Route::class, 4)->make());
                 $bus->images()->saveMany(factory(\App\Models\BusImage::class, 4)->make());
 
-                $bus->amenities()->attach($amenities->random());
 
                 $bus->rates()->saveMany(factory(\App\Models\Rate::class, 5)->make());
             });
