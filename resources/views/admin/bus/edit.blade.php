@@ -91,6 +91,20 @@
         $(".datetimepicker").datetimepicker({
             format: 'LT'
         });
-        $('#amenities').tagsinput();
+
+        var skills = new Bloodhound({
+            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('id'),
+            queryTokenizer: Bloodhound.tokenizers.whitespace,
+            remote: {
+                url: "{{ route('bus.amenities') }}",
+            }
+        });
+        skills.initialize();
+        $("#amenities").tagsinput({
+            typeaheadjs: {
+                source: skills.ttAdapter()
+            },
+            freeInput: true
+        });
     </script>
 @stop

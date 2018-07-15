@@ -145,4 +145,10 @@ class BusController extends Controller
             'busTypes' => $busTypes
         ]);
     }
+
+    public function getAmenities()
+    {
+        $suguestAmenities = ['Nước uống', 'Wifi', 'Điều hoà', 'Tivi', 'Tủ lạnh', 'Karaok'];
+        return response()->json($suguestAmenities);
+    }
 }

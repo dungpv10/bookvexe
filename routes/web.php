@@ -148,6 +148,7 @@ Route::group(['middleware' => ['auth', 'active']], function () {
         Route::get('bus/getJSONData', ['as'=>'bus.datatable', 'uses'=>'BusController@getJSONData']);
         Route::post('bus/update/{id}', ['as'=>'bus.update.bus', 'uses'=>'BusController@updateBus']);
         Route::get('bus/detail/{id?}', ['as'=>'bus.detail', 'uses'=>'BusController@detail']);
+        Route::get('bus/amenities', ['as'=>'bus.amenities', 'uses'=>'BusController@getAmenities']);
 
         /*
         |--------------------------------------------------------------------------

@@ -89,6 +89,7 @@
     <script src="{{ asset("js/sweetalert2.all.js") }}"></script>
     <script type="text/javascript" src="{{ asset('vendors/tags/dist/bootstrap-tagsinput.js') }}" ></script>
     <script type="text/javascript" src="{{ asset('vendors/tags/bower_components/typeahead.js/dist/typeahead.jquery.js') }}" ></script>
+    <script type="text/javascript" src="{{ asset('vendors/tags/bower_components/typeahead.js/dist/bloodhound.js') }}" ></script>
     <script type="text/javascript">
         $(function () {
             $('body').on('hidden.bs.modal', '.modal', function () {
