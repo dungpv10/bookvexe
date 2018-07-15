@@ -67,3 +67,6 @@
 .box.box-warning {
     border-top-color: #f39c12;
 }
+.bootstrap-tagsinput{
+    display: block;
+}

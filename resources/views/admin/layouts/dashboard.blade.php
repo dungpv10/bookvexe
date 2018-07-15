@@ -27,8 +27,8 @@
     <link href="{{ asset('vendors/select2/select2.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('vendors/select2/select2-bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('vendors/validation/css/bootstrapValidator.min.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('css/admin/custom.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('vendors/tags/bootstrap-tagsinput.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('css/admin/custom.css') }}" rel="stylesheet" type="text/css" />
 
     @yield('css')
 </head>

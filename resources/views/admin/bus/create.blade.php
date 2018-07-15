@@ -37,7 +37,7 @@
                     </div>
                     <div class="row form-group">
                         <label for="amenities">Tiện nghi</label>
-                        {!! Form::text('amenities', null, ['class' => 'form-control', 'id' => 'amenities', 'required', 'data-role' => "tagsinput"]) !!}
+                        {!! Form::text('data[amenities]', null, ['class' => 'form-control', 'id' => 'amenities', 'required', 'data-role' => "tagsinput"]) !!}
                     </div>
                 </div>
                 <div class="col-md-6">
