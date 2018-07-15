@@ -4,9 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Services\BusTypeService;
 
 class BusTypeController extends Controller
 {
+    public $busTypeService;
+    public function __construct(BusTypeService $busTypeService) {
+        $this->busTypeService = $busTypeService;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -35,7 +40,12 @@ class BusTypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $dataRequest = $request->input();
+        $result = $this->busTypeService->insertBusType($dataRequest);
+        if ($result) {
+            return redirect()->route('bus-type.index')->with('success', 'save data bus');
+        }
+        return redirect()->back()->with('error', "can't save data bus");
     }
 
     /**
@@ -78,8 +88,27 @@ class BusTypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        $result = $this->busTypeService->destroy($id);
+        if ($result) {
+            if($request->ajax())
+            {
+                return response()->json(['code' => 200, 'message' => 'Xoá Thành công']);
+            }
+            return redirect('admin/bus')->with('message', 'Successfully deleted');
+        }
+        if($request->ajax())
+        {
+            return response()->json(['code' => 500, 'message' => 'Xoá Thất bại']);
+        }
+
+        return redirect('admin/bus')->with('message', 'Failed to delete');
+    }
+
+    public function getJSONData(Request $request)
+    {
+        $search = $request->get('search')['value'];
+        return $this->busTypeService->getJSONData($search);
     }
 }
