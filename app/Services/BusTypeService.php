@@ -35,7 +35,8 @@ class BusTypeService
     public function getJSONData($search = "")
     {
         return DataTables::of(
-            $this->busTypeModel->select('id', 'bus_type_name', 'status')
+            $this->busTypeModel->select('id', 'bus_type_name', 'status', DB::raw('(CASE WHEN status = 1 THEN "action" ELSE "stop" END) AS cv_status')
+            )
                 ->where('id', '!=', 0)
         )->make(true);
     }

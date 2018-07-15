@@ -50,7 +50,7 @@
                 },
                 columns: [
                     { data: 'bus_type_name', name: 'bus_type_name', title: 'Kiểu xe buýt' },
-                    { data: 'status', name: 'status', title: 'Trạng thái' },
+                    { data: 'cv_status', name: 'cv_status', title: 'Trạng thái' },
                     { data: 'id', name: 'id', title: 'Action', searchable: false,className: 'text-center', "orderable": false,
                         render: function(data, type, row, meta){
                             var busTypeId = "'" + data + "'";
