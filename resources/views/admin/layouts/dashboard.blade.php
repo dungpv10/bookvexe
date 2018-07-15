@@ -87,7 +87,8 @@
     <script type="text/javascript" src="{{ asset('vendors/select2/select2.min.js') }}" ></script>
     <script type="text/javascript" src="{{ asset('vendors/datetimepicker/js/bootstrap-datetimepicker.min.js') }}" ></script>
     <script src="{{ asset("js/sweetalert2.all.js") }}"></script>
-    <link href="{{ asset('vendors/tags/dist/bootstrap-tagsinput.js') }}" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="{{ asset('vendors/tags/dist/bootstrap-tagsinput.js') }}" ></script>
+    <script type="text/javascript" src="{{ asset('vendors/tags/bower_components/typeahead.js/dist/typeahead.jquery.js') }}" ></script>
     <script type="text/javascript">
         $(function () {
             $('body').on('hidden.bs.modal', '.modal', function () {

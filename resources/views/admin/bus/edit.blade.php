@@ -91,8 +91,6 @@
         $(".datetimepicker").datetimepicker({
             format: 'LT'
         });
-        $('#amenities').tagsinput({
-            tagClass: 'label label-warning'
-        });
+        $('#amenities').tagsinput();
     </script>
 @stop
