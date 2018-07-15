@@ -38,7 +38,7 @@
                     </div>
                     <div class="row form-group">
                         <label for="amenities">Tiện nghi</label>
-                        {{--{!! Form::select('amenities[]', null, null, ['class' => 'form-control', 'id' => 'amenities', 'multiple' => 'multiple', 'required']) !!}--}}
+                        {!! Form::text('amenities', $busDetail->amenities, ['class' => 'form-control', 'id' => 'amenities', 'required', 'data-role' => "tagsinput"]) !!}
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -88,9 +88,11 @@
         $('#bus_type_id').select2({
             placeholder: "Chọn Bus Type",
         });
-        $('#amenities').select2({});
         $(".datetimepicker").datetimepicker({
             format: 'LT'
+        });
+        $('#amenities').tagsinput({
+            tagClass: 'label label-warning'
         });
     </script>
 @stop
