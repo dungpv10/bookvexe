@@ -22,17 +22,23 @@
             </form>
         </div>
         {{--list bus type--}}
-        <div class="table-responsive">
+        <div class="box box-warning">
+            <div class="box-header with-border">
+                <h3 class="box-title">Danh sách kiểu xe bus</h3>
+            </div>
+            <div class="table-responsive">
 
-            <table class="table table-bordered " id="bus_type_table">
+                <table class="table table-bordered " id="bus_type_table">
 
-            </table>
+                </table>
 
+            </div>
         </div>
     </div>
 @stop
 @section('js')
     <script type="text/javascript">
+        $('#frmCreateNewBusType').bootstrapValidator({});
         var busTypeTable;
         $(function() {
 
@@ -50,7 +56,7 @@
                             var busTypeId = "'" + data + "'";
                             var urlEdit = '{!! route('bus-type.index') !!}' + '/' + data + '/edit';
                             var actionLink = '<a href="javascript:;" data-toggle="tooltip" title="Xoá '+ row['name'] +'!" onclick="deleteBusTypeById('+ busTypeId +')"><i class=" fa-2x fa fa-trash" aria-hidden="true"></i></a>';
-                            actionLink += '&nbsp;&nbsp;&nbsp;<a href="' + urlEdit + '" data-toggle="tooltip" title="Sửa '+ row['name'] +'!" ><i class="fa fa-2x fa-pencil-square-o" aria-hidden="true"></i></a>';
+                            actionLink += '&nbsp;&nbsp;&nbsp;<a href="' + urlEdit + '" data-toggle="tooltip" title="Sửa '+ row['bus_type_name'] +' !" ><i class="fa fa-2x fa-pencil-square-o" aria-hidden="true"></i></a>';
                             return actionLink;
                         }
                     }
