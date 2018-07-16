@@ -48,7 +48,9 @@ class BusTypeService
             //insert data for bus type
             $saveBusType = [
                'bus_type_name' => $dataRequest['bus_type_name'],
-               'status' => 1
+               'status' => 1,
+               'created_at' => date('Y-m-d H:i:s'),
+               'updated_at' => date('Y-m-d H:i:s'),
             ];
             $this->busTypeModel->insert($saveBusType);
             DB::commit();

@@ -92,6 +92,8 @@ class BusService
             //insert data for bus
             $dataRequest['data']['start_time'] = $this->getTime($dataRequest['data']['start_time']);
             $dataRequest['data']['end_time'] = $this->getTime($dataRequest['data']['end_time']);
+            $dataRequest['data']['created_at'] = date('Y-m-d H:i:s');
+            $dataRequest['data']['updated_at'] = date('Y-m-d H:i:s');
             $busId = $this->busModel->insertGetId($dataRequest['data']);
             //update data for amenity
             DB::commit();

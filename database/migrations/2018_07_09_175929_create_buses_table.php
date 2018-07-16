@@ -21,8 +21,8 @@ class CreateBusesTable extends Migration
             $table->integer('number_seats')->default(0)->comment('total seat on the bus');
             $table->string('start_point', 100)->comment('Place bus start');
             $table->string('end_point', 100)->comment('Place bus stop');
-            $table->integer('start_time')->comment('Time bus start');
-            $table->integer('end_time')->comment('Time bus stop');
+            $table->string('start_time', 50)->comment('Time bus start');
+            $table->string('end_time', 50)->comment('Time bus stop');
             $table->string('amenities')->nullable()->comment('all services of the bus');
             $table->softDeletes();
             $table->timestamps();
