@@ -436,7 +436,7 @@ class UserService
             })
             ->addColumn('rName', function (User $user) {
                     return $user->roles->map(function($role) {
-                        return str_limit($role->name);
+                        return str_limit($role->label);
                     })->implode(' | ');
                 })
             ->make(true);

@@ -5,11 +5,10 @@
     <div class="row">
         <div class="col-md-2">
             <div class="form-group">
-                <label for="role_id">Select Role</label>
                 <select class="form-control" id="role_id">
-                    <option value="">Select Role</option>
+                    <option value="">Chọn quyền</option>
                     @foreach($roles as $role)
-                        <option value="{{ $role->id }}">{{ $role->name }}</option>
+                        <option value="{{ $role->id }}">{{ $role->label }}</option>
                     @endforeach
                 </select>
             </div>
@@ -53,13 +52,13 @@
             },
             columns: [
                 { data: 'id', name: 'id', searchable: false, title: 'ID' },
-                { data: 'name', name: 'name', title: 'Name' },
-                { data: 'mobile', name: 'mobile', title: 'Mobile' },
+                { data: 'name', name: 'name', title: 'Tên' },
+                { data: 'mobile', name: 'mobile', title: 'Số điện thoại' },
                 { data: 'email', name: 'email', title: 'Email' },
-                { data: 'rName', name: 'role', title: 'Role', searchable: false, sortable:false },
-                { data: 'status', name: 'status', title: 'Status'},
-                { data: 'created_at', name: 'created_at', title: 'Created'},
-                { data: 'updated_at', name: 'updated_at', title: 'Updated'},
+                { data: 'rName', name: 'role', title: 'Quyền', searchable: false, sortable:false },
+                { data: 'status', name: 'status', title: 'Trạng thái'},
+                { data: 'created_at', name: 'created_at', title: 'Ngày tạo'},
+                { data: 'updated_at', name: 'updated_at', title: 'Ngày cập nhật'},
                 { data: 'id', name: 'id', title: 'Thao Tác', searchable: false,className: 'text-center', "orderable": false,
                     render: function(data, type, row, meta){
                         var userId = "'" + row['id'] + "'";
