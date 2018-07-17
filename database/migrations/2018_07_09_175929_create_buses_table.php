@@ -24,6 +24,7 @@ class CreateBusesTable extends Migration
             $table->string('start_time', 50)->comment('Time bus start');
             $table->string('end_time', 50)->comment('Time bus stop');
             $table->string('amenities')->nullable()->comment('all services of the bus');
+            $table->tinyInteger('status')->default(BUS_INACTIVE)->comment('status of bus');
             $table->softDeletes();
             $table->timestamps();
         });

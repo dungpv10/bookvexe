@@ -1,6 +1,6 @@
 <section class="content-header">
     <!--section starts-->
-    <h1>Roles</h1>
+    <h1></h1>
     <ol class="breadcrumb">
         <li>
             <a href="/admin/dashboard">

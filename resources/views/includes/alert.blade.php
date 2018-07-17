@@ -3,10 +3,10 @@
 	<div class="alert alert-success alert-dismissable">
 		@if (session('status'))
 			<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-		    <strong>Thành công!</strong> {{ session('status') }}
+		    <strong></strong> {{ session('status') }}
 		@else
 		    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-		    <strong>Thành công!</strong> {{ session('success') }}
+		    <strong></strong> {{ session('success') }}
 		@endif
 	</div>
 @endif

@@ -46,23 +46,13 @@ class BusService
     }
 
     public function updateBus($id = null, $dataRequest){
-        if ($id == null){
-            abort('404');
-        }
-        try {
-            DB::beginTransaction();
-            //update data for bus
-            $bus = $this->busModel->find($id);
-            $dataRequest['data']['start_time'] = $this->getTime($dataRequest['data']['start_time']);
-            $dataRequest['data']['end_time'] = $this->getTime($dataRequest['data']['end_time']);
-            $bus->update($dataRequest['data']);
-            //update data for amenity
-            DB::commit();
-            return true;
-        } catch (\Exception $e) {
-            DB::rollback();
-            return false;
-        }
+        $bus = $this->busModel->find($id);
+        $dataRequest['start_time'] = $this->getTime($dataRequest['start_time']);
+        $dataRequest['end_time'] = $this->getTime($dataRequest['end_time']);
+        $bus->update($dataRequest);
+
+        return true;
+
     }
 
     public function getTime($time)
@@ -87,20 +77,6 @@ class BusService
     }
 
     public function insertBus($dataRequest){
-        try {
-            DB::beginTransaction();
-            //insert data for bus
-            $dataRequest['data']['start_time'] = $this->getTime($dataRequest['data']['start_time']);
-            $dataRequest['data']['end_time'] = $this->getTime($dataRequest['data']['end_time']);
-            $dataRequest['data']['created_at'] = date('Y-m-d H:i:s');
-            $dataRequest['data']['updated_at'] = date('Y-m-d H:i:s');
-            $busId = $this->busModel->insertGetId($dataRequest['data']);
-            //update data for amenity
-            DB::commit();
-            return true;
-        } catch (\Exception $e) {
-            DB::rollback();
-            return false;
-        }
+        return $this->busModel->fill($dataRequest)->save();
     }
 }

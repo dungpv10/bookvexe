@@ -21,7 +21,8 @@ $factory->define(App\Models\Bus::class, function (Faker\Generator $faker) {
         'end_point' => $faker->countryCode,
         'start_time' => 0,
         'amenities' => 'Nước uống, Wifi, Điều hoà',
-        'end_time' => random_int(2, 23)
+        'end_time' => random_int(2, 23),
+        'status' => array_rand([BUS_INACTIVE, BUS_ACTIVE])
     ];
 
 

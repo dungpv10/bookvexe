@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\Admin\BusRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Services\BusService;
@@ -52,14 +53,14 @@ class BusController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BusRequest $request)
     {
-        $dataRequest = $request->input();
+        $dataRequest = $request->except('_token');
         $result = $this->busService->insertBus($dataRequest);
         if ($result) {
-            return redirect()->route('bus.index')->with('success', 'save data bus');
+            return redirect()->route('bus.index')->with('success', 'Tạo mới xe thành công');
         }
-        return redirect()->back()->with('error', "can't save data bus");
+        return redirect()->back()->with('error', "Xảy ra lỗi trong quá trình tạo mới");
     }
 
     /**
@@ -96,14 +97,14 @@ class BusController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function updateBus(Request $request, $id)
+    public function updateBus(BusRequest $request, $id)
     {
-        $dataRequest = $request->input();
+        $dataRequest = $request->except('_token');
         $result = $this->busService->updateBus($id, $dataRequest);
         if ($result == true) {
-            return redirect()->route('bus.index')->with('success', 'save data bus');
+            return redirect()->route('bus.index')->with('success', 'Cập nhật xe thành công');
         }
-        return redirect()->back()->with('error', "can't save data bus");
+        return redirect()->back()->with('error', "Xảy ra lỗi trong quá trình cập nhật");
     }
 
     /**
@@ -120,7 +121,7 @@ class BusController extends Controller
             {
                 return response()->json(['code' => 200, 'message' => 'Xoá Thành công']);
             }
-            return redirect('admin/bus')->with('message', 'Successfully deleted');
+            return redirect('admin/bus')->with('message', 'Xoá thành công');
         }
         if($request->ajax())
         {
@@ -148,7 +149,6 @@ class BusController extends Controller
 
     public function getAmenities()
     {
-        $suguestAmenities = ['Nước uống', 'Wifi', 'Điều hoà', 'Tivi', 'Tủ lạnh', 'Karaok'];
-        return response()->json($suguestAmenities);
+        return response()->json([]);
     }
 }

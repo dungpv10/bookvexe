@@ -19,13 +19,11 @@
     <div class="modal fade" id="detailBusModal" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header" style="padding:35px 50px;">
+                <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h3 class="box-title">Thông tin chi tiết xe bus</h3>
+                    <h3 class="box-title">Thông tin chi tiết xe</h3>
                 </div>
-                <div class="modal-body" style="padding:40px 50px;">
-                </div>
-                <div class="modal-footer">
+                <div class="modal-body">
                 </div>
             </div>
         </div>

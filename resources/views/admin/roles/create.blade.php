@@ -21,7 +21,7 @@
             </div>
             <div class="row form-group">
                 <div class="col-md-12">
-                    <b>Permission</b>
+                    <b>Quyền</b>
                 </div>
                 @foreach(Config::get('permissions', []) as $permission => $name)
                     <div class="col-md-2">
