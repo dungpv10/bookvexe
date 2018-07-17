@@ -2,11 +2,9 @@
 
 namespace App\Services;
 
-use App\Models\BusType;
 use DB;
 use App\Models\Bus;
 use Yajra\Datatables\Datatables;
-use App\Models\BusAmenity;
 
 class BusService
 {
@@ -16,16 +14,13 @@ class BusService
      * @var UserService
      */
     protected $busModel;
-    protected $busAmenityModel;
 
     /**
      * BusService constructor.
      * @param Bus $busModel
-     * @param BusAmenity $busAmenityModel
      */
-    public function __construct(Bus $busModel, BusAmenity $busAmenityModel) {
+    public function __construct(Bus $busModel) {
         $this->busModel = $busModel;
-        $this->busAmenityModel = $busAmenityModel;
     }
 
     /**
@@ -47,12 +42,7 @@ class BusService
 
     public function findById($id = null)
     {
-        return $this->busModel->find($id);
-    }
-
-    public function getAmenityById($id = null)
-    {
-        return $this->busAmenityModel->select('amenity_id')->where('bus_id', $id)->groupBy('amenity_id')->pluck('amenity_id')->toarray();
+        return $this->busModel->with('busType')->find($id);
     }
 
     public function updateBus($id = null, $dataRequest){
@@ -67,16 +57,6 @@ class BusService
             $dataRequest['data']['end_time'] = $this->getTime($dataRequest['data']['end_time']);
             $bus->update($dataRequest['data']);
             //update data for amenity
-            $saveAmenity = [];
-            foreach ($dataRequest['amenities'] as $amenity) {
-                $saveAmenity[] = [
-                    'bus_id' => $id,
-                    'amenity_id' => $amenity
-                ];
-            }
-            if(!empty($saveAmenity)) {
-                $this->busAmenityModel->insert($saveAmenity);
-            }
             DB::commit();
             return true;
         } catch (\Exception $e) {
@@ -112,18 +92,10 @@ class BusService
             //insert data for bus
             $dataRequest['data']['start_time'] = $this->getTime($dataRequest['data']['start_time']);
             $dataRequest['data']['end_time'] = $this->getTime($dataRequest['data']['end_time']);
+            $dataRequest['data']['created_at'] = date('Y-m-d H:i:s');
+            $dataRequest['data']['updated_at'] = date('Y-m-d H:i:s');
             $busId = $this->busModel->insertGetId($dataRequest['data']);
             //update data for amenity
-            $saveAmenity = [];
-            foreach ($dataRequest['amenities'] as $amenity) {
-                $saveAmenity[] = [
-                    'bus_id' => $busId,
-                    'amenity_id' => $amenity
-                ];
-            }
-            if (!empty($saveAmenity)) {
-                $this->busAmenityModel->insert($saveAmenity);
-            }
             DB::commit();
             return true;
         } catch (\Exception $e) {

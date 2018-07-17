@@ -3,8 +3,11 @@
 @section('content')
 
     <div class="col-md-12">
-
-        <form method="post" action="{{ route('bus.update.bus', $busDetail->id) }}" id="frmEditBus"
+        <div class="box box-warning">
+            <div class="box-header with-border margin-bottom-10">
+                <h3 class="box-title">Sửa thông tin xe bus</h3>
+            </div>
+            <form method="post" action="{{ route('bus.update.bus', $busDetail->id) }}" id="frmEditBus"
               enctype="multipart/form-data">
             <input type="hidden" name="_token" value="{{csrf_token()}}">
             <div class="row">
@@ -34,8 +37,8 @@
                         </div>
                     </div>
                     <div class="row form-group">
-                        <label for="amenities">Amenities</label>
-                        {!! Form::select('amenities[]', $amenities, $amenityInIds, ['class' => 'form-control', 'id' => 'amenities', 'multiple' => 'multiple', 'required']) !!}
+                        <label for="amenities">Tiện nghi</label>
+                        {!! Form::text('data[amenities]', $busDetail->amenities, ['class' => 'form-control', 'id' => 'amenities', 'required', 'data-role' => "tagsinput"]) !!}
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -76,7 +79,7 @@
                 </button>
             </div>
         </form>
-
+        </div>
     </div>
 @stop
 @section('js')
@@ -85,9 +88,23 @@
         $('#bus_type_id').select2({
             placeholder: "Chọn Bus Type",
         });
-        $('#amenities').select2({});
         $(".datetimepicker").datetimepicker({
             format: 'LT'
+        });
+
+        var skills = new Bloodhound({
+            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('id'),
+            queryTokenizer: Bloodhound.tokenizers.whitespace,
+            remote: {
+                url: "{{ route('bus.amenities') }}",
+            }
+        });
+        skills.initialize();
+        $("#amenities").tagsinput({
+            typeaheadjs: {
+                source: skills.ttAdapter()
+            },
+            freeInput: true
         });
     </script>
 @stop

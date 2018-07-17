@@ -6,24 +6,20 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Services\BusService;
 use App\Services\BusTypeService;
-use App\Services\AmenityService;
 
 class BusController extends Controller
 {
     public $busService;
     public $busTypeService;
-    public $amenityService;
 
     /**
      * BusController constructor.
      * @param BusService $busService
      * @param BusTypeService $busTypeService
-     * @param AmenityService $amenityService
      */
-    public function __construct(BusService $busService, BusTypeService $busTypeService, AmenityService $amenityService) {
+    public function __construct(BusService $busService, BusTypeService $busTypeService) {
         $this->busService = $busService;
         $this->busTypeService = $busTypeService;
-        $this->amenityService = $amenityService;
     }
     /**
      * Display a listing of the resource.
@@ -45,10 +41,8 @@ class BusController extends Controller
     public function create()
     {
         $busTypes = $this->busTypeService->getAllBusType();
-        $amenities = $this->amenityService->getAllAmenity();
         return view('admin.bus.create',[
             'busTypes' => $busTypes,
-            'amenities' => $amenities,
         ]);
     }
 
@@ -76,7 +70,7 @@ class BusController extends Controller
      */
     public function show($id)
     {
-        //
+        die('xxx');
     }
 
     /**
@@ -89,13 +83,9 @@ class BusController extends Controller
     {
         $busDetail = $this->busService->findById($id);
         $busTypes = $this->busTypeService->getAllBusType();
-        $amenities = $this->amenityService->getAllAmenity();
-        $amenityInIds = $this->busService->getAmenityById($id);
         return view('admin.bus.edit',[
             'busDetail' => $busDetail,
-            'busTypes' => $busTypes,
-            'amenities' => $amenities,
-            'amenityInIds' => $amenityInIds
+            'busTypes' => $busTypes
         ]);
     }
 
@@ -111,7 +101,7 @@ class BusController extends Controller
         $dataRequest = $request->input();
         $result = $this->busService->updateBus($id, $dataRequest);
         if ($result == true) {
-            return redirect()->back()->with('success', 'save data bus');
+            return redirect()->route('bus.index')->with('success', 'save data bus');
         }
         return redirect()->back()->with('error', "can't save data bus");
     }
@@ -144,5 +134,21 @@ class BusController extends Controller
     {
         $search = $request->get('search')['value'];
         return $this->busService->getJSONData($search);
+    }
+
+    public function detail($id = null)
+    {
+        $busDetail = $this->busService->findById($id);
+        $busTypes = $this->busTypeService->getAllBusType();
+        return view('admin.bus.detail',[
+            'busDetail' => $busDetail,
+            'busTypes' => $busTypes
+        ]);
+    }
+
+    public function getAmenities()
+    {
+        $suguestAmenities = ['Nước uống', 'Wifi', 'Điều hoà', 'Tivi', 'Tủ lạnh', 'Karaok'];
+        return response()->json($suguestAmenities);
     }
 }
