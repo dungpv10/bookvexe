@@ -36,7 +36,8 @@ class Bus extends Model
 
     public function getStatusNameAttribute()
     {
-        return self::$busStatus[$this->getAttribute('status')];
+        $status = $this->getAttribute('status');
+        return in_array($status, array_keys(self::$busStatus)) ? self::$busStatus[$this->getAttribute('status')] : '';
     }
 
 }
