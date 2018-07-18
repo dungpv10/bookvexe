@@ -6,7 +6,7 @@
         <div class="box">
             <div class="box-header with-border margin-bottom-10">
                 <h3 class="box-title">Danh sách xe bus</h3>
-                <button class="btn btn-primary" type="button" onclick="showViewCreateBus()"><i class="fa fa-check" aria-hidden="true"></i>Thêm mới
+                <button class="btn btn-primary" type="button" onclick="showViewCreateBus()">Thêm mới
                 </button>
             </div>
             <div class="table-responsive">
@@ -78,7 +78,7 @@
                         render: function(data, type, row, meta){
                             var busId = "'" + data + "'";
                             var actionLink = '<a href="javascript:;" data-toggle="tooltip" title="Xoá '+ row['bus_name'] +'!" onclick="deleteBusById('+ busId +')"><i class=" fa-2x fa fa-trash" aria-hidden="true"></i></a>';
-                            actionLink += '&nbsp;&nbsp;&nbsp;<a href="javascript:;" onclick="showViewBusEdit('+ busId +')" data-toggle="tooltip" title="Sửa '+ row['bus_name'] +'!" ><i class="fa fa-2x fa-pencil-square-o" aria-hidden="true"></i></a>';
+                            actionLink += '&nbsp;&nbsp;&nbsp;<a href="javascript:;" onclick="showViewEditBus('+ busId +')" data-toggle="tooltip" title="Sửa '+ row['bus_name'] +'!" ><i class="fa fa-2x fa-pencil-square-o" aria-hidden="true"></i></a>';
                             actionLink += '&nbsp;&nbsp;&nbsp;<a href="javascript:;" onclick="showBusDetail('+ busId +')" class="show-detail" data-toggle="tooltip" title="View detail" ><i class="fa fa-2x fa-sign-in" aria-hidden="true"></i></a>';
                             return actionLink;
                         }
@@ -140,17 +140,23 @@
             });
         }
         //bus type select
-        $(document).on('change', '#detailBusModal', function () {
-            console.log('xxx');
+        function upLoadJs() {
+
             $('#bus_type_id').select2({
                 placeholder: "Chọn Bus Type",
             });
-            //date time
+
             $(".datetimepicker").datetimepicker({
                 format: 'LT'
             });
+
+            $('#amenities').tagsinput();
+
             $('#frmEditBus').bootstrapValidator({});
-        });
+
+            $('#frmCreateNewBus').bootstrapValidator({});
+            
+        };
         //show bus detail
         function showBusDetail(id){
             $.ajax({
@@ -164,12 +170,13 @@
             $("#detailBusModal").modal();
         }
         // show edit bus
-        function showViewBusEdit(id) {
+        function showViewEditBus(id) {
             $.ajax({
                 url: '{!! route('bus.index') !!}' +'/'+ id + '/edit',
                 method: 'GET'
             }).success(function(data){
                 $('#editBusModal .modal-body').html(data);
+                upLoadJs();
             }).error(function(data){
 
             });
@@ -216,6 +223,7 @@
                 method: 'GET'
             }).success(function(data){
                 $('#createBusModal .modal-body').html(data);
+                upLoadJs();
             }).error(function(data){
 
             });

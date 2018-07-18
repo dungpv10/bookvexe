@@ -138,6 +138,12 @@
 .select2-container--default .select2-selection--single .select2-selection__arrow{
     top : 5px;
 }
+.box-header button {
+    float: right;
+    position: relative;
+    top: -8px;
+    padding: 4px 12px;
+}
 
 
 
