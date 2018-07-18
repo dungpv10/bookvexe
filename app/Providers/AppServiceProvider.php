@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\BusType;
+use App\Observers\BusTypeObserver;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +15,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        BusType::observe(BusTypeObserver::class);
     }
 
     /**

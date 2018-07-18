@@ -6,6 +6,7 @@ use App\Models\Role;
 use App\Models\Team;
 use App\Models\UserMeta;
 use App\Notifications\ResetPassword;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -157,7 +158,4 @@ class User extends Authenticatable
         return self::$status[$this->getAttribute('status')];
     }
 
-    public function getStatus(){
-        return self::$status;
-    }
 }

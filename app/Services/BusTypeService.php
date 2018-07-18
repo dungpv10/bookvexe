@@ -78,23 +78,12 @@ class BusTypeService
 
     public function updateBusType($id = null, $dataRequest)
     {
-        if ($id == null){
-            abort('404');
-        }
-        try {
-            DB::beginTransaction();
-            //update data for bus type
-            $busType = $this->busTypeModel->find($id);
-            $updateBusType = [
-                'bus_type_name' => $dataRequest['bus_type_name'],
-                'status' => 1
-            ];
-            $busType->update($updateBusType);
-            DB::commit();
-            return true;
-        } catch (\Exception $e) {
-            DB::rollback();
-            return false;
-        }
+
+        $busType = $this->busTypeModel->find($id);
+        $updateBusType = [
+            'bus_type_name' => $dataRequest['bus_type_name'],
+            'status' => 1
+        ];
+        return $busType->update($updateBusType);
     }
 }

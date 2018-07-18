@@ -22,6 +22,7 @@ class UserTableSeeder extends Seeder
                 'email' => 'admin@example.com',
                 'password' => bcrypt('admin'),
                 'dob' => '1990-11-11',
+                'avatar' => '/img/authors/default_avatar.png',
                 'mobile' => '123123123'
             ]);
 
@@ -35,7 +36,8 @@ class UserTableSeeder extends Seeder
                 'email' => 'user' . $i . '@example.com',
                 'password' => bcrypt('user'),
                 'dob' => '1990-11-11',
-                'mobile' => '123123123'
+                'mobile' => '123123123',
+                'avatar' => '/img/authors/default_avatar.png',
             ]);
 
             $service->create($user, 'user', 'member', false);
@@ -48,7 +50,8 @@ class UserTableSeeder extends Seeder
                 'email' => 'agent' . $i . '@example.com',
                 'password' => bcrypt('user'),
                 'dob' => '1990-11-11',
-                'mobile' => '123123123'
+                'mobile' => '123123123',
+                'avatar' => '/img/authors/default_avatar.png',
             ]);
 
             $service->create($user, 'user', 'agent', false);

@@ -440,7 +440,7 @@ class UserService
                     })->implode(' | ');
                 })
             ->addColumn('status_name', function(User $user){
-                return $this->model->getStatus()[$user->status];
+                return $user->status_name;
             })
             ->make(true);
     }

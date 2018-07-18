@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-3">
             <div class="form-group">
                 <select class="form-control" id="role_id">
                     <option value="">Chọn quyền</option>
@@ -16,15 +16,24 @@
     </div>
     <div class="row">
         <div class="col-md-12">
+            <div class="box">
+                <div class="box-header with-border margin-bottom-10">
+                    <h3 class="box-title">Danh sách xe bus</h3>
+                    <a class="btn btn-primary" href="{{ route('users.invite') }}">
+                        <i class="fa fa-plus-circle" aria-hidden="true"></i>Thêm mới
+                    </a>
+                </div>
 
-            <div class="table-responsive">
 
-                <table class="table table-bordered " id="user_table">
+                <div class="table-responsive">
 
-                </table>
+                    <table class="table table-bordered " id="user_table">
+
+                    </table>
+
+                </div>
 
             </div>
-
         </div>
     </div>
 @stop
