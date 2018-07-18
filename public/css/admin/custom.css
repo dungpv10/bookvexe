@@ -144,8 +144,16 @@
     top: -8px;
     padding: 4px 12px;
 }
-
-
+.close:focus {
+    outline: none !important;
+}
+body {
+    padding-right: 0px !important;
+    overflow: hidden;
+}
+button i.fa{
+    margin-right: 3px;
+}
 
 
 

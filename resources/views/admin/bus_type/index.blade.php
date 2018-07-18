@@ -4,7 +4,8 @@
         <div class="box">
             <div class="box-header with-border margin-bottom-10">
                 <h3 class="box-title">Danh sách kiểu xe bus</h3>
-                <button class="btn btn-primary" type="button" onclick="showViewCreateBusType()">Thêm mới
+                <button class="btn btn-primary" type="button" onclick="showViewCreateBusType()">
+                    <i class="fa fa-plus-circle" aria-hidden="true"></i>Thêm mới
                 </button>
             </div>
             <div class="table-responsive">

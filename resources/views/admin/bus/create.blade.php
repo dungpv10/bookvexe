@@ -68,7 +68,7 @@
                     {{--<a class="btn btn-default" href="{{ route('bus.index') }}"><i class="fa fa-arrow-left"--}}
                                                                                   {{--aria-hidden="true"></i>--}}
                         {{--Quay Lại</a>--}}
-                    <button class="btn btn-primary" type="button" onclick="createBus()"><i class="fa fa-check" aria-hidden="true"></i>Thêm mới
+                    <button class="btn btn-primary" type="button" onclick="createBus()"><i class="fa fa-plus-circle" aria-hidden="true"></i>Thêm mới
                     </button>
                 </div>
             </form>
