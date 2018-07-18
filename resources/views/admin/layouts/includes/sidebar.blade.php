@@ -28,14 +28,6 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{route('bus.create')}}">
-                                <i class="fa fa-angle-double-right"></i>
-                                Tạo mới
-                            </a>
-                        </li>
-
-
-                        <li>
                             <a href="{{route('bus-type.index')}}">
                                 <i class="fa fa-angle-double-right"></i>
                                 Loại xe
