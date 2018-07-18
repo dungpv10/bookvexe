@@ -56,7 +56,7 @@
                 { data: 'mobile', name: 'mobile', title: 'Số điện thoại' },
                 { data: 'email', name: 'email', title: 'Email' },
                 { data: 'rName', name: 'role', title: 'Quyền', searchable: false, sortable:false },
-                { data: 'status', name: 'status', title: 'Trạng thái'},
+                { data: 'status_name', name: 'status_name', title: 'Trạng thái', searchable: false},
                 { data: 'created_at', name: 'created_at', title: 'Ngày tạo'},
                 { data: 'updated_at', name: 'updated_at', title: 'Ngày cập nhật'},
                 { data: 'id', name: 'id', title: 'Thao Tác', searchable: false,className: 'text-center', "orderable": false,

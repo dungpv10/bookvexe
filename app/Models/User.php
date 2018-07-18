@@ -13,6 +13,11 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    public static $status = [
+        USER_STATUS_INACTIVE => 'Chưa kích hoạt',
+        USER_STATUS_ACTIVE => 'Đã kích hoạt'
+    ];
+
     /**
      * The database table used by the model.
      *
@@ -144,5 +149,15 @@ class User extends Authenticatable
 
     public function promotions(){
         return $this->hasMany(Promotion::class, 'agent_id', 'id');
+    }
+
+
+    public function getStatusNameAttribute() {
+
+        return self::$status[$this->getAttribute('status')];
+    }
+
+    public function getStatus(){
+        return self::$status;
     }
 }

@@ -439,6 +439,9 @@ class UserService
                         return str_limit($role->label);
                     })->implode(' | ');
                 })
+            ->addColumn('status_name', function(User $user){
+                return $this->model->getStatus()[$user->status];
+            })
             ->make(true);
     }
 }
