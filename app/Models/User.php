@@ -19,6 +19,11 @@ class User extends Authenticatable
         USER_STATUS_ACTIVE => 'Đã kích hoạt'
     ];
 
+    public static $gender = [
+        USER_GENDER_FEMALE => 'Nữ',
+        USER_GENDER_MALE => 'Nam'
+    ];
+
     /**
      * The database table used by the model.
      *
@@ -156,6 +161,11 @@ class User extends Authenticatable
     public function getStatusNameAttribute() {
 
         return self::$status[$this->getAttribute('status')];
+    }
+
+    public function getGenderNameAttribute() {
+
+        return self::$gender[$this->getAttribute('gender')];
     }
 
 }

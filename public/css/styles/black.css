@@ -1074,7 +1074,7 @@ li.dropdown-footer {
 .navbar-right .nav > li > a {
     position: relative;
     display: block;
-    padding: 8px 7px;
+    padding: 8px 14px;
 }
 
 .btn-primary, .primary {
