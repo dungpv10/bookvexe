@@ -58,6 +58,14 @@
 @section('js')
     <script type="text/javascript">
         var busTable;
+        $(document).ready(function() {
+            $(window).keydown(function(event){
+                if( (event.keyCode == 13) ) {
+                    event.preventDefault();
+                    return false;
+                }
+            });
+        });
         $(function() {
             busTable = $('#bus_table').DataTable({
                 processing: true,
@@ -155,7 +163,7 @@
             $('#frmEditBus').bootstrapValidator({});
 
             $('#frmCreateNewBus').bootstrapValidator({});
-            
+
         };
         //show bus detail
         function showBusDetail(id){
@@ -175,8 +183,9 @@
                 url: '{!! route('bus.index') !!}' +'/'+ id + '/edit',
                 method: 'GET'
             }).success(function(data){
-                $('#editBusModal .modal-body').html(data);
-                upLoadJs();
+                $('#editBusModal .modal-body').html(data).promise().done(function(){
+                    upLoadJs();
+                });
             }).error(function(data){
 
             });
@@ -222,8 +231,9 @@
                 url: '{!! route('bus.create') !!}',
                 method: 'GET'
             }).success(function(data){
-                $('#createBusModal .modal-body').html(data);
-                upLoadJs();
+                $('#createBusModal .modal-body').html(data).promise().done(function(){
+                    upLoadJs();
+                });
             }).error(function(data){
 
             });
