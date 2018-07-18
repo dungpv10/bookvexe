@@ -77,7 +77,6 @@
                     { data: 'id', name: 'id', title: 'Action', searchable: false,className: 'text-center', "orderable": false,
                         render: function(data, type, row, meta){
                             var busId = "'" + data + "'";
-                            var urlEdit = '{!! route('bus.index') !!}' + '/' + data + '/edit';
                             var actionLink = '<a href="javascript:;" data-toggle="tooltip" title="Xoá '+ row['bus_name'] +'!" onclick="deleteBusById('+ busId +')"><i class=" fa-2x fa fa-trash" aria-hidden="true"></i></a>';
                             actionLink += '&nbsp;&nbsp;&nbsp;<a href="javascript:;" onclick="showViewBusEdit('+ busId +')" data-toggle="tooltip" title="Sửa '+ row['bus_name'] +'!" ><i class="fa fa-2x fa-pencil-square-o" aria-hidden="true"></i></a>';
                             actionLink += '&nbsp;&nbsp;&nbsp;<a href="javascript:;" onclick="showBusDetail('+ busId +')" class="show-detail" data-toggle="tooltip" title="View detail" ><i class="fa fa-2x fa-sign-in" aria-hidden="true"></i></a>';
