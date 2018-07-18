@@ -19,7 +19,7 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="detailBusModal" role="dialog">
+    <div class="modal fade bd-example-modal-lg" id="detailBusModal" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -31,7 +31,7 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="editBusModal" role="dialog">
+    <div class="modal fade bd-example-modal-lg" id="editBusModal" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">

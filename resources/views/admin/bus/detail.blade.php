@@ -3,8 +3,8 @@
         <div class="box">
 
             <div class="box-body">
-                <div class="table-responsive-sm">
-                    <table class="table table-bordered table-responsive-sm">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
                         <thead>
                         <tr>
                             <th scope="col">Tên xe bus</th>
