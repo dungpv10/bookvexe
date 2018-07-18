@@ -29,7 +29,7 @@ class BusTypeController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.bus_type.create');
     }
 
     /**
@@ -43,9 +43,9 @@ class BusTypeController extends Controller
         $dataRequest = $request->input();
         $result = $this->busTypeService->insertBusType($dataRequest);
         if ($result) {
-            return redirect()->route('bus-type.index')->with('success', 'save data bus');
+            return response()->json(['code' => 200, 'message' => 'Cập nhật kiểu xe thành công']);
         }
-        return redirect()->back()->with('error', "can't save data bus");
+        return response()->json(['code' => 500, 'message' => 'Xảy ra lỗi trong quá trình cập nhật']);
     }
 
     /**
@@ -85,9 +85,9 @@ class BusTypeController extends Controller
         $dataRequest = $request->input();
         $result = $this->busTypeService->updateBusType($id, $dataRequest);
         if ($result == true) {
-            return redirect()->route('bus-type.index')->with('success', 'save data bus');
+            return response()->json(['code' => 200, 'message' => 'Cập nhật kiểu xe thành công']);
         }
-        return redirect()->back()->with('error', "can't save data bus");
+        return response()->json(['code' => 500, 'message' => 'Xảy ra lỗi trong quá trình cập nhật']);
     }
 
     /**

@@ -1,30 +1,11 @@
 @extends('admin.layouts.dashboard')
 @section('content')
     <div class="col-md-12">
-        {{--create new bus type--}}
-        <div class="box box-warning">
-            <div class="box-header with-border">
-                <h3 class="box-title">Thêm kiểu xe bus</h3>
-            </div>
-            <form action="{{ route('bus-type.store') }}" method="POST" enctype="multipart/form-data" id="frmCreateNewBusType">
-                <input type="hidden" name="_token" value="{{csrf_token()}}">
-                <div class="box-body">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label for="bus_type_name">Kiểu xe bus</label>
-                            <input type="text" class="form-control" name="bus_type_name" data-parsley-pattern="^[a-zA-Z\ . ! @ # $ % ^ &amp; * () + = , \/]+$" id="bus_type_name" placeholder="Nhập kiểu xe bus" required>
-                        </div>
-                    </div>
-                </div>
-                <div class="box-footer">
-                    <button type="submit" class="btn btn-primary">Đăng ký</button>
-                </div>
-            </form>
-        </div>
-        {{--list bus type--}}
         <div class="box">
             <div class="box-header with-border margin-bottom-10">
                 <h3 class="box-title">Danh sách kiểu xe bus</h3>
+                <button class="btn btn-primary" type="button" onclick="showViewCreateBusType()">Thêm mới
+                </button>
             </div>
             <div class="table-responsive">
 
@@ -35,11 +16,42 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="editBusTypeModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 class="box-title">Sửa kiểu xe</h3>
+                </div>
+                <div class="modal-body">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="createBusTypeModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 class="box-title">Thêm kiểu xe</h3>
+                </div>
+                <div class="modal-body">
+                </div>
+            </div>
+        </div>
+    </div>
 @stop
 @section('js')
     <script type="text/javascript">
-        $('#frmCreateNewBusType').bootstrapValidator({});
         var busTypeTable;
+        $(document).ready(function() {
+            $(window).keydown(function(event){
+                if( (event.keyCode == 13) ) {
+                    event.preventDefault();
+                    return false;
+                }
+            });
+        });
         $(function() {
 
             busTypeTable = $('#bus_type_table').DataTable({
@@ -54,9 +66,8 @@
                     { data: 'id', name: 'id', title: 'Action', searchable: false,className: 'text-center', "orderable": false,
                         render: function(data, type, row, meta){
                             var busTypeId = "'" + data + "'";
-                            var urlEdit = '{!! route('bus-type.index') !!}' + '/' + data + '/edit';
                             var actionLink = '<a href="javascript:;" data-toggle="tooltip" title="Xoá '+ row['name'] +'!" onclick="deleteBusTypeById('+ busTypeId +')"><i class=" fa-2x fa fa-trash" aria-hidden="true"></i></a>';
-                            actionLink += '&nbsp;&nbsp;&nbsp;<a href="' + urlEdit + '" data-toggle="tooltip" title="Sửa '+ row['bus_type_name'] +' !" ><i class="fa fa-2x fa-pencil-square-o" aria-hidden="true"></i></a>';
+                            actionLink += '&nbsp;&nbsp;&nbsp;<a href="javascript:;" onclick="showViewEditBusType('+ busTypeId +')" data-toggle="tooltip" title="Sửa '+ row['bus_type_name'] +' !" ><i class="fa fa-2x fa-pencil-square-o" aria-hidden="true"></i></a>';
                             return actionLink;
                         }
                     }
@@ -113,6 +124,109 @@
                         'error'
                     )
                 }
+            });
+        }
+        function upLoadJs() {
+
+            $('#frmCreateNewBusType').bootstrapValidator({});
+
+            $('#frmEditBusType').bootstrapValidator({});
+
+        };
+        // show edit bus type
+        function showViewEditBusType(id) {
+            $.ajax({
+                url: '{!! route('bus-type.index') !!}' +'/'+ id + '/edit',
+                method: 'GET'
+            }).success(function(data){
+                $('#editBusTypeModal .modal-body').html(data).promise().done(function(){
+                    upLoadJs();
+                });
+            }).error(function(data){
+
+            });
+            $("#editBusTypeModal").modal();
+        }
+        // Edit bus type
+        function saveEditBusType(id) {
+            $.ajax({
+                url: $('#frmEditBusType').attr('action'),
+                method: 'POST',
+                data: $('#frmEditBusType').serialize()
+            }).success(function(data){
+                if(data.code == 200) {
+                    swal(
+                        'Thành công',
+                        'Cập nhật xe thành công',
+                        'success'
+                    ).then(function(){
+                        busTypeTable.ajax.reload();
+                        $('#editBusTypeModal').modal('hide');
+                    })
+                } else {
+                    swal(
+                        'Thất bại',
+                        'Xảy ra lỗi trong quá trình cập nhật',
+                        'error'
+                    ).then(function(){
+                        busTypeTable.ajax.reload();
+                    })
+                }
+            }).error(function(data){
+                swal(
+                    'Thất bại',
+                    'Xảy ra lỗi trong quá trình cập nhật',
+                    'error'
+                ).then(function(){
+                })
+            });
+        }
+        // show create bus type
+        function showViewCreateBusType() {
+            $.ajax({
+                url: '{!! route('bus-type.create') !!}',
+                method: 'GET'
+            }).success(function(data){
+                $('#createBusTypeModal .modal-body').html(data).promise().done(function(){
+                    upLoadJs();
+                });
+            }).error(function(data){
+
+            });
+            $("#createBusTypeModal").modal();
+        }
+        // create bus type
+        function createBusType() {
+            $.ajax({
+                url: $('#frmCreateNewBusType').attr('action'),
+                method: 'POST',
+                data: $('#frmCreateNewBusType').serialize()
+            }).success(function(data){
+                if(data.code == 200) {
+                    swal(
+                        'Thành công',
+                        'Cập nhật xe thành công',
+                        'success'
+                    ).then(function(){
+                        busTypeTable.ajax.reload();
+                        $('#createBusTypeModal').modal('hide');
+                    })
+                } else {
+                    swal(
+                        'Thất bại',
+                        'Xảy ra lỗi trong quá trình cập nhật',
+                        'error'
+                    ).then(function(){
+                        busTypeTable.ajax.reload();
+                    })
+                }
+            }).error(function(data){
+                swal(
+                    'Thất bại',
+                    'Xảy ra lỗi trong quá trình cập nhật',
+                    'error'
+                ).then(function(){
+                })
             });
         }
     </script>
