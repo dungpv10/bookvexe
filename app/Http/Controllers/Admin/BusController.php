@@ -58,9 +58,9 @@ class BusController extends Controller
         $dataRequest = $request->except('_token');
         $result = $this->busService->insertBus($dataRequest);
         if ($result) {
-            return redirect()->route('bus.index')->with('success', 'Tạo mới xe thành công');
+            return response()->json(['code' => 200, 'message' => 'Cập nhật xe thành công']);
         }
-        return redirect()->back()->with('error', "Xảy ra lỗi trong quá trình tạo mới");
+        return response()->json(['code' => 500, 'message' => 'Xảy ra lỗi trong quá trình cập nhật']);
     }
 
     /**
@@ -102,9 +102,9 @@ class BusController extends Controller
         $dataRequest = $request->except('_token');
         $result = $this->busService->updateBus($id, $dataRequest);
         if ($result == true) {
-            return redirect()->route('bus.index')->with('success', 'Cập nhật xe thành công');
+            return response()->json(['code' => 200, 'message' => 'Cập nhật xe thành công']);
         }
-        return redirect()->back()->with('error', "Xảy ra lỗi trong quá trình cập nhật");
+        return response()->json(['code' => 500, 'message' => 'Xảy ra lỗi trong quá trình cập nhật']);
     }
 
     /**

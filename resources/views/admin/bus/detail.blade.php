@@ -30,7 +30,7 @@
                             <td>{{ $busDetail->end_point }}</td>
                             <td>{{ $busDetail->start_time }}</td>
                             <td>{{ $busDetail->end_time }}</td>
-                            <td>{{ $busDetail->status_name }}</td>
+                            <td>{{ $busDetail->busType->status }}</td>
                             <td>{{ $busDetail->created_at }}</td>
                             <td>{{ $busDetail->amenities }}</td>
                         </tr>

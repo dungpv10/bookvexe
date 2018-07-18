@@ -1,13 +1,7 @@
-@extends('admin.layouts.dashboard')
-
-@section('content')
-
+<div class="row">
     <div class="col-md-12">
-        <div class="box box-warning">
-            <div class="box-header with-border margin-bottom-10">
-                <h3 class="box-title">Sửa thông tin xe bus</h3>
-            </div>
-            <form method="post" action="{{ route('bus.update.bus', $busDetail->id) }}" id="frmEditBus"
+    <div class="box box-warning">
+        <form method="post" action="{{ route('bus.update.bus', $busDetail->id) }}" id="frmEditBus"
               enctype="multipart/form-data">
             <input type="hidden" name="_token" value="{{csrf_token()}}">
             <div class="row">
@@ -72,25 +66,13 @@
             </div>
 
             <div class="row text-center">
-                <a class="btn btn-default" href="{{ route('bus.index') }}"><i class="fa fa-arrow-left"
-                                                                              aria-hidden="true"></i>
-                    Quay Lại</a>
-                <button class="btn btn-primary" type="submit"><i class="fa fa-check" aria-hidden="true"></i>Cập nhật
+                {{--<a class="btn btn-default" href="{{ route('bus.index') }}"><i class="fa fa-arrow-left"--}}
+                                                                              {{--aria-hidden="true"></i>--}}
+                    {{--Quay Lại</a>--}}
+                <button type="button" class="btn btn-primary" onclick="saveEditBus('{{$busDetail->id}}')"><i class="fa fa-check" aria-hidden="true"></i>Cập nhật
                 </button>
             </div>
         </form>
-        </div>
     </div>
-@stop
-@section('js')
-    <script type="text/javascript">
-        $('#frmEditBus').bootstrapValidator({});
-        $('#bus_type_id').select2({
-            placeholder: "Chọn Bus Type",
-        });
-        $(".datetimepicker").datetimepicker({
-            format: 'LT'
-        });
-
-    </script>
-@stop
+</div>
+</div>
