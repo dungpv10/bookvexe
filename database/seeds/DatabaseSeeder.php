@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
             UserTableSeeder::class,
             BusTypeTableSeeder::class,
             PointTypeTableSeeder::class,
-
+            SettingTableSeeder::class
         ];
 
         foreach ($seeders as $seeder) {

@@ -19,8 +19,10 @@ class CreateSettingTable extends Migration
             $table->string('logo_path', 255)->comment('logo path');
             $table->string('favicon_path', 255)->comment('favicon path');
             $table->string('smtp_host', 255)->nullable();
+            $table->string('smtp_username', 255)->comment('smtp username');
             $table->string('smtp_password', 255)->nullable();
-
+            $table->string('email', 255)->nullable();
+            $table->text('description')->nullable()->comment('description of website');
             $table->softDeletes();
             $table->timestamps();
         });

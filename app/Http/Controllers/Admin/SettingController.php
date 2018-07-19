@@ -2,11 +2,19 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Services\SettingService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class SettingController extends Controller
 {
+    protected $settingService;
+
+    public function __construct(SettingService $settingService)
+    {
+        $this->settingService = $settingService;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +22,8 @@ class SettingController extends Controller
      */
     public function index()
     {
-
+        $setting = $this->settingService->getOne();
+        return view('admin.setting.index', compact('setting'));
     }
 
     /**
