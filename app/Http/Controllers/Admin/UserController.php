@@ -9,6 +9,7 @@ use App\Services\RoleService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserInviteRequest;
 use Log;
+
 class UserController extends Controller
 {
     public function __construct(UserService $userService, RoleService $roleService)
@@ -35,7 +36,7 @@ class UserController extends Controller
      */
     public function search(Request $request)
     {
-        if (! $request->search) {
+        if (!$request->search) {
             return redirect('admin/users');
         }
 
@@ -100,7 +101,7 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -113,8 +114,8 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -131,21 +132,19 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request, $id)
     {
         $result = $this->service->destroy($id);
         if ($result) {
-            if($request->ajax())
-            {
+            if ($request->ajax()) {
                 return response()->json(['code' => 200, 'message' => 'Xoá Thành công']);
             }
             return redirect('admin/users')->with('message', 'Successfully deleted');
         }
-        if($request->ajax())
-        {
+        if ($request->ajax()) {
             return response()->json(['code' => 500, 'message' => 'Xoá Thất bại']);
         }
 
@@ -159,8 +158,15 @@ class UserController extends Controller
         return $this->service->getJSONData($roleId, $search);
     }
 
-    public function create(){
+    public function create()
+    {
         $roles = $this->roleService->pluckSelection();
         return view('admin.users.create', compact('roles'));
+    }
+
+    public function store(Request $request)
+    {
+        $this->service->store($request->except('_token', 'roles'));
+        return response()->json(['code' => 1, 'msg' => 'success']);
     }
 }

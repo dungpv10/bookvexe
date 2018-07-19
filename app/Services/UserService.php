@@ -444,4 +444,10 @@ class UserService
             })
             ->make(true);
     }
+
+
+    public function store($data)
+    {
+        return $this->model->fill($data)->save();
+    }
 }

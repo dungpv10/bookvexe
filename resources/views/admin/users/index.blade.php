@@ -163,6 +163,7 @@
                 $('#roles').select2({
                     placeholder: "Chọn quyền thành viên",
                 });
+                $('.select2-container--default').css({width: '100%'});
             });
         }).fail(function(error){
             console.log(error);
