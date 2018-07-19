@@ -64,7 +64,6 @@ Route::group(['middleware' => ['auth', 'active']], function () {
     */
 
     Route::get('/users/switch-back', 'Admin\UserController@switchUserBack');
-
     /*
     |--------------------------------------------------------------------------
     | User
@@ -113,7 +112,7 @@ Route::group(['middleware' => ['auth', 'active']], function () {
         | Users
         |--------------------------------------------------------------------------
         */
-        Route::resource('users', 'UserController', ['except' => ['create', 'show']]);
+        Route::resource('users', 'UserController', ['except' => ['show']]);
         Route::post('users/search', ['uses' => 'UserController@search', 'as' => 'users.search.post']);
         Route::get('users/invite', ['uses' => 'UserController@getInvite', 'as' => 'users.invite']);
         Route::get('users/switch/{id}', 'UserController@switchToUser');

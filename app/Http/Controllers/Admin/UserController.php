@@ -158,4 +158,9 @@ class UserController extends Controller
         $search = $request->get('search')['value'];
         return $this->service->getJSONData($roleId, $search);
     }
+
+    public function create(){
+        $roles = $this->roleService->pluckSelection();
+        return view('admin.users.create', compact('roles'));
+    }
 }

@@ -18,10 +18,10 @@
         <div class="col-md-12">
             <div class="box">
                 <div class="box-header with-border margin-bottom-10">
-                    <h3 class="box-title">Danh sách xe bus</h3>
-                    <a class="btn btn-primary" href="{{ route('users.invite') }}">
+                    <h3 class="box-title">Danh sách thành viên</h3>
+                    <button type="button" class="btn btn-primary" id="createUserBtn">
                         <i class="fa fa-plus-circle" aria-hidden="true"></i>Thêm mới
-                    </a>
+                    </button>
                 </div>
 
 
@@ -36,6 +36,22 @@
             </div>
         </div>
     </div>
+
+
+    <div class="modal fade bd-example-modal-lg" id="registerUserModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 class="box-title">Tạo mới thành viên</h3>
+                </div>
+                <div class="modal-body">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 @stop
 @section('js')
 	<script type="text/javascript">
@@ -136,5 +152,22 @@
             }
           });
     }
+
+
+    var createRouter = "{{ route('users.create') }}";
+
+    $('#createUserBtn').on('click', function () {
+        $.get(createRouter).done(function(view){
+            $('#registerUserModal').find('.modal-body').html(view).promise().done(function(){
+                $('#registerUserModal').modal('show');
+                $('#roles').select2({
+                    placeholder: "Chọn quyền thành viên",
+                });
+            });
+        }).fail(function(error){
+            console.log(error);
+        });
+
+    });
 	</script>
 @stop
