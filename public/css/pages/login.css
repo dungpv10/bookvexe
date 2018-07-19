@@ -4,7 +4,7 @@ body {
     background: #dfdfdf;
     position: relative;
     display: block;
-    font-family: 'Lato', sans-serif;
+    /*font-family: 'Lato', sans-serif;*/
 }
 
 #container_demo {
@@ -165,7 +165,7 @@ p.login.button, p.signin.button {
 
 #register {
     z-index: 21;
-    opacity: 0;
+    /*opacity: 0;*/
 }
 
 #login {
