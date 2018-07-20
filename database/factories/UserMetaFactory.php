@@ -12,5 +12,6 @@ $factory->define(App\Models\UserMeta::class, function (Faker\Generator $faker) {
         'phone' => $faker->phoneNumber,
         'marketing' => 1,
         'terms_and_cond' => 1,
+        'is_active' => 1
     ];
 });
