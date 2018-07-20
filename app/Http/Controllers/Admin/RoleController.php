@@ -61,7 +61,10 @@ class RoleController extends Controller
         $result = $this->service->create($request->except(['_token', '_method']));
 
         if ($result) {
-            return redirect('admin/roles')->with('success', 'Successfully created');
+            if ($request->ajax()) {
+                return response()->json(['code' => '200', 'message' => 'Tạo mới quyền thành công']);
+            }
+            return redirect('admin/roles')->with('success', 'Tạo mới quyền thành công!');
         }
 
         return back()->with('error', 'Failed to invite');
