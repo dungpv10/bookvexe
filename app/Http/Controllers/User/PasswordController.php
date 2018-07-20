@@ -52,9 +52,9 @@ class PasswordController extends Controller
         if (Hash::check($request->old_password, Auth::user()->password)) {
             $this->resetPassword(Auth::user(), $password);
             return redirect('user/settings')
-                ->with('message', 'Password updated successfully');
+                ->with('message', 'Đổi password thành công');
         }
 
-        return back()->withErrors(['Password could not be updated']);
+        return back()->withErrors(['Đổi password không thành công']);
     }
 }

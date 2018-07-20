@@ -75,6 +75,8 @@ Route::group(['middleware' => ['auth', 'active']], function () {
         Route::post('settings', 'SettingsController@update');
         Route::get('password', 'PasswordController@password');
         Route::post('password', 'PasswordController@update');
+        Route::post('{id}/avatar', ['as' => 'avatar.uploads', 'uses' => 'SettingsController@postAvatar']);
+        Route::put('{id}/avatar', ['as' => 'avatar.delete', 'uses' => 'SettingsController@deleteAvatar']);
     });
 
     /*

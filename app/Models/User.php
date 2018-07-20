@@ -24,6 +24,8 @@ class User extends Authenticatable
         USER_GENDER_MALE => 'Nam'
     ];
 
+    const AVATAR_PATH = "upload/avatars";
+
     /**
      * The database table used by the model.
      *
@@ -166,6 +168,10 @@ class User extends Authenticatable
     public function getGenderNameAttribute() {
 
         return self::$gender[$this->getAttribute('gender')];
+    }
+
+    public function getAvatar() {
+        return asset('upload/avatars/' . $this->avatar);
     }
 
 }
