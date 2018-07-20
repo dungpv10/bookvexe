@@ -35,6 +35,9 @@ class Bus extends Model
         return $this->belongsTo(BusType::class, 'bus_type_id', 'id');
     }
 
+    public function seatLayout(){
+        return $this->hasOne(SeatLayout::class, 'bus_id', 'id');
+    }
 
     public function getStatusNameAttribute()
     {
