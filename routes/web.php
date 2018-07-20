@@ -135,7 +135,7 @@ Route::group(['middleware' => ['auth', 'active']], function () {
         |--------------------------------------------------------------------------
         */
 
-        Route::resource('setting', 'SettingController');
+        Route::resource('setting', 'SettingController', ['only' => ['index', 'update']]);
 
         /*
         |--------------------------------------------------------------------------

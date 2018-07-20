@@ -10,7 +10,7 @@
                 <h3 class="box-title">Cài đặt chung</h3>
             </div>
             <div class="">
-                {!! Form::open(['route' => ['setting.update', $setting->id], 'class' => 'form-horizontal', 'method' => 'PUT']) !!}
+                {!! Form::open(['route' => ['setting.update', $setting->id], 'class' => 'form-horizontal', 'method' => 'PUT', 'enctype' => 'multipart/form-data']) !!}
                 <div class="form-group row">
                     <label for="staticEmail" class="col-sm-2 col-form-label">Tiêu đề</label>
                     <div class="col-sm-10">
@@ -74,7 +74,7 @@
                             <span class="input-group-addon file-btn btn-default btn-file">
                                                         <span class="fileinput-new">Chọn file</span>
 
-                                                        <input type="file" name="..."></span>
+                                                        <input name="logo_img" type="file" name="..."></span>
                         </div>
                     </div>
                 </div>
@@ -97,7 +97,7 @@
                             <span class="input-group-addon file-btn btn-default btn-file">
                                                         <span class="fileinput-new">Chọn file</span>
 
-                                                        <input type="file" name="..."></span>
+                                                        <input name="favicon_img" type="file" name="..."></span>
                         </div>
                     </div>
                 </div>
