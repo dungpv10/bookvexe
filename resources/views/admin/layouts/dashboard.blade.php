@@ -28,6 +28,7 @@
     <link href="{{ asset('vendors/select2/select2-bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('vendors/validation/css/bootstrapValidator.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('vendors/tags/bootstrap-tagsinput.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('vendors/datetimepicker/css/bootstrap-datetimepicker.min.css')}}" rel="stylesheet" type="text/css" />
     @yield('css')
     <link href="{{ asset('css/admin/custom.css') }}" rel="stylesheet" type="text/css" />
 
@@ -90,6 +91,7 @@
     <script type="text/javascript" src="{{ asset('vendors/tags/dist/bootstrap-tagsinput.js') }}" ></script>
     <script type="text/javascript" src="{{ asset('vendors/tags/bower_components/typeahead.js/dist/typeahead.jquery.js') }}" ></script>
     <script type="text/javascript" src="{{ asset('vendors/tags/bower_components/typeahead.js/dist/bloodhound.js') }}" ></script>
+    <script src="{{asset('vendors/datetimepicker/js/bootstrap-datetimepicker.min.js')}}" type="text/javascript"></script>
     <script type="text/javascript">
         $(function () {
             $('body').on('hidden.bs.modal', '.modal', function () {
