@@ -52,6 +52,19 @@
     </div>
 
 
+    <div class="modal fade bd-example-modal-lg" id="editUserModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 class="box-title">Sửa thông tin người dùng</h3>
+                </div>
+                <div class="modal-body">
+                </div>
+            </div>
+        </div>
+    </div>
+
 @stop
 @section('js')
 	<script type="text/javascript">
@@ -90,7 +103,7 @@
                         let urlEdit = window.location.origin + '/admin/users/' + data + '/edit';
                         let switchUrl = window.location.origin + '/admin/users/switch/' + data;
                         let actionLink = '<a href="javascript:;" data-toggle="tooltip" title="Xoá '+ row['name'] +'!" onclick="deleteUserById('+ userId +')"><i class=" fa-2x fa fa-trash" aria-hidden="true"></i></a>';
-                        actionLink += '&nbsp;&nbsp;&nbsp;<a href="' + urlEdit + '" data-toggle="tooltip" title="Sửa '+ row['name'] +'!" ><i class="fa fa-2x fa-pencil-square-o" aria-hidden="true"></i></a>';
+                        actionLink += '&nbsp;&nbsp;&nbsp;<a href="javascript:;" onclick="editUser('+ userId +')" data-toggle="tooltip" title="Sửa '+ row['name'] +'!" ><i class="fa fa-2x fa-pencil-square-o" aria-hidden="true"></i></a>';
                         actionLink += '&nbsp;&nbsp;&nbsp;<a href="' + switchUrl + '" data-toggle="tooltip" title="Đăng nhập bằng '+ row['name'] +'!" ><i class="fa fa-2x fa-sign-in" aria-hidden="true"></i></a>';
                         return actionLink;
                     }
@@ -165,63 +178,92 @@
                 });
                 $('.select2-container--default').css({width: '100%'});
             });
-
-            $('#frmCreateUser').bootstrapValidator({
-                message: 'Dữ liệu nhập không đúng',
-                fields: {
-                    name: {
-                        message: 'Tên không đúng định dạng',
-                        validators: {
-                            notEmpty: {
-                                message: 'Tên không được trống'
-                            },
-                            stringLength: {
-                                min: 4,
-                                max: 10,
-                                message: 'Tên dài từ 6 tớ 30 ký tự'
-                            },
-                            regexp: {
-                                regexp: /^[a-zA-Z0-9_]+$/,
-                                message: 'Tên chỉ chữa chữ, số và dấu gạch dưới'
-                            }
-                        }
-                    },
-                    username: {
-                        message: 'Tên không đúng định dạng',
-                        validators: {
-                            notEmpty: {
-                                message: 'Tên không được trống'
-                            },
-                            stringLength: {
-                                min: 4,
-                                max: 10,
-                                message: 'Tên dài từ 6 tớ 30 ký tự'
-                            },
-                            regexp: {
-                                regexp: /^[a-zA-Z0-9_]+$/,
-                                message: 'Tên chỉ chữa chữ, số và dấu gạch dưới'
-                            }
-                        }
-                    },
-                    email: {
-                        message: 'Email không đúng định dạng',
-                        validators: {
-                            notEmpty: {
-                                message: 'Email không được trống'
-                            },
-                            emailAddress: {
-                                message: 'Không phải là 1 địa chỉ email'
-                            }
-                        }
-                    }
-                }
-            });
+            validateSetup('frmCreateUser');
 
         }).fail(function(error){
             console.log(error);
         });
 
     });
+
+    function validateSetup(formId) {
+        $('#' + formId).bootstrapValidator({
+            message: 'Dữ liệu nhập không đúng',
+            fields: {
+                name: {
+                    message: 'Tên không đúng định dạng',
+                    validators: {
+                        notEmpty: {
+                            message: 'Tên không được trống'
+                        },
+                        stringLength: {
+                            min: 6,
+                            max: 30,
+                            message: 'Tên dài từ 6 tớ 30 ký tự'
+                        }
+                    }
+                },
+                username: {
+                    message: 'Tên không đúng định dạng',
+                    validators: {
+                        notEmpty: {
+                            message: 'Tên không được trống'
+                        },
+                        stringLength: {
+                            min: 6,
+                            max: 30,
+                            message: 'Tên dài từ 6 tớ 30 ký tự'
+                        }
+                    },
+                    regexp: {
+                        regexp: /^[a-zA-Z0-9_]+$/,
+                        message: 'Tên chỉ chữa chữ, số và dấu gạch dưới'
+                    }
+                },
+                email: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Email không được rỗng'
+                        },
+                        emailAddress: {
+                            message: 'Không phải địa chỉ email'
+                        }
+                    }
+                },
+                dob: {
+                    validators: {
+                        date: {
+                            format: 'YYYY-MM-DD',
+                            message: 'Sai định dạng'
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    function editUser(uId) {
+        $.ajax({
+                url: '{!! route("users.index") !!}' +'/'+ uId + '/edit',
+                method: 'GET'
+            }).success(function(data){
+                $('#editUserModal .modal-body').html(data).promise().done(function(){
+                    
+                    validateSetup('frmEditUser');
+
+                    $('#roles').select2({
+                        placeholder: "Chọn quyền",
+                    });
+                    $('.select2-container--default').css({width: '100%'});
+                    $('.datetimepicker').datetimepicker({
+                        format: 'YYYY-MM-DD'
+                    });
+                });
+            }).error(function(data){
+
+            });
+            $("#editUserModal").modal();
+    }
 
 	</script>
 @stop

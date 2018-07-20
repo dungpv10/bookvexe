@@ -208,16 +208,19 @@ class UserService
                 }
 
                 $userMetaResult = (isset($payload['meta'])) ? $user->meta->update($payload['meta']) : true;
-
+                $roles = isset($payload['roles']) ? $payload['roles'] : null;
+                unset($payload['roles']);
+                unset($payload['meta']);
                 $user->update($payload);
-                if (isset($payload['roles'])) {
+                if ($roles) {
                     $this->unassignAllRoles($userId);
-                    $this->assignRole($payload['roles'], $userId);
+                    $this->assignRole($roles, $userId);
                 }
 
                 return $user;
             });
         } catch (Exception $e) {
+            dd($e);
             throw new Exception("We were unable to update your profile", 1);
         }
     }
