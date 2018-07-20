@@ -15,7 +15,15 @@ class SettingService
     }
 
 
-    public function getOne(){
+    public function getOne()
+    {
         return $this->setting->first() ?? new $this->setting;
+    }
+
+    public function update($id, $data)
+    {
+        $setting = $this->setting->findOrFail($id);
+
+        return $setting->fill($data)->save();
     }
 }
