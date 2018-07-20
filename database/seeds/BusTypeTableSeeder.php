@@ -36,13 +36,13 @@ class BusTypeTableSeeder extends Seeder
 
         \App\Models\BusType::all()->each(function ($busType) {
             $busType->buses()->saveMany(
-                factory(\App\Models\Bus::class, 10)->make()
+                factory(\App\Models\Bus::class, 5)->make()
             );
 
 
             \App\Models\Bus::all()->each(function($bus) {
-                $bus->routes()->saveMany(factory(\App\Models\Route::class, 4)->make());
-                $bus->images()->saveMany(factory(\App\Models\BusImage::class, 4)->make());
+                $bus->routes()->saveMany(factory(\App\Models\Route::class, 2)->make());
+                $bus->images()->saveMany(factory(\App\Models\BusImage::class, 2)->make());
                 $bus->seatLayout()->save(factory(\App\Models\SeatLayout::class)->make());
 
                 $bus->rates()->saveMany(factory(\App\Models\Rate::class, 2)->make());
