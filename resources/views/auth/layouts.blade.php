@@ -9,7 +9,9 @@
     <!-- end of global level css -->
     <!-- page level css -->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/pages/login.css') }}"/>
+    <link href="{{ asset('vendors/validation/css/bootstrapValidator.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- end of page level css -->
+    @yield('css')
 </head>
 
 <body>
@@ -37,6 +39,8 @@
 <script src="{{ asset('js/josh.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/metisMenu.js') }}" type="text/javascript"></script>
 <script src="{{ asset('vendors/holder/holder.js') }}" type="text/javascript"></script>
+<script type="text/javascript" src="{{ asset('vendors/validation/js/bootstrapValidator.min.js') }}" ></script>
+@yield('js')
 <!-- end of global js -->
 </body>
 </html>
