@@ -235,6 +235,7 @@ class UserService
             $user = $this->model->create([
                 'email' => $info['email'],
                 'name' => $info['name'],
+                'username' => $info['username'],
                 'password' => bcrypt($password)
             ]);
 
@@ -420,7 +421,7 @@ class UserService
         $builder = $this->model->with('roles')
             ->join('role_user', 'users.id', '=', 'role_user.user_id')
             ->join('roles', 'roles.id', '=', 'role_user.role_id')
-            ->orderBy('users.id', 'asc')
+            ->orderBy('users.id', 'desc')
             ->where('users.id', '!=', auth()->id())
             ->select('users.*');
         if (!empty($roleId)) {

@@ -160,13 +160,16 @@ class UserController extends Controller
 
     public function create()
     {
-        $roles = $this->roleService->pluckSelection();
+        $roles = $this->roleService->pluckSelection('name');
         return view('admin.users.create', compact('roles'));
     }
 
     public function store(Request $request)
     {
-        $this->service->store($request->except('_token', 'roles'));
-        return response()->json(['code' => 1, 'msg' => 'success']);
+        $this->service->invite($request->except('_token'));
+        if ($request->ajax()) {
+            return response()->json(['code' => 1, 'msg' => 'success']);
+        }
+        return redirect()->back()->with('success', 'Thêm mới người dùng thành công');
     }
 }

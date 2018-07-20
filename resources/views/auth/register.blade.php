@@ -18,7 +18,7 @@
 
             <div class="form-group">
                 <label style="margin-bottom:0px;" for="email" class="youmail">
-                    NickName
+                    Tên đăng nhập
                 </label>
                 <input id="username" name="username" placeholder="funnycat"/>
             </div>

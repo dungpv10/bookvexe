@@ -165,10 +165,63 @@
                 });
                 $('.select2-container--default').css({width: '100%'});
             });
+
+            $('#frmCreateUser').bootstrapValidator({
+                message: 'Dữ liệu nhập không đúng',
+                fields: {
+                    name: {
+                        message: 'Tên không đúng định dạng',
+                        validators: {
+                            notEmpty: {
+                                message: 'Tên không được trống'
+                            },
+                            stringLength: {
+                                min: 4,
+                                max: 10,
+                                message: 'Tên dài từ 6 tớ 30 ký tự'
+                            },
+                            regexp: {
+                                regexp: /^[a-zA-Z0-9_]+$/,
+                                message: 'Tên chỉ chữa chữ, số và dấu gạch dưới'
+                            }
+                        }
+                    },
+                    username: {
+                        message: 'Tên không đúng định dạng',
+                        validators: {
+                            notEmpty: {
+                                message: 'Tên không được trống'
+                            },
+                            stringLength: {
+                                min: 4,
+                                max: 10,
+                                message: 'Tên dài từ 6 tớ 30 ký tự'
+                            },
+                            regexp: {
+                                regexp: /^[a-zA-Z0-9_]+$/,
+                                message: 'Tên chỉ chữa chữ, số và dấu gạch dưới'
+                            }
+                        }
+                    },
+                    email: {
+                        message: 'Email không đúng định dạng',
+                        validators: {
+                            notEmpty: {
+                                message: 'Email không được trống'
+                            },
+                            emailAddress: {
+                                message: 'Không phải là 1 địa chỉ email'
+                            }
+                        }
+                    }
+                }
+            });
+
         }).fail(function(error){
             console.log(error);
         });
 
     });
+
 	</script>
 @stop

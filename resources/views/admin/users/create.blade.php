@@ -7,22 +7,19 @@
 
                     <div class="row form-group">
                         <label for="Email">Họ và tên</label>
-                        <input id="email" class="form-control" type="text" name="name" value="" placeholder="ex : Nguyễn Văn A"
-                               required>
+                        <input id="email" class="form-control" type="text" name="name" value="" placeholder="ex : Nguyễn Văn A">
                     </div>
 
 
                     <div class="row form-group">
                         <label for="Email">Tên đăng nhập</label>
-                        <input id="username" class="form-control" type="text" name="username" value="" placeholder="ex : customer"
-                               required>
+                        <input id="username" class="form-control" type="text" name="username" value="" placeholder="ex : customer">
                     </div>
 
 
                     <div class="row form-group">
                         <label for="Email">Email</label>
-                        <input id="email" class="form-control" type="email" name="email" value="" placeholder="abc@gmail.com"
-                               required>
+                        <input id="email" class="form-control" type="email" name="email" value="" placeholder="abc@gmail.com">
                     </div>
 
                     <div class="row form-group">
@@ -31,7 +28,7 @@
                     </div>
 
                     <div class="row text-center">
-                        <button class="btn btn-primary" type="submit"><i class="fa fa-check" aria-hidden="true"></i>Tạo
+                        <button class="btn btn-primary" id="addUser" type="submit"><i class="fa fa-check" aria-hidden="true"></i>Tạo
                             mới
                         </button>
                     </div>

@@ -56,8 +56,8 @@ class RoleService
         return $this->model->find($id);
     }
 
-    public function pluckSelection(){
-        return $this->model->pluck('label', 'id');
+    public function pluckSelection($field = 'id'){
+        return $this->model->pluck('label', $field);
     }
 
     /**
