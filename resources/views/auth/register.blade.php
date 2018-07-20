@@ -4,6 +4,7 @@
     @include('partials.status')
     <div id="register">
         <form action="/register" autocomplete="on" method="post">
+            {{ csrf_field() }}
             <h3 class="black_bg">
                 <img src="/img/logo.png" alt="josh logo"></h3>
             <p class="form-group">
@@ -15,6 +16,12 @@
                 <input id="name" name="name" required type="text" placeholder="John"/>
             </p>
 
+            <div class="form-group">
+                <label style="margin-bottom:0px;" for="email" class="youmail">
+                    NickName
+                </label>
+                <input id="username" name="username" required placeholder="funnycat"/>
+            </div>
             <div class="form-group">
                 <label style="margin-bottom:0px;" for="email" class="youmail">
                     <i class="livicon" data-name="mail" data-size="16" data-loop="true"
