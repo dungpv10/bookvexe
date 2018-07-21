@@ -58,7 +58,7 @@
                 </li>
 
                 <li class="unread message">
-                    <a href="javascript:;" class="message">
+                    <a href="/user/settings" class="message">
                         <i class="pull-right" data-toggle="tooltip" data-placement="top" title="Mark as Read">
                             <span class="pull-right ol livicon" data-n="adjust" data-s="10" data-c="#287b0b"></span>
                         </i>
