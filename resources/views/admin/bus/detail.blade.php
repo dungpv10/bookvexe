@@ -45,7 +45,7 @@
                 <h3 class="box-title">Hình ảnh xe</h3>
             </div>
             <div class="box-body">
-                <div class="row">
+                <div class="row custom_row">
                     @if ($busDetail->images->isEmpty())
                         <p>Không có hình ảnh xe</p>
                     @else
