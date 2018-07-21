@@ -45,7 +45,7 @@ class BusService
 
     public function findById($id = null)
     {
-        return $this->busModel->with('busType')->find($id);
+        return $this->busModel->with('busType')->with('images')->find($id);
     }
 
     public function updateBus($id = null, $dataRequest){

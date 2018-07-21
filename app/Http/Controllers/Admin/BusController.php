@@ -65,7 +65,9 @@ class BusController extends Controller
             $images = $request->file('image_bus');
             $dataRequest = $request->except('_token', 'image_bus');
             $result = $this->busService->insertBus($dataRequest);
-            $this->busImageService->saveBusImage($result, $images);
+            if (!empty($images)) {
+                $this->busImageService->saveBusImage($result, $images);
+            }
             DB::commit();
             if ($result) {
                 return back()->with('success', 'Cập nhật thành công');
@@ -85,7 +87,7 @@ class BusController extends Controller
      */
     public function show($id)
     {
-        die('xxx');
+        //
     }
 
     /**
