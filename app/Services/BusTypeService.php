@@ -44,7 +44,6 @@ class BusTypeService
     public function insertBusType($dataRequest)
     {
         try {
-            DB::beginTransaction();
             //insert data for bus type
             $saveBusType = [
                'bus_type_name' => $dataRequest['bus_type_name'],
@@ -53,10 +52,8 @@ class BusTypeService
                'updated_at' => date('Y-m-d H:i:s'),
             ];
             $this->busTypeModel->insert($saveBusType);
-            DB::commit();
             return true;
         } catch (\Exception $e) {
-            DB::rollback();
             return false;
         }
     }
