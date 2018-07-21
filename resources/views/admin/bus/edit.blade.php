@@ -70,12 +70,13 @@
                                 <button class="btn btn-success add-image" type="button"><i class="glyphicon glyphicon-plus"></i></button>
                             </div>
                         </div>
+                    </div>
+                    <div class="row form-group">
                         @foreach($busDetail->images as $key => $image)
-                            <div class="control-group input-group" style="margin-top:10px">
-                                <input type="file" name="image_bus[]" value="{{ $image->image_path }}" class="form-control">
-                                <div class="input-group-btn">
-                                    <button class="btn btn-danger remove-image" type="button"><i class="glyphicon glyphicon-remove"></i></button>
-                                </div>
+                            <div class="col-md-6 remove_image_edit">
+                                <i class="fa fa-circle remove_edit"></i>
+                                <img class="image_bus" data-name="{{ $image->image_path }}" src="{{ asset('images/' . $image->image_path) }}" alt="{{ $image->image_path }}">
+                                <input type="hidden" name="image_remove_bus[]" value="">
                             </div>
                         @endforeach
                     </div>

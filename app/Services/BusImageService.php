@@ -22,6 +22,11 @@ class BusImageService
         $this->busImageModel = $busImageModel;
     }
 
+    /**
+     * @param $busId
+     * @param $images
+     * @return mixed
+     */
     public function saveBusImage($busId, $images)
     {
         $data = [];
@@ -37,6 +42,12 @@ class BusImageService
             ];
         }
         return $this->busImageModel->insert($data);
+    }
+
+    public function removeBusImage($busId, $imagesRemove)
+    {
+        return $this->busImageModel->where('bus_id', $busId)
+            ->whereIn('image_path', $imagesRemove)->delete();
     }
 
 }

@@ -160,7 +160,21 @@ button i.fa{
 .fileinput-exists .fileinput-new, .fileinput-new .fileinput-exists{
     display: block;
 }
-.box-body img{
+.image_bus{
     width: 100%;
 }
-
+.remove_image_edit {
+    position: relative;
+}
+.remove_image_edit i {
+    position: absolute;
+    z-index: 999;
+    top: 10px;
+    right: 15px;
+    color: darkgrey;
+}
+.remove {
+    overflow: hidden;
+    width: 0px;
+    padding: 0px;
+}

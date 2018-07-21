@@ -83,6 +83,16 @@
             $(document).on("click",".remove-image",function(){
                 $(this).parents(".control-group").remove();
             });
+
+            $(document).on('click', '.remove_edit', function () {
+                var parent = $(this).parents(".remove_image_edit");
+                var image = parent.find(".image_bus");
+                var image_path = image.attr("data-name");
+                parent.find("input").val(image_path);
+                image.hide();
+                parent.find("i").hide();
+                parent.addClass('remove');
+            })
         });
         $(function() {
             busTable = $('#bus_table').DataTable({

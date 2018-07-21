@@ -51,7 +51,7 @@
                     @else
                         @foreach( $busDetail->images as $image )
                             <div class="col-md-4">
-                                <img src="{{ asset('images/' . $image->image_path) }}" alt="{{ $image->image_path }}">
+                                <img class="image_bus" src="{{ asset('images/' . $image->image_path) }}" alt="{{ $image->image_path }}">
                             </div>
                         @endforeach
                     @endif

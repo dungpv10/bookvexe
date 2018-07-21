@@ -115,12 +115,27 @@ class BusController extends Controller
      */
     public function updateBus(BusRequest $request, $id)
     {
-        $dataRequest = $request->except('_token');
-        $result = $this->busService->updateBus($id, $dataRequest);
-        if ($result == true) {
-            return back()->with('success', 'Cập nhật thành công');
+        try {
+            DB::beginTransaction();
+            $images = $request->file('image_bus');
+            $imagesRemove = $request->input('image_remove_bus');
+            $dataRequest = $request->except('_token', 'image_bus', 'image_remove_bus');
+            $result = $this->busService->updateBus($id, $dataRequest);
+            if (!empty($images)) {
+                $this->busImageService->saveBusImage($id, $images);
+            }
+            if (!empty($imagesRemove)) {
+                $this->busImageService->removeBusImage($id, $imagesRemove);
+            }
+            DB::commit();
+            if ($result == true) {
+                return back()->with('success', 'Cập nhật thành công');
+            }
+            return back()->with('err', 'Cập nhật thất bại');
+        } catch (\Exception $e) {
+            DB::rollback();
+            return back()->with('err', 'Cập nhật thất bại');
         }
-        return back()->with('err', 'Cập nhật thất bại');
     }
 
     /**
