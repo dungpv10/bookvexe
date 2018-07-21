@@ -61,8 +61,8 @@
                             </div>
                         </div>
 
-                        <div class="row form-group">
-                            <label for="end_time">Chọn ảnh</label>
+                        <div class="row form-group custom-lable">
+                            <label for="">Chọn ảnh</label>
                             <div class="row increment control-group input-group">
                                 <input type="file" name="image_bus[]" class="form-control input_file">
                                 <div class="input-group-btn">
