@@ -59,14 +59,21 @@ class BusController extends Controller
      */
     public function store(BusRequest $request)
     {
-        $images = $request->file('image_bus');
-        $dataRequest = $request->except('_token', 'image_bus');
-        $result = $this->busService->insertBus($dataRequest);
-        $this->busImageService->saveBusImage($result, $images);
-        if ($result) {
-            return back()->with('success', 'Cập nhật thành công');
+        try {
+            DB::beginTransaction();
+            $images = $request->file('image_bus');
+            $dataRequest = $request->except('_token', 'image_bus');
+            $result = $this->busService->insertBus($dataRequest);
+            $this->busImageService->saveBusImage($result, $images);
+            DB::commit();
+            if ($result) {
+                return back()->with('success', 'Cập nhật thành công');
+            }
+            return back()->with('err', 'Cập nhật thất bại');
+        } catch (\Exception $e) {
+            DB::rollback();
+            return back()->with('err', 'Cập nhật thất bại');
         }
-        return back()->with('err', 'Cập nhật thất bại');
     }
 
     /**
