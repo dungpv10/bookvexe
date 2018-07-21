@@ -159,24 +159,6 @@
                 }
             });
         }
-        //bus type select
-        function upLoadJs() {
-
-            $('#bus_type_id').select2({
-                placeholder: "Chọn Bus Type",
-            });
-
-            $(".datetimepicker").datetimepicker({
-                format: 'LT'
-            });
-
-            $('#amenities').tagsinput();
-
-            $('#frmEditBus').bootstrapValidator({});
-
-            $('#frmCreateNewBus').bootstrapValidator({});
-
-        };
         //show bus detail
         function showBusDetail(id){
             $.ajax({
@@ -196,7 +178,17 @@
                 method: 'GET'
             }).success(function(data){
                 $('#editBusModal .modal-body').html(data).promise().done(function(){
-                    upLoadJs();
+                    $('#bus_type_id').select2({
+                        placeholder: "Chọn Bus Type",
+                    });
+
+                    $(".datetimepicker").datetimepicker({
+                        format: 'LT'
+                    });
+
+                    $('#amenities').tagsinput();
+
+                    $('#frmEditBus').bootstrapValidator({});
                 });
             }).error(function(data){
 
@@ -244,7 +236,17 @@
                 method: 'GET'
             }).success(function(data){
                 $('#createBusModal .modal-body').html(data).promise().done(function(){
-                        upLoadJs();
+                    $('#bus_type_id').select2({
+                        placeholder: "Chọn Bus Type",
+                    });
+
+                    $(".datetimepicker").datetimepicker({
+                        format: 'LT'
+                    });
+
+                    $('#amenities').tagsinput();
+
+                    $('#frmCreateNewBus').bootstrapValidator({});
                 });
             }).error(function(data){
 
