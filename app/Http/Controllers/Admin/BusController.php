@@ -31,7 +31,8 @@ class BusController extends Controller
     {
         // show view list bus
         $result = $this->busService->all();
-        return view('admin.bus.index')->with('listBus', $result);
+        $busTypes = $this->busTypeService->getAllBusType();
+        return view('admin.bus.index')->with('listBus', $result)->with('busTypes', $busTypes);
     }
 
     /**
@@ -134,7 +135,8 @@ class BusController extends Controller
     public function getJSONData(Request $request)
     {
         $search = $request->get('search')['value'];
-        return $this->busService->getJSONData($search);
+        $busType = $request->get('bus_type_id');
+        return $this->busService->getJSONData($busType, $search);
     }
 
     public function detail($id = null)

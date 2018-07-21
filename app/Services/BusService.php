@@ -30,11 +30,14 @@ class BusService
     	return $this->busModel->all();
     }
 
-    public function getJSONData($search = "")
+    public function getJSONData($busType = null, $search='')
     {
-        return DataTables::of(
-            $this->busModel->with('busType')->select('id', 'bus_name', 'bus_reg_number', 'bus_type_id', 'number_seats', 'start_point', 'end_point', 'start_time', 'end_time')
-                ->where('id', '!=', 0)
+        $result = $this->busModel->with('busType')->select('id', 'bus_name', 'bus_reg_number', 'bus_type_id', 'number_seats', 'start_point', 'end_point', 'start_time', 'end_time')
+            ->where('id', '!=', 0);
+        if (!empty($busType)) {
+            $result->where('bus_type_id', $busType);
+        }
+        return DataTables::of($result
         )->addColumn('busType', function(Bus $bus){
             return $bus->busType->bus_type_name;
         })->make(true);

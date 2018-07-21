@@ -1,7 +1,11 @@
 @extends('admin.layouts.dashboard')
 
 @section('content')
-
+    <div class="col-md-3">
+        <div class="form-group">
+            {!! Form::select('bus_type', ['' => 'Chọn kiểu xe'] + $busTypes, null, ['class' => 'form-control', 'id' => 'bus_type']) !!}
+        </div>
+    </div>
     <div class="col-md-12">
         <div class="box">
             <div class="box-header with-border margin-bottom-10">
@@ -66,13 +70,20 @@
                     return false;
                 }
             });
+            $('#bus_type').select2({});
+            $('#bus_type').on('change', function(){
+                busTable.ajax.reload();
+            });
         });
         $(function() {
             busTable = $('#bus_table').DataTable({
                 processing: true,
                 serverSide: true,
                 ajax: {
-                    "url": '{!! route('bus.datatable') !!}'
+                    "url": '{!! route('bus.datatable') !!}',
+                    "data": function ( d ) {
+                        d.bus_type_id = $('#bus_type').val();
+                    }
                 },
                 columns: [
                     { data: 'bus_name', name: 'bus_name', title: 'Tên xe buýt' },
@@ -233,7 +244,7 @@
                 method: 'GET'
             }).success(function(data){
                 $('#createBusModal .modal-body').html(data).promise().done(function(){
-                    upLoadJs();
+                        upLoadJs();
                 });
             }).error(function(data){
 
