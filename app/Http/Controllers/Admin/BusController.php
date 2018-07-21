@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Services\BusService;
 use App\Services\BusTypeService;
 use App\Services\BusImageService;
+use DB;
 
 class BusController extends Controller
 {
