@@ -74,6 +74,15 @@
             $('#bus_type').on('change', function(){
                 busTable.ajax.reload();
             });
+
+            $(document).on('click', '.add-image',function(){
+                var html = $(".clone").html();
+                $(".increment").after(html);
+            });
+
+            $(document).on("click",".remove-image",function(){
+                $(this).parents(".control-group").remove();
+            });
         });
         $(function() {
             busTable = $('#bus_table').DataTable({
