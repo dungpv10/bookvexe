@@ -71,10 +71,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row form-group">
+                    <div class="row form-group custom_row">
                         @foreach($busDetail->images as $key => $image)
                             <div class="col-md-6 remove_image_edit">
-                                <i class="fa fa-circle remove_edit"></i>
+                                <i class="fa fa-times-circle remove_edit"></i>
                                 <img class="image_bus" data-name="{{ $image->image_path }}" src="{{ asset('images/' . $image->image_path) }}" alt="{{ $image->image_path }}">
                                 <input type="hidden" name="image_remove_bus[]" value="">
                             </div>

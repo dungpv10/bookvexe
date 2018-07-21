@@ -169,12 +169,21 @@ button i.fa{
 .remove_image_edit i {
     position: absolute;
     z-index: 999;
-    top: 10px;
-    right: 15px;
-    color: darkgrey;
+    top: -6px;
+    right: 5px;
+    color: black;
 }
 .remove {
     overflow: hidden;
     width: 0px;
     padding: 0px;
+}
+.custom_row {
+    padding: 0px;
+    margin-right: -10px;
+    margin-left: -10px;
+}
+.custom_row div[class*='col-'] {
+    padding-left: 10px;
+    padding-right: 10px;
 }
