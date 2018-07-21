@@ -194,3 +194,6 @@ button i.fa{
 .bootstrap-tagsinput{
     padding: 5px 6px;;
 }
+.custom-lable label{
+    margin-bottom: 7px;
+}

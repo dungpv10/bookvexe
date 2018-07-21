@@ -64,7 +64,7 @@
                         <div class="row form-group">
                             <label for="end_time">Chọn ảnh</label>
                             <div class="row increment control-group input-group">
-                                <input type="file" name="image_bus[]" class="form-control">
+                                <input type="file" name="image_bus[]" class="form-control input_file">
                                 <div class="input-group-btn">
                                     <button class="btn btn-success add-image" type="button"><i class="glyphicon glyphicon-plus"></i></button>
                                 </div>
@@ -72,7 +72,7 @@
                         </div>
                         <div class="clone hide">
                             <div class="control-group input-group" style="margin-top:10px">
-                                <input type="file" name="image_bus[]" class="form-control">
+                                <input type="file" name="image_bus[]" class="form-control input_file">
                                 <div class="input-group-btn">
                                     <button class="btn btn-danger remove-image" type="button"><i class="glyphicon glyphicon-remove"></i></button>
                                 </div>
