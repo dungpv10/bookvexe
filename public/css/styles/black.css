@@ -895,7 +895,7 @@ body > .header .logo .icon {
 
     .navbar-nav > .messages-menu > .dropdown-menu {
         position: absolute;
-        right: -100px;
+        right: -20px;
         left: auto;
     }
 }

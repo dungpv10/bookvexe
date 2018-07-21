@@ -2,7 +2,8 @@
     <ul class="nav navbar-nav">
         <li class="dropdown messages-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <img style="max-height: 34px;" src="{{ auth()->user()->getAvatar() }}" width="35" class="img-circle img-responsive pull-left" height="35" alt="riot">
+                <img style="max-height: 34px;" src="{{ auth()->user()->getAvatar() }}" width="35"
+                     class="img-circle img-responsive pull-left" height="35" alt="{{ auth()->user()->name }}">
                 {{--<span class="label label-success">4</span>--}}
             </a>
             <ul class="dropdown-menu dropdown-messages pull-right">
@@ -55,6 +56,7 @@
                         </div>
                     </a>
                 </li>
+
                 <li class="unread message">
                     <a href="javascript:;" class="message">
                         <i class="pull-right" data-toggle="tooltip" data-placement="top" title="Mark as Read">
@@ -63,14 +65,14 @@
                         <div class="message-body">
                             <strong>Giới tính</strong>
                             <br>
-                            {{ auth()->user()->gender_name }}
+                            Cài đặt & Đổi password
                         </div>
                     </a>
-                </li>
-                <li class="unread message">
-                    <a href="/user/settings">
-                        <i class="livicon" data-name="fa-cogs" data-size="16" data-c="#01BC8C" data-hc="#01BC8C" data-loop="true"></i><b>  Cài đặt & Đổi password</b>
-                    </a>
+
+                    {{--<a href="/user/settings">--}}
+                        {{--<i class="livicon" data-name="fa-cogs" data-size="16" data-c="#01BC8C" data-hc="#01BC8C"--}}
+                           {{--data-loop="true"></i><b> Cài đặt & Đổi password</b>--}}
+                    {{--</a>--}}
                 </li>
                 <li class="footer">
                     <a href="{{ route('logout') }}">Đăng xuất</a>
