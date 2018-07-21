@@ -2,7 +2,7 @@
     <ul class="nav navbar-nav">
         <li class="dropdown messages-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <img src="{{ auth()->user()->getAvatar() }}" width="35" class="img-circle img-responsive pull-left" height="35" alt="riot">
+                <img style="max-height: 34px;" src="{{ auth()->user()->getAvatar() }}" width="35" class="img-circle img-responsive pull-left" height="35" alt="riot">
                 {{--<span class="label label-success">4</span>--}}
             </a>
             <ul class="dropdown-menu dropdown-messages pull-right">

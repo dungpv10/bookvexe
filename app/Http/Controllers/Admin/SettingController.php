@@ -47,8 +47,8 @@ class SettingController extends Controller
         }
 
         if($request->hasFile('favicon_img')){
-            $logoFile = $request->file('favicon_img');
-            $data['favicon_path'] = (new Upload($logoFile, 'upload/setting', ['favicon']))->upload();
+            $faviconFile = $request->file('favicon_img');
+            $data['favicon_path'] = (new Upload($faviconFile, 'upload/setting', ['favicon']))->upload();
         }
 
         $this->settingService->update($id, $data);
