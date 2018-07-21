@@ -63,9 +63,9 @@
                             <span class="pull-right ol livicon" data-n="adjust" data-s="10" data-c="#287b0b"></span>
                         </i>
                         <div class="message-body">
-                            <strong>Giới tính</strong>
+                            <strong>Cài đặt </strong>
                             <br>
-                            Cài đặt & Đổi password
+                            Đổi password
                         </div>
                     </a>
 
