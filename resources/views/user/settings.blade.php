@@ -1,4 +1,4 @@
-@extends('dashboard')
+@extends('admin.layouts.dashboard')
 
 @section('css')
     <link href="{{asset('css/pages/user_profile.css')}}" rel="stylesheet" type="text/css"/>
@@ -9,16 +9,16 @@
 
 @section('content')
 
-<div class="col-md-8">
+<div class="col-md-12">
     <ul class="nav nav-tabs ul-edit responsive">
         <li class="active">
             <a href="#tab-info" data-toggle="tab">
-                <i class="livicon" data-name="fa-info-circle" data-size="16" data-c="#01BC8C" data-hc="#01BC8C" data-loop="true"></i> Thông tin cá nhân
+                <i class="livicon" data-name="user" data-size="16" data-c="#01BC8C" data-hc="#01BC8C" data-loop="true"></i> Thông tin cá nhân
             </a>
         </li>
         <li>
             <a href="#tab-change-pwd" data-toggle="tab">
-                <i class="livicon" data-name="key" data-size="16" data-c="#01BC8C" data-hc="#01BC8C" data-loop="true"></i> Change Password
+                <i class="livicon" data-name="key" data-size="16" data-c="#01BC8C" data-hc="#01BC8C" data-loop="true"></i> Đổi mật khẩu
             </a>
         </li>
     </ul>
@@ -40,7 +40,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <br />
                 <form method="POST" action="{{ route('users.update', $user->id) }}" id="frmEditUser">
                     <input name="_method" type="hidden" value="PATCH">
@@ -101,7 +101,7 @@
                         <div class="form-body">
                             <div class="form-group">
                                 <label  class="col-md-3 control-label">
-                                    Password cũ 
+                                    Password cũ
                                     <span class='require'>*</span>
                                 </label>
                                 <div class="col-md-9">
@@ -172,7 +172,7 @@
                         message: 'Tên không được trống'
                     },
                     stringLength: {
-                        min: 6,
+                        min: 5,
                         max: 30,
                         message: 'Tên dài từ 6 tớ 30 ký tự'
                     }
@@ -185,7 +185,7 @@
                         message: 'Tên không được trống'
                     },
                     stringLength: {
-                        min: 6,
+                        min: 5,
                         max: 30,
                         message: 'Tên dài từ 6 tớ 30 ký tự'
                     }
@@ -231,8 +231,7 @@
                         message: 'Password mới không được bỏ trống'
                     },
                     identical: {
-                        field: 'new_password_confirmation',
-                        message: 'Password và password nhập lại không giống nhau'
+                        field: 'required',
                     }
                 }
             },
@@ -249,7 +248,7 @@
             },
         }
     });
-    
+
     Dropzone.options.myDropzone= {
         url: '{{ route("avatar.uploads", $user->id) }}',
         headers: {
@@ -258,7 +257,7 @@
         acceptedFiles: ".jpeg,.jpg,.png,.gif",
         addRemoveLinks: true,
         removedfile: function(file) {
-            var name = file.name;    
+            var name = file.name;
             name =name.replace(/\s+/g, '-').toLowerCase();    /*only spaces*/
             $.ajax({
                 type: 'PUT',
@@ -277,14 +276,12 @@
                 }
             }
           return this._updateMaxFilesReachedClass();
-        
+
         },
         success: function(file, response){
             $('#img_avatar').attr('src', response);
         }
    }
-    </script>
-
 
 </script>
 @stop
