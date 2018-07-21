@@ -46,6 +46,10 @@ class BusImageService
 
     public function removeBusImage($busId, $imagesRemove)
     {
+        //remove image
+        foreach ($imagesRemove as $image){
+            unlink(public_path('images/' . $image));
+        }
         return $this->busImageModel->where('bus_id', $busId)
             ->whereIn('image_path', $imagesRemove)->delete();
     }
