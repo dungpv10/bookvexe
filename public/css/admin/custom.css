@@ -187,3 +187,10 @@ button i.fa{
     padding-left: 10px;
     padding-right: 10px;
 }
+.bootstrap-tagsinput input {
+    display: inline-block;
+    width: 35px;
+}
+.bootstrap-tagsinput{
+    padding: 5px 6px;;
+}
