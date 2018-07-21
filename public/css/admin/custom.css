@@ -160,5 +160,7 @@ button i.fa{
 .fileinput-exists .fileinput-new, .fileinput-new .fileinput-exists{
     display: block;
 }
-
+.box-body img{
+    width: 100%;
+}
 

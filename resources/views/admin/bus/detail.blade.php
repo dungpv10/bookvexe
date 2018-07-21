@@ -39,5 +39,25 @@
                 </div>
             </div>
         </div>
+
+        <div class="box">
+            <div class="box-header with-border margin-bottom-10">
+                <h3 class="box-title">Hình ảnh xe</h3>
+            </div>
+            <div class="box-body">
+                <div class="row">
+                    @if ($busDetail->images->isEmpty())
+                        <p>Không có hình ảnh xe</p>
+                    @else
+                        @foreach( $busDetail->images as $image )
+                            <div class="col-md-4">
+                                <img src="{{ asset('images/' . $image->image_path) }}" alt="{{ $image->image_path }}">
+                            </div>
+                        @endforeach
+                    @endif
+                </div>
+            </div>
+
+        </div>
     </div>
 </div>
