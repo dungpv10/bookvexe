@@ -69,7 +69,7 @@
                 {{--<a class="btn btn-default" href="{{ route('bus.index') }}"><i class="fa fa-arrow-left"--}}
                                                                               {{--aria-hidden="true"></i>--}}
                     {{--Quay Lại</a>--}}
-                <button type="button" class="btn btn-primary" onclick="saveEditBus('{{$busDetail->id}}')"><i class="fa fa-edit" aria-hidden="true"></i>Cập nhật
+                <button type="submit" class="btn btn-primary"><i class="fa fa-edit" aria-hidden="true"></i>Cập nhật
                 </button>
             </div>
         </form>

@@ -80,6 +80,7 @@ class BusService
     }
 
     public function insertBus($dataRequest){
-        return $this->busModel->fill($dataRequest)->save();
+        $this->busModel->fill($dataRequest)->save();
+        return $this->busModel->id;
     }
 }

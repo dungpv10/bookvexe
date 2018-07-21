@@ -7,20 +7,23 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Services\BusService;
 use App\Services\BusTypeService;
+use App\Services\BusImageService;
 
 class BusController extends Controller
 {
     public $busService;
     public $busTypeService;
+    public $busImageService;
 
     /**
      * BusController constructor.
      * @param BusService $busService
      * @param BusTypeService $busTypeService
      */
-    public function __construct(BusService $busService, BusTypeService $busTypeService) {
+    public function __construct(BusService $busService, BusTypeService $busTypeService, BusImageService $busImageService) {
         $this->busService = $busService;
         $this->busTypeService = $busTypeService;
+        $this->busImageService = $busImageService;
     }
     /**
      * Display a listing of the resource.
@@ -56,12 +59,14 @@ class BusController extends Controller
      */
     public function store(BusRequest $request)
     {
-        $dataRequest = $request->except('_token');
+        $images = $request->file('image_bus');
+        $dataRequest = $request->except('_token', 'image_bus');
         $result = $this->busService->insertBus($dataRequest);
+        $this->busImageService->saveBusImage($result, $images);
         if ($result) {
-            return response()->json(['code' => 200, 'message' => 'Cập nhật xe thành công']);
+            return back()->with('success', 'Cập nhật thành công');
         }
-        return response()->json(['code' => 500, 'message' => 'Xảy ra lỗi trong quá trình cập nhật']);
+        return back()->with('err', 'Cập nhật thất bại');
     }
 
     /**
@@ -103,9 +108,9 @@ class BusController extends Controller
         $dataRequest = $request->except('_token');
         $result = $this->busService->updateBus($id, $dataRequest);
         if ($result == true) {
-            return response()->json(['code' => 200, 'message' => 'Cập nhật xe thành công']);
+            return back()->with('success', 'Cập nhật thành công');
         }
-        return response()->json(['code' => 500, 'message' => 'Xảy ra lỗi trong quá trình cập nhật']);
+        return back()->with('err', 'Cập nhật thất bại');
     }
 
     /**

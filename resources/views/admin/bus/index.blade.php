@@ -204,40 +204,6 @@
             });
             $("#editBusModal").modal();
         }
-        // Edit bus
-        function saveEditBus(id) {
-            $.ajax({
-                url: $('#frmEditBus').attr('action'),
-                method: 'POST',
-                data: $('#frmEditBus').serialize()
-            }).success(function(data){
-                if(data.code == 200) {
-                    swal(
-                        'Thành công',
-                        'Cập nhật xe thành công',
-                        'success'
-                    ).then(function(){
-                        busTable.ajax.reload();
-                        $('#editBusModal').modal('hide');
-                    })
-                } else {
-                    swal(
-                        'Thất bại',
-                        'Xảy ra lỗi trong quá trình cập nhật',
-                        'error'
-                    ).then(function(){
-                        busTable.ajax.reload();
-                    })
-                }
-            }).error(function(data){
-                swal(
-                    'Thất bại',
-                    'Xảy ra lỗi trong quá trình cập nhật',
-                    'error'
-                ).then(function(){
-                })
-            });
-        }
         // show create bus
         function showViewCreateBus() {
             $.ajax({
@@ -261,40 +227,6 @@
 
             });
             $("#createBusModal").modal();
-        }
-        // create bus
-        function createBus() {
-            $.ajax({
-                url: $('#frmCreateNewBus').attr('action'),
-                method: 'POST',
-                data: $('#frmCreateNewBus').serialize()
-            }).success(function(data){
-                if(data.code == 200) {
-                    swal(
-                        'Thành công',
-                        'Cập nhật xe thành công',
-                        'success'
-                    ).then(function(){
-                        busTable.ajax.reload();
-                        $('#createBusModal').modal('hide');
-                    })
-                } else {
-                    swal(
-                        'Thất bại',
-                        'Xảy ra lỗi trong quá trình cập nhật',
-                        'error'
-                    ).then(function(){
-                        busTable.ajax.reload();
-                    })
-                }
-            }).error(function(data){
-                swal(
-                    'Thất bại',
-                    'Xảy ra lỗi trong quá trình cập nhật',
-                    'error'
-                ).then(function(){
-                })
-            });
         }
     </script>
 @stop
