@@ -32,7 +32,8 @@ class BusRequest extends FormRequest
             'bus_reg_number' => 'required|max:255',
             'number_seats' => 'required|integer',
             'end_point' => 'required|max:255',
-            'end_time' => 'required|max:255'
+            'end_time' => 'required|max:255',
+            'image_bus[]' => 'mimes:jpeg,jpg,png | max:1000',
         ];
     }
 }
