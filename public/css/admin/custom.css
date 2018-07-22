@@ -173,11 +173,6 @@ button i.fa{
     right: 5px;
     color: black;
 }
-.remove {
-    overflow: hidden;
-    width: 0px;
-    padding: 0px;
-}
 .custom_row {
     padding: 0px;
     margin-right: -10px;
@@ -196,4 +191,9 @@ button i.fa{
 }
 .custom-lable label{
     margin-bottom: 7px;
+}
+.custom_row .remove {
+    overflow: hidden;
+    width: 0px;
+    padding: 0px !important;
 }
