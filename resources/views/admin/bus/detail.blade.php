@@ -59,5 +59,51 @@
             </div>
 
         </div>
+
+        {{--view seat of bus--}}
+        <div class="box">
+            <div class="box-header with-border margin-bottom-10">
+                <h3 class="box-title">Chi tiết ghế ngồi</h3>
+            </div>
+            <div class="box-body">
+                <div class="row">
+                    @php
+                        $leftSeat = 1;
+                        $leftTotalSeat = 5;
+                        $rightSeat = 2;
+                        $rightTotalSeat = 10;
+                        $residualSeat = 2;
+                        $lastSeat = 4;
+                        $typeSeat = 'sleeper';
+                    @endphp
+                    @if ($leftSeat < 3 && $rightSeat < 3)
+                        <div class="detail_seat col-md-6" data-left-seat="{{ $leftSeat }}" data-left-total-seat="{{ $leftTotalSeat }}" data-right-seat="{{ $rightSeat }}" data-right-total-seat="{{ $rightTotalSeat }}"
+                         data-residual-seat="{{ $residualSeat }}" data-last-seat="{{ $lastSeat }}" data-type-seat="{{ $typeSeat }}">
+                            <div class="row row-seat">
+                                <div class="left_seat custom-col-40"></div>
+                                <div class="custom-col-20"></div>
+                                <div class="right_seat custom-col-40"></div>
+                            </div>
+                            <div class="residual_seat row row-seat"></div>
+                            <div class="last_seat row row-seat"></div>
+                        </div>
+                    @else
+                        <div class="detail_seat col-md-9" data-left-seat="{{ $leftSeat }}" data-left-total-seat="{{ $leftTotalSeat }}" data-right-seat="{{ $rightSeat }}" data-right-total-seat="{{ $rightTotalSeat }}"
+                         data-residual-seat="{{ $residualSeat }}" data-last-seat="{{ $lastSeat }}" data-type-seat="{{ $typeSeat }}" data-type='3'>
+                            <div class="row row-seat">
+                                <div class="left_seat custom-col-30"></div>
+                                <div class="custom-col-10"></div>
+                                <div class="right_seat custom-col-30"></div>
+                            </div>
+                            <div class="residual_seat row row-seat fix-width-70"></div>
+                            <div class="last_seat row row-seat fix-width-70"></div>
+                        </div>
+                    @endif
+                </div>
+            </div>
+
+        </div>
+
+
     </div>
 </div>

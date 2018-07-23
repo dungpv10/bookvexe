@@ -184,7 +184,21 @@
                 url: '{!! route('bus.index') !!}' + '/detail/' + id,
                 method: 'GET'
             }).success(function(data){
-                $('#detailBusModal .modal-body').html(data);
+                $('#detailBusModal .modal-body').html(data).promise().done(function(){
+                    var seatDetail = $('.detail_seat');
+                    var leftSeat= seatDetail.attr('data-left-seat');
+                    var leftTotalSeat= seatDetail.attr('data-left-total-seat');
+                    var rightSeat= seatDetail.attr('data-right-seat');
+                    var rightTotalSeat= seatDetail.attr('data-right-total-seat');
+                    var residualSeat= seatDetail.attr('data-residual-seat');
+                    var lastSeat= seatDetail.attr('data-last-seat');
+                    var typeSeat = seatDetail.attr('data-type-seat');
+                    var type = seatDetail.attr('data-type');
+                    buildElementSeatHead($('.left_seat'), leftSeat, leftTotalSeat, 'left', typeSeat, type);
+                    buildElementSeatHead($('.right_seat'), rightSeat, rightTotalSeat, 'rigth', typeSeat, type);
+                    buildElementSeatResidual($('.residual_seat'), residualSeat, typeSeat, type);
+                    buildElementSeatLast($('.last_seat'), lastSeat, typeSeat, type);
+                });
             }).error(function(data){
 
             });
@@ -237,6 +251,86 @@
 
             });
             $("#createBusModal").modal();
+        }
+        // add element seat for detail#
+        function buildElementSeatHead(element, rowSeat, totalSeat, position, typeSeat, type) {
+            var col1 = '';
+            var col2 = '';
+            var col3 = '';
+            if (type == '3') {
+                element.append('<div class="row row-seat custom-col-30 cont-seat-1"></div>');
+                element.append('<div class="row row-seat custom-col-30 cont-seat-2"></div>');
+                element.append('<div class="row row-seat custom-col-30 cont-seat-3"></div>');
+                col1 = element.find('.cont-seat-1');
+                col2 = element.find('.cont-seat-2');
+                col3 = element.find('.cont-seat-3');
+            } else {
+                element.append('<div class="row row-seat custom-col-50 cont-seat-1"></div>');
+                element.append('<div class="row row-seat custom-col-50 cont-seat-2"></div>');
+                col1 = element.find('.cont-seat-1');
+                col2 = element.find('.cont-seat-2');
+            }
+            if (rowSeat == 1) {
+                for (var i = 1; i <= totalSeat; i++) {
+                    if (position == 'left') {
+                        col1.append('<div class="col-md-12 no-padding"><div class="'+typeSeat+'"></div></div>');
+                    }
+                    if (position == 'rigth') {
+                        if (type == 3) {
+                            col3.append('<div class="col-md-12 no-padding"><div class="'+typeSeat+'"></div></div>');
+                        } else {
+                            col2.append('<div class="col-md-12 no-padding"><div class="'+typeSeat+'"></div></div>');
+                        }
+                    }
+                }
+            }
+            if (rowSeat == 2) {
+                if (type == 3) {
+                    for (var i = 1; i <= totalSeat/2; i++) {
+                        if (position == 'left') {
+                            col1.append('<div class="col-md-12 no-padding"><div class="'+typeSeat+'"></div></div>');
+                            col2.append('<div class="col-md-12 no-padding"><div class="'+typeSeat+'"></div></div>');
+                        }
+                        if (position == 'rigth') {
+                            col2.append('<div class="col-md-12 no-padding"><div class="'+typeSeat+'"></div></div>');
+                            col3.append('<div class="col-md-12 no-padding"><div class="'+typeSeat+'"></div></div>');
+                        }
+                    }
+                } else {
+                    for (var i = 1; i <= totalSeat/2; i++) {
+                        col1.append('<div class="col-md-12 no-padding"><div class="'+typeSeat+'"></div></div>');
+                        col2.append('<div class="col-md-12 no-padding"><div class="'+typeSeat+'"></div></div>');
+                    }
+                }
+                
+            }
+            if (rowSeat == 3) {
+                for (var i = 1; i <= totalSeat/3; i++) {
+                    col1.append('<div class="col-md-12 no-padding"><div class="'+typeSeat+'"></div></div>');
+                    col2.append('<div class="col-md-12 no-padding"><div class="'+typeSeat+'"></div></div>');
+                    col3.append('<div class="col-md-12 no-padding"><div class="'+typeSeat+'"></div></div>');
+                }
+            }
+        }
+        function buildElementSeatResidual(element, residualSeat, typeSeat, type) {
+            for (var i = 1; i <= residualSeat; i++) {
+                if (type == 3) {
+                    element.append('<div class="custom-col-90"></div>');
+                    element.append('<div class="custom-col-10"><div class="'+typeSeat+'"></div></div>');
+                } else {
+                    element.append('<div class="custom-col-80"></div>');
+                    element.append('<div class="custom-col-20"><div class="'+typeSeat+'"></div></div>');
+                }
+            }
+        }
+        function buildElementSeatLast(element, lastSeat, typeSeat, type) {
+            for (var i = 1; i <= lastSeat; i++) {
+                if (type == 3) {
+                    element.append('<div class="custom-col-14"><div class="'+typeSeat+'"></div></div>');
+                } else {
+                    element.append('<div class="custom-col-20"><div class="'+typeSeat+'"></div></div>');
+                }
+            }
         }
     </script>
 @stop
