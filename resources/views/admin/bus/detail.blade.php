@@ -68,12 +68,12 @@
             <div class="box-body">
                 <div class="row">
                     @php
-                        $leftSeat = 1;
-                        $leftTotalSeat = 5;
+                        $leftSeat = 2;
+                        $leftTotalSeat = 10;
                         $rightSeat = 2;
                         $rightTotalSeat = 10;
-                        $residualSeat = 2;
-                        $lastSeat = 4;
+                        $residualSeat = 0;
+                        $lastSeat = 5;
                         $typeSeat = 'sleeper';
                     @endphp
                     @if ($leftSeat < 3 && $rightSeat < 3)
