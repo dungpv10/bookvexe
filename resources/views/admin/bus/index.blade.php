@@ -293,48 +293,76 @@
                 }
             }
             if (rowSeat == 2) {
+                var rightChange = sleeper - totalSeat/2;
                 if (type == 3) {
                     for (var i = 1; i <= totalSeat/2; i++) {
-                        var typeChange = typeSeat;
+                        var typeChangeLeft = typeSeat;
+                        var typeChangeRight = typeSeat;
                         if (sleeper > 0) {
-                            typeChange = 'sleeper';
-                            sleeper = sleeper - 2;
+                            typeChangeLeft = 'sleeper';
+                            if (rightChange > 0) {
+                                typeChangeRight = 'sleeper';
+                                rightChange = rightChange - 1;
+                                sleeper = sleeper - 1;
+                            }
+                            sleeper = sleeper - 1;
                             sleeperSeat = sleeper
                         }
                         if (position == 'left') {
-                            col1.append('<div class="col-md-12 no-padding"><div class="'+typeChange+'"></div></div>');
-                            col2.append('<div class="col-md-12 no-padding"><div class="'+typeChange+'"></div></div>');
+                            col1.append('<div class="col-md-12 no-padding"><div class="'+typeChangeLeft+'"></div></div>');
+                            col2.append('<div class="col-md-12 no-padding"><div class="'+typeChangeRight+'"></div></div>');
                         }
                         if (position == 'right') {
-                            col2.append('<div class="col-md-12 no-padding"><div class="'+typeChange+'"></div></div>');
-                            col3.append('<div class="col-md-12 no-padding"><div class="'+typeChange+'"></div></div>');
+                            col2.append('<div class="col-md-12 no-padding"><div class="'+typeChangeLeft+'"></div></div>');
+                            col3.append('<div class="col-md-12 no-padding"><div class="'+typeChangeRight+'"></div></div>');
                         }
                     }
                 } else {
                     for (var i = 1; i <= totalSeat/2; i++) {
-                        var typeChange = typeSeat;
+                        var typeChangeLeft = typeSeat;
+                        var typeChangeRight = typeSeat;
                         if (sleeper > 0) {
-                            typeChange = 'sleeper';
-                            sleeper = sleeper - 2;
+                            typeChangeLeft = 'sleeper';
+                            if (rightChange > 0) {
+                                typeChangeRight = 'sleeper';
+                                rightChange = rightChange - 1;
+                                sleeper = sleeper - 1;
+                            }
+                            sleeper = sleeper - 1;
                             sleeperSeat = sleeper
                         }
-                        col1.append('<div class="col-md-12 no-padding"><div class="'+typeChange+'"></div></div>');
-                        col2.append('<div class="col-md-12 no-padding"><div class="'+typeChange+'"></div></div>');
+                        col1.append('<div class="col-md-12 no-padding"><div class="'+typeChangeLeft+'"></div></div>');
+                        col2.append('<div class="col-md-12 no-padding"><div class="'+typeChangeRight+'"></div></div>');
                     }
                 }
                 
             }
             if (rowSeat == 3) {
+                var middleChange = sleeper - totalSeat/3;
+                var rightChange = sleeper - totalSeat/3 * 2;
                 for (var i = 1; i <= totalSeat/3; i++) {
-                    var typeChange = typeSeat;
+                    var typeChangeLeft = typeSeat;
+                    var typeChangeMiddle = typeSeat;
+                    var typeChangeRight = typeSeat;
                     if (sleeper > 0) {
+                        typeChangeLeft = 'sleeper';
+                        if (middleChange > 0) {
+                            typeChangeMiddle = 'sleeper';
+                            middleChange = middleChange - 1;
+                            sleeper = sleeper - 1;
+                        }
+                        if (rightChange > 0) {
+                            typeChangeRight = 'sleeper';
+                            rightChange = rightChange - 1;
+                            sleeper = sleeper - 1;
+                        }
                         typeChange = 'sleeper';
-                        sleeper = sleeper - 3;
+                        sleeper = sleeper - 1;
                         sleeperSeat = sleeper
                     }
-                    col1.append('<div class="col-md-12 no-padding"><div class="'+typeChange+'"></div></div>');
-                    col2.append('<div class="col-md-12 no-padding"><div class="'+typeChange+'"></div></div>');
-                    col3.append('<div class="col-md-12 no-padding"><div class="'+typeChange+'"></div></div>');
+                    col1.append('<div class="col-md-12 no-padding"><div class="'+typeChangeLeft+'"></div></div>');
+                    col2.append('<div class="col-md-12 no-padding"><div class="'+typeChangeMiddle+'"></div></div>');
+                    col3.append('<div class="col-md-12 no-padding"><div class="'+typeChangeRight+'"></div></div>');
                 }
             }
         }
@@ -355,7 +383,7 @@
                 }
             }
         }
-        function buildElementSeatLast(element, lastSeat, typeSeat, sleeper) {
+        function buildElementSeatLast(element, lastSeat, typeSeat, type, sleeper) {
             for (var i = 1; i <= lastSeat; i++) {
                 var typeChange = typeSeat;
                 if (sleeper > 0) {
