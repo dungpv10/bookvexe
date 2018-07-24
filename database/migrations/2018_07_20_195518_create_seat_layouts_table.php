@@ -18,6 +18,8 @@ class CreateSeatLayoutsTable extends Migration
             $table->integer('bus_id')->unsigned()->comment('Bus id');
             $table->foreign('bus_id')->references('id')->on('buses')->onDelete('cascade');
             $table->integer('seat_type_id')->comment('seat type id');
+            $table->integer('last_row_seat');
+            $table->integer('sleeper_seat')->default(0);
             $table->integer('total_seat');
             $table->integer('layout_id');
             $table->softDeletes();

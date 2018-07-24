@@ -61,24 +61,17 @@
         </div>
 
         {{--view seat of bus--}}
+        @if (!empty($layout))
         <div class="box">
             <div class="box-header with-border margin-bottom-10">
                 <h3 class="box-title">Chi tiết ghế ngồi</h3>
             </div>
             <div class="box-body">
                 <div class="row">
-                    @php
-                        $leftSeat = 2;
-                        $leftTotalSeat = 10;
-                        $rightSeat = 2;
-                        $rightTotalSeat = 10;
-                        $residualSeat = 0;
-                        $lastSeat = 5;
-                        $typeSeat = 'sleeper';
-                    @endphp
-                    @if ($leftSeat < 3 && $rightSeat < 3)
-                        <div class="detail_seat col-md-6" data-left-seat="{{ $leftSeat }}" data-left-total-seat="{{ $leftTotalSeat }}" data-right-seat="{{ $rightSeat }}" data-right-total-seat="{{ $rightTotalSeat }}"
-                         data-residual-seat="{{ $residualSeat }}" data-last-seat="{{ $lastSeat }}" data-type-seat="{{ $typeSeat }}">
+                    @if ($layout['left_seat'] < 3 && $layout['right_seat'] < 3)
+                        <div class="detail_seat col-md-6" data-left-seat="{{ $layout['left_seat'] }}" data-left-total-seat="{{ $layout['left_total_seat'] }}"
+                             data-right-seat="{{ $layout['right_seat'] }}" data-right-total-seat="{{ $layout['right_total_seat'] }}"
+                         data-residual-seat="{{ $layout['residual_seat'] }}" data-last-seat="{{ $layout['last_row_seat'] }}" data-type-seat="{{ $layout['seat_type'] }}">
                             <div class="row row-seat">
                                 <div class="left_seat custom-col-40"></div>
                                 <div class="custom-col-20"></div>
@@ -88,8 +81,9 @@
                             <div class="last_seat row row-seat"></div>
                         </div>
                     @else
-                        <div class="detail_seat col-md-9" data-left-seat="{{ $leftSeat }}" data-left-total-seat="{{ $leftTotalSeat }}" data-right-seat="{{ $rightSeat }}" data-right-total-seat="{{ $rightTotalSeat }}"
-                         data-residual-seat="{{ $residualSeat }}" data-last-seat="{{ $lastSeat }}" data-type-seat="{{ $typeSeat }}" data-type='3'>
+                        <div class="detail_seat col-md-9" data-left-seat="{{ $layout['left_seat'] }}" data-left-total-seat="{{ $layout['left_total_seat'] }}"
+                             data-right-seat="{{ $layout['right_seat'] }}" data-right-total-seat="{{ $layout['right_total_seat'] }}"
+                             data-residual-seat="{{ $layout['residual_seat'] }}" data-last-seat="{{ $layout['last_row_seat'] }}" data-type-seat="{{ $layout['seat_type'] }}" data-type='3'>
                             <div class="row row-seat">
                                 <div class="left_seat custom-col-30"></div>
                                 <div class="custom-col-10"></div>
@@ -103,7 +97,6 @@
             </div>
 
         </div>
-
-
+        @endif
     </div>
 </div>

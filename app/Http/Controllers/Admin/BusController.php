@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\Admin\BusRequest;
+use App\Services\SeatLayoutService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Services\BusService;
@@ -15,16 +16,21 @@ class BusController extends Controller
     public $busService;
     public $busTypeService;
     public $busImageService;
+    public $seatLayoutService;
 
     /**
      * BusController constructor.
      * @param BusService $busService
      * @param BusTypeService $busTypeService
+     * @param BusImageService $busImageService
+     * @param SeatLayoutService $seatLayoutService
      */
-    public function __construct(BusService $busService, BusTypeService $busTypeService, BusImageService $busImageService) {
+    public function __construct(BusService $busService, BusTypeService $busTypeService,
+                                BusImageService $busImageService, SeatLayoutService $seatLayoutService) {
         $this->busService = $busService;
         $this->busTypeService = $busTypeService;
         $this->busImageService = $busImageService;
+        $this->seatLayoutService = $seatLayoutService;
     }
     /**
      * Display a listing of the resource.
@@ -173,9 +179,16 @@ class BusController extends Controller
     {
         $busDetail = $this->busService->findById($id);
         $busTypes = $this->busTypeService->getAllBusType();
+        $seatLayout = $this->seatLayoutService->getSeatByBusId($id);
+        if (empty($seatLayout)) {
+            $layout = '';
+        } else {
+            $layout = $this->seatLayoutService->convertLayout($seatLayout->toArray());
+        }
         return view('admin.bus.detail',[
             'busDetail' => $busDetail,
-            'busTypes' => $busTypes
+            'busTypes' => $busTypes,
+            'layout' => $layout
         ]);
     }
 
