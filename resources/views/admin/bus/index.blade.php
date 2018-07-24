@@ -216,7 +216,7 @@
                     $('#bus_type_id').select2({
                         placeholder: "Chọn Bus Type",
                     });
-
+                    $('.select2-container--default').css({width: '100%'});
                     $(".datetimepicker").datetimepicker({
                         format: 'LT'
                     });
@@ -240,7 +240,7 @@
                     $('#bus_type_id').select2({
                         placeholder: "Chọn Bus Type",
                     });
-
+                    $('.select2-container--default').css({width: '100%'});
                     $(".datetimepicker").datetimepicker({
                         format: 'LT'
                     });
@@ -335,7 +335,7 @@
                         col2.append('<div class="col-md-12 no-padding"><div class="'+typeChangeRight+'"></div></div>');
                     }
                 }
-                
+
             }
             if (rowSeat == 3) {
                 var middleChange = sleeper - totalSeat/3;

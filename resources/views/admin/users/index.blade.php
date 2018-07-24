@@ -68,6 +68,7 @@
 @stop
 @section('js')
 	<script type="text/javascript">
+        $('#role_id').select2();
     var userTable;
     $(function() {
         $('#m_role_id').select2({
@@ -248,7 +249,7 @@
                 method: 'GET'
             }).success(function(data){
                 $('#editUserModal .modal-body').html(data).promise().done(function(){
-                    
+
                     validateSetup('frmEditUser');
 
                     $('#roles').select2({

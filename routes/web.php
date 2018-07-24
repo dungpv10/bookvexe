@@ -106,8 +106,10 @@ Route::group(['middleware' => ['auth', 'active']], function () {
     */
 
     Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'admin'], function () {
-
-        Route::get('dashboard', 'DashboardController@index');
+        Route::get('/', function(){
+            return redirect()->route('bus.index');
+        });
+        Route::get('dashboard', ['uses' => 'DashboardController@index', 'as' => 'admin.dashboard']);
 
         /*
         |--------------------------------------------------------------------------
@@ -182,5 +184,13 @@ Route::group(['middleware' => ['auth', 'active']], function () {
         */
 
         Route::resource('promotions', 'PromotionController');
+
+        /*
+        |--------------------------------------------------------------------------
+        | Booking
+        |--------------------------------------------------------------------------
+        */
+
+        Route::resource('bookings', 'BookingController');
     });
 });

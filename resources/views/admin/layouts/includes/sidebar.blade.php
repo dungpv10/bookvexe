@@ -6,7 +6,7 @@
             <!-- BEGIN SIDEBAR MENU -->
             <ul class="page-sidebar-menu" id="menu">
                 <li>
-                    <a href="#">
+                    <a href="{{ route('admin.dashboard') }}">
                         <i class="livicon" data-name="home" data-size="18" data-c="#418BCA" data-hc="#418BCA" data-loop="true"></i>
                         <span class="title">Dashboard</span>
                     </a>
@@ -116,6 +116,22 @@
                 </li>
                 <!--End promotions-->
 
+                <li>
+                    <a href="#">
+                        <i class="livicon" data-name="spinner-four" data-size="18" data-c="#00bc8c" data-hc="#00bc8c" data-loop="true"></i>
+                        <span class="title">Bookings</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li>
+                            <a href="{{route('bookings.index')}}">
+                                <i class="fa fa-angle-double-right"></i>
+                                Danh sách
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
 
 
                 <!--User-->
@@ -132,12 +148,12 @@
                                 Danh sách
                             </a>
                         </li>
-                        <li>
-                            <a href="{{route('users.invite')}}">
-                                <i class="fa fa-angle-double-right"></i>
-                                Tạo mới
-                            </a>
-                        </li>
+                        {{--<li>--}}
+                            {{--<a href="{{route('users.invite')}}">--}}
+                                {{--<i class="fa fa-angle-double-right"></i>--}}
+                                {{--Tạo mới--}}
+                            {{--</a>--}}
+                        {{--</li>--}}
                     </ul>
                 </li>
                 <!--End User-->
@@ -156,6 +172,9 @@
                         </li>
                     </ul>
                 </li>
+
+                <!--End User-->
+
 
                 <li>
                     <a href="{{ route('setting.index') }}">
