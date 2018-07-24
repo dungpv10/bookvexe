@@ -63,6 +63,7 @@
 @section('js')
     <script type="text/javascript">
         var busTable;
+        var sleeperSeat;
         $(document).ready(function() {
             $(window).keydown(function(event){
                 if( (event.keyCode == 13) ) {
@@ -194,10 +195,11 @@
                     var lastSeat= seatDetail.attr('data-last-seat');
                     var typeSeat = seatDetail.attr('data-type-seat');
                     var type = seatDetail.attr('data-type');
-                    buildElementSeatHead($('.left_seat'), leftSeat, leftTotalSeat, 'left', typeSeat, type);
-                    buildElementSeatHead($('.right_seat'), rightSeat, rightTotalSeat, 'rigth', typeSeat, type);
-                    buildElementSeatResidual($('.residual_seat'), residualSeat, typeSeat, type);
-                    buildElementSeatLast($('.last_seat'), lastSeat, typeSeat, type);
+                    sleeperSeat = seatDetail.attr('data-sleeper-seat');
+                    buildElementSeatHead($('.left_seat'), leftSeat, leftTotalSeat, 'left', typeSeat, type, sleeperSeat);
+                    buildElementSeatHead($('.right_seat'), rightSeat, rightTotalSeat, 'right', typeSeat, type, sleeperSeat);
+                    buildElementSeatResidual($('.residual_seat'), residualSeat, typeSeat, type, sleeperSeat);
+                    buildElementSeatLast($('.last_seat'), lastSeat, typeSeat, type, sleeperSeat);
                 });
             }).error(function(data){
 
@@ -253,7 +255,7 @@
             $("#createBusModal").modal();
         }
         // add element seat for detail#
-        function buildElementSeatHead(element, rowSeat, totalSeat, position, typeSeat, type) {
+        function buildElementSeatHead(element, rowSeat, totalSeat, position, typeSeat, type, sleeper) {
             var col1 = '';
             var col2 = '';
             var col3 = '';
@@ -272,14 +274,20 @@
             }
             if (rowSeat == 1) {
                 for (var i = 1; i <= totalSeat; i++) {
-                    if (position == 'left') {
-                        col1.append('<div class="col-md-12 no-padding"><div class="'+typeSeat+'"></div></div>');
+                    var typeChange = typeSeat;
+                    if (sleeper > 0) {
+                        typeChange = 'sleeper';
+                        sleeper = sleeper - 1;
+                        sleeperSeat = sleeper
                     }
-                    if (position == 'rigth') {
+                    if (position == 'left') {
+                        col1.append('<div class="col-md-12 no-padding"><div class="'+typeChange+'"></div></div>');
+                    }
+                    if (position == 'right') {
                         if (type == 3) {
-                            col3.append('<div class="col-md-12 no-padding"><div class="'+typeSeat+'"></div></div>');
+                            col3.append('<div class="col-md-12 no-padding"><div class="'+typeChange+'"></div></div>');
                         } else {
-                            col2.append('<div class="col-md-12 no-padding"><div class="'+typeSeat+'"></div></div>');
+                            col2.append('<div class="col-md-12 no-padding"><div class="'+typeChange+'"></div></div>');
                         }
                     }
                 }
@@ -287,48 +295,78 @@
             if (rowSeat == 2) {
                 if (type == 3) {
                     for (var i = 1; i <= totalSeat/2; i++) {
-                        if (position == 'left') {
-                            col1.append('<div class="col-md-12 no-padding"><div class="'+typeSeat+'"></div></div>');
-                            col2.append('<div class="col-md-12 no-padding"><div class="'+typeSeat+'"></div></div>');
+                        var typeChange = typeSeat;
+                        if (sleeper > 0) {
+                            typeChange = 'sleeper';
+                            sleeper = sleeper - 2;
+                            sleeperSeat = sleeper
                         }
-                        if (position == 'rigth') {
-                            col2.append('<div class="col-md-12 no-padding"><div class="'+typeSeat+'"></div></div>');
-                            col3.append('<div class="col-md-12 no-padding"><div class="'+typeSeat+'"></div></div>');
+                        if (position == 'left') {
+                            col1.append('<div class="col-md-12 no-padding"><div class="'+typeChange+'"></div></div>');
+                            col2.append('<div class="col-md-12 no-padding"><div class="'+typeChange+'"></div></div>');
+                        }
+                        if (position == 'right') {
+                            col2.append('<div class="col-md-12 no-padding"><div class="'+typeChange+'"></div></div>');
+                            col3.append('<div class="col-md-12 no-padding"><div class="'+typeChange+'"></div></div>');
                         }
                     }
                 } else {
                     for (var i = 1; i <= totalSeat/2; i++) {
-                        col1.append('<div class="col-md-12 no-padding"><div class="'+typeSeat+'"></div></div>');
-                        col2.append('<div class="col-md-12 no-padding"><div class="'+typeSeat+'"></div></div>');
+                        var typeChange = typeSeat;
+                        if (sleeper > 0) {
+                            typeChange = 'sleeper';
+                            sleeper = sleeper - 2;
+                            sleeperSeat = sleeper
+                        }
+                        col1.append('<div class="col-md-12 no-padding"><div class="'+typeChange+'"></div></div>');
+                        col2.append('<div class="col-md-12 no-padding"><div class="'+typeChange+'"></div></div>');
                     }
                 }
                 
             }
             if (rowSeat == 3) {
                 for (var i = 1; i <= totalSeat/3; i++) {
-                    col1.append('<div class="col-md-12 no-padding"><div class="'+typeSeat+'"></div></div>');
-                    col2.append('<div class="col-md-12 no-padding"><div class="'+typeSeat+'"></div></div>');
-                    col3.append('<div class="col-md-12 no-padding"><div class="'+typeSeat+'"></div></div>');
+                    var typeChange = typeSeat;
+                    if (sleeper > 0) {
+                        typeChange = 'sleeper';
+                        sleeper = sleeper - 3;
+                        sleeperSeat = sleeper
+                    }
+                    col1.append('<div class="col-md-12 no-padding"><div class="'+typeChange+'"></div></div>');
+                    col2.append('<div class="col-md-12 no-padding"><div class="'+typeChange+'"></div></div>');
+                    col3.append('<div class="col-md-12 no-padding"><div class="'+typeChange+'"></div></div>');
                 }
             }
         }
-        function buildElementSeatResidual(element, residualSeat, typeSeat, type) {
+        function buildElementSeatResidual(element, residualSeat, typeSeat, type, sleeper) {
             for (var i = 1; i <= residualSeat; i++) {
+                var typeChange = typeSeat;
+                if (sleeper > 0) {
+                    typeChange = 'sleeper';
+                    sleeper = sleeper - 1;
+                    sleeperSeat = sleeper
+                }
                 if (type == 3) {
                     element.append('<div class="custom-col-90"></div>');
-                    element.append('<div class="custom-col-10"><div class="'+typeSeat+'"></div></div>');
+                    element.append('<div class="custom-col-10"><div class="'+typeChange+'"></div></div>');
                 } else {
                     element.append('<div class="custom-col-80"></div>');
-                    element.append('<div class="custom-col-20"><div class="'+typeSeat+'"></div></div>');
+                    element.append('<div class="custom-col-20"><div class="'+typeChange+'"></div></div>');
                 }
             }
         }
-        function buildElementSeatLast(element, lastSeat, typeSeat, type) {
+        function buildElementSeatLast(element, lastSeat, typeSeat, sleeper) {
             for (var i = 1; i <= lastSeat; i++) {
+                var typeChange = typeSeat;
+                if (sleeper > 0) {
+                    typeChange = 'sleeper';
+                    sleeper = sleeper - 1;
+                    sleeperSeat = sleeper
+                }
                 if (type == 3) {
-                    element.append('<div class="custom-col-14"><div class="'+typeSeat+'"></div></div>');
+                    element.append('<div class="custom-col-14"><div class="'+typeChange+'"></div></div>');
                 } else {
-                    element.append('<div class="custom-col-20"><div class="'+typeSeat+'"></div></div>');
+                    element.append('<div class="custom-col-20"><div class="'+typeChange+'"></div></div>');
                 }
             }
         }
