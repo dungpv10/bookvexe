@@ -163,13 +163,13 @@ class UserService
 
                 $this->assignRole($role, $user->id);
 
-                if ($sendEmail) {
-                    event(new UserRegisteredEmail($user, $password));
-                }
+//                if ($sendEmail) {
+//                    event(new UserRegisteredEmail($user, $password));
+//                }
 
             });
 
-            $this->setAndSendUserActivationToken($user);
+//            $this->setAndSendUserActivationToken($user);
 
             return $user;
         } catch (Exception $e) {

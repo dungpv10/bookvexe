@@ -41,12 +41,14 @@ class BusTypeTableSeeder extends Seeder
 
         });
 
-        \App\Models\Bus::all()->each(function($bus) {
-            $bus->routes()->saveMany(factory(\App\Models\Route::class, 2)->make());
-            $bus->images()->saveMany(factory(\App\Models\BusImage::class, 2)->make());
-            $bus->seatLayout()->save(factory(\App\Models\SeatLayout::class)->make());
+        \App\Models\Bus::chunk(3, function($buses){
+            foreach($buses as $bus){
+                $bus->routes()->saveMany(factory(\App\Models\Route::class, 2)->make());
+                $bus->images()->saveMany(factory(\App\Models\BusImage::class, 2)->make());
+                $bus->seatLayout()->save(factory(\App\Models\SeatLayout::class)->make());
 
-            $bus->rates()->saveMany(factory(\App\Models\Rate::class, 2)->make());
+                $bus->rates()->saveMany(factory(\App\Models\Rate::class, 2)->make());
+            }
         });
 
 

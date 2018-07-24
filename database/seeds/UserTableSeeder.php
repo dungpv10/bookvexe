@@ -29,7 +29,7 @@ class UserTableSeeder extends Seeder
             $service->create($user, 'admin', 'admin', false);
         }
 
-        for ($i = 1; $i < 10; $i ++) {
+        for ($i = 1; $i < 5; $i ++) {
             $user = User::create([
                 'name' => 'User' . $i,
                 'username' => 'username_' . $i,
@@ -43,7 +43,7 @@ class UserTableSeeder extends Seeder
             $service->create($user, 'user', 'member', false);
         }
 
-        for ($i = 1; $i < 10; $i ++) {
+        for ($i = 1; $i < 5; $i ++) {
             $user = User::create([
                 'name' => 'Agent ' . $i,
                 'username' => 'agent_' . $i,
