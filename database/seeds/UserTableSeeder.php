@@ -42,20 +42,5 @@ class UserTableSeeder extends Seeder
 
             $service->create($user, 'user', 'member', false);
         }
-
-        for ($i = 1; $i < 5; $i ++) {
-            $user = User::create([
-                'name' => 'Agent ' . $i,
-                'username' => 'agent_' . $i,
-                'email' => 'agent' . $i . '@example.com',
-                'password' => bcrypt('user'),
-                'dob' => '1990-11-11',
-                'mobile' => '123123123',
-                'avatar' => '/img/authors/default_avatar.png',
-            ]);
-
-            $service->create($user, 'user', 'agent', false);
-        }
-
     }
 }
