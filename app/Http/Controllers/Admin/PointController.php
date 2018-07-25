@@ -26,7 +26,10 @@ class PointController extends Controller
      */
     public function index()
     {
-        return view('admin.point.index');
+        $pointTypes = $this->pointTypeService->getAllPointType();
+        return view('admin.point.index', [
+            'pointTypes' => $pointTypes,
+        ]);
     }
 
     /**
@@ -122,6 +125,7 @@ class PointController extends Controller
     public function getJSONData(Request $request)
     {
         $search = $request->get('search')['value'];
-        return $this->pointService->getJSONData($search);
+        $pointTypeId = $request->get('point_type_id');
+        return $this->pointService->getJSONData($pointTypeId, $search);
     }
 }

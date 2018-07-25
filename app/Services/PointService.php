@@ -5,7 +5,7 @@ namespace App\Services;
 
 use App\Models\Point;
 use Yajra\Datatables\Datatables;
-
+use App\Models\Bus;
 
 class PointService
 {
@@ -16,11 +16,16 @@ class PointService
         $this->pointModel = $pointModel;
     }
 
-    public function getJSONData($search='')
+    public function getJSONData($pointTypeId = null, $search='')
     {
         $result = $this->pointModel->where('id', '!=', 0)->with('route');
+        if (!empty($pointTypeId)) {
+            $result->where('point_type_id', $pointTypeId);
+        }
         return DataTables::of($result)->addColumn('busId', function(Point $point){
             return $point->route->bus_id;
+        })->addColumn('busName', function(Point $point){
+            return $point->route->bus->bus_name;
         })->addColumn('boardingPoint', function(Point $point){
             return $point->route->from_place;
         })->addColumn('dropPoint', function(Point $point){

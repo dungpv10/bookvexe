@@ -2,6 +2,9 @@
 
 @section('content')
     <div class="col-md-3">
+        <div class="form-group">
+            {!! Form::select('point_type_id', ['' => 'Chọn kiểu điểm dừng'] + $pointTypes->toArray(), null, ['class' => 'form-control', 'id' => 'point_type_id']) !!}
+        </div>
     </div>
     <div class="col-md-12">
         <div class="box">
@@ -48,15 +51,24 @@
 @section('js')
     <script type="text/javascript">
         var pointTable;
+        $(document).ready(function() {
+            $('#point_type_id').select2({});
+            $('#point_type_id').on('change', function(){
+                pointTable.ajax.reload();
+            });
+        });
         $(function() {
             pointTable = $('#point_table').DataTable({
                 processing: true,
                 serverSide: true,
                 ajax: {
-                    "url": '{!! route('point.datatable') !!}'
+                    "url": '{!! route('point.datatable') !!}',
+                    "data": function ( d ) {
+                        d.point_type_id = $('#point_type_id').val();
+                    }
                 },
                 columns: [
-                    { data: 'busId', name: 'busId', title: 'Tên xe', orderable : false },
+                    { data: 'busName', name: 'busName', title: 'Tên xe', orderable : false },
                     { data: 'boardingPoint', name: 'boardingPoint', title: 'Điểm lên xe'},
                     { data: 'dropPoint', name: 'dropPoint', title: 'Điểm xuống xe'},
                     { data: 'startTime', name: 'startTime', title: 'Thời gian chạy'},
