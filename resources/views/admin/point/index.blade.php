@@ -32,6 +32,18 @@
             </div>
         </div>
     </div>
+    <div class="modal fade bd-example-modal-lg" id="editPointModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 class="box-title">Sửa điểm dừng</h3>
+                </div>
+                <div class="modal-body">
+                </div>
+            </div>
+        </div>
+    </div>
 @stop
 @section('js')
     <script type="text/javascript">
@@ -130,14 +142,34 @@
                         format: 'LT'
                     });
 
-                    //$('#amenities').tagsinput();
-
                     $('#frmCreateNewPoint').bootstrapValidator({});
                 });
             }).error(function(data){
 
             });
             $("#createPointModal").modal();
+        }
+        // SHOW edit bus
+        function showViewEditPoint(id) {
+            $.ajax({
+                url: '{!! route('points.index') !!}' +'/'+ id + '/edit',
+                method: 'GET'
+            }).success(function(data){
+                $('#editPointModal .modal-body').html(data).promise().done(function(){
+                    $('.select2').select2({
+                        placeholder: "Chọn Bus Type",
+                    });
+                    $('.select2-container--default').css({width: '100%'});
+                    $(".datetimepicker").datetimepicker({
+                        format: 'LT'
+                    });
+
+                    $('#frmEditPoint').bootstrapValidator({});
+                });
+            }).error(function(data){
+
+            });
+            $("#editPointModal").modal();
         }
     </script>
 @stop

@@ -39,4 +39,9 @@ class PointService
             return false;
         }
     }
+
+    public function getPointById($pointId = null)
+    {
+        return $this->pointModel->with('route')->find($pointId);
+    }
 }

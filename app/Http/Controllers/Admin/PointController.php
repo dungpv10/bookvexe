@@ -74,7 +74,14 @@ class PointController extends Controller
      */
     public function edit($id)
     {
-        //
+        $routes = $this->routeService->getAllRoute();
+        $pointTypes = $this->pointTypeService->getAllPointType();
+        $point = $this->pointService->getPointById($id);
+        return view('admin.point.edit', [
+            'routes' => $routes,
+            'pointTypes' => $pointTypes,
+            'point' => $point,
+        ]);
     }
 
     /**
