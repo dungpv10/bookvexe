@@ -176,6 +176,7 @@ Route::group(['middleware' => ['auth', 'active']], function () {
         */
 
         Route::resource('points', 'PointController');
+        Route::get('point/getJSONData', ['as'=>'point.datatable', 'uses'=>'PointController@getJSONData']);
 
         /*
         |--------------------------------------------------------------------------
