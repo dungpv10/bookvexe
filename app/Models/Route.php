@@ -11,7 +11,7 @@ class Route extends Model
     protected $guarded = ['id'];
 
     public function bus(){
-        return $this->hasOne(Bus::class, 'id', 'bus_id');
+        return $this->belongsTo(Bus::class, 'bus_id', 'id');
     }
 
 }

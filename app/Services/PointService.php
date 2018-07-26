@@ -18,7 +18,10 @@ class PointService
 
     public function getJSONData($pointTypeId = null, $search='')
     {
-        $result = $this->pointModel->where('points.id', '!=', 0)->with('route')->with('pointType');
+        $result = $this->pointModel->where('points.id', '!=', 0)->with(['route' => function($route){
+            $route->with('bus');
+        }])->with('pointType');
+
         if (!empty($pointTypeId)) {
             $result->where('point_type_id', $pointTypeId);
         }
