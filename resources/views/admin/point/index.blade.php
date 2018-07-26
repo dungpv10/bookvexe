@@ -76,7 +76,7 @@
                 ajax: {
                     "url": '{!! route('point.datatable') !!}',
                     "data": function ( d ) {
-                        d.point_type_id = $('#point_type_id').val();
+                        d.point_type_id = $('#point_type_id_search').val();
                     }
                 },
                 columns: [
