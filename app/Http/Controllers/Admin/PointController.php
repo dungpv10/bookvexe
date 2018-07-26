@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\Admin\PointRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Services\PointService;
@@ -53,7 +54,7 @@ class PointController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PointRequest $request)
     {
         $dataPoint = $request->except('_token');
         $result = $this->pointService->insertPoint($dataPoint);
@@ -100,7 +101,7 @@ class PointController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PointRequest $request, $id)
     {
         $dataPoint = $request->except('_token', '_method');
         $result = $this->pointService->updatePoint($id, $dataPoint);
