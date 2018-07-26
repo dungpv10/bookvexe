@@ -67,6 +67,6 @@ class PointService
 
     public function findById($pointId)
     {
-        return $this->pointModel->with('route')->find($pointId);
+        return $this->pointModel->with('route.bus')->find($pointId);
     }
 }

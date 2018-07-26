@@ -3,7 +3,7 @@
 @section('content')
     <div class="col-md-3">
         <div class="form-group">
-            {!! Form::select('point_type_id', ['' => 'Chọn kiểu điểm dừng'] + $pointTypes->toArray(), null, ['class' => 'form-control', 'id' => 'point_type_id']) !!}
+            {!! Form::select('point_type_id', ['' => 'Chọn kiểu điểm dừng'] + $pointTypes->toArray(), null, ['class' => 'form-control', 'id' => 'point_type_id_search']) !!}
         </div>
     </div>
     <div class="col-md-12">
@@ -64,8 +64,8 @@
     <script type="text/javascript">
         var pointTable;
         $(document).ready(function() {
-            $('#point_type_id').select2({});
-            $('#point_type_id').on('change', function(){
+            $('#point_type_id_search').select2({});
+            $('#point_type_id_search').on('change', function(){
                 pointTable.ajax.reload();
             });
         });
@@ -159,8 +159,11 @@
                 method: 'GET'
             }).success(function(data){
                 $('#createPointModal .modal-body').html(data).promise().done(function(){
-                    $('.select2').select2({
-                        placeholder: "Chọn Bus Type",
+                    $('#point_type_id').select2({
+                        placeholder: "Chọn kiểu điểm dừng",
+                    });
+                    $('#route_id').select2({
+                        placeholder: "Chọn tuyến đường",
                     });
                     $('.select2-container--default').css({width: '100%'});
                     $(".datetimepicker").datetimepicker({
@@ -181,8 +184,11 @@
                 method: 'GET'
             }).success(function(data){
                 $('#editPointModal .modal-body').html(data).promise().done(function(){
-                    $('.select2').select2({
-                        placeholder: "Chọn Bus Type",
+                    $('#point_type_id').select2({
+                        placeholder: "Chọn kiểu điểm dừng",
+                    });
+                    $('#route_id').select2({
+                        placeholder: "Chọn tuyến đường",
                     });
                     $('.select2-container--default').css({width: '100%'});
                     $(".datetimepicker").datetimepicker({
