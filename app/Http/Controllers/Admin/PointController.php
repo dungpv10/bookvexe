@@ -55,7 +55,7 @@ class PointController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        die('xxx2');
     }
 
     /**
@@ -96,7 +96,7 @@ class PointController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
     }
 
     /**

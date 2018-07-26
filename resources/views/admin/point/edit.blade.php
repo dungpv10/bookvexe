@@ -2,6 +2,7 @@
     <div class="col-md-12">
         <div class="box box-warning">
             <form method="POST" action="{{ route('points.update', $point->id) }}" id="frmEditPoint" enctype="multipart/form-data">
+                <input name="_method" type="hidden" value="PATCH">
                 <input type="hidden" name="_token" value="{{csrf_token()}}">
                 <div class="row">
                     <div class="col-md-6">
@@ -37,7 +38,7 @@
                 </div>
 
                 <div class="row text-center">
-                    <button class="btn btn-primary" type="submit"><i class="fa fa-plus-circle" aria-hidden="true"></i>Thêm mới
+                    <button type="submit" class="btn btn-primary"><i class="fa fa-edit" aria-hidden="true"></i>Cập nhật
                     </button>
                 </div>
             </form>
