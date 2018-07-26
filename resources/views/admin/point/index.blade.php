@@ -47,6 +47,18 @@
             </div>
         </div>
     </div>
+    <div class="modal fade bd-example-modal-lg" id="detailPointModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 class="box-title">Thông tin chi tiết điểm dừng</h3>
+                </div>
+                <div class="modal-body">
+                </div>
+            </div>
+        </div>
+    </div>
 @stop
 @section('js')
     <script type="text/javascript">
@@ -183,6 +195,18 @@
 
             });
             $("#editPointModal").modal();
+        }
+        // SHOW detail point
+        function showBusDetailPoint(id){
+            $.ajax({
+                url: '{!! route('points.index') !!}' + '/' + id,
+                method: 'GET'
+            }).success(function(data){
+                $('#detailPointModal .modal-body').html(data)
+            }).error(function(data){
+
+            });
+            $("#detailPointModal").modal();
         }
     </script>
 @stop

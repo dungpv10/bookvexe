@@ -64,4 +64,9 @@ class PointService
         $this->pointModel->fill($dataPoint)->save();
         return $this->pointModel->id;
     }
+
+    public function findById($pointId)
+    {
+        return $this->pointModel->with('route')->find($pointId);
+    }
 }

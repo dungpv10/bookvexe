@@ -73,7 +73,10 @@ class PointController extends Controller
      */
     public function show($id)
     {
-        //
+        $point = $this->pointService->findById($id);
+        return view('admin.point.detail', [
+            'point' => $point
+        ]);
     }
 
     /**
