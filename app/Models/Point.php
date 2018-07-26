@@ -12,11 +12,11 @@ class Point extends Model
 
     public function route()
     {
-        return $this->hasOne(Route::class, 'id', 'route_id');
+        return $this->belongsTo(Route::class, 'route_id', 'id');
     }
 
     public function pointType()
     {
-        return $this->hasOne(PointType::class, 'id', 'point_type_id');
+        return $this->belongsTo(PointType::class, 'point_type_id', 'id');
     }
 }
