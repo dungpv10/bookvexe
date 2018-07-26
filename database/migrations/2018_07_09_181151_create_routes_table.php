@@ -15,13 +15,14 @@ class CreateRoutesTable extends Migration
     {
         Schema::create('routes', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('route_name')->comment('route name');
             $table->integer('bus_id')->unsigned()->comment('bus id');
             $table->foreign('bus_id')->references('id')->on('buses')->onDelete('cascade');
             $table->float('price')->default(0)->comment('price on a seat');
             $table->string('from_place', 255)->comment('start place');
             $table->string('arrived_place', 255)->comment('stop place');
-            $table->integer('start_time')->default(0)->comment('start time');
-            $table->integer('arrived_time')->default(0)->comment('arrived time');
+            $table->string('start_time')->default(0)->comment('start time');
+            $table->string('arrived_time')->default(0)->comment('arrived time');
 
             $table->softDeletes();
             $table->timestamps();

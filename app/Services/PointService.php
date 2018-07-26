@@ -22,16 +22,14 @@ class PointService
         if (!empty($pointTypeId)) {
             $result->where('point_type_id', $pointTypeId);
         }
-        return DataTables::of($result)->addColumn('busId', function(Point $point){
-            return $point->route->bus_id;
-        })->addColumn('busName', function(Point $point){
+        return DataTables::of($result)->addColumn('busName', function(Point $point){
             return $point->route->bus->bus_name;
         })->addColumn('boardingPoint', function(Point $point){
             return $point->route->from_place;
         })->addColumn('dropPoint', function(Point $point){
             return $point->route->arrived_place;
-        })->addColumn('startTime', function(Point $point){
-            return $point->route->start_time;
+        })->addColumn('routeName', function(Point $point){
+            return $point->route->route_name;
         })->make(true);
     }
 

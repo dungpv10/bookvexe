@@ -16,6 +16,6 @@ class PointTypeService
 
     public function getAllPointType()
     {
-        return $this->pointTypeModel->where('id', '!=', '')->orderBy('point_type_name', 'ASC')->pluck('point_type_name','id');
+        return $this->pointTypeModel->orderBy('point_type_name', 'ASC')->pluck('point_type_name','id');
     }
 }

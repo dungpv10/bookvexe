@@ -16,6 +16,6 @@ class RouteService
 
     public function getAllRoute()
     {
-        return $this->routeModel->where('id', '!=', '')->orderBy('from_place', 'ASC')->pluck('from_place','id');
+        return $this->routeModel->orderBy('route_name', 'ASC')->pluck('route_name','id');
     }
 }
