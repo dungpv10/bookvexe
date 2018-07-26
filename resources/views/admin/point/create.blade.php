@@ -9,10 +9,30 @@
                             <label for="point_type_id">Kiểu điểm dừng</label>
                             {!! Form::select('point_type_id', $pointTypes, null, ['class' => 'form-control select2', 'id' => 'point_type_id']) !!}
                         </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row form-group">
+                            <label for="landmark">Dấu đất</label>
+                            <input id="landmark" class="form-control" type="text" name="landmark" value="" placeholder="Dấu đất" required >
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
                         <div class="row form-group">
                             <label for="route_id">Tuyến đường</label>
                             {!! Form::select('route_id', $routes, null, ['class' => 'form-control select2', 'id' => 'route_id']) !!}
                         </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row form-group">
+                            <label for="address">Địa chỉ</label>
+                            <input id="address" class="form-control" type="text" name="address" value="" placeholder="Địa chỉ" required >
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
                         <div class="row form-group">
                             <label for="drop_time">Thời gian giảm</label>
                             <div class="input-group date datetimepicker">
@@ -25,17 +45,9 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="row form-group">
-                            <label for="landmark">Dấu đất</label>
-                            <input id="landmark" class="form-control" type="text" name="landmark" value="" placeholder="Dấu đất" required >
-                        </div>
-                        <div class="row form-group">
-                            <label for="address">Địa chỉ</label>
-                            <input id="address" class="form-control" type="text" name="address" value="" placeholder="Địa chỉ" required >
-                        </div>
+
                     </div>
                 </div>
-
                 <div class="row text-center">
                     <button class="btn btn-primary" type="submit"><i class="fa fa-plus-circle" aria-hidden="true"></i>Thêm mới
                     </button>
