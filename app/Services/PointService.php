@@ -18,7 +18,7 @@ class PointService
 
     public function getJSONData($pointTypeId = null, $search='')
     {
-        $result = $this->pointModel->where('id', '!=', 0)->with('route');
+        $result = $this->pointModel->where('id', '!=', 0)->with('route')->with('pointType');
         if (!empty($pointTypeId)) {
             $result->where('point_type_id', $pointTypeId);
         }
@@ -30,6 +30,8 @@ class PointService
             return $point->route->arrived_place;
         })->addColumn('routeName', function(Point $point){
             return $point->route->route_name;
+        })->addColumn('pointType', function(Point $point){
+            return $point->pointType->point_type_name;
         })->make(true);
     }
 
@@ -67,6 +69,6 @@ class PointService
 
     public function findById($pointId)
     {
-        return $this->pointModel->with('route.bus')->find($pointId);
+        return $this->pointModel->with('route.bus')->with('pointType')->find($pointId);
     }
 }

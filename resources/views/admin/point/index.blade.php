@@ -82,9 +82,10 @@
                 columns: [
                     { data: 'busName', name: 'busName', title: 'Tên xe' },
                     { data: 'routeName', name: 'routeName', title: 'Tên tuyến đường' },
+                    { data: 'pointType', name: 'pointType', title: 'Kiểu điểm dừng' },
                     { data: 'boardingPoint', name: 'boardingPoint', title: 'Điểm lên xe'},
                     { data: 'dropPoint', name: 'dropPoint', title: 'Điểm xuống xe'},
-                    { data: 'drop_time', name: 'drop_time', title: 'Thời gian chạy'},
+                    { data: 'drop_time', name: 'drop_time', title: 'Thời gian giảm'},
                     { data: 'landmark', name: 'landmark', title: 'Dấu đất'},
                     { data: 'address', name: 'address', title: 'Địa chỉ'},
                     { data: 'id', name: 'id', title: 'Action', searchable: false,className: 'text-center', "orderable": false,

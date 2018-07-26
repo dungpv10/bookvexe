@@ -10,7 +10,13 @@ class Point extends Model
 
     protected $guarded = ['id'];
 
-    public function route(){
+    public function route()
+    {
         return $this->hasOne(Route::class, 'id', 'route_id');
+    }
+
+    public function pointType()
+    {
+        return $this->hasOne(PointType::class, 'id', 'point_type_id');
     }
 }
