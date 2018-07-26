@@ -47,4 +47,15 @@ class PointService
     {
         return $this->pointModel->with('route')->find($pointId);
     }
+
+    public function updatePoint($pointId, $dataPoint)
+    {
+        try {
+            $point = $this->pointModel->find($pointId);
+            $point->update($dataPoint);
+            return true;
+        } catch (\Exception $e) {
+            return false;
+        }
+    }
 }

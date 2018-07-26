@@ -50,12 +50,8 @@ class BusService
 
     public function updateBus($id = null, $dataRequest){
         $bus = $this->busModel->find($id);
-        $dataRequest['start_time'] = $this->getTime($dataRequest['start_time']);
-        $dataRequest['end_time'] = $this->getTime($dataRequest['end_time']);
         $bus->update($dataRequest);
-
         return true;
-
     }
 
     public function getTime($time)

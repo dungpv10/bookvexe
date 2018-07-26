@@ -96,7 +96,13 @@ class PointController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+        $dataPoint = $request->except('_token', '_method');
+        $result = $this->pointService->updatePoint($id, $dataPoint);
+        if ($result == true) {
+            return back()->with('success', 'Cập nhật thành công');
+        } else {
+            return back()->with('err', 'Cập nhật thất bại');
+        }
     }
 
     /**
