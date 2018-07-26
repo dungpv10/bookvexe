@@ -18,20 +18,20 @@ class PointService
 
     public function getJSONData($pointTypeId = null, $search='')
     {
-        $result = $this->pointModel->where('id', '!=', 0)->with('route')->with('pointType');
+        $result = $this->pointModel->where('points.id', '!=', 0)->with('route')->with('pointType');
         if (!empty($pointTypeId)) {
             $result->where('point_type_id', $pointTypeId);
         }
-        return DataTables::of($result)->addColumn('busName', function(Point $point){
-            return $point->route->bus->bus_name;
-        })->addColumn('boardingPoint', function(Point $point){
-            return $point->route->from_place;
-        })->addColumn('dropPoint', function(Point $point){
-            return $point->route->arrived_place;
-        })->addColumn('routeName', function(Point $point){
-            return $point->route->route_name;
-        })->addColumn('pointType', function(Point $point){
-            return $point->pointType->point_type_name;
+        return DataTables::of($result)->addColumn('busName', function($result){
+            return $result->route->bus->bus_name;
+        })->addColumn('boardingPoint', function($result){
+            return $result->route->from_place;
+        })->addColumn('dropPoint', function($result){
+            return $result->route->arrived_place;
+        })->addColumn('routeName', function($result){
+            return $result->route->route_name;
+        })->addColumn('pointType', function($result){
+            return $result->pointType->point_type_name;
         })->make(true);
     }
 
