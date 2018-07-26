@@ -58,4 +58,10 @@ class PointService
             return false;
         }
     }
+
+    public function insertPoint($dataPoint)
+    {
+        $this->pointModel->fill($dataPoint)->save();
+        return $this->pointModel->id;
+    }
 }

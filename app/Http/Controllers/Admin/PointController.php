@@ -55,7 +55,13 @@ class PointController extends Controller
      */
     public function store(Request $request)
     {
-        die('xxx2');
+        $dataPoint = $request->except('_token');
+        $result = $this->pointService->insertPoint($dataPoint);
+        if ($result) {
+            return back()->with('success', 'Cập nhật thành công');
+        } else {
+            return back()->with('err', 'Cập nhật thất bại');
+        }
     }
 
     /**
