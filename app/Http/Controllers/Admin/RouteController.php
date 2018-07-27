@@ -4,9 +4,20 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Services\RouteService;
+use App\Services\BusService;
 
 class RouteController extends Controller
 {
+
+    private $service;
+
+    public function __construct(RouteService $service, BusService $busService)
+    {
+        $this->service = $service;
+        $this->busService = $busService;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +25,8 @@ class RouteController extends Controller
      */
     public function index()
     {
-        //
+        $buses = $this->busService->all();
+        return view('admin.routes.index')->with('buses', $buses);
     }
 
     /**
@@ -78,8 +90,26 @@ class RouteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        $result = $this->service->destroy($id);
+        if ($result) {
+            if ($request->ajax()) {
+                return response()->json(['code' => 200, 'message' => 'Xoá Thành công']);
+            }
+            return redirect('admin/users')->with('message', 'Successfully deleted');
+        }
+        if ($request->ajax()) {
+            return response()->json(['code' => 500, 'message' => 'Xoá Thất bại']);
+        }
+
+        return redirect('admin/users')->with('message', 'Failed to delete');
+    }
+
+    public function getJSONData(Request $request)
+    {
+        $busId = $request->get('bus_id');
+        $search = $request->get('search')['value'];
+        return $this->service->getJSONData($busId, $search);
     }
 }

@@ -12,11 +12,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        DB::statement("SET foreign_key_checks=0");
         Model::unguard();
+
+        App\Models\BusType::truncate();
+        App\Models\Route::truncate();
+        App\Models\PointType::truncate();
+        App\Models\Role::truncate();
+        App\Models\User::truncate();
+        App\Models\Setting::truncate();
 
         $this->callSeeder();
 
         Model::reguard();
+        DB::statement("SET foreign_key_checks=1");
     }
 
     private function callSeeder()
