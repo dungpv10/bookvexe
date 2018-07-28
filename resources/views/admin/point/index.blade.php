@@ -79,6 +79,7 @@
                         d.point_type_id = $('#point_type_id_search').val();
                     }
                 },
+                order: [[ 1, "asc" ]],
                 columns: [
                     { data: 'busName', name: 'busName', title: 'Tên xe', orderable: false},
                     { data: 'routeName', name: 'route.route_name', title: 'Tên tuyến đường' },
