@@ -36,7 +36,8 @@ class RouteController extends Controller
      */
     public function create()
     {
-        //
+        $buses = $this->busService->all();
+        return view('admin.routes.create')->with(compact('buses'));
     }
 
     /**
@@ -47,7 +48,12 @@ class RouteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $created = $this->service->create($request->except('_token'));
+        if ($created) {
+            return back()->with('success', 'Thêm mới thành công');
+        }
+
+        return back()->with('err', 'Thêm mới thất bại');
     }
 
     /**
@@ -69,7 +75,10 @@ class RouteController extends Controller
      */
     public function edit($id)
     {
-        //
+        $route = $this->service->find($id);
+        $buses = $this->busService->all();
+
+        return view('admin.routes.edit')->with(compact('route', 'buses'));
     }
 
     /**
@@ -81,7 +90,12 @@ class RouteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $updated = $this->service->update($id, $request->except('_token', '_method'));
+        if ($updated) {
+            return back()->with('success', 'Cập nhật thành công');
+        }
+
+        return back()->with('err', 'Cập nhật thất bại');
     }
 
     /**
