@@ -79,13 +79,19 @@
                         d.point_type_id = $('#point_type_id_search').val();
                     }
                 },
+                order: [[ 1, "asc" ]],
                 columns: [
-                    { data: 'busName', name: 'busName', title: 'Tên xe' },
+                    { data: 'busName', name: 'busName', title: 'Tên xe', orderable: false},
                     { data: 'routeName', name: 'route.route_name', title: 'Tên tuyến đường' },
                     { data: 'pointType', name: 'pointType.point_type_name', title: 'Kiểu điểm dừng' },
                     { data: 'boardingPoint', name: 'route.from_place', title: 'Điểm lên xe'},
                     { data: 'dropPoint', name: 'route.arrived_place', title: 'Điểm xuống xe'},
-                    { data: 'drop_time', name: 'drop_time', title: 'Thời gian giảm'},
+                    { data: 'drop_time', name: 'drop_time', title: 'Thời gian giảm',
+                        render: function(data, type, row, meta){
+                            var element = data.split(":");
+                            return element[0] + ':' + element[1];
+                        }
+                    },
                     { data: 'landmark', name: 'landmark', title: 'Dấu đất'},
                     { data: 'address', name: 'address', title: 'Địa chỉ'},
                     { data: 'id', name: 'id', title: 'Action', searchable: false,className: 'text-center', "orderable": false,

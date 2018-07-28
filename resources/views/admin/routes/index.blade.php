@@ -191,7 +191,7 @@
         $('#' + formId).bootstrapValidator({
             message: 'Dữ liệu nhập không đúng',
             fields: {
-                name: {
+                route_name: {
                     message: 'Tên không đúng định dạng',
                     validators: {
                         notEmpty: {
@@ -204,61 +204,147 @@
                         }
                     }
                 },
-                username: {
-                    message: 'Tên không đúng định dạng',
+                from_place: {
+                    message: 'Điểm đi không đúng định dạng',
                     validators: {
                         notEmpty: {
-                            message: 'Tên không được trống'
+                            message: 'Điểm đi không được trống'
                         },
                         stringLength: {
                             min: 6,
                             max: 30,
-                            message: 'Tên dài từ 6 tớ 30 ký tự'
+                            message: 'Điểm đi dài từ 6 tớ 30 ký tự'
                         }
                     },
-                    regexp: {
-                        regexp: /^[a-zA-Z0-9_]+$/,
-                        message: 'Tên chỉ chữa chữ, số và dấu gạch dưới'
+                    callback: {
+                        message: 'Điểm đi và điểm đến phải khác nhau',
+                        callback: function() {
+                            const start = $('#from_place').val().trim();
+                            const end = $('#arrived_place').val().trim();
+                            if (end != "" && end != "") {
+                                return start != end;
+                            }
+                            return true;
+                        }
                     }
                 },
-                email: {
+                arrived_place: {
+                    message: 'Điểm đến không đúng định dạng',
                     validators: {
                         notEmpty: {
-                            message: 'Email không được rỗng'
+                            message: 'Điểm đến không được trống'
                         },
-                        emailAddress: {
-                            message: 'Không phải địa chỉ email'
+                        stringLength: {
+                            min: 6,
+                            max: 30,
+                            message: 'Điểm đến dài từ 6 tớ 30 ký tự'
+                        },
+                        callback: {
+                            message: 'Điểm đi và điểm đến phải khác nhau',
+                            callback: function() {
+                                const start = $('#from_place').val().trim();
+                                const end = $('#arrived_place').val().trim();
+                                if (end != "" && end != "") {
+                                    return start != end;
+                                }
+                                return true;
+                            }
                         }
                     }
                 },
-                dob: {
+                start_time: {
+                    message: 'Giờ đi không đúng định dạng',
                     validators: {
-                        date: {
-                            format: 'YYYY-MM-DD',
-                            message: 'Sai định dạng'
+                        notEmpty: {
+                            message: 'Điểm đi không được trống'
+                        },
+                        numeric: {
+                            message: 'Giờ đi phải là số'
+                        },
+                        between: {
+                            min: 0,
+                            max: 24,
+                            message: 'Giờ đi phải lớn hơn 0 và nhỏ hơn 24'
+                        },
+                        callback: {
+                            message: 'Giờ đi phải nhỏ hơn giờ đến',
+                            callback: function() {
+                                const start = $('#start_time').val();
+                                const end = $('#arrived_time').val();
+                                if (end > 0 && end != "") {
+                                    return parseFloat(end) > parseFloat(start);
+                                }
+                                return true;
+                            }
                         }
+                    }
+                },
+                arrived_time: {
+                    message: 'Giờ đến không đúng định dạng',
+                    validators: {
+                        notEmpty: {
+                            message: 'Điểm đến không được trống'
+                        },
+                        numeric: {
+                            message: 'Giờ đến phải là số'
+                        },
+                        between: {
+                            min: 0,
+                            max: 24,
+                            message: 'Giờ đến phải lớn hơn 0 và nhỏ hơn 24'
+                        },
+                        callback: {
+                            message: 'Giờ đến phải lớn hơn giờ đi',
+                            callback: function() {
+                                const start = $('#start_time').val();
+                                const end = $('#arrived_time').val();
+                                return parseFloat(end) > parseFloat(start);
+                            }
+                        }
+                    }
+                },
+                price: {
+                    message: 'Giá không đúng định dạng',
+                    validators: {
+                        notEmpty: {
+                            message: 'Giá không được trống'
+                        },
+                        numeric: {
+                            message: 'Giá phải là số'
+                        },
+                        callback: {
+                            message: 'Giá phải lớn hơn 0',
+                            callback: function() {
+                                const p = $('#price').val();
+                                return p > 0;
+                            }
+                        }
+                    }
+                },
+                bus: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Xe không được rỗng'
+                        },
                     }
                 }
             }
         });
     }
 
-    function editRoute(uId) {
+    function editRoute(rId) {
         $.ajax({
-                url: '{!! route("users.index") !!}' +'/'+ uId + '/edit',
+                url: '{!! route("routes.index") !!}' +'/'+ rId + '/edit',
                 method: 'GET'
             }).success(function(data){
                 $('#editRouteModal .modal-body').html(data).promise().done(function(){
 
                     validateSetup('frmEditRoute');
 
-                    $('#roles').select2({
-                        placeholder: "Chọn quyền",
+                    $('#bus').select2({
+                        placeholder: "Chọn xe",
                     });
                     $('.select2-container--default').css({width: '100%'});
-                    $('.datetimepicker').datetimepicker({
-                        format: 'YYYY-MM-DD'
-                    });
                 });
             }).error(function(data){
 

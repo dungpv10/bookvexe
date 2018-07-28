@@ -80,13 +80,6 @@
                                 Danh sách
                             </a>
                         </li>
-                        <li>
-                            <a href="{{route('points.create')}}">
-                                <i class="fa fa-angle-double-right"></i>
-                                Tạo mới
-                            </a>
-                        </li>
-
                     </ul>
                 </li>
                 <!--End points-->

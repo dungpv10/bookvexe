@@ -57,6 +57,7 @@ class PointService
     {
         try {
             $point = $this->pointModel->find($pointId);
+            $dataPoint['drop_time'] = $this->getTime($dataPoint['drop_time']);
             $point->update($dataPoint);
             return true;
         } catch (\Exception $e) {
@@ -66,6 +67,7 @@ class PointService
 
     public function insertPoint($dataPoint)
     {
+        $dataPoint['drop_time'] = $this->getTime($dataPoint['drop_time']);
         $this->pointModel->fill($dataPoint)->save();
         return $this->pointModel->id;
     }
@@ -73,5 +75,18 @@ class PointService
     public function findById($pointId)
     {
         return $this->pointModel->with('route.bus')->with('pointType')->find($pointId);
+    }
+
+    public function getTime($time)
+    {
+        $chunks = explode(':', $time);
+        if (strpos( $time, 'AM') === false && $chunks[0] !== '12') {
+            $chunks[0] = $chunks[0] + 12;
+        } else if (strpos( $time, 'PM') === false && $chunks[0] == '12') {
+            $chunks[0] = '00';
+        }
+        $chunks[1] = str_replace(' PM', ':00', $chunks['1']);
+        $chunks[1] = str_replace(' AM', ':00', $chunks['1']);
+        return preg_replace('/\s[A-Z]+/s', '', implode(':', $chunks));
     }
 }

@@ -110,10 +110,20 @@
                     { data: 'bus_reg_number', name: 'bus_reg_number', title: 'Biển đăng ký buýt' },
                     { data: 'busType', name: 'busType.bus_type_name', title: 'Kiểu xe buýt', orderable : false },
                     { data: 'number_seats', name: 'number_seats', title: 'Chỗ ngồi' },
-                    { data: 'start_point', name: 'start_point', title: 'Điểm bắt đầu' },
-                    { data: 'start_time', name: 'start_time', title: 'Thời gian bắt đầu'},
+                    { data: 'start_point', name: 'start_point', title: 'Điểm bắt đầu'},
+                    { data: 'start_time', name: 'start_time', title: 'Thời gian bắt đầu',
+                        render: function(data, type, row, meta){
+                            var element = data.split(":");
+                            return element[0] + ':' + element[1];
+                        }
+                    },
                     { data: 'end_point', name: 'end_point', title: 'Điểm kết thúc'},
-                    { data: 'end_time', name: 'end_time', title: 'Thời gian kết thúc'},
+                    { data: 'end_time', name: 'end_time', title: 'Thời gian kết thúc',
+                        render: function(data, type, row, meta){
+                            var element = data.split(":");
+                            return element[0] + ':' + element[1];
+                        }
+                    },
                     { data: 'id', name: 'id', title: 'Action', searchable: false,className: 'text-center', "orderable": false,
                         render: function(data, type, row, meta){
                             var busId = "'" + data + "'";
