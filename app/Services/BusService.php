@@ -5,6 +5,7 @@ namespace App\Services;
 use DB;
 use App\Models\Bus;
 use Yajra\Datatables\Datatables;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class BusService
 {
@@ -37,6 +38,9 @@ class BusService
         if (!empty($busType)) {
             $result->where('bus_type_id', $busType);
         }
+        if (auth()->user()->hasRole('agent')) {
+            $result->where('buses.user_id', auth()->user()->id);
+        }
         return DataTables::of($result
         )->addColumn('busType', function(Bus $bus){
             return $bus->busType->bus_type_name;
@@ -49,7 +53,13 @@ class BusService
     }
 
     public function updateBus($id = null, $dataRequest){
-        $bus = $this->busModel->find($id);
+        $bus = $this->busModel->where('buses.id', $id);
+        if (auth()->user()->hasRole('agent')) {
+            $bus->where('buses.user_id', auth()->user()->id);
+        }
+        if (count($bus->get()) < 1) {
+            return false;
+        }
         $dataRequest['start_time'] = $this->getTime($dataRequest['start_time']);
         $dataRequest['end_time'] = $this->getTime($dataRequest['end_time']);
         $bus->update($dataRequest);
@@ -80,6 +90,7 @@ class BusService
     }
 
     public function insertBus($dataRequest){
+        $dataRequest['user_id'] = auth()->user()->id;
         $dataRequest['start_time'] = $this->getTime($dataRequest['start_time']);
         $dataRequest['end_time'] = $this->getTime($dataRequest['end_time']);
         $this->busModel->fill($dataRequest)->save();

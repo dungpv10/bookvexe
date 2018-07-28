@@ -19,6 +19,7 @@ $factory->define(App\Models\Bus::class, function (Faker\Generator $faker) {
         'number_seats' => random_int(30, 40),
         'start_point' => $faker->countryCode,
         'end_point' => $faker->countryCode,
+        'user_id' => random_int(1, 4),
         'start_time' => '12:00:00',
         'amenities' => 'Nước uống, Wifi, Điều hoà',
         'end_time' => '15:00:00',
