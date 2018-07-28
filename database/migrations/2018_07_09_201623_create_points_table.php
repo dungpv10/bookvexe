@@ -20,7 +20,7 @@ class CreatePointsTable extends Migration
             $table->integer('route_id')->unsigned()->comment('route id');
             $table->foreign('route_id')->references('id')->on('routes')->onDelete('cascade');
 
-            $table->string('drop_time')->comment('time to drop customer'); // 00 -> 23
+            $table->time('drop_time')->comment('time to drop customer'); // 00 -> 23
             $table->string('address', 255)->comment('address of drop point');
             $table->string('landmark')->comment('Address to pick customer');
             $table->softDeletes();

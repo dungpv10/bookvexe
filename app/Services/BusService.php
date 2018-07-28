@@ -50,6 +50,8 @@ class BusService
 
     public function updateBus($id = null, $dataRequest){
         $bus = $this->busModel->find($id);
+        $dataRequest['start_time'] = $this->getTime($dataRequest['start_time']);
+        $dataRequest['end_time'] = $this->getTime($dataRequest['end_time']);
         $bus->update($dataRequest);
         return true;
     }
@@ -62,6 +64,8 @@ class BusService
         } else if (strpos( $time, 'PM') === false && $chunks[0] == '12') {
             $chunks[0] = '00';
         }
+        $chunks[1] = str_replace(' PM', ':00', $chunks['1']);
+        $chunks[1] = str_replace(' AM', ':00', $chunks['1']);
         return preg_replace('/\s[A-Z]+/s', '', implode(':', $chunks));
     }
 
@@ -76,6 +80,8 @@ class BusService
     }
 
     public function insertBus($dataRequest){
+        $dataRequest['start_time'] = $this->getTime($dataRequest['start_time']);
+        $dataRequest['end_time'] = $this->getTime($dataRequest['end_time']);
         $this->busModel->fill($dataRequest)->save();
         return $this->busModel->id;
     }
