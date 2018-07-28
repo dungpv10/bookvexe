@@ -167,7 +167,8 @@ Route::group(['middleware' => ['auth', 'active']], function () {
         |--------------------------------------------------------------------------
         */
 
-        Route::resource('routes', 'RouteController');
+        Route::resource('routes', 'RouteController', ['only' => ['index', 'update', 'create', 'destroy']]);
+        Route::post('routes/getJSONData', ['as'=>'routes.datatable', 'uses'=>'RouteController@getJSONData']);
 
         /*
         |--------------------------------------------------------------------------
