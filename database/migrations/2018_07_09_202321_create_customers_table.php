@@ -22,7 +22,8 @@ class CreateCustomersTable extends Migration
             $table->integer('bus_id')->unsigned()->comment('customer of a bus');
             $table->foreign('bus_id')->references('id')->on('buses')->onDelete('cascade');
             $table->integer('assistant_user_id')->unsigned()->default(0)->comment('customer of a bus');
-
+            $table->integer('age')->nullable();
+            $table->integer('gender')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

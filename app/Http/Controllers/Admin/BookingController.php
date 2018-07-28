@@ -2,11 +2,21 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Booking;
+use App\Services\BookingService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Yajra\Datatables\Datatables;
 
 class BookingController extends Controller
 {
+    protected $bookingService;
+
+    public function __construct(BookingService $bookingService)
+    {
+        $this->bookingService = $bookingService;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +24,9 @@ class BookingController extends Controller
      */
     public function index()
     {
-        return view('admin.bookings.index');
+        $statuses = $this->bookingService->getStatus();
+
+        return view('admin.bookings.index', compact('statuses'));
     }
 
     /**
@@ -46,7 +58,13 @@ class BookingController extends Controller
      */
     public function show($id)
     {
-        //
+        $booking = $this->bookingService->getBooking($id);
+
+        return response()->json([
+            'code' => 1,
+            'msg' => 'Get customer infomation successfully',
+            'data' => $booking
+        ]);
     }
 
     /**
@@ -81,5 +99,13 @@ class BookingController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getJsonData($filters = []) {
+        return \DataTables::of($this->bookingService->getJsonData($filters))
+            ->addColumn('status_name', function(Booking $booking){
+                return $booking->statuses[$booking->payment_status];
+            })
+            ->make(true);
     }
 }

@@ -192,7 +192,10 @@ Route::group(['middleware' => ['auth', 'active']], function () {
         | Booking
         |--------------------------------------------------------------------------
         */
-
+        Route::get('bookings/jsonData', [
+            'uses' => 'BookingController@getJsonData',
+            'as' => 'bookings.json_data'
+        ]);
         Route::resource('bookings', 'BookingController');
     });
 });
