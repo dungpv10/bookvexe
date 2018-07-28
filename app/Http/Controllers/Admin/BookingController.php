@@ -101,8 +101,10 @@ class BookingController extends Controller
         //
     }
 
-    public function getJsonData($filters = []) {
-        return \DataTables::of($this->bookingService->getJsonData($filters))
+    public function getJsonData(Request $request) {
+        $query = $this->bookingService->getJsonData(['status' => $request->get('status')]);
+
+        return DataTables::of($query)
             ->addColumn('status_name', function(Booking $booking){
                 return $booking->statuses[$booking->payment_status];
             })

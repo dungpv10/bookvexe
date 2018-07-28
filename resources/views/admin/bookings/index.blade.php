@@ -63,14 +63,19 @@
 @stop
 @section('js')
     <script type="text/javascript">
-        $('#filter_status').select2();
         $(function () {
+            var filterStatus = $('#filter_status');
+            filterStatus.select2();
+
+
             var bookingTable = $('#booking_table').DataTable({
                 processing: true,
                 serverSide: true,
                 ajax: {
                     url: '{!! route('bookings.json_data') !!}',
-                    data: {status: $('#filter_status').val()}
+                    data: function(d){
+                        d.status = filterStatus.val()
+                    }
                 },
                 columns: [
                     {data: 'id', name: 'id', title: 'ID'},
@@ -98,25 +103,28 @@
                     }
                 ]
             });
-        });
+            filterStatus.on('change', function () {
+                bookingTable.ajax.reload();
+            });
 
-        $('#viewBooking').on('shown.bs.modal', function (e) {
-            var fillData = function (data) {
-                $('#customer_name').html(data.original.data.customer.customer_name);
-                $('#customer_age').html(data.original.data.customer.age);
-                $('#customer_gender').html(data.original.data.customer.gender_name);
-                $('#customer_position').html(data.original.data.seat_number);
-            };
-            var id = $(e.relatedTarget).data('id');
-            $.ajax({
-                method: 'GET',
-                url: window.location.origin + '/admin/bookings/' + id
-            }).done(function (response) {
-                fillData(response.data);
-            }).fail(function (error) {
-                console.log(error);
+
+            $('#viewBooking').on('shown.bs.modal', function (e) {
+                var fillData = function (data) {
+                    $('#customer_name').html(data.original.data.customer.customer_name);
+                    $('#customer_age').html(data.original.data.customer.age);
+                    $('#customer_gender').html(data.original.data.customer.gender_name);
+                    $('#customer_position').html(data.original.data.seat_number);
+                };
+                var id = $(e.relatedTarget).data('id');
+                $.ajax({
+                    method: 'GET',
+                    url: window.location.origin + '/admin/bookings/' + id
+                }).done(function (response) {
+                    fillData(response.data);
+                }).fail(function (error) {
+                    console.log(error);
+                });
             });
         });
-
     </script>
 @stop

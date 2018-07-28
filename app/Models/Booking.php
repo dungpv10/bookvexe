@@ -35,9 +35,9 @@ class Booking extends Model
     {
         $query = $this->with('customer')->with('bus');
 
-        if(isset($filters['status']) && !empty($filters['status'])){
+        if ($filters['status'] != '') {
 
-            $query->$this->where('payment_status', $filters['status']);
+            $query->where('payment_status', $filters['status']);
         }
 
         return $query;
