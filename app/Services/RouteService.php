@@ -136,19 +136,26 @@ class RouteService
         if (!empty($busId)) {
             $builder = $builder->where('buses.id', '=', $busId);
         }
+
+        $user = auth()->user();
+        if(!$user->hasRole('admin')){
+            $busIds = $user->getBusIds();
+            $builder->whereIn('bus_id', $busIds);
+        }
+
         return $this->datatable->eloquent($builder)
             ->filter(function ($query) use ($search) {
                 if(!empty($search))
                 {
                     $search = strtolower(trim($search));
                     $query->whereRaw(
-                        '(LOWER(`routes`.`route_name`) LIKE "%' 
-                        . $search . '%" OR LOWER(`routes`.`price`) LIKE "%' 
-                        . $search . '%" OR LOWER(`routes`.`from_place`) LIKE "%' 
-                        . $search . '%" OR LOWER(`routes`.`arrived_place`) LIKE "%' 
-                        . $search . '%" OR LOWER(`routes`.`start_time`) LIKE "%' 
-                        . $search . '%" OR LOWER(`routes`.`arrived_time`) LIKE "%' 
-                        . $search . '%" OR LOWER(`buses`.`bus_name`) LIKE "%' 
+                        '(LOWER(`routes`.`route_name`) LIKE "%'
+                        . $search . '%" OR LOWER(`routes`.`price`) LIKE "%'
+                        . $search . '%" OR LOWER(`routes`.`from_place`) LIKE "%'
+                        . $search . '%" OR LOWER(`routes`.`arrived_place`) LIKE "%'
+                        . $search . '%" OR LOWER(`routes`.`start_time`) LIKE "%'
+                        . $search . '%" OR LOWER(`routes`.`arrived_time`) LIKE "%'
+                        . $search . '%" OR LOWER(`buses`.`bus_name`) LIKE "%'
                         . $search . '%")'
                 );
                 }

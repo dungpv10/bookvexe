@@ -102,8 +102,13 @@ class BookingController extends Controller
     }
 
     public function getJsonData(Request $request) {
+        $user = auth()->user();
         $query = $this->bookingService->getJsonData(['status' => $request->get('status')]);
 
+        if(!$user->hasRole('admin')){
+            $busIds = $user->getBusIds();
+            $query->whereIn('bus_id', $busIds);
+        }
         return DataTables::of($query)
             ->addColumn('status_name', function(Booking $booking){
                 return $booking->statuses[$booking->payment_status];

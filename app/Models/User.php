@@ -159,6 +159,9 @@ class User extends Authenticatable
         return $this->hasMany(Promotion::class, 'agent_id', 'id');
     }
 
+    public function buses(){
+        return $this->hasMany(Bus::class, 'user_id', 'id');
+    }
 
     public function getStatusNameAttribute() {
 
@@ -174,4 +177,11 @@ class User extends Authenticatable
         return asset('upload/avatars/' . $this->avatar);
     }
 
+    /**
+     * @des get array bus ids of user
+     * @return \Illuminate\Support\Collection
+     */
+    public function getBusIds(){
+        return $this->buses()->pluck('id');
+    }
 }
