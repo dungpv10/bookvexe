@@ -17,6 +17,7 @@ $factory->define(App\Models\Point::class, function (Faker\Generator $faker) {
         'drop_time' => '12:00:00',
         'address' => $faker->address,
         'landmark' => $faker->address,
+        'user_id' => random_int(1, 4),
         'route_id' => $routes->random()
     ];
 });
