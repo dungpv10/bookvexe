@@ -28,10 +28,8 @@ class BookingService
     {
         $booking = $this->model->with('customer')->find($id);
 
-        if(!$booking){
-            return response()->json(['code' => 0, 'msg' => 'booking not found']);
-        }
+        return $booking ?? false;
 
-        return response()->json(['code' => 1, 'msg' => 'get booking customer successfully', 'data' => $booking]);
     }
+
 }

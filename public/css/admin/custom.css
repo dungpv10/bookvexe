@@ -262,3 +262,11 @@ button i.fa{
     float: left;
     min-height: 1px;
 }
+
+button i.fa{
+    margin-right: 0;
+}
+
+.btn {
+    border-color : #ccc;
+}

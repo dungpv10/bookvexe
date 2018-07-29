@@ -196,6 +196,10 @@ Route::group(['middleware' => ['auth', 'active']], function () {
             'uses' => 'BookingController@getJsonData',
             'as' => 'bookings.json_data'
         ]);
+        Route::post('bookings/update-status/{id}', [
+            'uses' => 'BookingController@updateStatus',
+            'as' => 'bookings.update_status'
+        ]);
         Route::resource('bookings', 'BookingController');
     });
 });
