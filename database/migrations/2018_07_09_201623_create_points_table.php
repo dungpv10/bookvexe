@@ -19,7 +19,7 @@ class CreatePointsTable extends Migration
             $table->foreign('point_type_id')->references('id')->on('point_types')->onDelete('cascade');
             $table->integer('route_id')->unsigned()->comment('route id');
             $table->foreign('route_id')->references('id')->on('routes')->onDelete('cascade');
-
+            $table->integer('user_id')->comment('user id create');
             $table->time('drop_time')->comment('time to drop customer'); // 00 -> 23
             $table->string('address', 255)->comment('address of drop point');
             $table->string('landmark')->comment('Address to pick customer');

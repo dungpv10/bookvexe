@@ -18,9 +18,12 @@ class PointService
 
     public function getJSONData($pointTypeId = null, $search='')
     {
-        $result = $this->pointModel->where('points.id', '!=', 0)->with('route')->with('pointType');
+        $result = $this->pointModel->with('route')->with('pointType');
         if (!empty($pointTypeId)) {
             $result->where('point_type_id', $pointTypeId);
+        }
+        if (auth()->user()->hasRole('agent')) {
+            $result->where('points.user_id', auth()->user()->id);
         }
         return DataTables::of($result)->addColumn('busName', function($result){
             return $result->route->bus->bus_name;
@@ -52,18 +55,21 @@ class PointService
 
     public function updatePoint($pointId, $dataPoint)
     {
-        try {
-            $point = $this->pointModel->find($pointId);
-            $dataPoint['drop_time'] = $this->getTime($dataPoint['drop_time']);
-            $point->update($dataPoint);
-            return true;
-        } catch (\Exception $e) {
+        $point = $this->pointModel->where('points.id', $pointId);
+        if (auth()->user()->hasRole('agent')) {
+            $point->where('points.user_id', auth()->user()->id);
+        }
+        if (count($point->get()) < 1) {
             return false;
         }
+        $dataPoint['drop_time'] = $this->getTime($dataPoint['drop_time']);
+        $point->update($dataPoint);
+        return true;
     }
 
     public function insertPoint($dataPoint)
     {
+        $dataPoint['user_id'] = auth()->user()->id;
         $dataPoint['drop_time'] = $this->getTime($dataPoint['drop_time']);
         $this->pointModel->fill($dataPoint)->save();
         return $this->pointModel->id;
