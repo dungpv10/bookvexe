@@ -55,12 +55,6 @@
                                 Danh sách
                             </a>
                         </li>
-                        <li>
-                            <a href="{{route('routes.create')}}">
-                                <i class="fa fa-angle-double-right"></i>
-                                Tạo mới
-                            </a>
-                        </li>
 
                     </ul>
                 </li>
@@ -176,7 +170,6 @@
                         </a>
                     </li>
                 @endif
-
             </ul>
             <!-- END SIDEBAR MENU --> </div>
     </section>
