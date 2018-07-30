@@ -184,7 +184,6 @@ Route::group(['middleware' => ['auth', 'active']], function () {
         ]);
         Route::resource('bookings', 'BookingController');
 
-
         /*
         |--------------------------------------------------------------------------
         | Admin group
@@ -210,6 +209,13 @@ Route::group(['middleware' => ['auth', 'active']], function () {
             */
 
             Route::resource('setting', 'SettingController', ['only' => ['index', 'update']]);
+
+
+            /*
+            |--------------------------------------------------------------------------
+            | Agent
+            |--------------------------------------------------------------------------
+            */
         });
 
     });

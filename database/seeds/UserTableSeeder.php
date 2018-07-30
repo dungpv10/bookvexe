@@ -42,7 +42,6 @@ class UserTableSeeder extends Seeder
 
             $service->create($user, 'user', 'agent', false);
         }
-
         DB::statement('update user_meta set is_active = 1, activation_token=null;');
     }
 }
