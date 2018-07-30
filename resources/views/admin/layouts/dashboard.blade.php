@@ -72,6 +72,7 @@
         <i class="livicon" data-name="plane-up" data-size="18" data-loop="true" data-c="#fff" data-hc="white"></i>
     </a>
     <!-- global js -->
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
     <script src="{{asset('js/jquery-1.11.3.min.js')}}" type="text/javascript"></script>
     <script src="{{asset('js/bootstrap.min.js')}}" type="text/javascript"></script>
     <!--livicons-->
@@ -94,6 +95,7 @@
     <script type="text/javascript" src="{{ asset('vendors/tags/bower_components/typeahead.js/dist/bloodhound.js') }}" ></script>
     <script src="{{asset('vendors/datetimepicker/js/bootstrap-datetimepicker.min.js')}}" type="text/javascript"></script>
     <script src="{{asset('vendors/timepicker/js/bootstrap-timepicker.js')}}" type="text/javascript"></script>
+    <script src="{{ asset("js/pages/jquery.geocomplete.js") }}"></script>
     <script type="text/javascript">
         $(function () {
             $('body').on('hidden.bs.modal', '.modal', function () {

@@ -238,6 +238,8 @@
 
                     $('#amenities').tagsinput();
 
+                    $(".geo_location").geocomplete();
+
                     $('#frmEditBus').bootstrapValidator({});
                 });
             }).error(function(data){
@@ -260,6 +262,8 @@
                     $(".datetimepicker input").timepicker();
 
                     $('#amenities').tagsinput();
+
+                    $(".geo_location").geocomplete();
 
                     $('#frmCreateNewBus').bootstrapValidator({});
                 });
