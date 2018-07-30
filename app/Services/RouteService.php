@@ -86,6 +86,8 @@ class RouteService
      */
     public function create($payload)
     {
+        $payload['start_time'] = $this->getTime($payload['start_time']);
+        $payload['arrived_time'] = $this->getTime($payload['arrived_time']);
         return $this->model->create($payload);
     }
 
@@ -109,6 +111,8 @@ class RouteService
      */
     public function update($id, $payload)
     {
+        $payload['start_time'] = $this->getTime($payload['start_time']);
+        $payload['arrived_time'] = $this->getTime($payload['arrived_time']);
         return $this->find($id)->update($payload);
     }
 
@@ -157,5 +161,18 @@ class RouteService
                     return $route->bus->bus_name;
                 })
             ->make(true);
+    }
+
+    public function getTime($time)
+    {
+        $chunks = explode(':', $time);
+        if (strpos( $time, 'AM') === false && $chunks[0] !== '12') {
+            $chunks[0] = $chunks[0] + 12;
+        } else if (strpos( $time, 'PM') === false && $chunks[0] == '12') {
+            $chunks[0] = '00';
+        }
+        $chunks[1] = str_replace(' PM', ':00', $chunks['1']);
+        $chunks[1] = str_replace(' AM', ':00', $chunks['1']);
+        return preg_replace('/\s[A-Z]+/s', '', implode(':', $chunks));
     }
 }
