@@ -114,14 +114,20 @@
                     { data: 'start_time', name: 'start_time', title: 'Thời gian bắt đầu',
                         render: function(data, type, row, meta){
                             var element = data.split(":");
-                            return element[0] + ':' + element[1];
+                            if (element.length > 2){
+                                return element[0] + ':' + element[1];
+                            }
+                            return data;
                         }
                     },
                     { data: 'end_point', name: 'end_point', title: 'Điểm kết thúc'},
                     { data: 'end_time', name: 'end_time', title: 'Thời gian kết thúc',
                         render: function(data, type, row, meta){
                             var element = data.split(":");
-                            return element[0] + ':' + element[1];
+                            if (element.length > 2){
+                                return element[0] + ':' + element[1];
+                            }
+                            return data;
                         }
                     },
                     { data: 'id', name: 'id', title: 'Action', searchable: false,className: 'text-center', "orderable": false,
@@ -227,9 +233,8 @@
                         placeholder: "Chọn Bus Type",
                     });
                     $('.select2-container--default').css({width: '100%'});
-                    $(".datetimepicker").datetimepicker({
-                        format: 'LT'
-                    });
+
+                    $(".datetimepicker input").timepicker();
 
                     $('#amenities').tagsinput();
 
@@ -251,9 +256,8 @@
                         placeholder: "Chọn Bus Type",
                     });
                     $('.select2-container--default').css({width: '100%'});
-                    $(".datetimepicker").datetimepicker({
-                        format: 'LT'
-                    });
+
+                    $(".datetimepicker input").timepicker();
 
                     $('#amenities').tagsinput();
 

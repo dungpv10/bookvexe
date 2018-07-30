@@ -21,8 +21,8 @@ class CreateRoutesTable extends Migration
             $table->float('price')->default(0)->comment('price on a seat');
             $table->string('from_place', 255)->comment('start place');
             $table->string('arrived_place', 255)->comment('stop place');
-            $table->string('start_time')->default(0)->comment('start time');
-            $table->string('arrived_time')->default(0)->comment('arrived time');
+            $table->time('start_time')->comment('start time');
+            $table->time('arrived_time')->comment('arrived time');
 
             $table->softDeletes();
             $table->timestamps();

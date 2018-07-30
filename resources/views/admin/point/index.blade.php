@@ -88,7 +88,10 @@
                     { data: 'drop_time', name: 'drop_time', title: 'Thời gian giảm',
                         render: function(data, type, row, meta){
                             var element = data.split(":");
-                            return element[0] + ':' + element[1];
+                            if (element.length > 2){
+                                return element[0] + ':' + element[1];
+                            }
+                            return data;
                         }
                     },
                     { data: 'landmark', name: 'landmark', title: 'Dấu đất'},
@@ -172,9 +175,8 @@
                         placeholder: "Chọn tuyến đường",
                     });
                     $('.select2-container--default').css({width: '100%'});
-                    $(".datetimepicker").datetimepicker({
-                        format: 'LT'
-                    });
+
+                    $(".datetimepicker input").timepicker();
 
                     $('#frmCreateNewPoint').bootstrapValidator({});
                 });
@@ -197,9 +199,8 @@
                         placeholder: "Chọn tuyến đường",
                     });
                     $('.select2-container--default').css({width: '100%'});
-                    $(".datetimepicker").datetimepicker({
-                        format: 'LT'
-                    });
+
+                    $(".datetimepicker input").timepicker();
 
                     $('#frmEditPoint').bootstrapValidator({});
                 });

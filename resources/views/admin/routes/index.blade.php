@@ -95,8 +95,24 @@
                 { data: 'price', name: 'price', title: 'Giá' },
                 { data: 'from_place', name: 'from_place', title: 'Bắt đầu' },
                 { data: 'arrived_place', name: 'arrived_place', title: 'Kết thúc'},
-                { data: 'start_time', name: 'start_time', title: 'Giờ đi'},
-                { data: 'arrived_time', name: 'arrived_time', title: 'Giờ đến'},
+                { data: 'start_time', name: 'start_time', title: 'Giờ đi',
+                    render: function(data, type, row, meta){
+                        var element = data.split(":");
+                        if (element.length > 2){
+                            return element[0] + ':' + element[1];
+                        }
+                        return data;
+                    }
+                },
+                { data: 'arrived_time', name: 'arrived_time', title: 'Giờ đến',
+                    render: function(data, type, row, meta){
+                        var element = data.split(":");
+                        if (element.length > 2){
+                            return element[0] + ':' + element[1];
+                        }
+                        return data;
+                    }
+                },
                 { data: 'busName', name: 'buses.bus_name', title: 'Bus'},
                 { data: 'created_at', name: 'created_at', title: 'Ngày tạo'},
                 { data: 'updated_at', name: 'updated_at', title: 'Ngày cập nhật'},
@@ -178,6 +194,8 @@
                     placeholder: "Chọn quyền thành viên",
                 });
                 $('.select2-container--default').css({width: '100%'});
+
+                $(".datetimepicker input").timepicker();
             });
             validateSetup('frmCreateRoute');
 
@@ -258,14 +276,6 @@
                         notEmpty: {
                             message: 'Điểm đi không được trống'
                         },
-                        numeric: {
-                            message: 'Giờ đi phải là số'
-                        },
-                        between: {
-                            min: 0,
-                            max: 24,
-                            message: 'Giờ đi phải lớn hơn 0 và nhỏ hơn 24'
-                        },
                         callback: {
                             message: 'Giờ đi phải nhỏ hơn giờ đến',
                             callback: function() {
@@ -284,14 +294,6 @@
                     validators: {
                         notEmpty: {
                             message: 'Điểm đến không được trống'
-                        },
-                        numeric: {
-                            message: 'Giờ đến phải là số'
-                        },
-                        between: {
-                            min: 0,
-                            max: 24,
-                            message: 'Giờ đến phải lớn hơn 0 và nhỏ hơn 24'
                         },
                         callback: {
                             message: 'Giờ đến phải lớn hơn giờ đi',
@@ -345,6 +347,8 @@
                         placeholder: "Chọn xe",
                     });
                     $('.select2-container--default').css({width: '100%'});
+
+                    $(".datetimepicker input").timepicker();
                 });
             }).error(function(data){
 

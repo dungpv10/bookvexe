@@ -17,8 +17,8 @@ $factory->define(App\Models\Route::class, function (Faker\Generator $faker) {
         'price' => random_int(300, 400),
         'from_place' => $faker->countryCode,
         'arrived_place' => $faker->countryCode,
-        'start_time' => 0,
+        'start_time' => '12:00:00',
         'route_name' => $faker->name,
-        'arrived_time' => random_int(2, 23)
+        'arrived_time' => '15:00:00'
     ];
 });

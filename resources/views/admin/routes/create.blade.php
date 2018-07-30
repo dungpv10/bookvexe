@@ -31,11 +31,23 @@
     </div>
     <div class="row form-group">
         <label for="start_time">Giờ đi</label>
-        <input id="start_time" class="form-control" type="number" name="start_time" value="">
+        <div class="input-group date datetimepicker">
+            <input id="start_time" class="form-control" type="text" name="start_time"
+                   value="" placeholder="Thời gian bắt đầu" required>
+            <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-time"></span>
+                                    </span>
+        </div>
     </div>
     <div class="row form-group">
         <label for="arrived_time">Giờ đến</label>
-        <input id="arrived_time" class="form-control" type="number" name="arrived_time" value="">
+        <div class="input-group date datetimepicker">
+            <input id="arrived_time" class="form-control" type="text" name="arrived_time"
+                   value="" placeholder="Thời gian kết thúc" required>
+            <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-time"></span>
+                                    </span>
+        </div>
     </div>
     
     <div class="row text-center">
