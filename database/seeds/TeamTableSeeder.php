@@ -13,7 +13,7 @@ class TeamTableSeeder extends Seeder
     public function run()
     {
         $service = app(TeamService::class);
-        for ($i=2; $i < 5 ; $i++) { 
+        for ($i=2; $i < 5 ; $i++) {
         	$service->create($i, ['name' => 'team_agent_' . $i]);
         }
     }

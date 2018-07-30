@@ -154,7 +154,7 @@ class UserService
      * @param  boolean $sendEmail Whether to send the email or not
      * @return User
      */
-    public function create($user, $password, $role = 'member', $sendEmail = true)
+    public function create($user, $password, $role = 'staff', $sendEmail = true)
     {
         try {
             DB::transaction(function () use ($user, $password, $role, $sendEmail) {
@@ -234,17 +234,21 @@ class UserService
     public function invite($info)
     {
         $password = substr(md5(rand(1111, 9999)), 0, 10);
-
-        return DB::transaction(function () use ($password, $info) {
+        $user = null;
+        return DB::transaction(function () use ($password, $info, $user) {
             $user = $this->model->create([
                 'email' => $info['email'],
                 'name' => $info['name'],
                 'username' => $info['username'],
                 'password' => bcrypt($password)
             ]);
-
+            if (empty($info['roles'])) {
+                $info['roles'] = null;
+            }
             return $this->create($user, $password, $info['roles'], true);
         });
+
+        return $user;
     }
 
     /**

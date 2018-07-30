@@ -168,7 +168,6 @@
                     </li>
 
                     <!--End User-->
-                    
 
                     <li>
                         <a href="{{ route('setting.index') }}">
@@ -177,7 +176,6 @@
                         </a>
                     </li>
                 @endif
-
             </ul>
             <!-- END SIDEBAR MENU --> </div>
     </section>

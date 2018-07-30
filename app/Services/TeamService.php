@@ -211,4 +211,9 @@ class TeamService
             throw new Exception("Failed to remove member", 1);
         }
     }
+
+    public function checkTeamLead($userId)
+    {
+        return $this->model->where('user_id', $userId)->first();
+    }
 }
