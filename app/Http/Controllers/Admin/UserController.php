@@ -6,16 +6,19 @@ use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Services\UserService;
 use App\Services\RoleService;
+use App\Services\TeamService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserInviteRequest;
 use Log;
+use Gate;
 
 class UserController extends Controller
 {
-    public function __construct(UserService $userService, RoleService $roleService)
+    public function __construct(UserService $userService, RoleService $roleService, TeamService $teamService)
     {
         $this->service = $userService;
         $this->roleService = $roleService;
+        $this->teamService = $teamService;
     }
 
     /**
@@ -25,7 +28,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        $roles = $this->roleService->all();
+        $roles = null;
+        if (Gate::allows('admin')) {
+            $roles = $this->roleService->all();
+        }
         return view('admin.users.index')->with('roles', $roles);
     }
 
@@ -160,8 +166,13 @@ class UserController extends Controller
 
     public function create()
     {
-        $roles = $this->roleService->pluckSelection('name');
-        return view('admin.users.create', compact('roles'));
+        $roles = null;
+        $teams = null;
+        if (Gate::allows('admin')) {
+            $roles = $this->roleService->pluckSelection('name');
+            $teams = $this->teamService->all();
+        }
+        return view('admin.users.create', compact('roles', 'teams'));
     }
 
     public function store(Request $request)

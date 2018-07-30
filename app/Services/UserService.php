@@ -16,6 +16,7 @@ use App\Events\UserRegisteredEmail;
 use App\Notifications\ActivateUserEmail;
 use Illuminate\Support\Facades\Schema;
 use Yajra\Datatables\Datatables;
+use Gate;
 
 class UserService
 {
@@ -421,12 +422,25 @@ class UserService
 
     public function getJSONData($roleId = null, $search = "")
     {
+        $teams = auth()->user()->teams;
+        $teamIds = [0];
         $builder = $this->model->with('roles')
             ->join('role_user', 'users.id', '=', 'role_user.user_id')
             ->join('roles', 'roles.id', '=', 'role_user.role_id')
             ->orderBy('users.id', 'desc')
             ->where('users.id', '!=', auth()->id())
             ->select('users.*');
+        if (Gate::denies('admin'))
+        {
+            if ($teams) {
+                $teamIds = [];
+                foreach ($teams as $team) {
+                    $teamIds[] = $team->id;
+                }
+            }
+            $builder->join('team_user', 'team_user.user_id', 'users.id')
+                    ->whereIn('team_user.team_id', $teamIds);
+        }
         if (!empty($roleId)) {
             $builder = $builder->where('roles.id', '=', $roleId);
         }

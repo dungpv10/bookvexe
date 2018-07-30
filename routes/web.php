@@ -105,7 +105,7 @@ Route::group(['middleware' => ['auth', 'active']], function () {
     |--------------------------------------------------------------------------
     */
 
-    Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'admin'], function () {
+    Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'roles:admin,agent'], function () {
         Route::get('/', function(){
             return redirect()->route('bus.index');
         });
@@ -122,24 +122,6 @@ Route::group(['middleware' => ['auth', 'active']], function () {
         Route::get('users/switch/{id}', 'UserController@switchToUser');
         Route::post('users/invite', 'UserController@postInvite');
         Route::get('users/getJSONData', ['as'=>'users.datatable', 'uses'=>'UserController@getJSONData']);
-        /*
-        |--------------------------------------------------------------------------
-        | Roles
-        |--------------------------------------------------------------------------
-        */
-        Route::resource('roles', 'RoleController', ['except' => ['show']]);
-        Route::post('roles/search', 'RoleController@search');
-        Route::get('roles/search', 'RoleController@index');
-        Route::get('roles/getJSONData', ['as'=>'roles.datatable', 'uses'=>'RoleController@getJSONData']);
-
-
-        /*
-        |--------------------------------------------------------------------------
-        | Setting
-        |--------------------------------------------------------------------------
-        */
-
-        Route::resource('setting', 'SettingController', ['only' => ['index', 'update']]);
 
         /*
         |--------------------------------------------------------------------------
@@ -201,5 +183,34 @@ Route::group(['middleware' => ['auth', 'active']], function () {
             'as' => 'bookings.update_status'
         ]);
         Route::resource('bookings', 'BookingController');
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | Admin group
+        |--------------------------------------------------------------------------
+        */
+        Route::group(['middleware' => 'roles:admin'], function () {
+
+            /*
+            |--------------------------------------------------------------------------
+            | Roles
+            |--------------------------------------------------------------------------
+            */
+            Route::resource('roles', 'RoleController', ['except' => ['show']]);
+            Route::post('roles/search', 'RoleController@search');
+            Route::get('roles/search', 'RoleController@index');
+            Route::get('roles/getJSONData', ['as'=>'roles.datatable', 'uses'=>'RoleController@getJSONData']);
+
+
+            /*
+            |--------------------------------------------------------------------------
+            | Setting
+            |--------------------------------------------------------------------------
+            */
+
+            Route::resource('setting', 'SettingController', ['only' => ['index', 'update']]);
+        });
+
     });
 });

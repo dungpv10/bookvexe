@@ -1,7 +1,7 @@
 @extends('admin.layouts.dashboard')
 
 @section('content')
-
+    @if(Gate::allows('admin'))
     <div class="row">
         <div class="col-md-3">
             <div class="form-group">
@@ -14,6 +14,7 @@
             </div>
         </div>
     </div>
+    @endif
     <div class="row">
         <div class="col-md-12">
             <div class="box">
@@ -177,6 +178,10 @@
                 $('#roles').select2({
                     placeholder: "Chọn quyền thành viên",
                 });
+                $('#team_id').select2({
+                    placeholder: "Chọn Agent",
+                });
+
                 $('.select2-container--default').css({width: '100%'});
             });
             validateSetup('frmCreateUser');
