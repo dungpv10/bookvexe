@@ -168,7 +168,6 @@
                     </li>
 
                     <!--End User-->
-                    
 
                     <li>
                         <a href="{{ route('setting.index') }}">

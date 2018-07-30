@@ -183,6 +183,8 @@
                 });
 
                 $('.select2-container--default').css({width: '100%'});
+                controlAgent();
+
             });
             validateSetup('frmCreateUser');
 
@@ -264,11 +266,30 @@
                     $('.datetimepicker').datetimepicker({
                         format: 'YYYY-MM-DD'
                     });
+                    controlAgent();
+                    $('#team_id').select2({
+                        placeholder: "Chọn Agent",
+                    });
                 });
             }).error(function(data){
 
             });
             $("#editUserModal").modal();
+    }
+
+    function controlAgent()
+    {
+        $('#roles').on('change', function(){
+            if ($(this).val() != 'staff') {
+                $('#team_id').val('').change();
+                $('#slect_agent').removeClass('hidden');
+                $('#slect_agent').addClass('hidden');
+            }
+            else {
+                $('#slect_agent').removeClass('hidden');
+            }
+
+        });
     }
 
 	</script>
