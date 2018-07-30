@@ -1,0 +1,20 @@
+<?php
+
+use Illuminate\Database\Seeder;
+use App\Services\TeamService;
+
+class TeamTableSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        $service = app(TeamService::class);
+        for ($i=2; $i < 5 ; $i++) { 
+        	$service->create($i, ['name' => 'agent_' . $i]);
+        }
+    }
+}
