@@ -24,6 +24,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('vendors/datetimepicker/css/bootstrap-datetimepicker-standalone.css') }}" />
 
     <link href="{{ asset('css/pages/tables.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('css/pages/jquery-ui.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('vendors/select2/select2.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('vendors/select2/select2-bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('vendors/validation/css/bootstrapValidator.min.css') }}" rel="stylesheet" type="text/css" />
@@ -72,7 +73,6 @@
         <i class="livicon" data-name="plane-up" data-size="18" data-loop="true" data-c="#fff" data-hc="white"></i>
     </a>
     <!-- global js -->
-    <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
     <script src="{{asset('js/jquery-1.11.3.min.js')}}" type="text/javascript"></script>
     <script src="{{asset('js/bootstrap.min.js')}}" type="text/javascript"></script>
     <!--livicons-->
@@ -95,7 +95,7 @@
     <script type="text/javascript" src="{{ asset('vendors/tags/bower_components/typeahead.js/dist/bloodhound.js') }}" ></script>
     <script src="{{asset('vendors/datetimepicker/js/bootstrap-datetimepicker.min.js')}}" type="text/javascript"></script>
     <script src="{{asset('vendors/timepicker/js/bootstrap-timepicker.js')}}" type="text/javascript"></script>
-    <script src="{{ asset("js/pages/jquery.geocomplete.js") }}"></script>
+    <script src="{{ asset("js/pages/jquery-ui.js") }}"></script>
     <script type="text/javascript">
         $(function () {
             $('body').on('hidden.bs.modal', '.modal', function () {

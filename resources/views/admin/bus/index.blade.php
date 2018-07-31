@@ -64,6 +64,31 @@
     <script type="text/javascript">
         var busTable;
         var sleeperSeat;
+        var dataLocation = function( request, response ) {
+            $.ajax({
+                url: "http://ws.geonames.org/searchJSON",
+                dataType: "jsonp",
+                data: {
+                    style: "MEDIUM",
+                    maxRows: 10,
+                    featureClass: "P",
+                    country: "VN,KH",
+                    q: request.term,
+                    username: "vuvanky"
+                },
+                success: function( data ) {
+                    console.log(data);
+                    response( $.map( data.geonames, function( item ) {
+                        return {
+                            label: item.name + (item.adminName1 ? ", " + item.adminName1 : "") + ", " + item.countryCode,
+                            value: item.name + (item.adminName1 ? ", " + item.adminName1 : "") + ", " + item.countryCode,
+                            lat: item.lat,
+                            lng: item.lng
+                        }
+                    }));
+                }
+            });
+        };
         $(document).ready(function() {
             $(window).keydown(function(event){
                 if( (event.keyCode == 13) ) {
@@ -238,7 +263,15 @@
 
                     $('#amenities').tagsinput();
 
-                    $(".geo_location").geocomplete();
+                    $( ".geo_location" ).autocomplete({
+                        source: dataLocation,
+                        minLength: 0,
+                        delay: 10,
+                        close: function() {
+                            //UI plugin not removing loading gif, lets force it
+                            $( '.geo_location' ).removeClass( "ui-autocomplete-loading" );
+                        }
+                    });
 
                     $('#frmEditBus').bootstrapValidator({});
                 });
@@ -263,7 +296,15 @@
 
                     $('#amenities').tagsinput();
 
-                    $(".geo_location").geocomplete();
+                    $( ".geo_location" ).autocomplete({
+                        source: dataLocation,
+                        minLength: 0,
+                        delay: 10,
+                        close: function() {
+                            //UI plugin not removing loading gif, lets force it
+                            $( '.geo_location' ).removeClass( "ui-autocomplete-loading" );
+                        }
+                    });
 
                     $('#frmCreateNewBus').bootstrapValidator({});
                 });
