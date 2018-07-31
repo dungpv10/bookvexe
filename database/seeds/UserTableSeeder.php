@@ -31,18 +31,17 @@ class UserTableSeeder extends Seeder
 
         for ($i = 1; $i < 5; $i ++) {
             $user = User::create([
-                'name' => 'User' . $i,
+                'name' => 'Agent' . $i,
                 'username' => 'username_' . $i,
-                'email' => 'user' . $i . '@example.com',
-                'password' => bcrypt('user'),
+                'email' => 'agent_' . $i . '@agent.com',
+                'password' => bcrypt('agent'),
                 'dob' => '1990-11-11',
                 'mobile' => '123123123',
                 'avatar' => '/img/authors/default_avatar.png',
             ]);
 
-            $service->create($user, 'user', 'member', false);
+            $service->create($user, 'user', 'agent', false);
         }
-
         DB::statement('update user_meta set is_active = 1, activation_token=null;');
     }
 }

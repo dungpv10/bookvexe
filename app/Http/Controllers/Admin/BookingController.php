@@ -60,11 +60,11 @@ class BookingController extends Controller
     {
         $booking = $this->bookingService->getBooking($id);
 
-        return response()->json([
-            'code' => 1,
-            'msg' => 'Get customer infomation successfully',
-            'data' => $booking
-        ]);
+        if(!$booking){
+            return response()->json(['code' => 0, 'msg' => 'booking not found']);
+        }
+
+        return response()->json(['code' => 1, 'msg' => 'get booking customer successfully', 'data' => $booking]);
     }
 
     /**
@@ -102,12 +102,34 @@ class BookingController extends Controller
     }
 
     public function getJsonData(Request $request) {
+        $user = auth()->user();
         $query = $this->bookingService->getJsonData(['status' => $request->get('status')]);
 
+        if(!$user->hasRole('admin')){
+            $busIds = $user->getBusIds();
+            $query->whereIn('bookings.bus_id', $busIds);
+        }
         return DataTables::of($query)
             ->addColumn('status_name', function(Booking $booking){
                 return $booking->statuses[$booking->payment_status];
             })
             ->make(true);
+    }
+
+
+    public function updateStatus(Request $request, $id){
+        $booking = $this->bookingService->getBooking($id);
+        if(!$booking) return response()->json([
+            'code' => 0,
+            'msg' => 'Booking not found'
+        ]);
+
+        $booking->payment_status = $request->get('status');
+        $booking->update();
+        return response()->json([
+            'code' => 1,
+            'msg' => 'Update status booking successfully',
+            'data' => true
+        ]);
     }
 }

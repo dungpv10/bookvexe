@@ -21,6 +21,8 @@ class DatabaseSeeder extends Seeder
         App\Models\Role::truncate();
         App\Models\User::truncate();
         App\Models\Setting::truncate();
+        App\Models\Team::truncate();
+        DB::table('team_user')->truncate();
 
         $this->callSeeder();
 
@@ -33,6 +35,7 @@ class DatabaseSeeder extends Seeder
         $seeders = [
             RolesTableSeeder::class,
             UserTableSeeder::class,
+            TeamTableSeeder::class,
             BusTypeTableSeeder::class,
             PointTypeTableSeeder::class,
             SettingTableSeeder::class,

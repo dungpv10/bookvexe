@@ -25,7 +25,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = 'bus';
+    protected $redirectTo = 'admin/bus';
 
     /**
      * Create a new controller instance.
@@ -43,10 +43,10 @@ class LoginController extends Controller
      */
     public function authenticated()
     {
-        if (auth()->user()->hasRole('admin')) {
+        if (auth()->user()->hasRole('admin') || auth()->user()->hasRole('agent')) {
             return redirect('/admin/bus');
         }
 
-        return redirect('bus');
+        return redirect('/');
     }
 }

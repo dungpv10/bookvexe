@@ -55,12 +55,6 @@
                                 Danh sách
                             </a>
                         </li>
-                        <li>
-                            <a href="{{route('routes.create')}}">
-                                <i class="fa fa-angle-double-right"></i>
-                                Tạo mới
-                            </a>
-                        </li>
 
                     </ul>
                 </li>
@@ -150,33 +144,32 @@
                     </ul>
                 </li>
                 <!--End User-->
-                <li>
-                    <a href="#">
-                        <i class="livicon" data-name="recycled" data-size="18" data-c="#F89A14" data-hc="#F89A14" data-loop="true"></i>
-                        <span class="title">Quyền</span>
-                        <span class="fa arrow"></span>
-                    </a>
-                    <ul class="sub-menu">
-                        <li>
-                            <a href="{{route('roles.index')}}">
-                                <i class="fa fa-angle-double-right"></i>
-                                Danh sách
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                @if(Gate::allows('admin'))
+                    <li>
+                        <a href="#">
+                            <i class="livicon" data-name="recycled" data-size="18" data-c="#F89A14" data-hc="#F89A14" data-loop="true"></i>
+                            <span class="title">Quyền</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="{{route('roles.index')}}">
+                                    <i class="fa fa-angle-double-right"></i>
+                                    Danh sách
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
 
-                <!--End User-->
+                    <!--End User-->
 
-
-                <li>
-                    <a href="{{ route('setting.index') }}">
-                        <i class="livicon" data-name="gear" data-size="18" data-c="#5bc0de" data-hc="#5bc0de" data-loop="true"></i>
-                        <span class="title">Cài đặt</span>
-                    </a>
-                </li>
-
-
+                    <li>
+                        <a href="{{ route('setting.index') }}">
+                            <i class="livicon" data-name="gear" data-size="18" data-c="#5bc0de" data-hc="#5bc0de" data-loop="true"></i>
+                            <span class="title">Cài đặt</span>
+                        </a>
+                    </li>
+                @endif
             </ul>
             <!-- END SIDEBAR MENU --> </div>
     </section>

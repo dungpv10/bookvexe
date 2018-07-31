@@ -28,6 +28,12 @@ class BusService
     Comment
     */
     public function all() {
+        $user = auth()->user();
+
+        if(!$user->hasRole('admin')){
+            return $this->busModel->where('user_id', $user->id)->get();
+        }
+
     	return $this->busModel->all();
     }
 

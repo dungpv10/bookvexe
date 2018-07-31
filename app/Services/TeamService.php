@@ -35,8 +35,11 @@ class TeamService
      * All teams
      * @return \Illuminate\Support\Collection|null|static|Team
      */
-    public function all($userId)
+    public function all($userId = null)
     {
+        if (empty($userId)) {
+            return $this->model->orderBy('created_at', 'desc')->get();
+        }
         return $this->model->where('user_id', $userId)->orderBy('created_at', 'desc')->get();
     }
 
@@ -207,5 +210,10 @@ class TeamService
         } catch (Exception $e) {
             throw new Exception("Failed to remove member", 1);
         }
+    }
+
+    public function checkTeamLead($userId)
+    {
+        return $this->model->where('user_id', $userId)->first();
     }
 }

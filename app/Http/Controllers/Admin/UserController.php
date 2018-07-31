@@ -6,16 +6,19 @@ use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Services\UserService;
 use App\Services\RoleService;
+use App\Services\TeamService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserInviteRequest;
 use Log;
+use Gate;
 
 class UserController extends Controller
 {
-    public function __construct(UserService $userService, RoleService $roleService)
+    public function __construct(UserService $userService, RoleService $roleService, TeamService $teamService)
     {
         $this->service = $userService;
         $this->roleService = $roleService;
+        $this->teamService = $teamService;
     }
 
     /**
@@ -25,7 +28,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        $roles = $this->roleService->all();
+        $roles = null;
+        if (Gate::allows('admin')) {
+            $roles = $this->roleService->all();
+        }
         return view('admin.users.index')->with('roles', $roles);
     }
 
@@ -107,8 +113,13 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = $this->service->find($id);
-        $roles = $this->roleService->all();
-        return view('admin.users.edit')->with('user', $user)->with('roles', $roles);
+        $roles = null;
+        $teams = null;
+        if (Gate::allows('admin')) {
+            $roles = $this->roleService->all();
+            $teams = $this->teamService->all();
+        }
+        return view('admin.users.edit')->with('user', $user)->with('roles', $roles)->with('teams', $teams);
     }
 
     /**
@@ -120,8 +131,18 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $result = $this->service->update($id, $request->except(['_token', '_method']));
-
+        $data = $request->except(['_token', '_method']);
+        if (Gate::allows('admin')) {
+            $user = $this->service->find($id);
+            $this->service->leaveAllTeams($id);
+            if ($data['roles'] == 'agent') {
+                $this->teamService->create($user->id, ['name' =>'Agent_' . $user->name]);
+            }
+            elseif($data['roles'] == 'staff' && !empty($data['team_id'])) {
+                $this->service->joinTeam($data['team_id'], $id);
+            }
+        }
+        $result = $this->service->update($id, $data);
         if ($result) {
             return back()->with('success', 'Cập nhật thành công');
         }
@@ -160,16 +181,41 @@ class UserController extends Controller
 
     public function create()
     {
-        $roles = $this->roleService->pluckSelection('name');
-        return view('admin.users.create', compact('roles'));
+        $roles = null;
+        $teams = null;
+        if (Gate::allows('admin')) {
+            $roles = $this->roleService->pluckSelection('name');
+            $teams = $this->teamService->all();
+        }
+        return view('admin.users.create', compact('roles', 'teams'));
     }
 
     public function store(Request $request)
     {
-        $this->service->invite($request->except('_token'));
-        if ($request->ajax()) {
-            return response()->json(['code' => 1, 'msg' => 'success']);
+        $data = $request->except('_token');
+        $user = $this->service->invite($data);
+        if ($user) {
+
+            if (Gate::allows('admin')) {
+                if ($data['roles'] == 'agent') {
+                    $this->teamService->create($user->id, ['name' =>'Agent_' . $user->name]);
+                }
+                if ($data['roles'] == 'staff' && !empty($data['team_id'])) {
+                    $this->service->joinTeam($data['team_id'], $user->id);
+                }
+            }
+            elseif (Gate::allows('agent'))
+            {
+                $team = $this->teamService->findByTeamLead(auth()->id());
+                if ($team) {
+                    $this->service->joinTeam($team->id, $user->id);
+                }
+            }
+            if ($request->ajax()) {
+                return response()->json(['code' => 1, 'msg' => 'success']);
+            }
+            return redirect()->back()->with('success', 'Thêm mới người dùng thành công');
         }
-        return redirect()->back()->with('success', 'Thêm mới người dùng thành công');
+        return redirect()->back()->with('error', 'Thêm mới người dùng thất bại');
     }
 }

@@ -274,3 +274,10 @@ button i.fa{
 .wrap_location .ui-widget-content{
     width: 100% !important;
 }
+button i.fa{
+    margin-right: 0;
+}
+
+.btn {
+    border-color : #ccc;
+}
