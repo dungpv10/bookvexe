@@ -311,17 +311,17 @@
                         notEmpty: {
                             message: 'Điểm đi không được trống'
                         },
-                        callback: {
-                            message: 'Giờ đi phải nhỏ hơn giờ đến',
-                            callback: function() {
-                                const start = $('#start_time').val();
-                                const end = $('#arrived_time').val();
-                                if (end > 0 && end != "") {
-                                    return parseFloat(end) > parseFloat(start);
-                                }
-                                return true;
-                            }
-                        }
+                        // callback: {
+                        //     message: 'Giờ đi phải nhỏ hơn giờ đến',
+                        //     callback: function() {
+                        //         const start = $('#start_time').val();
+                        //         const end = $('#arrived_time').val();
+                        //         if (end > 0 && end != "") {
+                        //             return parseFloat(end) > parseFloat(start);
+                        //         }
+                        //         return true;
+                        //     }
+                        // }
                     }
                 },
                 arrived_time: {
@@ -330,14 +330,14 @@
                         notEmpty: {
                             message: 'Điểm đến không được trống'
                         },
-                        callback: {
-                            message: 'Giờ đến phải lớn hơn giờ đi',
-                            callback: function() {
-                                const start = $('#start_time').val();
-                                const end = $('#arrived_time').val();
-                                return parseFloat(end) > parseFloat(start);
-                            }
-                        }
+                        // callback: {
+                        //     message: 'Giờ đến phải lớn hơn giờ đi',
+                        //     callback: function() {
+                        //         const start = $('#start_time').val();
+                        //         const end = $('#arrived_time').val();
+                        //         return parseFloat(end) > parseFloat(start);
+                        //     }
+                        // }
                     }
                 },
                 price: {
