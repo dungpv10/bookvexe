@@ -77,7 +77,6 @@
                     username: "vuvanky"
                 },
                 success: function( data ) {
-                    console.log(data);
                     response( $.map( data.geonames, function( item ) {
                         return {
                             label: item.name + (item.adminName1 ? ", " + item.adminName1 : "") + ", " + item.countryCode,
