@@ -23,11 +23,11 @@
     </div>
     <div class="row form-group">
         <label for="from_place">Điểm đi</label>
-        <input id="from_place" class="form-control" type="text" name="from_place" value="">
+        <input id="from_place" class="form-control geo_location" type="text" name="from_place" value="">
     </div>
     <div class="row form-group">
         <label for="arrived_place">Điểm đến</label>
-        <input id="arrived_place" class="form-control" type="text" name="arrived_place" value="">
+        <input id="arrived_place" class="form-control geo_location" type="text" name="arrived_place" value="">
     </div>
     <div class="row form-group">
         <label for="start_time">Giờ đi</label>

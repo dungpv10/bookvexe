@@ -69,6 +69,31 @@
 @section('js')
 	<script type="text/javascript">
     var routeTable;
+    var dataLocation = function( request, response ) {
+        $.ajax({
+            url: "http://ws.geonames.org/searchJSON",
+            dataType: "jsonp",
+            data: {
+                style: "MEDIUM",
+                maxRows: 10,
+                featureClass: "P",
+                country: "VN,KH",
+                q: request.term,
+                username: "vuvanky"
+            },
+            success: function( data ) {
+                console.log(data);
+                response( $.map( data.geonames, function( item ) {
+                    return {
+                        label: item.name + (item.adminName1 ? ", " + item.adminName1 : "") + ", " + item.countryCode,
+                        value: item.name + (item.adminName1 ? ", " + item.adminName1 : "") + ", " + item.countryCode,
+                        lat: item.lat,
+                        lng: item.lng
+                    }
+                }));
+            }
+        });
+    };
     $(function() {
         $('#bus_id').select2({
             theme: 'bootstrap',
@@ -196,6 +221,17 @@
                 $('.select2-container--default').css({width: '100%'});
 
                 $(".datetimepicker input").timepicker();
+
+                $( ".geo_location" ).autocomplete({
+                    source: dataLocation,
+                    minLength: 0,
+                    delay: 10,
+                    close: function() {
+                        //UI plugin not removing loading gif, lets force it
+                        $( '.geo_location' ).removeClass( "ui-autocomplete-loading" );
+                    }
+                });
+
             });
             validateSetup('frmCreateRoute');
 
@@ -349,6 +385,17 @@
                     $('.select2-container--default').css({width: '100%'});
 
                     $(".datetimepicker input").timepicker();
+
+                    $( ".geo_location" ).autocomplete({
+                        source: dataLocation,
+                        minLength: 0,
+                        delay: 10,
+                        close: function() {
+                            //UI plugin not removing loading gif, lets force it
+                            $( '.geo_location' ).removeClass( "ui-autocomplete-loading" );
+                        }
+                    });
+
                 });
             }).error(function(data){
 
