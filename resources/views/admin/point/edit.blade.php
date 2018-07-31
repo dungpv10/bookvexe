@@ -15,6 +15,7 @@
                         <div class="row form-group">
                             <label for="landmark">Dấu đất</label>
                             <input id="landmark" class="form-control geo_location" type="text" name="landmark" value="{{ $point->landmark }}" placeholder="Dấu đất" required >
+                            <div class="wrap_location"></div>
                         </div>
                     </div>
                 </div>
@@ -29,6 +30,7 @@
                         <div class="row form-group">
                             <label for="address">Địa chỉ</label>
                             <input id="address" class="form-control geo_location" type="text" name="address" value="{{ $point->address }}" placeholder="Địa chỉ" required >
+                            <div class="wrap_location"></div>
                         </div>
                     </div>
                 </div>

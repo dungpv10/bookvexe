@@ -224,7 +224,8 @@
                 $( ".geo_location" ).autocomplete({
                     source: dataLocation,
                     minLength: 0,
-                    delay: 10,
+                    delay: 0,
+                    appendTo: ".wrap_location",
                     close: function() {
                         //UI plugin not removing loading gif, lets force it
                         $( '.geo_location' ).removeClass( "ui-autocomplete-loading" );
@@ -388,7 +389,8 @@
                     $( ".geo_location" ).autocomplete({
                         source: dataLocation,
                         minLength: 0,
-                        delay: 10,
+                        delay: 0,
+                        appendTo: ".wrap_location",
                         close: function() {
                             //UI plugin not removing loading gif, lets force it
                             $( '.geo_location' ).removeClass( "ui-autocomplete-loading" );

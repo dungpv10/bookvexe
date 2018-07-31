@@ -262,3 +262,15 @@ button i.fa{
     float: left;
     min-height: 1px;
 }
+.ui-autocomplete {
+    max-height: 100px;
+    overflow-y: auto;
+    /* prevent horizontal scrollbar */
+    overflow-x: hidden;
+}
+.wrap_location {
+    position: relative;
+}
+.wrap_location .ui-widget-content{
+    width: 100% !important;
+}
