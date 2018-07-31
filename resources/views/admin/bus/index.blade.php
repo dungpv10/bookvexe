@@ -263,14 +263,25 @@
 
                     $('#amenities').tagsinput();
 
-                    $( ".geo_location" ).autocomplete({
+                    $( "#start_point" ).autocomplete({
                         source: dataLocation,
                         minLength: 0,
                         delay: 0,
-                        appendTo: ".wrap_location",
+                        appendTo: ".wrap_location_start",
                         close: function() {
                             //UI plugin not removing loading gif, lets force it
-                            $( '.geo_location' ).removeClass( "ui-autocomplete-loading" );
+                            $( '#start_point' ).removeClass( "ui-autocomplete-loading" );
+                        }
+                    });
+
+                    $( "#end_point" ).autocomplete({
+                        source: dataLocation,
+                        minLength: 0,
+                        delay: 0,
+                        appendTo: ".wrap_location_end",
+                        close: function() {
+                            //UI plugin not removing loading gif, lets force it
+                            $( '#end_point' ).removeClass( "ui-autocomplete-loading" );
                         }
                     });
 
@@ -297,14 +308,25 @@
 
                     $('#amenities').tagsinput();
 
-                    $( ".geo_location" ).autocomplete({
+                    $( "#start_point" ).autocomplete({
                         source: dataLocation,
                         minLength: 0,
                         delay: 0,
-                        appendTo: ".wrap_location",
+                        appendTo: ".wrap_location_start",
                         close: function() {
                             //UI plugin not removing loading gif, lets force it
-                            $( '.geo_location' ).removeClass( "ui-autocomplete-loading" );
+                            $( '#start_point' ).removeClass( "ui-autocomplete-loading" );
+                        }
+                    });
+
+                    $( "#end_point" ).autocomplete({
+                        source: dataLocation,
+                        minLength: 0,
+                        delay: 0,
+                        appendTo: ".wrap_location_end",
+                        close: function() {
+                            //UI plugin not removing loading gif, lets force it
+                            $( '#end_point' ).removeClass( "ui-autocomplete-loading" );
                         }
                     });
 

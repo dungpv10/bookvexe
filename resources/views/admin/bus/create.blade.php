@@ -41,7 +41,7 @@
                             <label for="start_point">Điểm bắt đầu</label>
                             <input id="start_point" class="form-control geo_location" type="text" name="start_point" value=""
                                    placeholder="Điểm bắt đầu" required>
-                            <div class="wrap_location"></div>
+                            <div class="wrap_location_start"></div>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -49,7 +49,7 @@
                             <label for="end_point">Điểm kết thúc</label>
                             <input id="end_point" class="form-control geo_location" type="text" name="end_point" value=""
                                    placeholder="Điểm kết thúc" required>
-                            <div class="wrap_location"></div>
+                            <div class="wrap_location_end"></div>
                         </div>
                     </div>
                 </div>

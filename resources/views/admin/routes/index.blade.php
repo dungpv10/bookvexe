@@ -222,14 +222,25 @@
 
                 $(".datetimepicker input").timepicker();
 
-                $( ".geo_location" ).autocomplete({
+                $( "#from_place" ).autocomplete({
                     source: dataLocation,
                     minLength: 0,
                     delay: 0,
-                    appendTo: ".wrap_location",
+                    appendTo: ".wrap_location_from_place",
                     close: function() {
                         //UI plugin not removing loading gif, lets force it
-                        $( '.geo_location' ).removeClass( "ui-autocomplete-loading" );
+                        $( '#from_place' ).removeClass( "ui-autocomplete-loading" );
+                    }
+                });
+
+                $( "#arrived_place" ).autocomplete({
+                    source: dataLocation,
+                    minLength: 0,
+                    delay: 0,
+                    appendTo: ".wrap_location_arrived_place",
+                    close: function() {
+                        //UI plugin not removing loading gif, lets force it
+                        $( '#arrived_place' ).removeClass( "ui-autocomplete-loading" );
                     }
                 });
 
@@ -387,14 +398,25 @@
 
                     $(".datetimepicker input").timepicker();
 
-                    $( ".geo_location" ).autocomplete({
+                    $( "#from_place" ).autocomplete({
                         source: dataLocation,
                         minLength: 0,
                         delay: 0,
-                        appendTo: ".wrap_location",
+                        appendTo: ".wrap_location_from_place",
                         close: function() {
                             //UI plugin not removing loading gif, lets force it
-                            $( '.geo_location' ).removeClass( "ui-autocomplete-loading" );
+                            $( '#from_place' ).removeClass( "ui-autocomplete-loading" );
+                        }
+                    });
+
+                    $( "#arrived_place" ).autocomplete({
+                        source: dataLocation,
+                        minLength: 0,
+                        delay: 0,
+                        appendTo: ".wrap_location_arrived_place",
+                        close: function() {
+                            //UI plugin not removing loading gif, lets force it
+                            $( '#arrived_place' ).removeClass( "ui-autocomplete-loading" );
                         }
                     });
 
