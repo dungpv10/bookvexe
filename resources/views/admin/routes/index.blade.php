@@ -78,7 +78,8 @@
                 maxRows: 10,
                 featureClass: "P",
                 country: "VN,KH",
-                q: request.term,
+                name: request.term,
+                name_startsWith: request.term,
                 username: "vuvanky"
             },
             success: function( data ) {
