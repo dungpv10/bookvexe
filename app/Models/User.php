@@ -9,6 +9,7 @@ use App\Notifications\ResetPassword;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Gravatar;
 
 class User extends Authenticatable
 {
@@ -173,7 +174,10 @@ class User extends Authenticatable
     }
 
     public function getAvatar() {
-        return asset('upload/avatars/' . $this->avatar);
+        if (!empty($this->avatar)) {
+            return asset($this->avatar);
+        }
+        return Gravatar::src($this->email);
     }
 
     /**
