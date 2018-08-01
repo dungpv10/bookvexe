@@ -74,7 +74,6 @@
                     featureClass: "P",
                     country: "VN,KH",
                     name: request.term,
-                    name_startsWith: request.term,
                     username: "vuvanky"
                 },
                 success: function( data ) {
