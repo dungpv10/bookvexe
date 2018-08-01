@@ -103,13 +103,13 @@ class BusService
         return $this->busModel->id;
     }
 
-    public function findBusByRegNumber($regNumber)
+    public function countBusByRegNumber($regNumber)
     {
-        return $this->busModel->where('bus_reg_number', $regNumber)->get();
+        return $this->busModel->where('bus_reg_number', $regNumber)->count();
     }
 
-    public function findBusByRegNumberAndId($id, $regNumber)
+    public function countBusByRegNumberAndId($id, $regNumber)
     {
-        return $this->busModel->where('bus_reg_number', $regNumber)->where('id', '!=', $id)->get();
+        return $this->busModel->where('bus_reg_number', $regNumber)->where('id', '!=', $id)->count();
     }
 }

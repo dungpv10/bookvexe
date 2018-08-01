@@ -70,8 +70,8 @@ class BusController extends Controller
             DB::beginTransaction();
             $images = $request->file('image_bus');
             $dataRequest = $request->except('_token', 'image_bus');
-            $busRegNumber = $this->busService->findBusByRegNumber($request->input('bus_reg_number'));
-            if (count($busRegNumber) > 0) {
+            $busRegNumber = $this->busService->countBusByRegNumber($request->input('bus_reg_number'));
+            if ($busRegNumber > 0) {
                 return back()->with('err', 'Biển số xe đã tồn tại');
             }
             $result = $this->busService->insertBus($dataRequest);
@@ -130,8 +130,8 @@ class BusController extends Controller
             $images = $request->file('image_bus');
             $imagesRemove = $request->input('image_remove_bus');
             $dataRequest = $request->except('_token', 'image_bus', 'image_remove_bus');
-            $busRegNumber = $this->busService->findBusByRegNumberAndId($id, $request->input('bus_reg_number'));
-            if (count($busRegNumber) > 0) {
+            $busRegNumber = $this->busService->countBusByRegNumberAndId($id, $request->input('bus_reg_number'));
+            if ($busRegNumber > 0) {
                 return back()->with('err', 'Biển số xe đã tồn tại');
             }
             $result = $this->busService->updateBus($id, $dataRequest);
