@@ -26,4 +26,6 @@ class Team extends Model
     {
         return $this->belongsToMany(User::class);
     }
+
+    
 }

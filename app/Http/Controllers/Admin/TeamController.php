@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\Team\ConfirmRequest;
 use Auth;
@@ -27,7 +27,7 @@ class TeamController extends Controller
     public function index(Request $request)
     {
         $teams = $this->service->paginated($request->user()->id);
-        return view('team.index')->with('teams', $teams);
+        return view('admin.team.index')->with('teams', $teams);
     }
 
     /**
@@ -38,7 +38,7 @@ class TeamController extends Controller
     public function search(Request $request)
     {
         $teams = $this->service->search($request->user()->id, $request->search);
-        return view('team.index')->with('teams', $teams);
+        return view('admin.team.index')->with('teams', $teams);
     }
 
     /**
@@ -48,13 +48,13 @@ class TeamController extends Controller
      */
     public function create()
     {
-        return view('team.create');
+        return view('admin.team.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\TeamCreateRequest  $request
+     * @param  \Illuminate\Http\TeamCreateRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(TeamCreateRequest $request)
@@ -62,7 +62,7 @@ class TeamController extends Controller
         $result = $this->service->create(Auth::id(), $request->except('_token'));
 
         if ($result) {
-            return redirect('teams/'.$result->id.'/edit')->with('message', 'Successfully created');
+            return redirect('teams/' . $result->id . '/edit')->with('message', 'Successfully created');
         }
 
         return redirect('teams')->with('message', 'Failed to create');
@@ -71,7 +71,7 @@ class TeamController extends Controller
     /**
      * Display the specified team.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function showByName($name)
@@ -79,7 +79,7 @@ class TeamController extends Controller
         $team = $this->service->findByName($name);
 
         if (Gate::allows('team-member', [$team, Auth::user()])) {
-            return view('team.show')->with('team', $team);
+            return view('admin.team.show')->with('team', $team);
         }
 
         return back();
@@ -88,20 +88,20 @@ class TeamController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
         $team = $this->service->find($id);
-        return view('team.edit')->with('team', $team);
+        return view('admin.team.edit')->with('team', $team);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(TeamUpdateRequest $request, $id)
@@ -118,7 +118,7 @@ class TeamController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -135,7 +135,7 @@ class TeamController extends Controller
     /**
      * Invite a team member
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function inviteMember(UserInviteRequest $request, $id)
@@ -152,7 +152,7 @@ class TeamController extends Controller
     /**
      * Remove a team member
      *
-     * @param  int  $userId
+     * @param  int $userId
      * @return \Illuminate\Http\Response
      */
     public function removeMember($id, $userId)
@@ -167,11 +167,18 @@ class TeamController extends Controller
     }
 
 
-    public function confirmTeam(){
-        return view('team.confirm');
+    public function confirmTeam()
+    {
+        return view('admin.team.confirm');
     }
 
-    public function postConfirmTeam(ConfirmRequest $request){
+    public function postConfirmTeam(ConfirmRequest $request)
+    {
+
+    }
+
+    public function getJsonData()
+    {
 
     }
 }

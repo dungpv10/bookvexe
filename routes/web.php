@@ -89,20 +89,6 @@ Route::group(['middleware' => ['auth', 'active']], function () {
 
     /*
     |--------------------------------------------------------------------------
-    | Team Routes
-    |--------------------------------------------------------------------------
-    */
-
-    Route::get('team/{name}', 'TeamController@showByName');
-    Route::resource('teams', 'TeamController', ['except' => ['show']]);
-    Route::post('teams/search', 'TeamController@search');
-    Route::post('teams/{id}/invite', 'TeamController@inviteMember');
-    Route::get('teams/{id}/remove/{userId}', 'TeamController@removeMember');
-
-    Route::get('teams/confirms/{userId}', ['uses' => 'TeamController@confirmTeam', 'as' => 'teams.confirm']);
-    Route::post('teams/confirms/{userId}', ['uses' => 'TeamController@postConfirmTeam', 'as' => 'teams.post.confirm']);
-    /*
-    |--------------------------------------------------------------------------
     | Admin
     |--------------------------------------------------------------------------
     */
@@ -185,6 +171,24 @@ Route::group(['middleware' => ['auth', 'active']], function () {
             'as' => 'bookings.update_status'
         ]);
         Route::resource('bookings', 'BookingController');
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | Team Routes
+        |--------------------------------------------------------------------------
+        */
+        Route::get('team/getJsonData', ['uses' => 'TeamController@getJsonData', 'as' => 'teams.get_json_data']);
+        Route::get('team/{name}', 'TeamController@showByName');
+        Route::resource('teams', 'TeamController', ['except' => ['show']]);
+        Route::post('teams/search', 'TeamController@search');
+        Route::post('teams/{id}/invite', 'TeamController@inviteMember');
+        Route::get('teams/{id}/remove/{userId}', 'TeamController@removeMember');
+
+        Route::get('teams/confirms/{userId}', ['uses' => 'TeamController@confirmTeam', 'as' => 'teams.confirm']);
+        Route::post('teams/confirms/{userId}', ['uses' => 'TeamController@postConfirmTeam', 'as' => 'teams.post.confirm']);
+
+
 
         /*
         |--------------------------------------------------------------------------

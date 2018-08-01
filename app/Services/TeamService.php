@@ -216,4 +216,9 @@ class TeamService
     {
         return $this->model->where('user_id', $userId)->first();
     }
+
+    public function getJsonData()
+    {
+
+    }
 }

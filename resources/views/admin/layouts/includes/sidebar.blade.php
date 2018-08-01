@@ -147,6 +147,23 @@
                 @if(Gate::allows('admin'))
                     <li>
                         <a href="#">
+                            <i class="livicon" data-name="presentation" data-size="18" data-c="#EF6F6C" data-hc="#EF6F6C" data-loop="true"></i>
+                            <span class="title">Nhà xe</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="{{route('teams.index')}}">
+                                    <i class="fa fa-angle-double-right"></i>
+                                    Danh sách
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+
+                    <li>
+                        <a href="#">
                             <i class="livicon" data-name="recycled" data-size="18" data-c="#F89A14" data-hc="#F89A14" data-loop="true"></i>
                             <span class="title">Quyền</span>
                             <span class="fa arrow"></span>
