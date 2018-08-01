@@ -275,11 +275,11 @@
                         notEmpty: {
                             message: 'Điểm đi không được trống'
                         },
-                        stringLength: {
-                            min: 6,
-                            max: 30,
-                            message: 'Điểm đi dài từ 6 tớ 30 ký tự'
-                        }
+                        // stringLength: {
+                        //     min: 6,
+                        //     max: 30,
+                        //     message: 'Điểm đi dài từ 6 tớ 30 ký tự'
+                        // }
                     },
                     callback: {
                         message: 'Điểm đi và điểm đến phải khác nhau',
@@ -299,11 +299,11 @@
                         notEmpty: {
                             message: 'Điểm đến không được trống'
                         },
-                        stringLength: {
-                            min: 6,
-                            max: 30,
-                            message: 'Điểm đến dài từ 6 tớ 30 ký tự'
-                        },
+                        // stringLength: {
+                        //     min: 6,
+                        //     max: 30,
+                        //     message: 'Điểm đến dài từ 6 tớ 30 ký tự'
+                        // },
                         callback: {
                             message: 'Điểm đi và điểm đến phải khác nhau',
                             callback: function() {
