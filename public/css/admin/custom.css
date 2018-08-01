@@ -268,7 +268,7 @@ button i.fa{
     /* prevent horizontal scrollbar */
     overflow-x: hidden;
 }
-.wrap_location {
+.div[class^="wrap_location"] {
     position: relative;
 }
 .wrap_location .ui-widget-content{
