@@ -31,7 +31,7 @@ class UserTableSeeder extends Seeder
         for ($i = 1; $i < 5; $i ++) {
             $user = User::create([
                 'name' => 'Agent' . $i,
-                'username' => 'username_' . $i,
+                'username' => 'agent_' . $i,
                 'email' => 'agent_' . $i . '@agent.com',
                 'password' => bcrypt('agent'),
                 'dob' => '1990-11-11',
@@ -40,6 +40,20 @@ class UserTableSeeder extends Seeder
 
             $service->create($user, 'user', 'agent', false);
         }
+
+        for ($i = 1; $i < 5; $i ++) {
+            $user = User::create([
+                'name' => 'Staff' . $i,
+                'username' => '' . $i,
+                'email' => 'staff_' . $i . '@agent.com',
+                'password' => bcrypt('agent'),
+                'dob' => '1990-11-11',
+                'mobile' => '123123123',
+            ]);
+
+            $service->create($user, 'user', 'staff', false);
+        }
+
         DB::statement('update user_meta set is_active = 1, activation_token=null;');
     }
 }

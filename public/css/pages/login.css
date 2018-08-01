@@ -77,7 +77,7 @@ input {
 }
 
 /* all the input except submit and checkbox */
-#wrapper input:not([type="checkbox"]) {
+#wrapper input:not([type="checkbox"]), #wrapper textarea {
     width: 86%;
     margin-top: 4px;
     padding: 10px 5px 10px 26px;

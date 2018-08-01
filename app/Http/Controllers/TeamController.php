@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Team\ConfirmRequest;
 use Auth;
 use Gate;
 use Illuminate\Http\Request;
@@ -163,5 +164,14 @@ class TeamController extends Controller
         }
 
         return back()->with('message', 'Failed to remove member');
+    }
+
+
+    public function confirmTeam(){
+        return view('team.confirm');
+    }
+
+    public function postConfirmTeam(ConfirmRequest $request){
+
     }
 }

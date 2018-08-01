@@ -99,6 +99,8 @@ Route::group(['middleware' => ['auth', 'active']], function () {
     Route::post('teams/{id}/invite', 'TeamController@inviteMember');
     Route::get('teams/{id}/remove/{userId}', 'TeamController@removeMember');
 
+    Route::get('teams/confirms/{userId}', ['uses' => 'TeamController@confirmTeam', 'as' => 'teams.confirm']);
+    Route::post('teams/confirms/{userId}', ['uses' => 'TeamController@postConfirmTeam', 'as' => 'teams.post.confirm']);
     /*
     |--------------------------------------------------------------------------
     | Admin

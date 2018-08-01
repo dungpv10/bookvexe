@@ -43,9 +43,15 @@ class LoginController extends Controller
      */
     public function authenticated()
     {
-        if (auth()->user()->hasRole('admin') || auth()->user()->hasRole('agent')) {
+        $currentUser = auth()->user();
+        if($currentUser->hasRole('agent') && $currentUser->teams()->count() == 0){
+            return redirect()->route('teams.confirm', [$currentUser->id]);
+        }
+
+        if ($currentUser->hasRole('admin') || $currentUser->hasRole('agent')) {
             return redirect('/admin/bus');
         }
+
 
         return redirect('/');
     }

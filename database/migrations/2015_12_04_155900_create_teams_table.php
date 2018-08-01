@@ -16,6 +16,8 @@ class CreateTeamsTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->string('name');
+            $table->string('address', 255)->nullable();
+            $table->string('agent_license')->nullable();
             $table->timestamps();
         });
     }

@@ -13,10 +13,12 @@
 @if (session('err') || session('errors'))
 	<div class="alert alert-danger  alert-dismissable">
 	@if (session('errors'))
+		<ul>
 		    @foreach ($errors->all() as $error)
-		    	<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-	   			 {{ $error }}
+		    	<li>{{ $error }}</li>
+
 		    @endforeach
+		</ul>
 	@else
 	    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 	    <strong>Thất bại!</strong> {{ session('err') }}

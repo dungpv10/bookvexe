@@ -8,7 +8,8 @@
 
 $factory->define(App\Models\Team::class, function (Faker\Generator $faker) {
     return [
-        'user_id' => 1,
-        'name' => $faker->name
+        'name' => $faker->name,
+        'address' => $faker->address,
+        'agent_license' => 'license '. $faker->unique()->randomNumber(8)
     ];
 });
