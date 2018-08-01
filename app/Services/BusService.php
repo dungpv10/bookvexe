@@ -102,4 +102,14 @@ class BusService
         $this->busModel->fill($dataRequest)->save();
         return $this->busModel->id;
     }
+
+    public function countBusByRegNumber($regNumber)
+    {
+        return $this->busModel->where('bus_reg_number', $regNumber)->count();
+    }
+
+    public function countBusByRegNumberAndId($id, $regNumber)
+    {
+        return $this->busModel->where('bus_reg_number', $regNumber)->where('id', '!=', $id)->count();
+    }
 }
