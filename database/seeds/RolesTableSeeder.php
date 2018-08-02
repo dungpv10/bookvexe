@@ -12,19 +12,19 @@ class RolesTableSeeder extends Seeder
      */
     public function run()
     {
-        Role::create([
-            'name' => 'admin',
-            'label' => 'Admin',
-        ]);
-        if (! Role::where('name', 'member')->first()) {
-            Role::create([
-                'name' => 'agent',
-                'label' => 'Nhà xe',
-            ]);
-            Role::create([
+        Role::insert([
+            [
+                'name' => 'root',
+                'label' => 'Root',
+            ],
+            [
+                'name' => 'admin',
+                'label' => 'Quản lý nhà xe',
+            ],
+            [
                 'name' => 'staff',
                 'label' => 'Nhân viên',
-            ]);
-        }
+            ]
+        ]);
     }
 }

@@ -20,24 +20,26 @@ class BusService
      * BusService constructor.
      * @param Bus $busModel
      */
-    public function __construct(Bus $busModel) {
+    public function __construct(Bus $busModel)
+    {
         $this->busModel = $busModel;
     }
 
     /**
-    Comment
-    */
-    public function all() {
+     * Comment
+     */
+    public function all()
+    {
         $user = auth()->user();
 
-        if(!$user->hasRole('admin')){
+        if (!$user->hasRole('admin')) {
             return $this->busModel->where('user_id', $user->id)->get();
         }
 
-    	return $this->busModel->all();
+        return $this->busModel->all();
     }
 
-    public function getJSONData($busType = null, $search='')
+    public function getJSONData($busType = null, $search = '')
     {
         $result = $this->busModel->with('busType')->select('id', 'bus_name', 'bus_reg_number', 'bus_type_id', 'number_seats', 'start_point', 'end_point', 'start_time', 'end_time')
             ->where('id', '!=', 0);
@@ -47,8 +49,7 @@ class BusService
         if (auth()->user()->hasRole('agent')) {
             $result->where('buses.user_id', auth()->user()->id);
         }
-        return DataTables::of($result
-        )->addColumn('busType', function(Bus $bus){
+        return DataTables::of($result)->addColumn('busType', function (Bus $bus) {
             return $bus->busType->bus_type_name;
         })->make(true);
     }
@@ -58,7 +59,8 @@ class BusService
         return $this->busModel->with('busType')->with('images')->find($id);
     }
 
-    public function updateBus($id = null, $dataRequest){
+    public function updateBus($id = null, $dataRequest)
+    {
         $bus = $this->busModel->where('buses.id', $id);
         if (auth()->user()->hasRole('agent')) {
             $bus->where('buses.user_id', auth()->user()->id);
@@ -75,9 +77,9 @@ class BusService
     public function getTime($time)
     {
         $chunks = explode(':', $time);
-        if (strpos( $time, 'AM') === false && $chunks[0] !== '12') {
+        if (strpos($time, 'AM') === false && $chunks[0] !== '12') {
             $chunks[0] = $chunks[0] + 12;
-        } else if (strpos( $time, 'PM') === false && $chunks[0] == '12') {
+        } else if (strpos($time, 'PM') === false && $chunks[0] == '12') {
             $chunks[0] = '00';
         }
         $chunks[1] = str_replace(' PM', ':00', $chunks['1']);
@@ -95,7 +97,8 @@ class BusService
         }
     }
 
-    public function insertBus($dataRequest){
+    public function insertBus($dataRequest)
+    {
         $dataRequest['user_id'] = auth()->user()->id;
         $dataRequest['start_time'] = $this->getTime($dataRequest['start_time']);
         $dataRequest['end_time'] = $this->getTime($dataRequest['end_time']);

@@ -18,7 +18,7 @@ class Roles
     public function handle($request, Closure $next, ... $roles)
     {
         foreach ($roles as $role) {
-            if ($request->user()->hasRole($role)) {
+            if (auth()->user()->role->name == $role) {
                 return $next($request);
             }
         }

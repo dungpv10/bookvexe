@@ -19,6 +19,12 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
         'email' => $faker->unique()->safeEmail,
         'username' => $faker->userName,
         'password' => $password ?: $password = bcrypt('secret'),
+        'dob' => $faker->time('Y-m-d'),
+        'mobile' => $faker->phoneNumber,
+        'gender' => array_rand([USER_GENDER_MALE, USER_GENDER_FEMALE]),
+        'status' => USER_STATUS_ACTIVE,
+        'avatar' => $faker->imageUrl(200, 200),
+        'address' => $faker->address,
         'remember_token' => str_random(10),
     ];
 });

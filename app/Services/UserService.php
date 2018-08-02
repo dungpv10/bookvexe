@@ -51,7 +51,8 @@ class UserService
         Team $team,
         Role $role,
         DataTables $datatable
-    ) {
+    )
+    {
         $this->model = $model;
         $this->userMeta = $userMeta;
         $this->team = $team;
@@ -92,7 +93,7 @@ class UserService
         $columns = Schema::getColumnListing('users');
 
         foreach ($columns as $attribute) {
-            $query->orWhere($attribute, 'LIKE', '%'.$input.'%');
+            $query->orWhere($attribute, 'LIKE', '%' . $input . '%');
         };
 
         return $query->paginate(env('PAGINATE', 25));
@@ -188,7 +189,7 @@ class UserService
      */
     public function update($userId, $payload)
     {
-        if (isset($payload['meta']) && ! isset($payload['meta']['terms_and_cond'])) {
+        if (isset($payload['meta']) && !isset($payload['meta']['terms_and_cond'])) {
             throw new Exception("You must agree to the terms and conditions.", 1);
         }
 
@@ -433,8 +434,7 @@ class UserService
             ->join('roles', 'roles.id', '=', 'role_user.role_id')
             ->where('users.id', '!=', auth()->id())
             ->select('users.*');
-        if (Gate::denies('admin'))
-        {
+        if (Gate::denies('admin')) {
             if ($teams) {
                 $teamIds = [];
                 foreach ($teams as $team) {
@@ -442,25 +442,24 @@ class UserService
                 }
             }
             $builder->join('team_user', 'team_user.user_id', 'users.id')
-                    ->whereIn('team_user.team_id', $teamIds);
+                ->whereIn('team_user.team_id', $teamIds);
         }
         if (!empty($roleId)) {
             $builder = $builder->where('roles.id', '=', $roleId);
         }
         return $this->datatable->eloquent($builder)
             ->filter(function ($query) use ($search, $roleId) {
-                if(!empty($search))
-                {
+                if (!empty($search)) {
                     $search = strtolower(trim($search));
                     $query->whereRaw('(LOWER(`users`.`name`) LIKE "%' . $search . '%" OR LOWER(`users`.`email`) LIKE "%' . $search . '%")');
                 }
             })
             ->addColumn('rName', function (User $user) {
-                    return $user->roles->map(function($role) {
-                        return str_limit($role->label);
-                    })->implode(' | ');
-                })
-            ->addColumn('status_name', function(User $user){
+                return $user->roles->map(function ($role) {
+                    return str_limit($role->label);
+                })->implode(' | ');
+            })
+            ->addColumn('status_name', function (User $user) {
                 return $user->status_name;
             })
             ->make(true);
@@ -471,4 +470,8 @@ class UserService
     {
         return $this->model->fill($data)->save();
     }
+    
 }
+
+
+

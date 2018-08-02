@@ -2,11 +2,8 @@
 
 namespace App\Models;
 
-use App\Models\Role;
-use App\Models\Team;
-use App\Models\UserMeta;
+use App\Model\Agent;
 use App\Notifications\ResetPassword;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Gravatar;
@@ -51,7 +48,6 @@ class User extends Authenticatable
     /**
      * User UserMeta
      *
-     * @return Relationship
      */
     public function meta()
     {
@@ -61,11 +57,10 @@ class User extends Authenticatable
     /**
      * User Roles
      *
-     * @return Relationship
      */
-    public function roles()
+    public function role()
     {
-        return $this->belongsToMany(Role::class);
+        return $this->belongsTo(Role::class, 'role_id', 'id');
     }
 
     /**
@@ -76,8 +71,8 @@ class User extends Authenticatable
      */
     public function hasRole($role)
     {
-        $roles = array_column($this->roles->toArray(), 'name');
-        return array_search($role, $roles) > -1;
+        $roleName = $this->role->name;
+        return $roleName == $role;
     }
 
     /**
@@ -93,7 +88,7 @@ class User extends Authenticatable
                 return true;
             }
         });
-        
+
     }
 
     /**
@@ -172,6 +167,12 @@ class User extends Authenticatable
 
         return self::$gender[$this->getAttribute('gender')];
     }
+
+
+    public function agent(){
+        return $this->belongsTo(Agent::class, 'agent_id', 'id');
+    }
+
 
     public function getAvatar() {
         if (!empty($this->avatar)) {
