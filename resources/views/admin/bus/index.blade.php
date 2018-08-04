@@ -10,9 +10,12 @@
         <div class="box">
             <div class="box-header with-border margin-bottom-10">
                 <h3 class="box-title">Danh sách xe bus</h3>
-                <button class="btn btn-primary" type="button" onclick="showViewCreateBus()">
-                    <i class="fa fa-plus-circle" aria-hidden="true"></i>Thêm mới
-                </button>
+
+                @if(Gate::allows('admin'))
+                    <button class="btn btn-primary" type="button" onclick="showViewCreateBus()">
+                        <i class="fa fa-plus-circle" aria-hidden="true"></i>Thêm mới
+                    </button>
+                @endif
             </div>
             <div class="table-responsive">
 
@@ -155,6 +158,7 @@
                         }
                     },
                     { data: 'id', name: 'id', title: 'Action', searchable: false,className: 'text-center', "orderable": false,
+                        visible : visible,
                         render: function(data, type, row, meta){
                             var busId = "'" + data + "'";
                             var actionLink = '<a href="javascript:;" data-toggle="tooltip" title="Xoá '+ row['bus_name'] +'!" onclick="deleteBusById('+ busId +')"><i class=" fa-2x fa fa-trash" aria-hidden="true"></i></a>';

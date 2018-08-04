@@ -30,7 +30,7 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         Gate::define('agent', function ($user) {
-            return $this->hasRole($user, ['agent']);
+            return $this->hasRole($user, ['admin']);
         });
 
         Gate::define('staff', function ($user) {
@@ -44,7 +44,8 @@ class AuthServiceProvider extends ServiceProvider
 
 
     private function hasRole($user, $roles){
-        $roleName = $user->role->first()->name;
+        $roleName = $user->role->name;
+
         return (in_array($roleName, $roles));
     }
 }

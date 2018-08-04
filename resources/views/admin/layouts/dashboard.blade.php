@@ -107,6 +107,11 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
+
+        var visible = false;
+        @if(\Gate::allows('admin'))
+            visible = true;
+        @endif
     </script>
     <!-- end of page level js -->
     @yield("js")

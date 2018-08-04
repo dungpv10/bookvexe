@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Model\Agent;
+use App\Models\Agent;
 use App\Notifications\ResetPassword;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;

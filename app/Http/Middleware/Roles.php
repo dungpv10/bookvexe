@@ -17,10 +17,10 @@ class Roles
      */
     public function handle($request, Closure $next, ... $roles)
     {
-        foreach ($roles as $role) {
-            if (auth()->user()->role->name == $role) {
-                return $next($request);
-            }
+        $roleName = auth()->user()->role->name;
+
+        if(in_array($roleName, $roles)){
+            return $next($request);
         }
 
         return response()->view('errors.401', [], 401);

@@ -20,9 +20,11 @@
             <div class="box">
                 <div class="box-header with-border margin-bottom-10">
                     <h3 class="box-title">Danh sách thành viên</h3>
-                    <button type="button" class="btn btn-primary" id="createUserBtn">
-                        <i class="fa fa-plus-circle" aria-hidden="true"></i>Thêm mới
-                    </button>
+                    @if(Gate::allows('admin'))
+                        <button type="button" class="btn btn-primary" id="createUserBtn">
+                            <i class="fa fa-plus-circle" aria-hidden="true"></i>Thêm mới
+                        </button>
+                    @endif
                 </div>
 
 
@@ -100,6 +102,7 @@
                 { data: 'created_at', name: 'created_at', title: 'Ngày tạo'},
                 { data: 'updated_at', name: 'updated_at', title: 'Ngày cập nhật'},
                 { data: 'id', name: 'id', title: 'Thao Tác', searchable: false,className: 'text-center', "orderable": false,
+                    visible : visible,
                     render: function(data, type, row, meta){
                         var userId = "'" + row['id'] + "'";
                         let urlEdit = window.location.origin + '/admin/users/' + data + '/edit';

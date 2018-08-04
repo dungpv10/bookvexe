@@ -23,16 +23,19 @@ class RouteService
     public $pagination;
     public $datatable;
 
+    public $userService;
+
     /**
      * Service Constructor
      *
      * @param Route $route
      */
-    public function __construct(Route $route, DataTables $datatable)
+    public function __construct(Route $route, DataTables $datatable, UserService $userService)
     {
         $this->model = $route;
         $this->pagination = 25;
         $this->datatable = $datatable;
+        $this->userService = $userService;
 
     }
 
@@ -132,6 +135,8 @@ class RouteService
         return $this->model->orderBy('route_name', 'ASC')->pluck('route_name','id');
     }
 
+
+
     public function getJSONData($busId = null, $search = "")
     {
         $builder = $this->model->with('bus')
@@ -141,10 +146,9 @@ class RouteService
             $builder = $builder->where('buses.id', '=', $busId);
         }
 
-        $user = auth()->user();
-        if(!$user->hasRole('admin')){
-            $busIds = $user->getBusIds();
-            $builder->whereIn('bus_id', $busIds);
+        $adminAgentId = $this->userService->getAdminAgentId();
+        if(!empty($adminAgentId)){
+            $builder->where('buses.user_id', $adminAgentId);
         }
 
         return $this->datatable->eloquent($builder)

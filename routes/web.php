@@ -93,7 +93,7 @@ Route::group(['middleware' => ['auth', 'active']], function () {
     |--------------------------------------------------------------------------
     */
 
-    Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'roles:root,agent'], function () {
+    Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'roles:root,admin,staff'], function () {
         Route::get('/', function(){
             return redirect()->route('bus.index');
         });

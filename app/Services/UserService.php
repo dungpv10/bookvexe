@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Agent;
 use DB;
 use Auth;
 use Mail;
@@ -38,6 +39,7 @@ class UserService
      */
     protected $team;
 
+    protected $agent;
     /**
      * Role Service
      * @var RoleService
@@ -50,7 +52,8 @@ class UserService
         UserMeta $userMeta,
         Team $team,
         Role $role,
-        DataTables $datatable
+        DataTables $datatable,
+        Agent $agent
     )
     {
         $this->model = $model;
@@ -58,6 +61,7 @@ class UserService
         $this->team = $team;
         $this->role = $role;
         $this->datatable = $datatable;
+        $this->agent = $agent;
     }
 
     /**
@@ -427,23 +431,17 @@ class UserService
 
     public function getJSONData($roleId = null, $search = "")
     {
-        $teams = auth()->user()->teams;
-        $teamIds = [0];
-        $builder = $this->model->with('roles')
-            ->join('role_user', 'users.id', '=', 'role_user.user_id')
-            ->join('roles', 'roles.id', '=', 'role_user.role_id')
-            ->where('users.id', '!=', auth()->id())
-            ->select('users.*');
-        if (Gate::denies('admin')) {
-            if ($teams) {
-                $teamIds = [];
-                foreach ($teams as $team) {
-                    $teamIds[] = $team->id;
-                }
-            }
-            $builder->join('team_user', 'team_user.user_id', 'users.id')
-                ->whereIn('team_user.team_id', $teamIds);
+
+        $builder = $this->model->with('role');
+
+        $admin = $this->getAdminAgent();
+
+        if(!empty($admin)){
+            $agentId = $admin->agent->id;
+            $builder->where('users.agent_id', $agentId);
         }
+
+
         if (!empty($roleId)) {
             $builder = $builder->where('roles.id', '=', $roleId);
         }
@@ -455,9 +453,7 @@ class UserService
                 }
             })
             ->addColumn('rName', function (User $user) {
-                return $user->roles->map(function ($role) {
-                    return str_limit($role->label);
-                })->implode(' | ');
+                return $user->role->name;
             })
             ->addColumn('status_name', function (User $user) {
                 return $user->status_name;
@@ -470,8 +466,19 @@ class UserService
     {
         return $this->model->fill($data)->save();
     }
-    
+
+
+    public function getAdminAgent($user = null){
+        if(empty($user)) $user = auth()->user();
+
+        $agentId = $user->agent ? $user->agent->id : null;
+        return $agentId != null ? $this->model->where('agent_id', $agentId)->where('role_id', 2)->first() : null;
+    }
+
+    public function getAdminAgentId($user = null){
+        $admin = $this->getAdminAgent($user);
+
+        return $admin ? $admin->id : false;
+    }
+
 }
-
-
-

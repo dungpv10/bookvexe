@@ -39,7 +39,6 @@ class BusController extends Controller
      */
     public function index()
     {
-        // show view list bus
         $result = $this->busService->all();
         $busTypes = $this->busTypeService->getAllBusType();
         return view('admin.bus.index')->with('listBus', $result)->with('busTypes', $busTypes);
@@ -200,8 +199,4 @@ class BusController extends Controller
         ]);
     }
 
-    public function getAmenities()
-    {
-        return response()->json([]);
-    }
 }

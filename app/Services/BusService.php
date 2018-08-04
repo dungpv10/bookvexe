@@ -5,7 +5,6 @@ namespace App\Services;
 use DB;
 use App\Models\Bus;
 use Yajra\Datatables\Datatables;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class BusService
 {
@@ -16,13 +15,16 @@ class BusService
      */
     protected $busModel;
 
+    protected $userService;
+
     /**
      * BusService constructor.
      * @param Bus $busModel
      */
-    public function __construct(Bus $busModel)
+    public function __construct(Bus $busModel, UserService $userService)
     {
         $this->busModel = $busModel;
+        $this->userService = $userService;
     }
 
     /**
@@ -32,8 +34,9 @@ class BusService
     {
         $user = auth()->user();
 
-        if (!$user->hasRole('admin')) {
-            return $this->busModel->where('user_id', $user->id)->get();
+        $adminAgentId = $this->userService->getAdminAgentId();
+        if (!empty($adminAgentId)) {
+            return $this->busModel->where('user_id', $adminAgentId)->get();
         }
 
         return $this->busModel->all();
@@ -46,9 +49,13 @@ class BusService
         if (!empty($busType)) {
             $result->where('bus_type_id', $busType);
         }
-        if (auth()->user()->hasRole('agent')) {
-            $result->where('buses.user_id', auth()->user()->id);
+
+        $adminAgentId = $this->userService->getAdminAgentId();
+
+        if(!empty($adminAgentId)){
+            $result->where('buses.user_id', $adminAgentId);
         }
+
         return DataTables::of($result)->addColumn('busType', function (Bus $bus) {
             return $bus->busType->bus_type_name;
         })->make(true);
