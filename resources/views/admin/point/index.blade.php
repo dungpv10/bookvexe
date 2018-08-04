@@ -10,9 +10,11 @@
         <div class="box">
             <div class="box-header with-border margin-bottom-10">
                 <h3 class="box-title">Danh sách điểm dừng</h3>
-                <button class="btn btn-primary" type="button" onclick="showViewCreatePoint()">
-                    <i class="fa fa-plus-circle" aria-hidden="true"></i>Thêm mới
-                </button>
+                @if(Gate::allows('admin'))
+                    <button class="btn btn-primary" type="button" onclick="showViewCreatePoint()">
+                        <i class="fa fa-plus-circle" aria-hidden="true"></i>Thêm mới
+                    </button>
+                @endif
             </div>
             <div class="table-responsive">
 
@@ -121,6 +123,7 @@
                     { data: 'landmark', name: 'landmark', title: 'Dấu đất'},
                     { data: 'address', name: 'address', title: 'Địa chỉ'},
                     { data: 'id', name: 'id', title: 'Action', searchable: false,className: 'text-center', "orderable": false,
+                        visible: visible,
                         render: function(data, type, row, meta){
                             var pointId = "'" + data + "'";
                             var actionLink = '<a href="javascript:;" data-toggle="tooltip" title="Xoá '+ row['boardingPoint'] +'!" onclick="deletePointById('+ pointId +')"><i class=" fa-2x fa fa-trash" aria-hidden="true"></i></a>';

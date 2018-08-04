@@ -10,10 +10,12 @@ use App\Models\Bus;
 class PointService
 {
     protected $pointModel;
+    protected $userService;
 
-    public function __construct(Point $pointModel)
+    public function __construct(Point $pointModel, UserService $userService)
     {
         $this->pointModel = $pointModel;
+        $this->userService = $userService;
     }
 
     public function getJSONData($pointTypeId = null, $search='')
@@ -22,8 +24,10 @@ class PointService
         if (!empty($pointTypeId)) {
             $result->where('point_type_id', $pointTypeId);
         }
-        if (auth()->user()->hasRole('agent')) {
-            $result->where('points.user_id', auth()->user()->id);
+
+        $adminAgentId = $this->userService->getAdminAgentId();
+        if (!empty($adminAgentId)) {
+            $result->where('points.user_id', $adminAgentId);
         }
         return DataTables::of($result)->addColumn('busName', function($result){
             return $result->route->bus->bus_name;
