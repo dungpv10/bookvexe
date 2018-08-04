@@ -43,11 +43,11 @@ class LoginController extends Controller
      */
     public function authenticated()
     {
-        if(\Gate::allows('agent') && empty(auth()->user()->agent)){
-            return 1;
+        if(\Gate::allows('agent') && empty(auth()->user()->agent)) {
+            return redirect()->route('users.confirm');
         }
 
-        if(\Gate::allows('root')){
+        if(\Gate::allows('admin')){
             return redirect()->route('bus.index');
         }
 

@@ -23,19 +23,15 @@
                     </div>
                     @if(Gate::allows('admin'))
 
-                        <div class="row form-group hidden" id="slect_agent">
+                        <div class="row form-group" id="slect_agent">
 
                             <label for="team_id">Agent</label>
-                            <select class="form-control" id="team_id" name="team_id">
-                                @foreach($teams as $team)
-                                    <option value="{{ $team->id }}">{{ $team->name }}</option>
-                                @endforeach
-                            </select>
+                            {!! Form::select('agent_id', $teams, '', ['id' => 'team_id', 'class' => 'form-control']) !!}
                         </div>
 
                         <div class="row form-group">
                             <label for="Role">Quyền</label>
-                            {!! Form::select('roles', $roles, '', ['class' => 'form-control', 'id' => 'roles']) !!}
+                            {!! Form::select('role_id', $roles, '', ['class' => 'form-control', 'id' => 'roles']) !!}
                         </div>
 
                     @endif

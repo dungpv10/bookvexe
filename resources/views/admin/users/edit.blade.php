@@ -42,23 +42,16 @@
         <input id="address" class="form-control" type="text" name="address" value="{{ $user->address }}">
     </div>
     @if(Gate::allows('admin'))
+        <div class="row form-group" id="slect_agent">
+            <label for="team_id">Agent</label>
+            {!! Form::select('agent_id', $teams, '', ['id' => 'team_id', 'class' => 'form-control']) !!}
+        </div>
+
         <div class="row  form-group">
             <label for="Role">Quyền</label>
-            <select class="form-control" name="roles" id="roles">
-                <option value="">Chọn Quyền</option>
-                @foreach($roles as $role)
-                <option value="{{ $role->name }}" {{ $user->hasRole($role->name) ? 'selected' : '' }}>{{ $role->label }}</option>
-                @endforeach
-            </select>
+            {!! Form::select('role_id', $roles, $user->role->id, ['class' => 'form-control', 'id' => 'roles']) !!}
         </div>
-        <div class="row form-group hidden" id="slect_agent">
-            <label for="team_id">Agent</label>
-            <select class="form-control" id="team_id" name="team_id">
-                @foreach($teams as $team)
-                    <option value="{{ $team->id }}">{{ $team->name }}</option>
-                @endforeach
-            </select>   
-        </div>
+
     @endif
     <div class="row text-center">
         <button class="btn btn-primary" type="submit"><i class="fa fa-check" aria-hidden="true"></i>Cập nhật</button>

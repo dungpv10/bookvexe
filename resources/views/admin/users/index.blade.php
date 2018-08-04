@@ -281,17 +281,17 @@
 
     function controlAgent()
     {
-        $('#roles').on('change', function(){
-            if ($(this).val() != 'staff') {
-                $('#team_id').val('').change();
-                $('#slect_agent').removeClass('hidden');
-                $('#slect_agent').addClass('hidden');
-            }
-            else {
-                $('#slect_agent').removeClass('hidden');
-            }
-
-        });
+        // $('#roles').on('change', function(){
+        //     if ($(this).val() != 'staff') {
+        //         $('#team_id').val('').change();
+        //         $('#slect_agent').removeClass('hidden');
+        //         $('#slect_agent').addClass('hidden');
+        //     }
+        //     else {
+        //         $('#slect_agent').removeClass('hidden');
+        //     }
+        //
+        // });
     }
 
 	</script>

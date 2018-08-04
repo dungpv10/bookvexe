@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests;
+use App\Services\AgentService;
 use Illuminate\Http\Request;
 use App\Services\UserService;
 use App\Services\RoleService;
@@ -14,11 +15,14 @@ use Gate;
 
 class UserController extends Controller
 {
-    public function __construct(UserService $userService, RoleService $roleService, TeamService $teamService)
+    protected $service;
+    protected $roleService;
+    protected $agentService;
+    public function __construct(UserService $userService, RoleService $roleService, AgentService $agentService)
     {
         $this->service = $userService;
         $this->roleService = $roleService;
-        $this->teamService = $teamService;
+        $this->agentService = $agentService;
     }
 
     /**
@@ -113,12 +117,10 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = $this->service->find($id);
-        $roles = null;
-        $teams = null;
-        if (Gate::allows('admin')) {
-            $roles = $this->roleService->all();
-            $teams = $this->teamService->all();
-        }
+
+        $roles = $this->roleService->pluckSelection();
+        $teams = $this->agentService->all();
+
         return view('admin.users.edit')->with('user', $user)->with('roles', $roles)->with('teams', $teams);
     }
 
@@ -181,12 +183,10 @@ class UserController extends Controller
 
     public function create()
     {
-        $roles = null;
-        $teams = null;
-        if (Gate::allows('admin')) {
-            $roles = $this->roleService->pluckSelection('name');
-            $teams = $this->teamService->all();
-        }
+        $roles = $this->roleService->pluckSelection();
+
+        $teams = $this->agentService->all();
+
         return view('admin.users.create', compact('roles', 'teams'));
     }
 
@@ -217,5 +217,10 @@ class UserController extends Controller
             return redirect()->back()->with('success', 'Thêm mới người dùng thành công');
         }
         return redirect()->back()->with('error', 'Thêm mới người dùng thất bại');
+    }
+
+
+    public function getConfirm(){
+
     }
 }
