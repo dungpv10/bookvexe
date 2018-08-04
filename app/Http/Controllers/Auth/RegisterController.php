@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Services\RoleService;
 use DB;
 use Validator;
 use App\Services\UserService;
@@ -29,17 +30,19 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = 'dashboard';
-
+    protected $redirectTo = '/';
+    protected $roleService;
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(UserService $userService)
+    public function __construct(UserService $userService, RoleService $roleService)
     {
         $this->middleware('guest');
         $this->service = $userService;
+        $this->roleService = $roleService;
+
     }
 
     /**
@@ -66,14 +69,15 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return DB::transaction(function() use ($data) {
-            $user = User::create([
+            $role = $this->roleService->findByName('agent');
+            return User::create([
                 'name' => $data['name'],
                 'username' => $data['username'],
                 'email' => $data['email'],
-                'password' => bcrypt($data['password'])
+                'password' => bcrypt($data['password']),
+                'role_id' => $role ? $role->id : 3
             ]);
 
-            return $this->service->create($user, $data['password']);
         });
     }
 }

@@ -162,20 +162,6 @@ class UserService
     public function create($user, $password, $role = 'staff', $sendEmail = true)
     {
         try {
-            DB::transaction(function () use ($user, $password, $role, $sendEmail) {
-                $this->userMeta->firstOrCreate([
-                    'user_id' => $user->id
-                ]);
-
-                $this->assignRole($role, $user->id);
-
-//                if ($sendEmail) {
-//                    event(new UserRegisteredEmail($user, $password));
-//                }
-
-            });
-
-//            $this->setAndSendUserActivationToken($user);
 
             return $user;
         } catch (Exception $e) {

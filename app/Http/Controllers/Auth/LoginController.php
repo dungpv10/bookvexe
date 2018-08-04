@@ -48,7 +48,7 @@ class LoginController extends Controller
         }
 
         if(\Gate::allows('root')){
-            return redirect()->route('admin.bus.index');
+            return redirect()->route('bus.index');
         }
 
 

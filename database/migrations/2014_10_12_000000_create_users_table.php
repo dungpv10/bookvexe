@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('mobile', 45)->nullable();
             $table->tinyInteger('gender')->default(1)
                 ->comment('User Gender: 0: Female 1: Male');
-            $table->tinyInteger('status')->default(1)
+            $table->tinyInteger('status')->default(0)
                 ->comment('Active/Inactive');
             $table->string('avatar')->nullable()
                 ->comment('ID of image in images table');
