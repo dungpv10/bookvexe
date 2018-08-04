@@ -31,7 +31,7 @@ class CreateUsersTable extends Migration
             $table->string('address', 255)->nullable();
             $table->integer('agent_id')->nullable()->unsigned();
             $table->foreign('agent_id')->references('id')->on('agents')->onDelete('cascade');
-            $table->integer('role_id')->unsigned();
+            $table->integer('role_id')->nullable()->unsigned();
             $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
 
             $table->rememberToken();

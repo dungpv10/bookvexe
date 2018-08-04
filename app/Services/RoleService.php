@@ -87,7 +87,7 @@ class RoleService
      */
     public function findByName($name)
     {
-        return $this->model->where('name', $name)->firstOrFail();
+        return $this->model->where('name', $name)->first();
     }
 
     /*

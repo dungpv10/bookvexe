@@ -43,13 +43,12 @@ class LoginController extends Controller
      */
     public function authenticated()
     {
-        $currentUser = auth()->user();
-        if($currentUser->role->name == 'agent' && $currentUser->agent()->count() == 0){
-            return redirect()->route('teams.confirm', [$currentUser->id]);
+        if(\Gate::allows('agent') && empty(auth()->user()->agent)){
+            return 1;
         }
 
-        if ($currentUser->role->name == 'admin' || $currentUser->role->name == 'agent') {
-            return redirect('/admin/bus');
+        if(\Gate::allows('root')){
+            return redirect()->route('admin.bus.index');
         }
 
 
