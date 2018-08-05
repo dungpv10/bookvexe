@@ -190,7 +190,7 @@ class UserController extends Controller
         if($user)
             return redirect()->back()->with('success', 'Thêm mới người dùng thành công');
 
-        return redirect()->back()->with('success', 'Thêm mới người dùng thất bại');
+        return redirect()->back()->with('error', 'Thêm mới người dùng thất bại');
 
     }
 

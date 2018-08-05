@@ -222,6 +222,8 @@ Route::group(['middleware' => ['auth', 'active']], function () {
             | Agent
             |--------------------------------------------------------------------------
             */
+            Route::get('agents/jsonData', ['as' => 'agents.getJsonData', 'uses' => 'AgentController@getJsonData']);
+            Route::resource('agents', 'AgentController');
         });
 
     });

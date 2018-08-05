@@ -2,11 +2,20 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Agent;
+use App\Services\AgentService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class AgentController extends Controller
 {
+    protected $service;
+
+    public function __construct(AgentService $agentService)
+    {
+        $this->service = $agentService;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +23,8 @@ class AgentController extends Controller
      */
     public function index()
     {
-        //
+        $statuses = array_merge(['' => 'Chọn trạng thái'], $this->service->status);
+        return view('admin.agent.index', compact('statuses'));
     }
 
     /**
@@ -35,7 +45,12 @@ class AgentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $agent = $this->service->store($request->except('_token'));
+        if($agent){
+            return redirect()->back()->with('success', 'Tạo mới nhà xe thành công');
+        }
+        return redirect()->back()->with('error', 'Tạo mới nhà xe thất bại');
+
     }
 
     /**
@@ -46,7 +61,18 @@ class AgentController extends Controller
      */
     public function show($id)
     {
-        //
+        $agent = $this->service->findByid($id);
+
+        if(!$agent)
+            return response()->json([
+                'code' => 400,
+                'msg' => 'Agent not found'
+            ]);
+        return response()->json([
+            'code' => 200,
+            'msg' => 'get agent information successfully',
+            'data' => $agent
+        ]);
     }
 
     /**
@@ -69,7 +95,13 @@ class AgentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $agent = $this->service->findByid($id);
+        if(!$agent)
+            return redirect()->back()->with('err', 'Nhà xe không tồn tại');
+
+        $this->service->update($agent, $request->except('_token'));
+
+        return redirect()->back()->with('success', 'Cập nhật nhà xe thành công');
     }
 
     /**
@@ -80,6 +112,21 @@ class AgentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $agent = $this->service->findByid($id);
+        if(!$agent)
+            return response()->json([
+                'code' => 400,
+                'msg' => 'Xoá nhà xe thất bại'
+            ]);
+
+        $this->service->destroy($agent);
+        return response()->json([
+            'code' => 200,
+            'msg' => 'Xoá nhà xe thành công'
+    ]);
+    }
+
+    public function getJsonData(){
+        return $this->service->getJsonData();
     }
 }

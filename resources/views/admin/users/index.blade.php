@@ -209,7 +209,7 @@
                         stringLength: {
                             min: 6,
                             max: 30,
-                            message: 'Tên dài từ 6 tớ 30 ký tự'
+                            message: 'Tên dài từ 6 tới 30 ký tự'
                         }
                     }
                 },
