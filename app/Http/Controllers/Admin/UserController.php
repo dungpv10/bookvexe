@@ -134,17 +134,9 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $data = $request->except(['_token', '_method']);
-        if (Gate::allows('admin')) {
-            $user = $this->service->find($id);
-            $this->service->leaveAllTeams($id);
-            if ($data['roles'] == 'agent') {
-                $this->teamService->create($user->id, ['name' =>'Agent_' . $user->name]);
-            }
-            elseif($data['roles'] == 'staff' && !empty($data['team_id'])) {
-                $this->service->joinTeam($data['team_id'], $id);
-            }
-        }
-        $result = $this->service->update($id, $data);
+        $user = $this->service->find($id);
+
+        $result = $this->service->update($user, $data);
         if ($result) {
             return back()->with('success', 'Cập nhật thành công');
         }
@@ -193,30 +185,13 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $data = $request->except('_token');
-        $user = $this->service->invite($data);
-        if ($user) {
 
-            if (Gate::allows('admin')) {
-                if ($data['roles'] == 'agent') {
-                    $this->teamService->create($user->id, ['name' =>'Agent_' . $user->name]);
-                }
-                if ($data['roles'] == 'staff' && !empty($data['team_id'])) {
-                    $this->service->joinTeam($data['team_id'], $user->id);
-                }
-            }
-            elseif (Gate::allows('agent'))
-            {
-                $team = $this->teamService->findByTeamLead(auth()->id());
-                if ($team) {
-                    $this->service->joinTeam($team->id, $user->id);
-                }
-            }
-            if ($request->ajax()) {
-                return response()->json(['code' => 1, 'msg' => 'success']);
-            }
+        $user = $this->service->store($data);
+        if($user)
             return redirect()->back()->with('success', 'Thêm mới người dùng thành công');
-        }
-        return redirect()->back()->with('error', 'Thêm mới người dùng thất bại');
+
+        return redirect()->back()->with('success', 'Thêm mới người dùng thất bại');
+
     }
 
 

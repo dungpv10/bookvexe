@@ -4,13 +4,14 @@ namespace App\Models;
 
 use App\Models\Agent;
 use App\Notifications\ResetPassword;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Gravatar;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, SoftDeletes;
 
     public static $status = [
         USER_STATUS_INACTIVE => 'Chưa kích hoạt',

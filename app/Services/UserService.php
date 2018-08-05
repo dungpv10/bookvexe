@@ -177,44 +177,9 @@ class UserService
      * @param  array $inputs UserMeta info
      * @return User
      */
-    public function update($userId, $payload)
+    public function update($user, $data)
     {
-        if (isset($payload['meta']) && !isset($payload['meta']['terms_and_cond'])) {
-            throw new Exception("You must agree to the terms and conditions.", 1);
-        }
-
-        try {
-            return DB::transaction(function () use ($userId, $payload) {
-                $user = $this->model->find($userId);
-
-                if (isset($payload['meta']['marketing']) && ($payload['meta']['marketing'] == 1 || $payload['meta']['marketing'] == 'on')) {
-                    $payload['meta']['marketing'] = 1;
-                } else {
-                    $payload['meta']['marketing'] = 0;
-                }
-
-                if (isset($payload['meta']['terms_and_cond']) && ($payload['meta']['terms_and_cond'] == 1 || $payload['meta']['terms_and_cond'] == 'on')) {
-                    $payload['meta']['terms_and_cond'] = 1;
-                } else {
-                    $payload['meta']['terms_and_cond'] = 0;
-                }
-
-                $userMetaResult = (isset($payload['meta'])) ? $user->meta->update($payload['meta']) : true;
-                $roles = isset($payload['roles']) ? $payload['roles'] : null;
-                unset($payload['roles']);
-                unset($payload['meta']);
-                $user->update($payload);
-                if ($roles) {
-                    $this->unassignAllRoles($userId);
-                    $this->assignRole($roles, $userId);
-                }
-
-                return $user;
-            });
-        } catch (Exception $e) {
-            dd($e);
-            throw new Exception("We were unable to update your profile", 1);
-        }
+        return $user->fill($data)->save();
     }
 
     /**
@@ -250,19 +215,9 @@ class UserService
      */
     public function destroy($id)
     {
-        try {
-            return DB::transaction(function () use ($id) {
-                $this->unassignAllRoles($id);
-                $this->leaveAllTeams($id);
+        $user = $this->model->find($id);
+        return $user->delete();
 
-                $userMetaResult = $this->userMeta->where('user_id', $id)->delete();
-                $userResult = $this->model->find($id)->delete();
-
-                return ($userMetaResult && $userResult);
-            });
-        } catch (Exception $e) {
-            throw new Exception("We were unable to delete this profile", 1);
-        }
     }
 
     /**
@@ -424,12 +379,12 @@ class UserService
 
         if(!empty($admin)){
             $agentId = $admin->agent->id;
+
             $builder->where('users.agent_id', $agentId);
         }
 
-
         if (!empty($roleId)) {
-            $builder = $builder->where('roles.id', '=', $roleId);
+            $builder = $builder->where('role_id', '=', $roleId);
         }
         return $this->datatable->eloquent($builder)
             ->filter(function ($query) use ($search, $roleId) {
@@ -450,6 +405,7 @@ class UserService
 
     public function store($data)
     {
+        $data = array_merge($data, ['password' => bcrypt('secret')]);
         return $this->model->fill($data)->save();
     }
 

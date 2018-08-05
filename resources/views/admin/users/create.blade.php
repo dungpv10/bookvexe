@@ -21,6 +21,8 @@
                         <label for="Email">Email</label>
                         <input id="email" class="form-control" type="email" name="email" value="" placeholder="abc@gmail.com">
                     </div>
+
+
                     @if(Gate::allows('admin'))
 
                         <div class="row form-group" id="slect_agent">

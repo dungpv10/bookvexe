@@ -18,7 +18,8 @@ class CreateBusesTable extends Migration
             $table->string('bus_name', 255)->comment('bus name');
             $table->string('bus_reg_number')->nullable()->comment('registration bus number');
             $table->integer('bus_type_id')->comment('post type id');
-            $table->integer('user_id')->comment('user id create');
+            $table->integer('user_id')->unsigned()->comment('user id create');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('number_seats')->default(0)->comment('total seat on the bus');
             $table->string('start_point', 100)->comment('Place bus start');
             $table->string('end_point', 100)->comment('Place bus stop');
