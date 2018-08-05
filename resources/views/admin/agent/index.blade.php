@@ -26,6 +26,30 @@
 
     </div>
     </div>
+    <div class="modal fade bd-example-modal-lg" id="updateStatusModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 class="box-title">Cập nhật trạng thái</h3>
+                </div>
+                <div class="modal-body">
+                    {!! Form::open(['route' => 'agents.update_status', 'id' => 'agentFormUpdateStatus', 'method' => 'post']) !!}
+                        {!! Form::hidden('id', '', ['id' => 'agent_status_id']) !!}
+                        <div class="form-group">
+                            <label for="status">Trạng thái</label>
+                            {!! Form::select('status', $statuses, '', ['class' => 'form-control', 'id' => 'update_agent_status']) !!}
+                        </div>
+
+                        <div class="form-group text-right">
+                            <button class="btn btn-primary" type="submit"><i class="fa fa-check" aria-hidden="true"></i>Cập nhật
+                            </button>
+                        </div>
+                    {!! Form::close() !!}
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="modal fade bd-example-modal-lg" id="createAgent" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -147,6 +171,12 @@
             agentForm.find('.form-control').val('');
             createAgent.modal('show');
         });
+
+        var updateStatus = function(id, status){
+            $('#update_agent_status').val(status);
+            $('#agent_status_id').val(id);
+            $('#updateStatusModal').modal('show');
+        };
         $(function() {
              agentTable = $('#agent_table').DataTable({
                 processing: true,
@@ -163,8 +193,8 @@
 
                     { data: 'statusName', name: 'statusName', title: 'Trạng thái' ,
                         render : function(data, type, row, meta){
-                            var classBtn = row['status'] === 1 ? 'btn-success' : 'btn-danger';
-                            return '<button class="btn ' + classBtn + '">' + row['statusName'] + '</button>';
+                            var classBtn = row['status'] == 1 ? 'btn-success' : 'btn-danger';
+                            return '<button onclick="updateStatus(' + row['id'] + ', ' + row['status'] + ')" class="btn ' + classBtn + '">' + row['statusName'] + '</button>';
                         }
                     },
                     { data: 'id', name: 'id', title: 'Thao Tác', searchable: false,className: 'text-center', "orderable": false,
@@ -229,6 +259,18 @@
                     }
                 }
             });
+        });
+
+        $('#agentFormUpdateStatus').bootstrapValidator({
+            fields : {
+                status: {
+                    validators : {
+                        notEmpty: {
+                            message : 'Trạng thái không được bỏ trống'
+                        }
+                    }
+                }
+            }
         });
     </script>
 @stop

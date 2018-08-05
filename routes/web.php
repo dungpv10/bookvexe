@@ -223,6 +223,7 @@ Route::group(['middleware' => ['auth', 'active']], function () {
             |--------------------------------------------------------------------------
             */
             Route::get('agents/jsonData', ['as' => 'agents.getJsonData', 'uses' => 'AgentController@getJsonData']);
+            Route::post('agents/update-status', ['as' => 'agents.update_status', 'uses' => 'AgentController@updateStatus']);
             Route::resource('agents', 'AgentController');
         });
 

@@ -129,4 +129,16 @@ class AgentController extends Controller
     public function getJsonData(){
         return $this->service->getJsonData();
     }
+
+
+    public function updateStatus(Request $request){
+        $agent = $this->service->findByid($request->get('id'));
+        if(!$agent)
+            return redirect()->back()->with('err', 'Nhà xe không tồn tại');
+
+        $this->service->update($agent, $request->except('_token'));
+
+        return redirect()->back()->with('success', 'Cập nhật trạng thái nhà xe thành công');
+
+    }
 }
