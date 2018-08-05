@@ -4,7 +4,8 @@
 
             <div class="clearfix" style="height: 50px;"></div>
             <!-- BEGIN SIDEBAR MENU -->
-            <ul class="page-sidebar-menu" id="menu">
+            @if(Gate::denies('staff'))
+                <ul class="page-sidebar-menu" id="menu">
                 <li>
                     <a href="{{ route('admin.dashboard') }}">
                         <i class="livicon" data-name="home" data-size="18" data-c="#418BCA" data-hc="#418BCA" data-loop="true"></i>
@@ -145,21 +146,21 @@
                 </li>
                 <!--End User-->
                 @if(Gate::allows('admin'))
-                    <li>
-                        <a href="#">
-                            <i class="livicon" data-name="presentation" data-size="18" data-c="#EF6F6C" data-hc="#EF6F6C" data-loop="true"></i>
-                            <span class="title">Nhà xe</span>
-                            <span class="fa arrow"></span>
-                        </a>
-                        <ul class="sub-menu">
-                            <li>
-                                <a href="{{route('teams.index')}}">
-                                    <i class="fa fa-angle-double-right"></i>
-                                    Danh sách
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
+                    {{--<li>--}}
+                        {{--<a href="#">--}}
+                            {{--<i class="livicon" data-name="presentation" data-size="18" data-c="#EF6F6C" data-hc="#EF6F6C" data-loop="true"></i>--}}
+                            {{--<span class="title">Nhà xe</span>--}}
+                            {{--<span class="fa arrow"></span>--}}
+                        {{--</a>--}}
+                        {{--<ul class="sub-menu">--}}
+                            {{--<li>--}}
+                                {{--<a href="{{route('teams.index')}}">--}}
+                                    {{--<i class="fa fa-angle-double-right"></i>--}}
+                                    {{--Danh sách--}}
+                                {{--</a>--}}
+                            {{--</li>--}}
+                        {{--</ul>--}}
+                    {{--</li>--}}
 
 
                     <li>
@@ -188,6 +189,7 @@
                     </li>
                 @endif
             </ul>
+            @endif
             <!-- END SIDEBAR MENU --> </div>
     </section>
     <!-- /.sidebar -->

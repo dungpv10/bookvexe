@@ -11,6 +11,10 @@ class UserObserver
     use SoftDeletes;
 
     public function deleted(User $user){
+        foreach($user->buses as $bus){
+            $bus->routes()->delete();
+        }
         $user->buses()->delete();
+        $user->points()->delete();
     }
 }

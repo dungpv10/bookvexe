@@ -29,7 +29,8 @@ class PointService
         if (!empty($adminAgentId)) {
             $result->where('points.user_id', $adminAgentId);
         }
-        return DataTables::of($result)->addColumn('busName', function($result){
+        return DataTables::of($result)
+            ->addColumn('busName', function($result){
             return $result->route->bus->bus_name;
         })->addColumn('boardingPoint', function($result){
             return $result->route->from_place;

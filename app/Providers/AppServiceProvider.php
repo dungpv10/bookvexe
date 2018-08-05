@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Bus;
 use App\Models\BusType;
 use App\Models\User;
+use App\Observers\BusObserver;
 use App\Observers\BusTypeObserver;
 use App\Observers\UserObserver;
 use Illuminate\Support\ServiceProvider;
@@ -19,6 +21,7 @@ class AppServiceProvider extends ServiceProvider
     {
         BusType::observe(BusTypeObserver::class);
         User::observe(UserObserver::class);
+        Bus::observe(BusObserver::class);
     }
 
     /**

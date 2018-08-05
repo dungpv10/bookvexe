@@ -7,12 +7,6 @@
             <input name="_method" type="hidden" value="PATCH">
         {{ csrf_field() }}
         <!-- Name input-->
-            <div class="row form-group">
-                <label class="col-md-1 control-label" for="name">Name</label>
-                <div class="col-md-5">
-                    <input id="name" name="name" type="text" value="{{ $role->name }}" class="form-control">
-                </div>
-            </div>
             <!-- Email input-->
             <div class="row form-group">
                 <label class="col-md-1 control-label" for="label">Label</label>

@@ -22,6 +22,30 @@
                         <input id="email" class="form-control" type="email" name="email" value="" placeholder="abc@gmail.com">
                     </div>
 
+                    <div class="row form-group">
+                        <label for="Email">Số điện thoại</label>
+                        <input id="mobile" class="form-control" type="text" name="mobile" value="" placeholder="">
+                    </div>
+
+                    <div class="row form-group">
+                        <label for="gender">Giới tính</label>
+                        <select id="gender" class="form-control" name="gender">
+                            <option value="0">Nam</option>
+                            <option value="1">Nữ</option>
+                        </select>
+                    </div>
+
+
+                    <div class="row form-group">
+                        <label for="password">Mật khẩu</label>
+                        <input id="password" class="form-control" type="password" name="password" value="" placeholder="azyc-y_@k">
+                    </div>
+
+                    <div class="row form-group">
+                        <label for="confirmed_password">Xác nhận mật khẩu</label>
+                        <input id="confirmed_password" class="form-control" type="password" name="confirmed_password" value="" placeholder="azyc-y_@k">
+                    </div>
+
 
                     @if(Gate::allows('admin'))
 

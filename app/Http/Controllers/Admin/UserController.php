@@ -184,7 +184,7 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        $data = $request->except('_token');
+        $data = $request->except('_token', 'confirmed_password');
 
         $user = $this->service->store($data);
         if($user)

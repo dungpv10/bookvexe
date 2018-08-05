@@ -240,6 +240,28 @@
                         }
                     }
                 },
+                password : {
+                    validators:{
+                        notEmpty: {
+                            message: 'Mật khẩu không được rỗng'
+                        },
+                        stringLength: {
+                            min: 6, max: 30,
+                            message: 'Mật khẩu phải dài từ 6 đến 30 ký tự'
+                        }
+                    }
+                },
+                confirmed_password : {
+                    validators:{
+                        notEmpty: {
+                            message: 'Xác nhận mật khẩu không được rỗng'
+                        },
+                        identical : {
+                            field: 'password',
+                            message: 'Xác nhận mật khẩu không đúng'
+                        }
+                    }
+                },
                 dob: {
                     validators: {
                         date: {

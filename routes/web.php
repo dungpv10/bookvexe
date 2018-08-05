@@ -195,7 +195,7 @@ Route::group(['middleware' => ['auth', 'active']], function () {
         | Admin group
         |--------------------------------------------------------------------------
         */
-        Route::group(['middleware' => 'roles:admin'], function () {
+        Route::group(['middleware' => 'roles:root'], function () {
 
             /*
             |--------------------------------------------------------------------------

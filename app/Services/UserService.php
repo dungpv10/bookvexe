@@ -386,6 +386,7 @@ class UserService
         if (!empty($roleId)) {
             $builder = $builder->where('role_id', '=', $roleId);
         }
+
         return $this->datatable->eloquent($builder)
             ->filter(function ($query) use ($search, $roleId) {
                 if (!empty($search)) {
@@ -405,7 +406,7 @@ class UserService
 
     public function store($data)
     {
-        $data = array_merge($data, ['password' => bcrypt('secret')]);
+        $data = array_merge($data, ['password' => bcrypt($data['password'] ?? 'secret')]);
         return $this->model->fill($data)->save();
     }
 

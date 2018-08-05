@@ -169,6 +169,9 @@ class User extends Authenticatable
         return self::$gender[$this->getAttribute('gender')];
     }
 
+    public function points(){
+        return $this->hasMany(Point::class, 'user_id','id');
+    }
 
     public function agent(){
         return $this->belongsTo(Agent::class, 'agent_id', 'id');
