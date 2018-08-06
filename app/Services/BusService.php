@@ -44,8 +44,7 @@ class BusService
 
     public function getJSONData($busType = null, $search = '')
     {
-        $result = $this->busModel->with('busType')->select('id', 'bus_name', 'bus_reg_number', 'bus_type_id', 'number_seats', 'start_point', 'end_point', 'start_time', 'end_time')
-            ->where('id', '!=', 0);
+        $result = $this->busModel->with('busType')->with('user')->where('id', '!=', 0);
         if (!empty($busType)) {
             $result->where('bus_type_id', $busType);
         }
@@ -56,8 +55,12 @@ class BusService
             $result->where('buses.user_id', $adminAgentId);
         }
 
-        return DataTables::of($result)->addColumn('busType', function (Bus $bus) {
+        return DataTables::of($result)
+        ->addColumn('busType', function (Bus $bus) {
             return $bus->busType->bus_type_name;
+        })
+        ->addColumn('agentName', function($result){
+            return isset($result->user->agent->agent_name) ? $result->user->agent->agent_name : '';
         })->make(true);
     }
 
