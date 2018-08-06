@@ -127,13 +127,6 @@
                 }
             });
         }
-        function upLoadJs() {
-
-            $('#frmCreateNewBusType').bootstrapValidator({});
-
-            $('#frmEditBusType').bootstrapValidator({});
-
-        };
         // show edit bus type
         function showViewEditBusType(id) {
             $.ajax({
@@ -141,46 +134,12 @@
                 method: 'GET'
             }).success(function(data){
                 $('#editBusTypeModal .modal-body').html(data).promise().done(function(){
-                    upLoadJs();
+                    $('#frmEditBusType').bootstrapValidator({});
                 });
             }).error(function(data){
 
             });
             $("#editBusTypeModal").modal();
-        }
-        // Edit bus type
-        function saveEditBusType(id) {
-            $.ajax({
-                url: $('#frmEditBusType').attr('action'),
-                method: 'POST',
-                data: $('#frmEditBusType').serialize()
-            }).success(function(data){
-                if(data.code == 200) {
-                    swal(
-                        'Thành công',
-                        'Cập nhật xe thành công',
-                        'success'
-                    ).then(function(){
-                        busTypeTable.ajax.reload();
-                        $('#editBusTypeModal').modal('hide');
-                    })
-                } else {
-                    swal(
-                        'Thất bại',
-                        'Xảy ra lỗi trong quá trình cập nhật',
-                        'error'
-                    ).then(function(){
-                        busTypeTable.ajax.reload();
-                    })
-                }
-            }).error(function(data){
-                swal(
-                    'Thất bại',
-                    'Xảy ra lỗi trong quá trình cập nhật',
-                    'error'
-                ).then(function(){
-                })
-            });
         }
         // show create bus type
         function showViewCreateBusType() {
@@ -189,46 +148,12 @@
                 method: 'GET'
             }).success(function(data){
                 $('#createBusTypeModal .modal-body').html(data).promise().done(function(){
-                    upLoadJs();
+                    $('#frmCreateNewBusType').bootstrapValidator({});
                 });
             }).error(function(data){
 
             });
             $("#createBusTypeModal").modal();
-        }
-        // create bus type
-        function createBusType() {
-            $.ajax({
-                url: $('#frmCreateNewBusType').attr('action'),
-                method: 'POST',
-                data: $('#frmCreateNewBusType').serialize()
-            }).success(function(data){
-                if(data.code == 200) {
-                    swal(
-                        'Thành công',
-                        'Cập nhật xe thành công',
-                        'success'
-                    ).then(function(){
-                        busTypeTable.ajax.reload();
-                        $('#createBusTypeModal').modal('hide');
-                    })
-                } else {
-                    swal(
-                        'Thất bại',
-                        'Xảy ra lỗi trong quá trình cập nhật',
-                        'error'
-                    ).then(function(){
-                        busTypeTable.ajax.reload();
-                    })
-                }
-            }).error(function(data){
-                swal(
-                    'Thất bại',
-                    'Xảy ra lỗi trong quá trình cập nhật',
-                    'error'
-                ).then(function(){
-                })
-            });
         }
     </script>
 @stop

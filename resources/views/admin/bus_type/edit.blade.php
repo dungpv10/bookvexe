@@ -14,7 +14,7 @@
                                data-parsley-pattern="^[a-zA-Z\ . ! @ # $ % ^ &amp; * () + = , \/]+$" id="bus_type_name"
                                placeholder="Nhập kiểu xe bus" required>
                     </div>
-                    <button type="button" onclick="saveEditBusType('{{ $busTypeDetail->id }}')" class="btn btn-primary">
+                    <button type="submit" class="btn btn-primary">
                         <i class="fa fa-edit" aria-hidden="true"></i>
                         Cập nhật
                     </button>

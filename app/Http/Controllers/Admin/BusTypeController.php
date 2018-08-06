@@ -43,9 +43,9 @@ class BusTypeController extends Controller
         $dataRequest = $request->input();
         $result = $this->busTypeService->insertBusType($dataRequest);
         if ($result) {
-            return response()->json(['code' => 200, 'message' => 'Cập nhật kiểu xe thành công']);
+            return back()->with('success', 'Cập nhật kiểu xe thành công');
         }
-        return response()->json(['code' => 500, 'message' => 'Xảy ra lỗi trong quá trình cập nhật']);
+        return back()->with('err', 'Cập nhật kiểu xe thất bại');
     }
 
     /**
@@ -85,9 +85,9 @@ class BusTypeController extends Controller
         $dataRequest = $request->input();
         $result = $this->busTypeService->updateBusType($id, $dataRequest);
         if ($result == true) {
-            return response()->json(['code' => 200, 'message' => 'Cập nhật kiểu xe thành công']);
+            return back()->with('success', 'Cập nhật kiểu xe thành công');
         }
-        return response()->json(['code' => 500, 'message' => 'Xảy ra lỗi trong quá trình cập nhật']);
+        return back()->with('err', 'Cập nhật kiểu xe thất bại');
     }
 
     /**

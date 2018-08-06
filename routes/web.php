@@ -131,6 +131,7 @@ Route::group(['middleware' => ['auth', 'active']], function () {
 
         Route::resource('bus-type', 'BusTypeController', ['except' => ['show']]);
         Route::get('bus-type/getJSONData', ['as'=>'bus-type.datatable', 'uses'=>'BusTypeController@getJSONData']);
+        Route::post('bustype/deleteMultiple', ['as'=>'bustype.delete_multiple', 'uses'=>'BusTypeController@deleteMultiple']);
 
         /*
         |--------------------------------------------------------------------------

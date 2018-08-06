@@ -11,7 +11,7 @@
                                data-parsley-pattern="^[a-zA-Z\ . ! @ # $ % ^ &amp; * () + = , \/]+$"
                                id="bus_type_name" placeholder="Nhập kiểu xe bus" required>
                     </div>
-                    <button type="button" onclick="createBusType()" class="btn btn-primary"><i class="fa fa-plus-circle" aria-hidden="true"></i>Thêm mới</button>
+                    <button type="submit" class="btn btn-primary"><i class="fa fa-plus-circle" aria-hidden="true"></i>Thêm mới</button>
                 </div>
             </form>
         </div>
