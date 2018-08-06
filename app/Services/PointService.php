@@ -29,8 +29,8 @@ class PointService
             $result->where('points.user_id', $adminAgentId);
         }
         return DataTables::of($result)
-            ->addColumn('busName', function($result){
-            return $result->route->bus->bus_name;
+        ->addColumn('busName', function($result){
+            return isset($result->route->bus->bus_name) ? $result->route->bus->bus_name : '';
         })->addColumn('boardingPoint', function($result){
             return $result->route->from_place;
         })->addColumn('dropPoint', function($result){
@@ -39,6 +39,8 @@ class PointService
             return $result->route->route_name;
         })->addColumn('pointType', function($result){
             return $result->pointType->point_type_name;
+        })->addColumn('agentName', function($result){
+            return isset($result->user->agent->agent_name) ? $result->user->agent->agent_name : '';
         })->make(true);
     }
 

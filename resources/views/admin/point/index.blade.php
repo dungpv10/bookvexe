@@ -108,7 +108,7 @@
                         d.point_type_id = $('#point_type_id_search').val();
                     }
                 },
-                order: [6, 'asc'],
+                order: [7, 'asc'],
                 columns: [
                     { data: 'id', name: 'id', title: '', searchable: false, className: 'text-center delete-checkbox', orderable: false,
                         visible : visible,
@@ -133,6 +133,7 @@
                     },
                     { data: 'landmark', name: 'landmark', title: 'Dấu đất'},
                     { data: 'address', name: 'address', title: 'Địa chỉ'},
+                    { data: 'agentName', name: 'agentName', title: 'Tên đại lý', orderable : false},
                     { data: 'id', name: 'id', title: 'Action', searchable: false,className: 'text-center', "orderable": false,
                         visible: visible,
                         render: function(data, type, row, meta){
