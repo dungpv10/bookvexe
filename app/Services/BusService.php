@@ -122,4 +122,9 @@ class BusService
     {
         return $this->busModel->where('bus_reg_number', $regNumber)->where('id', '!=', $id)->count();
     }
+
+    public function getAllBusName($busId = null)
+    {
+        return $this->busModel->where('id', '!=', $busId)->pluck('bus_name', 'id');
+    }
 }

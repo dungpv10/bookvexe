@@ -288,7 +288,26 @@
                         }
                     });
 
-                    $('#frmEditBus').bootstrapValidator({});
+                    $('#frmEditBus').bootstrapValidator({
+                        fields: {
+                            bus_name: {
+                                validators: {
+                                    callback: {
+                                        message: 'Tên xe đã tồn tại, nhập tên khác !',
+                                        callback: function() {
+                                            var busName = $('#bus_name').val();
+                                            for (var key in busNames) {
+                                                if (busNames.hasOwnProperty(key)) {
+                                                    if (busNames[key] == busName) return false;
+                                                }
+                                            }
+                                            return true;
+                                        }
+                                    }
+                                }
+                            },
+                        }
+                    });
                 });
             }).error(function(data){
 
@@ -333,7 +352,26 @@
                         }
                     });
 
-                    $('#frmCreateNewBus').bootstrapValidator({});
+                    $('#frmCreateNewBus').bootstrapValidator({
+                        fields: {
+                            bus_name: {
+                                validators: {
+                                    callback: {
+                                        message: 'Tên xe đã tồn tại, nhập tên khác !',
+                                        callback: function() {
+                                            var busName = $('#bus_name').val();
+                                            for (var key in busNames) {
+                                                if (busNames.hasOwnProperty(key)) {
+                                                    if (busNames[key] == busName) return false;
+                                                }
+                                            }
+                                            return true;
+                                        }
+                                    }
+                                }
+                            },
+                        }
+                    });
                 });
             }).error(function(data){
 

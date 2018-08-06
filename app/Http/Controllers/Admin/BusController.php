@@ -52,8 +52,10 @@ class BusController extends Controller
     public function create()
     {
         $busTypes = $this->busTypeService->getAllBusType();
+        $busNames = $this->busService->getAllBusName()->toArray();
         return view('admin.bus.create',[
             'busTypes' => $busTypes,
+            'busNames' => json_encode($busNames)
         ]);
     }
 
@@ -109,9 +111,11 @@ class BusController extends Controller
     {
         $busDetail = $this->busService->findById($id);
         $busTypes = $this->busTypeService->getAllBusType();
+        $busNames = $this->busService->getAllBusName($id)->toArray();
         return view('admin.bus.edit',[
             'busDetail' => $busDetail,
-            'busTypes' => $busTypes
+            'busTypes' => $busTypes,
+            'busNames' => json_encode($busNames)
         ]);
     }
 

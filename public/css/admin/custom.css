@@ -268,10 +268,10 @@ button i.fa{
     /* prevent horizontal scrollbar */
     overflow-x: hidden;
 }
-.div[class^="wrap_location"] {
+div[class^="wrap_location"] {
     position: relative;
 }
-.wrap_location .ui-widget-content{
+div[class^="wrap_location"] .ui-widget-content{
     width: 100% !important;
 }
 button i.fa{
@@ -281,3 +281,4 @@ button i.fa{
 .btn {
     border-color : #ccc;
 }
+.
