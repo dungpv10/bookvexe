@@ -108,8 +108,9 @@
                         d.point_type_id = $('#point_type_id_search').val();
                     }
                 },
+                order: [6, 'asc'],
                 columns: [
-                    { data: 'id', name: 'id', title: '', searchable: false,className: 'text-center delete-checkbox', "orderable": false,
+                    { data: 'id', name: 'id', title: '', searchable: false, className: 'text-center delete-checkbox', orderable: false,
                         visible : visible,
                         render: function(data, type, row, meta){
                             var checkbox = '<input type="checkbox" name="id[]" value="' + data + '">';
