@@ -127,4 +127,14 @@ class BusService
     {
         return $this->busModel->where('id', '!=', $busId)->pluck('bus_name', 'id');
     }
+
+    public function destroyList($listBusId)
+    {
+        try {
+            $this->busModel->whereIn('id', $listBusId)->delete();
+            return true;
+        } catch (\Exception $e) {
+            return false;
+        }
+    }
 }

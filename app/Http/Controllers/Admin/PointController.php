@@ -144,4 +144,23 @@ class PointController extends Controller
         $pointTypeId = $request->get('point_type_id');
         return $this->pointService->getJSONData($pointTypeId, $search);
     }
+
+    public function deleteMultiple(Request $request)
+    {
+        $listPointId = $request->input('data');
+        $result = $this->pointService->destroyList($listPointId);
+        if ($result) {
+            if($request->ajax())
+            {
+                return response()->json(['code' => 200, 'message' => 'Xoá Thành công']);
+            }
+            return redirect('admin/bus')->with('message', 'Xoá thành công');
+        }
+        if($request->ajax())
+        {
+            return response()->json(['code' => 500, 'message' => 'Xoá Thất bại']);
+        }
+
+        return redirect('admin/bus')->with('message', 'Failed to delete');
+    }
 }

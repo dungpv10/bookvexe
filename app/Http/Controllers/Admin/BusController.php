@@ -203,4 +203,22 @@ class BusController extends Controller
         ]);
     }
 
+    public function deleteMultiple(Request $request)
+    {
+        $listBusId = $request->input('data');
+        $result = $this->busService->destroyList($listBusId);
+        if ($result) {
+            if($request->ajax())
+            {
+                return response()->json(['code' => 200, 'message' => 'Xoá Thành công']);
+            }
+            return redirect('admin/bus')->with('message', 'Xoá thành công');
+        }
+        if($request->ajax())
+        {
+            return response()->json(['code' => 500, 'message' => 'Xoá Thất bại']);
+        }
+
+        return redirect('admin/bus')->with('message', 'Failed to delete');
+    }
 }

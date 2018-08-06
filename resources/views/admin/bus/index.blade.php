@@ -13,7 +13,10 @@
 
                 @if(Gate::allows('admin'))
                     <button class="btn btn-primary" type="button" onclick="showViewCreateBus()">
-                        <i class="fa fa-plus-circle" aria-hidden="true"></i>Thêm mới
+                        <i class="fa fa-plus-circle" aria-hidden="true"></i> Thêm mới
+                    </button>
+                    <button class="btn btn-primary" type="button" onclick="deleteManyRow()">
+                        <i class="fa fa-trash" aria-hidden="true"></i> Xóa
                     </button>
                 @endif
             </div>
@@ -132,7 +135,15 @@
                         d.bus_type_id = $('#bus_type').val();
                     }
                 },
+                order: [1, 'asc'],
                 columns: [
+                    { data: 'id', name: 'id', title: '', searchable: false,className: 'text-center delete-checkbox', "orderable": false,
+                        visible : visible,
+                        render: function(data, type, row, meta){
+                            var checkbox = '<input type="checkbox" name="id[]" value="' + data + '">';
+                            return checkbox;
+                        }
+                    },
                     { data: 'bus_name', name: 'bus_name', title: 'Tên xe buýt' },
                     { data: 'bus_reg_number', name: 'bus_reg_number', title: 'Biển đăng ký buýt' },
                     { data: 'busType', name: 'busType.bus_type_name', title: 'Kiểu xe buýt', orderable : false },
@@ -521,6 +532,67 @@
                     element.append('<div class="custom-col-20"><div class="'+typeChange+'"></div></div>');
                 }
             }
+        }
+        // delete bus in checkbox
+        function deleteManyRow() {
+            var listBusId = [];
+            $('input[type="checkbox"]').each(function(){
+                if ($(this).prop('checked')) {
+                    listBusId.push($(this).val());
+                }
+            });
+            swal({
+                title: "Bạn có muốn xóa những xe này?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                cancelButtonText: 'Bỏ qua',
+                confirmButtonText: "Đồng ý",
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url: '{!! route('bus.delete_multiple') !!}',
+                        method: 'POST',
+                        data: {data:listBusId}
+                    }).success(function(data){
+                        console.log(data);
+                        if(data.code == 200)
+                        {
+                            swal(
+                                'Đã Xoá!',
+                                'Bạn đã xoá thành công người dùng!',
+                                'success'
+                            ).then(function(){
+                                busTable.ajax.reload();
+                            })
+                        }
+                        else {
+                            swal(
+                                'Thất bại',
+                                'Thao tác thất bại',
+                                'error'
+                            ).then(function(){
+                                busTable.ajax.reload();
+                            })
+                        }
+                    }).error(function(data){
+                        swal(
+                            'Thất bại',
+                            'Thao tác thất bại',
+                            'error'
+                        ).then(function(){
+                            busTable.ajax.reload();
+                        })
+                    });
+                    // result.dismiss can be 'overlay', 'cancel', 'close', 'esc', 'timer'
+                } else if (result.dismiss === 'cancel') {
+                    swal(
+                        'Bỏ Qua',
+                        'Bạn đã không xoá bus nữa',
+                        'error'
+                    )
+                }
+            });
         }
     </script>
 @stop

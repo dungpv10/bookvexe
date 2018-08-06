@@ -12,7 +12,10 @@
                 <h3 class="box-title">Danh sách điểm dừng</h3>
                 @if(Gate::allows('admin'))
                     <button class="btn btn-primary" type="button" onclick="showViewCreatePoint()">
-                        <i class="fa fa-plus-circle" aria-hidden="true"></i>Thêm mới
+                        <i class="fa fa-plus-circle" aria-hidden="true"></i> Thêm mới
+                    </button>
+                    <button class="btn btn-primary" type="button" onclick="deleteManyRow()">
+                        <i class="fa fa-trash" aria-hidden="true"></i> Xóa
                     </button>
                 @endif
             </div>
@@ -106,6 +109,13 @@
                     }
                 },
                 columns: [
+                    { data: 'id', name: 'id', title: '', searchable: false,className: 'text-center delete-checkbox', "orderable": false,
+                        visible : visible,
+                        render: function(data, type, row, meta){
+                            var checkbox = '<input type="checkbox" name="id[]" value="' + data + '">';
+                            return checkbox;
+                        }
+                    },
                     { data: 'busName', name: 'busName', title: 'Tên xe', orderable: false},
                     { data: 'routeName', name: 'route.route_name', title: 'Tên tuyến đường' },
                     { data: 'pointType', name: 'pointType.point_type_name', title: 'Kiểu điểm dừng' },
@@ -292,6 +302,67 @@
 
             });
             $("#detailPointModal").modal();
+        }
+        // delete bus in checkbox
+        function deleteManyRow() {
+            var listPointId = [];
+            $('input[type="checkbox"]').each(function(){
+                if ($(this).prop('checked')) {
+                    listPointId.push($(this).val());
+                }
+            });
+            swal({
+                title: "Bạn có muốn xóa những xe này?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                cancelButtonText: 'Bỏ qua',
+                confirmButtonText: "Đồng ý",
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url: '{!! route('point.delete_multiple') !!}',
+                        method: 'POST',
+                        data: {data:listPointId}
+                    }).success(function(data){
+                        console.log(data);
+                        if(data.code == 200)
+                        {
+                            swal(
+                                'Đã Xoá!',
+                                'Bạn đã xoá thành công người dùng!',
+                                'success'
+                            ).then(function(){
+                                pointTable.ajax.reload();
+                            })
+                        }
+                        else {
+                            swal(
+                                'Thất bại',
+                                'Thao tác thất bại',
+                                'error'
+                            ).then(function(){
+                                pointTable.ajax.reload();
+                            })
+                        }
+                    }).error(function(data){
+                        swal(
+                            'Thất bại',
+                            'Thao tác thất bại',
+                            'error'
+                        ).then(function(){
+                            pointTable.ajax.reload();
+                        })
+                    });
+                    // result.dismiss can be 'overlay', 'cancel', 'close', 'esc', 'timer'
+                } else if (result.dismiss === 'cancel') {
+                    swal(
+                        'Bỏ Qua',
+                        'Bạn đã không xoá bus nữa',
+                        'error'
+                    )
+                }
+            });
         }
     </script>
 @stop

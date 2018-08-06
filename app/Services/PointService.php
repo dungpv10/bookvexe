@@ -5,7 +5,6 @@ namespace App\Services;
 
 use App\Models\Point;
 use Yajra\Datatables\Datatables;
-use App\Models\Bus;
 
 class PointService
 {
@@ -96,5 +95,15 @@ class PointService
         $chunks[1] = str_replace(' PM', ':00', $chunks['1']);
         $chunks[1] = str_replace(' AM', ':00', $chunks['1']);
         return preg_replace('/\s[A-Z]+/s', '', implode(':', $chunks));
+    }
+
+    public function destroyList($listPointId)
+    {
+        try {
+            $this->pointModel->whereIn('id', $listPointId)->delete();
+            return true;
+        } catch (\Exception $e) {
+            return false;
+        }
     }
 }

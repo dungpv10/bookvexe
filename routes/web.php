@@ -121,6 +121,7 @@ Route::group(['middleware' => ['auth', 'active']], function () {
         Route::get('bus/getJSONData', ['as'=>'bus.datatable', 'uses'=>'BusController@getJSONData']);
         Route::post('bus/update/{id}', ['as'=>'bus.update.bus', 'uses'=>'BusController@updateBus']);
         Route::get('bus/detail/{id?}', ['as'=>'bus.detail', 'uses'=>'BusController@detail']);
+        Route::post('bus/deleteMultiple', ['as'=>'bus.delete_multiple', 'uses'=>'BusController@deleteMultiple']);
 
         /*
         |--------------------------------------------------------------------------
@@ -148,6 +149,7 @@ Route::group(['middleware' => ['auth', 'active']], function () {
 
         Route::resource('points', 'PointController');
         Route::get('point/getJSONData', ['as'=>'point.datatable', 'uses'=>'PointController@getJSONData']);
+        Route::post('point/deleteMultiple', ['as'=>'point.delete_multiple', 'uses'=>'PointController@deleteMultiple']);
 
         /*
         |--------------------------------------------------------------------------
