@@ -83,4 +83,14 @@ class BusTypeService
         ];
         return $busType->update($updateBusType);
     }
+
+    public function destroyList($listBusTypeId)
+    {
+        try {
+            $this->busTypeModel->whereIn('id', $listBusTypeId)->delete();
+            return true;
+        } catch (\Exception $e) {
+            return false;
+        }
+    }
 }

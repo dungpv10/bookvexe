@@ -5,7 +5,10 @@
             <div class="box-header with-border margin-bottom-10">
                 <h3 class="box-title">Danh sách kiểu xe bus</h3>
                 <button class="btn btn-primary" type="button" onclick="showViewCreateBusType()">
-                    <i class="fa fa-plus-circle" aria-hidden="true"></i>Thêm mới
+                    <i class="fa fa-plus-circle" aria-hidden="true"></i> Thêm mới
+                </button>
+                <button class="btn btn-primary" type="button" onclick="deleteManyRow()">
+                    <i class="fa fa-trash" aria-hidden="true"></i> Xóa
                 </button>
             </div>
             <div class="table-responsive">
@@ -61,7 +64,15 @@
                 ajax: {
                     "url": '{!! route('bus-type.datatable') !!}'
                 },
+                order: [1, 'asc'],
                 columns: [
+                    { data: 'id', name: 'id', title: '', searchable: false,className: 'text-center delete-checkbox', "orderable": false,
+                        visible : visible,
+                        render: function(data, type, row, meta){
+                            var checkbox = '<input type="checkbox" name="id[]" value="' + data + '">';
+                            return checkbox;
+                        }
+                    },
                     { data: 'bus_type_name', name: 'bus_type_name', title: 'Kiểu xe buýt' },
                     { data: 'cv_status', name: 'cv_status', title: 'Trạng thái' },
                     { data: 'id', name: 'id', title: 'Action', searchable: false,className: 'text-center', "orderable": false,
@@ -154,6 +165,67 @@
 
             });
             $("#createBusTypeModal").modal();
+        }
+        // delete bus type in checkbox
+        function deleteManyRow() {
+            var listBusTypeId = [];
+            $('input[type="checkbox"]').each(function(){
+                if ($(this).prop('checked')) {
+                    listBusTypeId.push($(this).val());
+                }
+            });
+            swal({
+                title: "Bạn có muốn xóa những xe này?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                cancelButtonText: 'Bỏ qua',
+                confirmButtonText: "Đồng ý",
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url: '{!! route('bustype.delete_multiple') !!}',
+                        method: 'POST',
+                        data: {data:listBusTypeId}
+                    }).success(function(data){
+                        console.log(data);
+                        if(data.code == 200)
+                        {
+                            swal(
+                                'Đã Xoá!',
+                                'Bạn đã xoá thành công người dùng!',
+                                'success'
+                            ).then(function(){
+                                busTypeTable.ajax.reload();
+                            })
+                        }
+                        else {
+                            swal(
+                                'Thất bại',
+                                'Thao tác thất bại',
+                                'error'
+                            ).then(function(){
+                                busTypeTable.ajax.reload();
+                            })
+                        }
+                    }).error(function(data){
+                        swal(
+                            'Thất bại',
+                            'Thao tác thất bại',
+                            'error'
+                        ).then(function(){
+                            busTypeTable.ajax.reload();
+                        })
+                    });
+                    // result.dismiss can be 'overlay', 'cancel', 'close', 'esc', 'timer'
+                } else if (result.dismiss === 'cancel') {
+                    swal(
+                        'Bỏ Qua',
+                        'Bạn đã không xoá bus nữa',
+                        'error'
+                    )
+                }
+            });
         }
     </script>
 @stop
