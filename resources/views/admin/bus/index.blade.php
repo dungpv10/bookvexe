@@ -168,7 +168,7 @@
                             return data;
                         }
                     },
-                    { data: 'agentName', name: 'agentName', title: 'Tên đại lý'},
+                    { data: 'agentName', name: 'agentName', title: 'Tên đại lý', orderable : false},
                     { data: 'id', name: 'id', title: 'Action', searchable: false,className: 'text-center', "orderable": false,
                         visible : visible,
                         render: function(data, type, row, meta){
