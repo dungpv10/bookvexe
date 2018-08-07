@@ -16,4 +16,10 @@ class Agent extends Model
         return $this->hasMany(User::class, 'agent_id', 'id');
     }
 
+    public function promotions(){
+        return $this->hasMany(Promotion::class, 'agent_id', 'id');
+    }
+
+
+
 }
