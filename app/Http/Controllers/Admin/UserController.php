@@ -131,7 +131,7 @@ class UserController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Requests\UserRequest $request, $id)
     {
         $data = $request->except(['_token', '_method']);
         $user = $this->service->find($id);
@@ -182,7 +182,7 @@ class UserController extends Controller
         return view('admin.users.create', compact('roles', 'teams'));
     }
 
-    public function store(Request $request)
+    public function store(Requests\UserRequest $request)
     {
         $data = $request->except('_token', 'confirmed_password');
 

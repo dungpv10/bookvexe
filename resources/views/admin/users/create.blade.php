@@ -7,7 +7,7 @@
 
                     <div class="row form-group">
                         <label for="Email">Họ và tên</label>
-                        <input id="email" class="form-control" type="text" name="name" value="" placeholder="ex : Nguyễn Văn A">
+                        <input id="name" class="form-control" type="text" name="name" value="" placeholder="ex : Nguyễn Văn A">
                     </div>
 
 
