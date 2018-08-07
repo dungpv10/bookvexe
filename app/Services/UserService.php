@@ -372,7 +372,7 @@ class UserService
     public function getJSONData($roleId = null, $search = "")
     {
 
-        $builder = $this->model->with('role');
+        $builder = $this->model->with('role')->where('id', '!=', 1);
 
         $admin = $this->getAdminAgent();
 
