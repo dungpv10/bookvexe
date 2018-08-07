@@ -9,6 +9,9 @@
                     <button type="button" class="btn btn-primary" id="createRoleBtn">
                         <i class="fa fa-plus-circle" aria-hidden="true"></i>Thêm mới
                     </button>
+                    <button class="btn btn-danger" type="button" onclick="deleteManyRow()">
+                        <i class="fa fa-trash" aria-hidden="true"></i> Xóa nhiều
+                    </button>
                 </div>
 
 
@@ -64,7 +67,16 @@
                         return actionLink;
                     }
                 }
-            ]
+            ],
+            columnDefs: [ {
+                orderable: false,
+                className: 'select-checkbox',
+                targets:   0,
+                'render': function (data, type, full, meta){
+                   return '<input class="chkRole" type="checkbox" name="id[]" value="'
+                      + $('<div/>').text(data).html() + '">';
+               }
+            } ],
         });
 
     });
@@ -174,5 +186,72 @@
         });
 
     });
+
+    // delete bus in checkbox
+    function deleteManyRow() {
+        var listRoleId = [];
+        $('.chkRole').each(function(){
+            if ($(this).prop('checked')) {
+                listRoleId.push($(this).val());
+            }
+        });
+        if (listRoleId.length < 1) {
+            swal("Xảy Ra Lỗi", "Bạn chưa check chọn Role nào!", "error");
+            return false;
+        }
+
+        swal({
+            title: "Bạn có muốn xóa những Role này?",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            cancelButtonText: 'Bỏ qua',
+            confirmButtonText: "Đồng ý",
+        }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    url: '{!! route('role.multiple.delete') !!}',
+                    method: 'POST',
+                    data: {data:listRoleId}
+                }).success(function(data){
+                    console.log(data);
+                    if(data.code == 200)
+                    {
+                        swal(
+                            'Đã Xoá!',
+                            'Bạn đã xoá thành công ' + data.count + ' quyền!',
+                            'success'
+                        ).then(function(){
+                            roleTable.ajax.reload();
+                        })
+                    }
+                    else {
+                        swal(
+                            'Thất bại',
+                            'Thao tác thất bại',
+                            'error'
+                        ).then(function(){
+                            roleTable.ajax.reload();
+                        })
+                    }
+                }).error(function(data){
+                    swal(
+                        'Thất bại',
+                        'Thao tác thất bại',
+                        'error'
+                    ).then(function(){
+                        roleTable.ajax.reload();
+                    })
+                });
+                // result.dismiss can be 'overlay', 'cancel', 'close', 'esc', 'timer'
+            } else if (result.dismiss === 'cancel') {
+                swal(
+                    'Bỏ Qua',
+                    'Bạn đã không xoá quyền nữa',
+                    'error'
+                )
+            }
+        });
+    }
     </script>
 @stop

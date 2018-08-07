@@ -24,6 +24,9 @@
                         <button type="button" class="btn btn-primary" id="createUserBtn">
                             <i class="fa fa-plus-circle" aria-hidden="true"></i>Thêm mới
                         </button>
+                        <button class="btn btn-danger" type="button" onclick="deleteManyRow()">
+                            <i class="fa fa-trash" aria-hidden="true"></i> Xóa nhiều
+                        </button>
                     @endif
                 </div>
 
@@ -112,7 +115,16 @@
                         return actionLink;
                     }
                 }
-            ]
+            ],
+            columnDefs: [ {
+                orderable: false,
+                className: 'select-checkbox',
+                targets:   0,
+                'render': function (data, type, full, meta){
+                   return '<input class="chkUser" type="checkbox" name="id[]" value="'
+                      + $('<div/>').text(data).html() + '">';
+               }
+            } ],
         });
 
     });
@@ -299,6 +311,73 @@
 
             });
             $("#editUserModal").modal();
+    }
+
+    // delete bus in checkbox
+    function deleteManyRow() {
+        var listUserId = [];
+        $('.chkUser').each(function(){
+            if ($(this).prop('checked')) {
+                listUserId.push($(this).val());
+            }
+        });
+        if (listUserId.length < 1) {
+            swal("Xảy Ra Lỗi", "Bạn chưa check chọn user nào!", "error");
+            return false;
+        }
+
+        swal({
+            title: "Bạn có muốn xóa những user này?",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            cancelButtonText: 'Bỏ qua',
+            confirmButtonText: "Đồng ý",
+        }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    url: '{!! route('user.multiple.delete') !!}',
+                    method: 'POST',
+                    data: {data:listUserId}
+                }).success(function(data){
+                    console.log(data);
+                    if(data.code == 200)
+                    {
+                        swal(
+                            'Đã Xoá!',
+                            'Bạn đã xoá thành công ' + data.count + ' người dùng!',
+                            'success'
+                        ).then(function(){
+                            userTable.ajax.reload();
+                        })
+                    }
+                    else {
+                        swal(
+                            'Thất bại',
+                            'Thao tác thất bại',
+                            'error'
+                        ).then(function(){
+                            userTable.ajax.reload();
+                        })
+                    }
+                }).error(function(data){
+                    swal(
+                        'Thất bại',
+                        'Thao tác thất bại',
+                        'error'
+                    ).then(function(){
+                        userTable.ajax.reload();
+                    })
+                });
+                // result.dismiss can be 'overlay', 'cancel', 'close', 'esc', 'timer'
+            } else if (result.dismiss === 'cancel') {
+                swal(
+                    'Bỏ Qua',
+                    'Bạn đã không xoá người dùng nữa',
+                    'error'
+                )
+            }
+        });
     }
 
     function controlAgent()

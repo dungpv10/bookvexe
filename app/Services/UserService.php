@@ -123,9 +123,8 @@ class UserService
     {
         $usersWithRepo = [];
         $users = $this->model->all();
-
         foreach ($users as $user) {
-            if ($user->roles->first()->id == $id) {
+            if ($user->role_id == $id) {
                 $usersWithRepo[] = $user;
             }
         }

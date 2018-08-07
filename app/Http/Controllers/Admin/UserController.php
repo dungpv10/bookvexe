@@ -198,4 +198,29 @@ class UserController extends Controller
     public function getConfirm(){
 
     }
+
+    public function multipleDelete(Request $request)
+    {
+        $count = 0;
+        $userIds = $request->get('data');
+        if (is_array($userIds)) {
+            foreach ($userIds as $id) {
+                $result = $this->service->destroy($id);
+                if ($result) {
+                    $count ++;
+                }
+            }
+        }
+        if ($count > 0) {
+            if ($request->ajax()) {
+                return response()->json(['code' => 200, 'message' => 'Xoá Thành công', 'count' => $count]);
+            }
+            return redirect('admin/users')->with('message', 'Successfully deleted');
+        }
+        if ($request->ajax()) {
+            return response()->json(['code' => 500, 'message' => 'Xoá Thất bại']);
+        }
+
+        return redirect('admin/users')->with('message', 'Failed to delete');
+    }
 }
