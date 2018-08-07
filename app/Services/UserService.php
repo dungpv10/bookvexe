@@ -405,7 +405,7 @@ class UserService
 
     public function store($data)
     {
-        $data = array_merge($data, ['password' => bcrypt($data['password'] ?? 'secret')]);
+        $data = array_merge($data, ['password' => bcrypt($data['password'] ?? 'bookvexe')]);
         return $this->model->fill($data)->save();
     }
 

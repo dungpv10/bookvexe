@@ -31,6 +31,7 @@ class UserTableSeeder extends Seeder
         $users = [];
         $users[] = array_merge($dataSeeder, [
             'email' => 'admin@example.com',
+            'username' => 'root',
             'name' => 'Root',
             'role_id' => 1,
             'agent_id' => null
@@ -38,6 +39,7 @@ class UserTableSeeder extends Seeder
         foreach ($agents as $agent) {
             $users[] = array_merge($dataSeeder, [
                 'email' => 'agent_' . $agent . '@agent.com',
+                'username' => 'user_' . $agent ,
                 'name' => 'Quản trị viên ' . $agent,
                 'role_id' => 2,
                 'agent_id' => $agent
@@ -46,7 +48,8 @@ class UserTableSeeder extends Seeder
             for($i = 1; $i < 10; $i++) {
                 $users[] = array_merge($dataSeeder, [
                     'email' => 'staff_' . $i . '_' . $agent . '@gmail.com',
-                    'name' => 'Nhân viên ' . $agent,
+                    'username' => 'admin_' . $i . '_'.$agent,
+                    'name' => 'Nhân viên ' . $i . ' ' . $agent,
                     'role_id' => 3,
                     'agent_id' => $agent
                 ]);

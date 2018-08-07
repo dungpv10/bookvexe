@@ -35,18 +35,6 @@
                         </select>
                     </div>
 
-
-                    <div class="row form-group">
-                        <label for="password">Mật khẩu</label>
-                        <input id="password" class="form-control" type="password" name="password" value="" placeholder="azyc-y_@k">
-                    </div>
-
-                    <div class="row form-group">
-                        <label for="confirmed_password">Xác nhận mật khẩu</label>
-                        <input id="confirmed_password" class="form-control" type="password" name="confirmed_password" value="" placeholder="azyc-y_@k">
-                    </div>
-
-
                     @if(Gate::allows('admin'))
 
                         <div class="row form-group" id="slect_agent">

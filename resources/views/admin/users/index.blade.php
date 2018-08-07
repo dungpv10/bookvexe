@@ -513,7 +513,7 @@
                 { data: 'mobile', name: 'mobile', title: 'Số điện thoại' },
                 { data: 'email', name: 'email', title: 'Email' },
                 { data: 'rName', name: 'role', title: 'Quyền', searchable: false, sortable:false },
-                { data: 'status_name', name: 'status_name', title: 'Trạng thái', searchable: false, 
+                { data: 'status_name', name: 'status_name', title: 'Trạng thái', searchable: false,
                     render: function(data, type, row, meta) {
                         $active = '';
                         if (row['status'] == "1") {

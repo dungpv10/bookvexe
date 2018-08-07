@@ -27,16 +27,16 @@ class UserRequest extends FormRequest
             'name' => 'required|min:6|max:255',
             'username' => 'required|min:6|max:255|unique:users',
             'email' => 'required|unique:users|email|max:255',
-            'password' => 'required|min:5|max:255',
+            'password' => 'min:5|max:255',
             'role_id' => 'required'
         ];
         $routeName = $this->route()->getName();
 
         if($routeName == 'users.update') {
-            $id = $this->get('id');
+            $id = $this->route('user');
             $rules = array_merge($rules, [
-                'username' => 'required|min:6|max:255|unique:users,' . $id,
-                'email' => 'required|unique:users|email|min:5|max:255,' . $id
+                'username' => 'required|min:6|max:255|unique:users,username,' . $id,
+                'email' => 'required|email|min:5|max:255|unique:users,email,' . $id
             ]);
         }
 
