@@ -423,4 +423,22 @@ class UserService
         return $admin ? $admin->id : false;
     }
 
+    public function togleStatusUser($userId)
+    {
+        $user = $this->model->find($userId);
+        if ($user) {
+            if ($user->status == USER_STATUS_ACTIVE) {
+                $user->status = USER_STATUS_INACTIVE;
+            }
+            else {
+                $user->status = USER_STATUS_ACTIVE;
+            }
+        }
+        if ($user->save()) {
+            $user->sendEmailActive();
+            return true;
+        }
+        return false;
+    }
+
 }

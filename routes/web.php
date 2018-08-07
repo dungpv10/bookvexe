@@ -112,6 +112,8 @@ Route::group(['middleware' => ['auth', 'active']], function () {
         Route::get('users/getJSONData', ['as'=>'users.datatable', 'uses'=>'UserController@getJSONData']);
         Route::get('users/confirm/{id}', ['as' => 'users.confirm', 'uses' => 'UserController@getConfirm']);
         Route::post('users/multiple-delete', ['uses' => 'UserController@multipleDelete', 'as' =>'user.multiple.delete']);
+        Route::post('users/togleStatusUser', ['uses' => 'UserController@togleStatusUser', 'as' =>'user.togleStatus']);
+
         /*
         |--------------------------------------------------------------------------
         | Bus

@@ -223,4 +223,20 @@ class UserController extends Controller
 
         return redirect('admin/users')->with('message', 'Failed to delete');
     }
+
+    public function togleStatusUser(Request $request) {
+        $id = $request->get('id');
+        $updated = $this->service->togleStatusUser($id);
+        if ($updated) {
+            if ($request->ajax()) {
+                return response()->json(['code' => 200, 'message' => 'Update thành công']);
+            }
+            return redirect('admin/users')->with('message', 'Successfully updated');
+        }
+        if ($request->ajax()) {
+            return response()->json(['code' => 500, 'message' => 'update Thất bại']);
+        }
+
+        return redirect('admin/users')->with('message', 'Failed to updated');
+    }
 }
