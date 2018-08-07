@@ -2,11 +2,18 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Services\PromotionService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class PromotionController extends Controller
 {
+    protected $service;
+    public function __construct(PromotionService $promotionService)
+    {
+        $this->service = $promotionService;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +21,7 @@ class PromotionController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.promotion.index');
     }
 
     /**
@@ -81,5 +88,11 @@ class PromotionController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+
+    public function getJsonData(){
+        return $this->service->getJsonData();
     }
 }

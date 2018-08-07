@@ -12,5 +12,6 @@ class AgentObserver
 
     public function deleted(Agent $agent){
         $agent->users()->delete();
+        $agent->promotions()->delete();
     }
 }

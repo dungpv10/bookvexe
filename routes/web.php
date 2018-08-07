@@ -160,7 +160,7 @@ Route::group(['middleware' => ['auth', 'active']], function () {
         | Promotion
         |--------------------------------------------------------------------------
         */
-
+        Route::get('promotions/getJsonData', ['as' => 'promotions.json_data', 'uses' => 'PromotionController@getJsonData']);
         Route::resource('promotions', 'PromotionController');
 
         /*
