@@ -37,38 +37,41 @@
                     <h3 class="box-title">Thêm mã giảm giá</h3>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group">
-                        <label>Mã giảm giá</label>
-                        <input type="text" class="form-control" name="code"/>
-                    </div>
+                    {!! Form::open(['route' => 'promotions.store', 'method' => 'post']) !!}
+                        <div class="form-group">
+                            <label>Mã giảm giá</label>
+                            <input type="text" class="form-control" name="code"/>
+                        </div>
 
-                    <div class="form-group">
-                        <label>Số lượng </label>
-                        <input type="text" class="form-control" name="amount"/>
-                    </div>
+                        <div class="form-group">
+                            <label>Số lượng </label>
+                            <input type="text" class="form-control" name="amount"/>
+                        </div>
 
-                    <div class="form-group">
-                        <label>Trạng thái </label>
-                        {!! Form::select('status', $statuses, '', ['class' => 'form-control select2']) !!}
-                    </div>
-                    <div class="form-group">
-                        <label>Nhà xe </label>
-                        {!! Form::select('agent_id', $agents, '', ['class' => 'form-control select2']) !!}
-                    
-                    </div>
+                        <div class="form-group">
+                            <label>Trạng thái </label>
+                            {!! Form::select('status', $statuses, '', ['class' => 'form-control select2']) !!}
+                        </div>
 
-                    <div class="form-group">
-                        <label>Loại mã </label>
-                        {!! Form::select('promotion_type', $promotionTypes, '', ['class' => 'form-control select2']) !!}
-                        
-                    </div>
+                        <div class="form-group">
+                            <label>Nhà xe </label>
+                            {!! Form::select('agent_id', $agents, '', ['class' => 'form-control select2']) !!}
+                        </div>
 
+                        <div class="form-group">
+                            <label>Loại mã </label>
+                            {!! Form::select('promotion_type', $promotionTypes, '', ['class' => 'form-control select2']) !!}
+                        </div>
 
+                        <div class="form-group">
+                            <label>Ngày hết hạn </label>
+                            <input type="text" class="form-control" name="expiry_date"/>
+                        </div>
 
-                    <div class="form-group">
-                        <label>Ngày hết hạn </label>
-                        <input type="text" class="form-control" name="expiry_date"/>
-                    </div>
+                        <div class="form-group text-right">
+                            <button class="btn btn-primary">Tạo mới</button>
+                        </div>
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>
@@ -78,7 +81,7 @@
     <script type="text/javascript">
 
         $('.select2').css({width: '100%'}).select2();
-        var busTypeTable;
+        var promotionTable;
         $(document).ready(function() {
             $(window).keydown(function(event){
                 if( (event.keyCode == 13) ) {
@@ -163,8 +166,8 @@
                             promotionTable.ajax.reload();
                         })
                     });
-                    
-                } 
+
+                }
             });
         }
         // show edit bus type
@@ -173,18 +176,18 @@
                 url: window.location.origin + '/admin/promotions/' + id + '/edit',
                 method: 'GET'
             }).success(function(data){
-                
+
             }).error(function(data){
 
             });
-            
+
         }
         // show create bus type
         function showViewCreateBusType() {
-            
+
             $("#createPromotionModal").modal('show');
         }
         // delete bus type in checkbox
-        
+
     </script>
 @stop

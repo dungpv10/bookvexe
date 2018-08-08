@@ -10,6 +10,8 @@ use App\Http\Controllers\Controller;
 class PromotionController extends Controller
 {
     protected $service;
+    protected $agentService;
+
     public function __construct(PromotionService $promotionService, AgentService $agentService)
     {
         $this->service = $promotionService;

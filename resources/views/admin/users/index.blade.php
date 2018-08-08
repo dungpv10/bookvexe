@@ -437,7 +437,7 @@
                             <i class="fa fa-plus-circle" aria-hidden="true"></i>Thêm mới
                         </button>
                         <button class="btn btn-danger" type="button" onclick="deleteManyRow()">
-                            <i class="fa fa-trash" aria-hidden="true"></i> Xóa nhiều
+                            <i class="fa fa-trash" aria-hidden="true"></i> Xóa
                         </button>
                     @endif
                 </div>

@@ -15,7 +15,7 @@
                     <button class="btn btn-primary" type="button" onclick="showViewCreateBus()">
                         <i class="fa fa-plus-circle" aria-hidden="true"></i> Thêm mới
                     </button>
-                    <button class="btn btn-primary" type="button" onclick="deleteManyRow()">
+                    <button class="btn btn-danger" type="button" onclick="deleteManyRow()">
                         <i class="fa fa-trash" aria-hidden="true"></i> Xóa
                     </button>
                 @endif
