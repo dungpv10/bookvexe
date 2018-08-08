@@ -3,15 +3,17 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Services\PromotionService;
+use App\Services\AgentService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class PromotionController extends Controller
 {
     protected $service;
-    public function __construct(PromotionService $promotionService)
+    public function __construct(PromotionService $promotionService, AgentService $agentService)
     {
         $this->service = $promotionService;
+        $this->agentService = $agentService;
     }
 
     /**
@@ -21,7 +23,11 @@ class PromotionController extends Controller
      */
     public function index()
     {
-        return view('admin.promotion.index');
+        $agents = $this->agentService->all();
+        $promotionTypes = $this->service->getPromotionTypes();
+        $statuses = $this->service->getStatuses();
+
+        return view('admin.promotion.index', compact('agents', 'promotionTypes', 'statuses'));
     }
 
     /**
@@ -87,7 +93,22 @@ class PromotionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $promotion = $this->service->findById($id);
+        if(!$promotion) {
+            return response()->json([
+                'code' => 400,
+                'msg' => 'Promotion not found'
+            ]);
+        }
+
+
+        $this->service->destroy($promotion);
+
+        return response()->json([
+            'code' => 200,
+            'msg' => 'delete promotion successfully'
+        ]);
+
     }
 
 

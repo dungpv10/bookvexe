@@ -42,4 +42,12 @@ class Promotion extends Model
 
         return in_array($attribute, array_keys($this->statuses)) ? $this->statuses[$attribute] : 'Tất cả';
     }
+
+    public function getTypes(){
+        return $this->types;
+    }
+
+    public function getStatuses(){
+        return $this->statuses;
+    }
 }
