@@ -1,43 +1,57 @@
 @extends('admin.layouts.dashboard')
 @section('content')
-    <div class="col-md-12">
-        <div class="box">
-            <div class="box-header with-border margin-bottom-10">
-                <h3 class="box-title">Danh sách mã giảm giá</h3>
-                <button class="btn btn-primary" type="button" onclick="showViewCreateBusType()">
-                    <i class="fa fa-plus-circle" aria-hidden="true"></i> Thêm mới
-                </button>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                {!! Form::select('promotion_type', $promotionTypes, '', ['class' => 'form-control select2', 'id' => 'filter_promotion_type']) !!}
             </div>
-            <div class="table-responsive">
+        </div>
 
-                <table class="table table-bordered " id="bus_type_table">
-
-                </table>
-
+        <div class="col-md-3">
+            <div class="form-group">
+                {!! Form::select('status', $statuses, '', ['class' => 'form-control select2', 'id' => 'filter_status']) !!}
             </div>
         </div>
     </div>
-    <div class="modal fade" id="editBusTypeModal" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h3 class="box-title">Sửa kiểu xe</h3>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header with-border margin-bottom-10">
+                    <h3 class="box-title">Danh sách mã giảm giá</h3>
+                    <button class="btn btn-primary" type="button" onclick="showViewCreateBusType()">
+                        <i class="fa fa-plus-circle" aria-hidden="true"></i> Thêm mới
+                    </button>
                 </div>
-                <div class="modal-body">
+                <div class="table-responsive">
+
+                    <table class="table table-bordered " id="bus_type_table">
+
+                    </table>
+
                 </div>
             </div>
         </div>
-    </div>
-    <div class="modal fade" id="createPromotionModal" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h3 class="box-title">Thêm mã giảm giá</h3>
+        <div class="modal fade" id="editBusTypeModal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h3 class="box-title">Sửa kiểu xe</h3>
+                    </div>
+                    <div class="modal-body">
+                    </div>
                 </div>
-                <div class="modal-body">
-                    {!! Form::open(['route' => 'promotions.store', 'method' => 'post']) !!}
+            </div>
+        </div>
+        <div class="modal fade" id="createPromotionModal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h3 class="box-title">Thêm mã giảm giá</h3>
+                    </div>
+                    <div class="modal-body">
+                        {!! Form::open(['route' => 'promotions.store', 'method' => 'post']) !!}
                         <div class="form-group">
                             <label>Mã giảm giá</label>
                             <input type="text" class="form-control" name="code"/>
@@ -71,7 +85,8 @@
                         <div class="form-group text-right">
                             <button class="btn btn-primary">Tạo mới</button>
                         </div>
-                    {!! Form::close() !!}
+                        {!! Form::close() !!}
+                    </div>
                 </div>
             </div>
         </div>
@@ -82,21 +97,27 @@
 
         $('.select2').css({width: '100%'}).select2();
         var promotionTable;
-        $(document).ready(function() {
-            $(window).keydown(function(event){
-                if( (event.keyCode == 13) ) {
+        $(document).ready(function () {
+            $(window).keydown(function (event) {
+                if ((event.keyCode == 13)) {
                     event.preventDefault();
                     return false;
                 }
             });
         });
-        $(function() {
+        $(function () {
+            var filterPromotionType = $('#filter_promotion_type'), filterStatus = $('#filter_status');
 
             promotionTable = $('#bus_type_table').DataTable({
                 processing: true,
                 serverSide: true,
                 ajax: {
-                    "url": '{!! route('promotions.json_data') !!}'
+                    "url": '{!! route('promotions.json_data') !!}',
+                    "data": function(d){
+                        d.status = filterStatus.val();
+                        d.promotion_type = filterPromotionType.val()
+
+                    }
                 },
                 order: [1, 'asc'],
                 columns: [
@@ -104,18 +125,24 @@
                     {data: 'amount', name: 'amount', title: 'Số lượng'},
                     {data: 'agent.agent_name', name: 'amount', title: 'Thuộc nhà xe'},
                     {data: 'expiry_date', name: 'expiry_date', title: 'Ngày hết hạn'},
-                    {data: 'promotion_type_name', name: 'promotion_type_name', title: 'Loại giảm giá', orderable: false},
-                    {data: 'status_name', name: 'status_name', title: 'Trạng thái', orderable: false,
-                        render: function(data, type, row, meta){
+                    {
+                        data: 'promotion_type_name',
+                        name: 'promotion_type_name',
+                        title: 'Loại giảm giá',
+                        orderable: false
+                    },
+                    {
+                        data: 'status_name', name: 'status_name', title: 'Trạng thái', orderable: false,
+                        render: function (data, type, row, meta) {
                             $active = '';
                             if (row['status'] == "1") {
                                 $active = 'active';
                             }
-                            return '<button onclick="activeUser('+ row['id'] +')" type="button" class="btn btn-lg btn-toggle ' + $active + '" data-toggle="button" aria-pressed="true" autocomplete="off"><div class="handle"></div></button>';
+                            return '<button onclick="activeUser(' + row['id'] + ')" type="button" class="btn btn-lg btn-toggle ' + $active + '" data-toggle="button" aria-pressed="true" autocomplete="off"><div class="handle"></div></button>';
                         }
                     },
-                    {data: 'id', name: 'id', 'title' : '', visible: false},
-                    {data: 'status', name: 'status', 'title' : '', visible: false},
+                    {data: 'id', name: 'id', 'title': '', visible: false},
+                    {data: 'status', name: 'status', 'title': '', visible: false},
                     {
                         data: 'id',
                         name: 'id',
@@ -132,7 +159,13 @@
                     }
                 ]
             });
+
+            filterPromotionType.add(filterStatus).on('change', function(e){
+                promotionTable.ajax.reload();
+            });
+
         });
+
         function deletePromotion(id) {
             swal({
                 title: "Bạn có muốn xóa mã khuyến mại này?",
@@ -146,14 +179,13 @@
                     $.ajax({
                         url: window.location.origin + '/admin/promotions/' + id,
                         method: 'DELETE'
-                    }).success(function(data){
-                        if(data.code == 200)
-                        {
+                    }).success(function (data) {
+                        if (data.code == 200) {
                             swal(
                                 'Đã Xoá!',
                                 'Bạn đã xoá thành công!',
                                 'success'
-                            ).then(function(){
+                            ).then(function () {
                                 promotionTable.ajax.reload();
                             })
                         }
@@ -162,16 +194,16 @@
                                 'Thất bại',
                                 'Thao tác thất bại',
                                 'error'
-                            ).then(function(){
+                            ).then(function () {
                                 promotionTable.ajax.reload();
                             })
                         }
-                    }).error(function(data){
+                    }).error(function (data) {
                         swal(
                             'Thất bại',
                             'Thao tác thất bại',
                             'error'
-                        ).then(function(){
+                        ).then(function () {
                             promotionTable.ajax.reload();
                         })
                     });
@@ -179,24 +211,25 @@
                 }
             });
         }
+
         // show edit bus type
         function editPromotion(id) {
             $.ajax({
                 url: window.location.origin + '/admin/promotions/' + id + '/edit',
                 method: 'GET'
-            }).success(function(data){
+            }).success(function (data) {
 
-            }).error(function(data){
+            }).error(function (data) {
 
             });
 
         }
+
         // show create bus type
         function showViewCreateBusType() {
 
             $("#createPromotionModal").modal('show');
         }
-        // delete bus type in checkbox
 
     </script>
 @stop

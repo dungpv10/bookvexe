@@ -18,9 +18,15 @@ class PromotionService
         $this->dataTables = $dataTables;
     }
 
-    public function getJsonData(){
-        return $this->dataTables->of($this->model->with('agent'))
-            ->make(true);
+    public function getJsonData($filters){
+        $builder = $this->model->with('agent');
+
+        foreach($filters as $key => $filter){
+            if($filter == '') continue;
+
+            $builder->where($key, $filter);
+        }
+        return $this->dataTables->of($builder)->make(true);
     }
 
 
@@ -35,11 +41,11 @@ class PromotionService
     }
 
     public function getPromotionTypes(){
-        return array_merge(['' => 'Chọn loại giảm giá'], $this->model->getTypes());
+        return array_replace(['' => 'Chọn loại giảm giá'], $this->model->getTypes());
     }
 
     public function getStatuses(){
-        return array_merge(['' => 'Chọn loại giảm giá'], $this->model->getStatuses());   
+        return array_replace(['' => 'Chọn loại giảm giá'], $this->model->getStatuses());
     }
 
 }

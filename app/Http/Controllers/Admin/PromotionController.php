@@ -115,7 +115,7 @@ class PromotionController extends Controller
 
 
 
-    public function getJsonData(){
-        return $this->service->getJsonData();
+    public function getJsonData(Request $request){
+        return $this->service->getJsonData($request->only('status', 'promotion_type'));
     }
 }

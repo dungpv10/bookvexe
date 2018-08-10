@@ -7,6 +7,6 @@ define('PROMOTION_OLD_CUSTOMER', 2);
 
 //promotion status
 
-define('PROMOTION_ACTIVE', 0);
-define('PROMOTION_DEACTIVE', 1);
+define('PROMOTION_ACTIVE', 1);
+define('PROMOTION_DEACTIVE', 0);
 
