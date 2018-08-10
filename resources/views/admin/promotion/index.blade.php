@@ -65,7 +65,7 @@
 
                         <div class="form-group">
                             <label>Ngày hết hạn </label>
-                            <input type="text" class="form-control" name="expiry_date"/>
+                            <input type="text" class="form-control datepicker" name="expiry_date"/>
                         </div>
 
                         <div class="form-group text-right">
@@ -105,8 +105,17 @@
                     {data: 'agent.agent_name', name: 'amount', title: 'Thuộc nhà xe'},
                     {data: 'expiry_date', name: 'expiry_date', title: 'Ngày hết hạn'},
                     {data: 'promotion_type_name', name: 'promotion_type_name', title: 'Loại giảm giá', orderable: false},
-                    {data: 'status_name', name: 'status_name', title: 'Trạng thái', orderable: false},
+                    {data: 'status_name', name: 'status_name', title: 'Trạng thái', orderable: false,
+                        render: function(data, type, row, meta){
+                            $active = '';
+                            if (row['status'] == "1") {
+                                $active = 'active';
+                            }
+                            return '<button onclick="activeUser('+ row['id'] +')" type="button" class="btn btn-lg btn-toggle ' + $active + '" data-toggle="button" aria-pressed="true" autocomplete="off"><div class="handle"></div></button>';
+                        }
+                    },
                     {data: 'id', name: 'id', 'title' : '', visible: false},
+                    {data: 'status', name: 'status', 'title' : '', visible: false},
                     {
                         data: 'id',
                         name: 'id',
