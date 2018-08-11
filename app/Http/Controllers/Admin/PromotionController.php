@@ -77,7 +77,20 @@ class PromotionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $promotion = $this->service->findById($id);
+
+        if(!$promotion){
+            return response()->json([
+                'code' => 400,
+                'msg' => 'Promotion not found'
+            ]);
+        }
+
+        return response()->json([
+            'code' => 200,
+            'data' => $promotion,
+            'msg' => 'get promotion info successfully'
+        ]);
     }
 
     /**
@@ -89,7 +102,14 @@ class PromotionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $promotion = $this->service->findById($id);
+        if(!$promotion){
+            return redirect()->back()->with('error', 'Mã giảm giá không tồn tại');
+        }
+
+        $this->service->update($promotion, $request->except('_token'));
+
+        return redirect()->back()->with('success', 'Cập nhật mã giảm giá thành công');
     }
 
     /**

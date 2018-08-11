@@ -65,4 +65,8 @@ class PromotionService
     public function insert($data){
         return $this->model->fill($data)->save();
     }
+
+    public function update($promotion, $data){
+        return $promotion->fill($data)->save();
+    }
 }

@@ -162,7 +162,7 @@ Route::group(['middleware' => ['auth', 'active']], function () {
         */
         Route::get('promotions/getJsonData', ['as' => 'promotions.json_data', 'uses' => 'PromotionController@getJsonData']);
         Route::post('promotions/activePromotion', ['as' => 'promotions.active', 'uses' => 'PromotionController@activePromotion']);
-        Route::resource('promotions', 'PromotionController', ['except' => ['create', 'edit']]);
+        Route::resource('promotions', 'PromotionController', ['except' => ['create']]);
 
         /*
         |--------------------------------------------------------------------------

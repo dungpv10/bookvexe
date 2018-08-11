@@ -1,6 +1,7 @@
 @extends('admin.layouts.dashboard')
 @section('css')
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker-standalone.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker-standalone.css"
+          rel="stylesheet"/>
 @stop
 @section('content')
     <div class="row">
@@ -93,11 +94,63 @@
                 </div>
             </div>
         </div>
+
+        <div class="modal fade" id="updatePromotionModal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h3 class="box-title">Thêm mã giảm giá</h3>
+                    </div>
+                    <div class="modal-body">
+                        {!! Form::open(['route' => 'promotions.store', 'method' => 'PUT']) !!}
+                        <div class="form-group">
+                            <label>Mã giảm giá</label>
+                            <input type="text" class="form-control" id="update-code" name="code"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Số lượng </label>
+                            <input type="number" class="form-control" id="update-amount" name="amount"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Trạng thái </label>
+                            {!! Form::select('status', $statuses, '', ['class' => 'form-control select2', 'id' => 'update-status']) !!}
+                        </div>
+
+                        <div class="form-group">
+                            <label>Nhà xe </label>
+                            {!! Form::select('agent_id', $agents, '', ['class' => 'form-control select2', 'id' => 'update-agent_id']) !!}
+                        </div>
+
+                        <div class="form-group">
+                            <label>Loại mã </label>
+                            {!! Form::select('promotion_type', $promotionTypes, '', ['class' => 'form-control select2', 'id' => 'update-promotion_type']) !!}
+                        </div>
+
+                        <div class="form-group">
+                            <label>Ngày hết hạn </label>
+                            <input type="text" class="form-control datepicker" name="expiry_date"
+                                   id="update-expiry_date"/>
+                        </div>
+
+                        <div class="form-group text-right">
+                            <button class="btn btn-primary">Cập nhật</button>
+                        </div>
+                        {!! Form::close() !!}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
     </div>
 @stop
 @section('js')
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"
+            type="text/javascript"></script>
     <script type="text/javascript">
         $('.datepicker').datetimepicker({
             format: 'YYYY-MM-DD HH:mm:ss'
@@ -113,7 +166,7 @@
                 serverSide: true,
                 ajax: {
                     "url": '{!! route('promotions.json_data') !!}',
-                    "data": function(d){
+                    "data": function (d) {
                         d.status = filterStatus.val();
                         d.promotion_type = filterPromotionType.val()
 
@@ -129,10 +182,11 @@
                         data: 'promotion_type_name',
                         name: 'promotion_type_name',
                         title: 'Loại giảm giá',
+                        searchable: false,
                         orderable: false
                     },
                     {
-                        data: 'status_name', name: 'status_name', title: 'Trạng thái', orderable: false,
+                        data: 'status_name', name: 'status_name', title: 'Trạng thái', orderable: false, searchable: false,
                         render: function (data, type, row, meta) {
                             $active = '';
                             if (row['status'] == "1") {
@@ -160,7 +214,7 @@
                 ]
             });
 
-            filterPromotionType.add(filterStatus).on('change', function(e){
+            filterPromotionType.add(filterStatus).on('change', function (e) {
                 promotionTable.ajax.reload();
             });
 
@@ -212,40 +266,56 @@
             });
         }
 
-        // show edit bus type
+        // show edit promotion
         function editPromotion(id) {
             $.ajax({
                 url: window.location.origin + '/admin/promotions/' + id + '/edit',
                 method: 'GET'
-            }).success(function (data) {
+            }).done(function (response) {
+                if (response.code == 200) {
+                    $('#updatePromotionModal').find('form').attr('action', window.location.origin + '/admin/promotions/' + id );
+                    $('#update-code').val(response.data.code);
+                    $('#update-amount').val(response.data.amount);
+                    $('#update-expiry_date').val(response.data.expiry_date);
+                    $('#update-status').select2().select2('val',response.data.status);
+                    $('#update-agent_id').select2().select2('val',response.data.agent_id);
+                    $('#update-promotion_type').select2().select2('val',response.data.promotion_type);
 
-            }).error(function (data) {
-
-            });
-
-        }
-
-        // show create bus type
-        function showViewCreateBusType() {
-
-            $("#createPromotionModal").modal('show');
-        }
-        var activePromotion = function(id){
-            $.ajax({
-                method: 'POST',
-                url : "{{ route('promotions.active') }}",
-                data : {id: id}
-            }).done(function(response){
-                if(response.code === 200){
-                    toastr.success('Update Thành công trạng thái người dùng', 'Thành Công', {timeOut: 3000});
-                } else{
+                    $('#updatePromotionModal').modal('show');
+                } else {
                     swal(
                         'Thất bại',
                         'Thao tác thất bại',
                         'error'
                     );
                 }
-            }).fail(function(error){
+
+            }).fail(function (data) {
+                swal(
+                    'Thất bại',
+                    'Thao tác thất bại',
+                    'error'
+                );
+            });
+
+        }
+
+        var activePromotion = function (id) {
+            $.ajax({
+                method: 'POST',
+                url: "{{ route('promotions.active') }}",
+                data: {id: id}
+            }).done(function (response) {
+                if (response.code === 200) {
+                    toastr.success('Cập nhật thành công trạng thái mã giảm giá', 'Thành Công', {timeOut: 3000});
+                } else {
+                    swal(
+                        'Thất bại',
+                        'Thao tác thất bại',
+                        'error'
+                    );
+                }
+            }).fail(function (error) {
                 swal(
                     'Thất bại',
                     'Thao tác thất bại',
