@@ -22,7 +22,7 @@
             <div class="box">
                 <div class="box-header with-border margin-bottom-10">
                     <h3 class="box-title">Danh sách mã giảm giá</h3>
-                    <button class="btn btn-primary" type="button" onclick="showViewCreateBusType()">
+                    <button class="btn btn-primary" type="button" id="addPromotionBtn">
                         <i class="fa fa-plus-circle" aria-hidden="true"></i> Thêm mới
                     </button>
                 </div>
@@ -218,6 +218,10 @@
                 promotionTable.ajax.reload();
             });
 
+        });
+
+        $('#addPromotionBtn').on('click', function(e){
+            $('#createPromotionModal').modal('show');
         });
 
         function deletePromotion(id) {
