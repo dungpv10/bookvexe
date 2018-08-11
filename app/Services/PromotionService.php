@@ -11,11 +11,13 @@ class PromotionService
     protected $model;
 
     protected $dataTables;
+    protected $userService;
 
-    public function __construct(Promotion $promotion, DataTables $dataTables)
+    public function __construct(Promotion $promotion, DataTables $dataTables, UserService $userService)
     {
         $this->model = $promotion;
         $this->dataTables = $dataTables;
+        $this->userService = $userService;
     }
 
     public function getJsonData($filters){
@@ -26,6 +28,11 @@ class PromotionService
 
             $builder->where($key, $filter);
         }
+        $userAgent = auth()->user()->agent;
+        if($userAgent){
+            $builder->where('agent_id', $userAgent->id);
+        }
+
         return $this->dataTables->of($builder)->make(true);
     }
 
@@ -48,4 +55,14 @@ class PromotionService
         return array_replace(['' => 'Chọn loại giảm giá'], $this->model->getStatuses());
     }
 
+
+    public function updateStatus($promotion){
+        $promotion->status = $promotion->status == PROMOTION_DEACTIVE ? PROMOTION_ACTIVE : PROMOTION_DEACTIVE;
+
+        return $promotion->save();
+    }
+
+    public function insert($data){
+        return $this->model->fill($data)->save();
+    }
 }

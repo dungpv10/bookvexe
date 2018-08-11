@@ -1,4 +1,7 @@
 @extends('admin.layouts.dashboard')
+@section('css')
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker-standalone.css" rel="stylesheet"/>
+@stop
 @section('content')
     <div class="row">
         <div class="col-md-3">
@@ -59,7 +62,7 @@
 
                         <div class="form-group">
                             <label>Số lượng </label>
-                            <input type="text" class="form-control" name="amount"/>
+                            <input type="number" class="form-control" name="amount"/>
                         </div>
 
                         <div class="form-group">
@@ -93,18 +96,15 @@
     </div>
 @stop
 @section('js')
-    <script type="text/javascript">
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $('.datepicker').datetimepicker({
+            format: 'YYYY-MM-DD HH:mm:ss'
+        });
         $('.select2').css({width: '100%'}).select2();
         var promotionTable;
-        $(document).ready(function () {
-            $(window).keydown(function (event) {
-                if ((event.keyCode == 13)) {
-                    event.preventDefault();
-                    return false;
-                }
-            });
-        });
+
         $(function () {
             var filterPromotionType = $('#filter_promotion_type'), filterStatus = $('#filter_status');
 
@@ -138,7 +138,7 @@
                             if (row['status'] == "1") {
                                 $active = 'active';
                             }
-                            return '<button onclick="activeUser(' + row['id'] + ')" type="button" class="btn btn-lg btn-toggle ' + $active + '" data-toggle="button" aria-pressed="true" autocomplete="off"><div class="handle"></div></button>';
+                            return '<button onclick="activePromotion(' + row['id'] + ')" type="button" class="btn btn-lg btn-toggle ' + $active + '" data-toggle="button" aria-pressed="true" autocomplete="off"><div class="handle"></div></button>';
                         }
                     },
                     {data: 'id', name: 'id', 'title': '', visible: false},
@@ -230,6 +230,28 @@
 
             $("#createPromotionModal").modal('show');
         }
-
+        var activePromotion = function(id){
+            $.ajax({
+                method: 'POST',
+                url : "{{ route('promotions.active') }}",
+                data : {id: id}
+            }).done(function(response){
+                if(response.code === 200){
+                    toastr.success('Update Thành công trạng thái người dùng', 'Thành Công', {timeOut: 3000});
+                } else{
+                    swal(
+                        'Thất bại',
+                        'Thao tác thất bại',
+                        'error'
+                    );
+                }
+            }).fail(function(error){
+                swal(
+                    'Thất bại',
+                    'Thao tác thất bại',
+                    'error'
+                );
+            });
+        }
     </script>
 @stop

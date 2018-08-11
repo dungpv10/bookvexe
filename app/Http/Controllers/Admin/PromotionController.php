@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\Admin\PromotionRequest;
 use App\Services\PromotionService;
 use App\Services\AgentService;
 use Illuminate\Http\Request;
@@ -48,9 +49,13 @@ class PromotionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PromotionRequest $request)
     {
-        //
+        $promotion = $this->service->insert($request->except('_token'));
+        if($promotion){
+            return redirect()->back()->with('success', 'Thêm mới mã giảm giá thành công');
+        }
+        return redirect()->back()->with('error', 'Thêm mới mã giảm giá thất bại');
     }
 
     /**
@@ -117,5 +122,29 @@ class PromotionController extends Controller
 
     public function getJsonData(Request $request){
         return $this->service->getJsonData($request->only('status', 'promotion_type'));
+    }
+
+    public function activePromotion(Request $request){
+        $promotion = $this->service->findById($request->get('id'));
+        if(!$promotion){
+            return response()->json([
+                'code' => 404,
+                'msg' => 'Promotion not found'
+            ]);
+        }
+
+        $update = $this->service->updateStatus($promotion);
+
+        if(!$update){
+            return response()->json([
+                'code' => 400,
+                'msg' => 'Something went wrong'
+            ]);
+        }
+
+        return response()->json([
+            'code' => 200,
+            'msg' => 'Update status successfully'
+        ]);
     }
 }
