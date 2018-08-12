@@ -19,7 +19,12 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
-Route::get('/', 'PagesController@home');
+Route::group([
+    'namespace' => 'FrontEnd'
+], function(){
+    Route::get('/', 'HomeController@home');
+});
+
 
 /*
 |--------------------------------------------------------------------------
