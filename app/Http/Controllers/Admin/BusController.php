@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\Admin\BusRequest;
+use App\Services\AgentService;
 use App\Services\SeatLayoutService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -17,6 +18,7 @@ class BusController extends Controller
     public $busTypeService;
     public $busImageService;
     public $seatLayoutService;
+    public $agentService;
 
     /**
      * BusController constructor.
@@ -26,11 +28,12 @@ class BusController extends Controller
      * @param SeatLayoutService $seatLayoutService
      */
     public function __construct(BusService $busService, BusTypeService $busTypeService,
-                                BusImageService $busImageService, SeatLayoutService $seatLayoutService) {
+                                BusImageService $busImageService, SeatLayoutService $seatLayoutService, AgentService $agentService) {
         $this->busService = $busService;
         $this->busTypeService = $busTypeService;
         $this->busImageService = $busImageService;
         $this->seatLayoutService = $seatLayoutService;
+        $this->agentService = $agentService;
     }
     /**
      * Display a listing of the resource.
@@ -41,7 +44,8 @@ class BusController extends Controller
     {
         $result = $this->busService->all();
         $busTypes = $this->busTypeService->getAllBusType();
-        return view('admin.bus.index')->with('listBus', $result)->with('busTypes', $busTypes);
+        $agents = $this->agentService->all();
+        return view('admin.bus.index')->with('listBus', $result)->with('busTypes', $busTypes)->with('agents', $agents);
     }
 
     /**
@@ -175,9 +179,9 @@ class BusController extends Controller
 
     public function getJSONData(Request $request)
     {
-        $search = $request->get('search')['value'];
-        $busType = $request->get('bus_type_id');
-        return $this->busService->getJSONData($busType, $search);
+        $filters = $request->only('bus_type_id', 'agent_id');
+
+        return $this->busService->getJSONData($filters);
     }
 
     public function detail($id = null)

@@ -32,8 +32,6 @@ class BusService
      */
     public function all()
     {
-        $user = auth()->user();
-
         $adminAgentId = $this->userService->getAdminAgentId();
         if (!empty($adminAgentId)) {
             return $this->busModel->where('user_id', $adminAgentId)->get();
@@ -42,11 +40,18 @@ class BusService
         return $this->busModel->all();
     }
 
-    public function getJSONData($busType = null, $search = '')
+    public function getJSONData($filters)
     {
         $result = $this->busModel->with('busType')->with('user')->where('id', '!=', 0);
-        if (!empty($busType)) {
-            $result->where('bus_type_id', $busType);
+
+        if(!empty($filters['bus_type_id'])){
+            $result->where('bus_type_id', $filters['bus_type_id']);
+        }
+
+        if(!empty($filters['agent_id'])){
+            $result->with('user', function($q) use ($filters){
+                $q->where('agent_id', $filters['agent_id']);
+            });
         }
 
         $adminAgentId = $this->userService->getAdminAgentId();
@@ -54,6 +59,8 @@ class BusService
         if(!empty($adminAgentId)){
             $result->where('buses.user_id', $adminAgentId);
         }
+
+
 
         return DataTables::of($result)
         ->addColumn('busType', function (Bus $bus) {
@@ -130,6 +137,13 @@ class BusService
     {
         return $this->busModel->where('id', '!=', $busId)->pluck('bus_name', 'id');
     }
+
+
+    public function getAllBusReg ($busId = null)
+    {
+        return $this->busModel->where('id', '!=', $busId)->pluck('bus_reg_number', 'id');
+    }
+
 
     public function destroyList($listBusId)
     {

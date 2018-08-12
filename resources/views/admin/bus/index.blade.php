@@ -3,9 +3,17 @@
 @section('content')
     <div class="col-md-3">
         <div class="form-group">
-            {!! Form::select('bus_type', ['' => 'Chọn kiểu xe'] + $busTypes, null, ['class' => 'form-control', 'id' => 'bus_type']) !!}
+            {!! Form::select('bus_type', ['' => 'Chọn kiểu xe'] + $busTypes, null, ['class' => 'form-control select2', 'id' => 'bus_type']) !!}
         </div>
     </div>
+
+    <div class="col-md-3">
+        <div class="form-group">
+            {!! Form::select('agent_id', $agents, null, ['class' => 'form-control select2', 'id' => 'filter_agent_id']) !!}
+        </div>
+    </div>
+
+
     <div class="col-md-12">
         <div class="box">
             <div class="box-header with-border margin-bottom-10">
@@ -101,8 +109,8 @@
                     return false;
                 }
             });
-            $('#bus_type').select2({});
-            $('#bus_type').on('change', function(){
+            $('.select2').select2({});
+            $('#bus_type').add('#filter_agent_id').on('change', function(){
                 busTable.ajax.reload();
             });
 
@@ -133,6 +141,7 @@
                     "url": '{!! route('bus.datatable') !!}',
                     "data": function ( d ) {
                         d.bus_type_id = $('#bus_type').val();
+                        d.agent_id = $('#filter_agent_id').val();
                     }
                 },
                 order: [1, 'asc'],
