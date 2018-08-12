@@ -11,6 +11,8 @@ class AgentTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Models\Agent::class, 10)->create();
+        factory(\App\Models\Agent::class, 10)->create()->each(function($agent){
+            $agent->promotions()->saveMany(factory(\App\Models\Promotion::class, 5)->make());
+        });
     }
 }

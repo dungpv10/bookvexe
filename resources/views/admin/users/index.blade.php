@@ -1,5 +1,7 @@
 @extends('admin.layouts.dashboard')
+@section('css')
 
+@stop
 @section('content')
     @if(Gate::allows('admin'))
     <div class="row">
@@ -23,6 +25,9 @@
                     @if(Gate::allows('admin'))
                         <button type="button" class="btn btn-primary" id="createUserBtn">
                             <i class="fa fa-plus-circle" aria-hidden="true"></i>Thêm mới
+                        </button>
+                        <button class="btn btn-danger" type="button" onclick="deleteManyRow()">
+                            <i class="fa fa-trash" aria-hidden="true"></i> Xóa
                         </button>
                     @endif
                 </div>
@@ -98,7 +103,15 @@
                 { data: 'mobile', name: 'mobile', title: 'Số điện thoại' },
                 { data: 'email', name: 'email', title: 'Email' },
                 { data: 'rName', name: 'role', title: 'Quyền', searchable: false, sortable:false },
-                { data: 'status_name', name: 'status_name', title: 'Trạng thái', searchable: false},
+                { data: 'status_name', name: 'status_name', title: 'Trạng thái', searchable: false,
+                    render: function(data, type, row, meta) {
+                        $active = '';
+                        if (row['status'] == "1") {
+                            $active = 'active';
+                        }
+                        return '<button onclick="activeUser('+ row['id'] +')" type="button" class="btn btn-lg btn-toggle ' + $active + '" data-toggle="button" aria-pressed="true" autocomplete="off"><div class="handle"></div></button>';
+                    }
+                },
                 { data: 'created_at', name: 'created_at', title: 'Ngày tạo'},
                 { data: 'updated_at', name: 'updated_at', title: 'Ngày cập nhật'},
                 { data: 'id', name: 'id', title: 'Thao Tác', searchable: false,className: 'text-center', "orderable": false,
@@ -112,7 +125,16 @@
                         return actionLink;
                     }
                 }
-            ]
+            ],
+            columnDefs: [ {
+                orderable: false,
+                className: 'select-checkbox',
+                targets:   0,
+                'render': function (data, type, full, meta){
+                   return '<input class="chkUser" type="checkbox" name="id[]" value="'
+                      + $('<div/>').text(data).html() + '">';
+               }
+            } ],
         });
 
     });
@@ -301,6 +323,73 @@
             $("#editUserModal").modal();
     }
 
+    // delete bus in checkbox
+    function deleteManyRow() {
+        var listUserId = [];
+        $('.chkUser').each(function(){
+            if ($(this).prop('checked')) {
+                listUserId.push($(this).val());
+            }
+        });
+        if (listUserId.length < 1) {
+            swal("Xảy Ra Lỗi", "Bạn chưa check chọn user nào!", "error");
+            return false;
+        }
+
+        swal({
+            title: "Bạn có muốn xóa những user này?",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            cancelButtonText: 'Bỏ qua',
+            confirmButtonText: "Đồng ý",
+        }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    url: '{!! route('user.multiple.delete') !!}',
+                    method: 'POST',
+                    data: {data:listUserId}
+                }).success(function(data){
+                    console.log(data);
+                    if(data.code == 200)
+                    {
+                        swal(
+                            'Đã Xoá!',
+                            'Bạn đã xoá thành công ' + data.count + ' người dùng!',
+                            'success'
+                        ).then(function(){
+                            userTable.ajax.reload();
+                        })
+                    }
+                    else {
+                        swal(
+                            'Thất bại',
+                            'Thao tác thất bại',
+                            'error'
+                        ).then(function(){
+                            userTable.ajax.reload();
+                        })
+                    }
+                }).error(function(data){
+                    swal(
+                        'Thất bại',
+                        'Thao tác thất bại',
+                        'error'
+                    ).then(function(){
+                        userTable.ajax.reload();
+                    })
+                });
+                // result.dismiss can be 'overlay', 'cancel', 'close', 'esc', 'timer'
+            } else if (result.dismiss === 'cancel') {
+                swal(
+                    'Bỏ Qua',
+                    'Bạn đã không xoá người dùng nữa',
+                    'error'
+                )
+            }
+        });
+    }
+
     function controlAgent()
     {
         // $('#roles').on('change', function(){
@@ -314,6 +403,26 @@
         //     }
         //
         // });
+    }
+
+    function activeUser(userId) {
+        toastr.options.closeButton = true;
+        $.ajax({
+            url: "{{ route('user.togleStatus') }}",
+            data: {id: userId},
+            method: 'POST',
+            success: function(data) {
+                toastr.clear();
+                if (data.code == 200) {
+                    // Override global options
+                    toastr.success('Update Thành công trạng thái người dùng', 'Thành Công', {timeOut: 3000})
+                }
+                else {
+                    // Override global options
+                    toastr.error('Update Không Thành công trạng thái người dùng', 'Thất Bại', {timeOut: 3000})
+                }
+            }
+        })
     }
 
 	</script>

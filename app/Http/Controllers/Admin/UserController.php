@@ -131,7 +131,7 @@ class UserController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Requests\UserRequest $request, $id)
     {
         $data = $request->except(['_token', '_method']);
         $user = $this->service->find($id);
@@ -182,7 +182,7 @@ class UserController extends Controller
         return view('admin.users.create', compact('roles', 'teams'));
     }
 
-    public function store(Request $request)
+    public function store(Requests\UserRequest $request)
     {
         $data = $request->except('_token', 'confirmed_password');
 
@@ -197,5 +197,46 @@ class UserController extends Controller
 
     public function getConfirm(){
 
+    }
+
+    public function multipleDelete(Request $request)
+    {
+        $count = 0;
+        $userIds = $request->get('data');
+        if (is_array($userIds)) {
+            foreach ($userIds as $id) {
+                $result = $this->service->destroy($id);
+                if ($result) {
+                    $count ++;
+                }
+            }
+        }
+        if ($count > 0) {
+            if ($request->ajax()) {
+                return response()->json(['code' => 200, 'message' => 'Xoá Thành công', 'count' => $count]);
+            }
+            return redirect('admin/users')->with('message', 'Successfully deleted');
+        }
+        if ($request->ajax()) {
+            return response()->json(['code' => 500, 'message' => 'Xoá Thất bại']);
+        }
+
+        return redirect('admin/users')->with('message', 'Failed to delete');
+    }
+
+    public function togleStatusUser(Request $request) {
+        $id = $request->get('id');
+        $updated = $this->service->togleStatusUser($id);
+        if ($updated) {
+            if ($request->ajax()) {
+                return response()->json(['code' => 200, 'message' => 'Update thành công']);
+            }
+            return redirect('admin/users')->with('message', 'Successfully updated');
+        }
+        if ($request->ajax()) {
+            return response()->json(['code' => 500, 'message' => 'update Thất bại']);
+        }
+
+        return redirect('admin/users')->with('message', 'Failed to updated');
     }
 }

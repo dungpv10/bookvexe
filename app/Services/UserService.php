@@ -123,9 +123,8 @@ class UserService
     {
         $usersWithRepo = [];
         $users = $this->model->all();
-
         foreach ($users as $user) {
-            if ($user->roles->first()->id == $id) {
+            if ($user->role_id == $id) {
                 $usersWithRepo[] = $user;
             }
         }
@@ -373,7 +372,7 @@ class UserService
     public function getJSONData($roleId = null, $search = "")
     {
 
-        $builder = $this->model->with('role');
+        $builder = $this->model->with('role')->where('id', '!=', 1);
 
         $admin = $this->getAdminAgent();
 
@@ -406,7 +405,7 @@ class UserService
 
     public function store($data)
     {
-        $data = array_merge($data, ['password' => bcrypt($data['password'] ?? 'secret')]);
+        $data = array_merge($data, ['password' => bcrypt($data['password'] ?? 'bookvexe')]);
         return $this->model->fill($data)->save();
     }
 
@@ -422,6 +421,24 @@ class UserService
         $admin = $this->getAdminAgent($user);
 
         return $admin ? $admin->id : false;
+    }
+
+    public function togleStatusUser($userId)
+    {
+        $user = $this->model->find($userId);
+        if ($user) {
+            if ($user->status == USER_STATUS_ACTIVE) {
+                $user->status = USER_STATUS_INACTIVE;
+            }
+            else {
+                $user->status = USER_STATUS_ACTIVE;
+            }
+        }
+        if ($user->save()) {
+            $user->sendEmailActive();
+            return true;
+        }
+        return false;
     }
 
 }

@@ -23,7 +23,7 @@ class AgentService
     }
 
     public function all(){
-        return $this->model->pluck('agent_name', 'id');
+        return array_merge(['' => 'Chọn nhà xe'], $this->model->pluck('agent_name', 'id')->toArray());
     }
 
 

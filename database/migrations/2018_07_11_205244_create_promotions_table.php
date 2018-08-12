@@ -15,11 +15,13 @@ class CreatePromotionsTable extends Migration
     {
         Schema::create('promotions', function (Blueprint $table) {
             $table->increments('id')->unsigned();
-            $table->string('code')->comment('code promotion');
+            $table->string('code')->unique()->comment('code promotion');
             $table->float('amount')->comment('price promotion');
             $table->tinyInteger('status')->default(1)->comment('0 : Inactive / 1 : Active');
             $table->date('expiry_date')->nullable()->comment('Expired date');
-            $table->integer('agent_id')->comment('agent id');
+            $table->integer('agent_id')->comment('agent id')->unsigned();
+            $table->foreign('agent_id')->references('id')->on('agents')->onDelete('cascade');
+            $table->integer('promotion_type')->default(PROMOTION_FOR_CUSTOMER)->comment('0 : Both, 1 : new customer, 2 : old customer');
             $table->softDeletes();
             $table->timestamps();
         });

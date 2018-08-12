@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Agent;
 use App\Notifications\ResetPassword;
+use App\Notifications\ActivateUserEmail2;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -191,5 +192,9 @@ class User extends Authenticatable
      */
     public function getBusIds(){
         return $this->buses()->pluck('id');
+    }
+   public function sendEmailActive()
+    {
+        $this->notify(new ActivateUserEmail2($this->status));
     }
 }

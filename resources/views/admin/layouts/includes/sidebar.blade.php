@@ -93,13 +93,6 @@
                                 Danh sách
                             </a>
                         </li>
-                        <li>
-                            <a href="{{route('promotions.create')}}">
-                                <i class="fa fa-angle-double-right"></i>
-                                Tạo mới
-                            </a>
-                        </li>
-
                     </ul>
                 </li>
                 <!--End promotions-->

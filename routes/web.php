@@ -111,6 +111,9 @@ Route::group(['middleware' => ['auth', 'active']], function () {
         Route::post('users/invite', 'UserController@postInvite');
         Route::get('users/getJSONData', ['as'=>'users.datatable', 'uses'=>'UserController@getJSONData']);
         Route::get('users/confirm/{id}', ['as' => 'users.confirm', 'uses' => 'UserController@getConfirm']);
+        Route::post('users/multiple-delete', ['uses' => 'UserController@multipleDelete', 'as' =>'user.multiple.delete']);
+        Route::post('users/togleStatusUser', ['uses' => 'UserController@togleStatusUser', 'as' =>'user.togleStatus']);
+
         /*
         |--------------------------------------------------------------------------
         | Bus
@@ -157,8 +160,9 @@ Route::group(['middleware' => ['auth', 'active']], function () {
         | Promotion
         |--------------------------------------------------------------------------
         */
-
-        Route::resource('promotions', 'PromotionController');
+        Route::get('promotions/getJsonData', ['as' => 'promotions.json_data', 'uses' => 'PromotionController@getJsonData']);
+        Route::post('promotions/activePromotion', ['as' => 'promotions.active', 'uses' => 'PromotionController@activePromotion']);
+        Route::resource('promotions', 'PromotionController', ['except' => ['create']]);
 
         /*
         |--------------------------------------------------------------------------
@@ -209,7 +213,7 @@ Route::group(['middleware' => ['auth', 'active']], function () {
             Route::post('roles/search', 'RoleController@search');
             Route::get('roles/search', 'RoleController@index');
             Route::get('roles/getJSONData', ['as'=>'roles.datatable', 'uses'=>'RoleController@getJSONData']);
-
+            Route::post('roles/multiple-delete', ['uses' => 'RoleController@multipleDelete', 'as' =>'role.multiple.delete']);
 
             /*
             |--------------------------------------------------------------------------

@@ -129,4 +129,31 @@ class RoleController extends Controller
         $search = $request->get('search')['value'];
         return $this->service->getJSONData($search);
     }
+
+    public function multipleDelete(Request $request)
+    {
+        $count = 0;
+        $roleIds = $request->get('data');
+        if (is_array($roleIds)) {
+            foreach ($roleIds as $id) {
+                $result = $this->service->destroy($id);
+                if ($result) {
+                    $count ++;
+                }
+            }
+        }
+        if ($count) {
+            if($request->ajax())
+            {
+                return response()->json(['code' => 200, 'message' => 'Xoá Thành công', 'count' => $count]);
+            }
+            return redirect('admin/roles')->with('message', 'Successfully deleted');
+        }
+        if($request->ajax())
+        {
+            return response()->json(['code' => 500, 'message' => 'Xoá Thất bại']);
+        }
+
+        return redirect('admin/roles')->with('error', 'Failed to delete');
+    }
 }

@@ -7,7 +7,7 @@
 
                     <div class="row form-group">
                         <label for="Email">Họ và tên</label>
-                        <input id="email" class="form-control" type="text" name="name" value="" placeholder="ex : Nguyễn Văn A">
+                        <input id="name" class="form-control" type="text" name="name" value="" placeholder="ex : Nguyễn Văn A">
                     </div>
 
 
@@ -34,18 +34,6 @@
                             <option value="1">Nữ</option>
                         </select>
                     </div>
-
-
-                    <div class="row form-group">
-                        <label for="password">Mật khẩu</label>
-                        <input id="password" class="form-control" type="password" name="password" value="" placeholder="azyc-y_@k">
-                    </div>
-
-                    <div class="row form-group">
-                        <label for="confirmed_password">Xác nhận mật khẩu</label>
-                        <input id="confirmed_password" class="form-control" type="password" name="confirmed_password" value="" placeholder="azyc-y_@k">
-                    </div>
-
 
                     @if(Gate::allows('admin'))
 

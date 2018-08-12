@@ -151,7 +151,6 @@ class RoleService
             $result = DB::transaction(function () use ($id) {
                 $result = false;
                 $userCount = count($this->userService->findByRoleID($id));
-
                 if ($userCount == 0) {
                     $result = $this->model->find($id)->delete();
                 }

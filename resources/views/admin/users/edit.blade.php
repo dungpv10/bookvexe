@@ -41,6 +41,7 @@
         <label for="address">Địa chỉ</label>
         <input id="address" class="form-control" type="text" name="address" value="{{ $user->address }}">
     </div>
+
     @if(Gate::allows('admin'))
         <div class="row form-group" id="slect_agent">
             <label for="team_id">Agent</label>
