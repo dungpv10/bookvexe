@@ -49,7 +49,7 @@ class BusService
         }
 
         if(!empty($filters['agent_id'])){
-            $result->with('user', function($q) use ($filters){
+            $result->whereHas('user', function($q) use ($filters){
                 $q->where('agent_id', $filters['agent_id']);
             });
         }
@@ -143,7 +143,6 @@ class BusService
     {
         return $this->busModel->where('id', '!=', $busId)->pluck('bus_reg_number', 'id');
     }
-
 
     public function destroyList($listBusId)
     {
