@@ -281,4 +281,24 @@ button i.fa{
 .btn {
     border-color : #ccc;
 }
-.
+@media screen and (min-width: 1025px) {
+    .left-side {
+        z-index: 999;
+        width: 35px;
+        overflow: hidden;
+        -webkit-transition: width 0.5s; /* For Safari 3.1 to 6.0 */
+        transition: width 0.5s;
+    }
+    .left-side li.active ul.sub-menu{
+        display: none !important;
+    }
+    .left-side:hover {
+        width: 250px;
+    }
+    .left-side:hover li.active ul.sub-menu {
+        display: block !important;
+    }
+    .right-side {
+        margin-left: 35px;
+    }
+}
