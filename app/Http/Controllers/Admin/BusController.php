@@ -130,10 +130,7 @@ class BusController extends Controller
             $images = $request->file('image_bus');
             $imagesRemove = $request->input('image_remove_bus');
             $dataRequest = $request->except('_token', 'image_bus', 'image_remove_bus');
-            $busRegNumber = $this->busService->countBusByRegNumberAndId($id, $request->input('bus_reg_number'));
-            if ($busRegNumber > 0) {
-                return back()->with('err', 'Biển số xe đã tồn tại');
-            }
+
             $result = $this->busService->updateBus($id, $dataRequest);
             if (!empty($images)) {
                 $this->busImageService->saveBusImage($id, $images);
