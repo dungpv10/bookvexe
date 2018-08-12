@@ -52,7 +52,7 @@ class PromotionService
     }
 
     public function getStatuses(){
-        return array_replace(['' => 'Chọn loại giảm giá'], $this->model->getStatuses());
+        return array_replace(['' => 'Chọn trạng thái'], $this->model->getStatuses());
     }
 
 
