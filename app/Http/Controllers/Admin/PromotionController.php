@@ -141,7 +141,7 @@ class PromotionController extends Controller
 
 
     public function getJsonData(Request $request){
-        return $this->service->getJsonData($request->only('status', 'promotion_type'));
+        return $this->service->getJsonData($request->only('status', 'promotion_type', 'agent_id'));
     }
 
     public function activePromotion(Request $request){

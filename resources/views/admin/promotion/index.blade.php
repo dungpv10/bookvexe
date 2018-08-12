@@ -16,6 +16,14 @@
                 {!! Form::select('status', $statuses, '', ['class' => 'form-control select2', 'id' => 'filter_status']) !!}
             </div>
         </div>
+
+        <div class="col-md-3">
+            <div class="form-group">
+                {!! Form::select('agent_id', $agents, '', ['class' => 'form-control select2', 'id' => 'filter_agent_id']) !!}
+            </div>
+        </div>
+
+
     </div>
     <div class="row">
         <div class="col-md-12">
@@ -159,7 +167,7 @@
         var promotionTable;
 
         $(function () {
-            var filterPromotionType = $('#filter_promotion_type'), filterStatus = $('#filter_status');
+            var filterPromotionType = $('#filter_promotion_type'), filterStatus = $('#filter_status'), filterAgentId = $('#filter_agent_id');
 
             promotionTable = $('#bus_type_table').DataTable({
                 processing: true,
@@ -169,7 +177,7 @@
                     "data": function (d) {
                         d.status = filterStatus.val();
                         d.promotion_type = filterPromotionType.val()
-
+                        d.agent_id = filterAgentId.val()
                     }
                 },
                 order: [1, 'asc'],
@@ -214,7 +222,7 @@
                 ]
             });
 
-            filterPromotionType.add(filterStatus).on('change', function (e) {
+            filterPromotionType.add(filterStatus).add(filterAgentId).on('change', function (e) {
                 promotionTable.ajax.reload();
             });
 
