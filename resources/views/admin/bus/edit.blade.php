@@ -127,4 +127,5 @@
 </div>
 <script type="text/javascript">
     var busNames = JSON.parse('<?= $busNames; ?>');
+    var busRegs = JSON.parse('<?= $busRegs; ?>');
 </script>

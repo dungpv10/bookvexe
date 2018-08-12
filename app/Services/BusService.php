@@ -131,6 +131,11 @@ class BusService
         return $this->busModel->where('id', '!=', $busId)->pluck('bus_name', 'id');
     }
 
+    public function getAllBusReg ($busId = null)
+    {
+        return $this->busModel->where('id', '!=', $busId)->pluck('bus_reg_number', 'id');
+    }
+    
     public function destroyList($listBusId)
     {
         try {

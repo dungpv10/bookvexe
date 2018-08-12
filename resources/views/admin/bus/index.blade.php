@@ -318,6 +318,22 @@
                                     }
                                 }
                             },
+                            bus_reg_number: {
+                                validators: {
+                                    callback: {
+                                        message: 'Biển số xe đã tồn tại, nhập tên khác !',
+                                        callback: function() {
+                                            var busReg = $('#bus_reg_number').val();
+                                            for (var key in busRegs) {
+                                                if (busRegs.hasOwnProperty(key)) {
+                                                    if (busRegs[key] == busReg) return false;
+                                                }
+                                            }
+                                            return true;
+                                        }
+                                    }
+                                }
+                            },
                         }
                     });
                 });
@@ -375,6 +391,22 @@
                                             for (var key in busNames) {
                                                 if (busNames.hasOwnProperty(key)) {
                                                     if (busNames[key] == busName) return false;
+                                                }
+                                            }
+                                            return true;
+                                        }
+                                    }
+                                }
+                            },
+                            bus_reg_number: {
+                                validators: {
+                                    callback: {
+                                        message: 'Biển số xe đã tồn tại, nhập tên khác !',
+                                        callback: function() {
+                                            var busReg = $('#bus_reg_number').val();
+                                            for (var key in busRegs) {
+                                                if (busRegs.hasOwnProperty(key)) {
+                                                    if (busRegs[key] == busReg) return false;
                                                 }
                                             }
                                             return true;
