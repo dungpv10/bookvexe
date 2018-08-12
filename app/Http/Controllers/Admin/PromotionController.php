@@ -100,7 +100,7 @@ class PromotionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PromotionRequest $request, $id)
     {
         $promotion = $this->service->findById($id);
         if(!$promotion){

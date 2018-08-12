@@ -71,10 +71,7 @@ class BusController extends Controller
             DB::beginTransaction();
             $images = $request->file('image_bus');
             $dataRequest = $request->except('_token', 'image_bus');
-            $busRegNumber = $this->busService->countBusByRegNumber($request->input('bus_reg_number'));
-            if ($busRegNumber > 0) {
-                return back()->with('err', 'Biển số xe đã tồn tại');
-            }
+
             $result = $this->busService->insertBus($dataRequest);
             if (!empty($images)) {
                 $this->busImageService->saveBusImage($result, $images);

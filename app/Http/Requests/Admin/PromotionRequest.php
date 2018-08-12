@@ -23,7 +23,7 @@ class PromotionRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        $rules =  [
             'code' => 'required|unique:promotions,code',
             'amount' => 'required|integer',
             'status' => 'required',
@@ -31,5 +31,17 @@ class PromotionRequest extends FormRequest
             'promotion_type' => 'required',
             'expiry_date' => 'required|date'
         ];
+
+        $routeName = $this->route()->getName();
+
+        if($routeName == 'promotions.update'){
+            $promotionId = $this->route('promotion');
+
+            $rules = array_replace($rules, [
+               'code' => 'required|unique:promotions,code,' . $promotionId
+            ]);
+        }
+
+        return $rules;
     }
 }
