@@ -201,6 +201,15 @@ Route::group(['middleware' => ['auth', 'active']], function () {
         Route::post('teams/confirms/{userId}', ['uses' => 'TeamController@postConfirmTeam', 'as' => 'teams.post.confirm']);
 
 
+        /*
+        |--------------------------------------------------------------------------
+        | Agent
+        |--------------------------------------------------------------------------
+        */
+        Route::get('agents/jsonData', ['as' => 'agents.getJsonData', 'uses' => 'AgentController@getJsonData']);
+        Route::post('agents/update-status', ['as' => 'agents.update_status', 'uses' => 'AgentController@updateStatus']);
+        Route::resource('agents', 'AgentController');
+
 
         /*
         |--------------------------------------------------------------------------
@@ -228,15 +237,6 @@ Route::group(['middleware' => ['auth', 'active']], function () {
 
             Route::resource('setting', 'SettingController', ['only' => ['index', 'update']]);
 
-
-            /*
-            |--------------------------------------------------------------------------
-            | Agent
-            |--------------------------------------------------------------------------
-            */
-            Route::get('agents/jsonData', ['as' => 'agents.getJsonData', 'uses' => 'AgentController@getJsonData']);
-            Route::post('agents/update-status', ['as' => 'agents.update_status', 'uses' => 'AgentController@updateStatus']);
-            Route::resource('agents', 'AgentController');
         });
 
     });
