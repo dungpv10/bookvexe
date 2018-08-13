@@ -39,17 +39,25 @@ class Bus extends Model
         return $this->belongsTo(BusType::class, 'bus_type_id', 'id');
     }
 
-    public function customers(){
+    public function customers()
+    {
         return $this->hasMany(Customer::class, 'bus_id', 'id');
     }
 
-    public function seatLayout(){
+    public function seatLayout()
+    {
         return $this->hasOne(SeatLayout::class, 'bus_id', 'id');
+    }
+
+    public function settingCancelBookings()
+    {
+        return $this->hasMany(SettingCancelBooking::class, 'bus_id', 'id');
     }
 
     public function getStatusNameAttribute()
     {
         $status = $this->getAttribute('status');
+
         return in_array($status, array_keys(self::$busStatus)) ? self::$busStatus[$this->getAttribute('status')] : '';
     }
 

@@ -153,4 +153,11 @@ class BusService
             return false;
         }
     }
+
+    public function getAllIdBusOfAgent(){
+        $adminAgent = $this->userService->getAdminAgentId();
+        if(!empty($adminAgent))
+            return $this->busModel->where('user_id', $adminAgent)->pluck('id')->toArray();
+        return $this->busModel->pluck('id')->toArray();
+    }
 }

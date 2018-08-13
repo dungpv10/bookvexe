@@ -23,6 +23,8 @@ class BusTypeTableSeeder extends Seeder
                 $bus->rates()->saveMany(factory(\App\Models\Rate::class, 2)->make());
 
                 $bus->customers()->saveMany(factory(\App\Models\Customer::class, 30)->make());
+
+                $bus->settingCancelBookings()->saveMany(factory(\App\Models\SettingCancelBooking::class, 2)->make());
             }
         });
 

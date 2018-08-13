@@ -213,6 +213,14 @@ Route::group(['middleware' => ['auth', 'active']], function () {
 
         /*
         |--------------------------------------------------------------------------
+        | Cancellation
+        |--------------------------------------------------------------------------
+        */
+        Route::get('cancellations/getJsonData', ['as' => 'cancellations.getJsonData', 'uses' => 'SettingCancelBookingController@getJsonData']);
+        Route::resource('cancellations', 'SettingCancelBookingController');
+
+        /*
+        |--------------------------------------------------------------------------
         | Admin group
         |--------------------------------------------------------------------------
         */

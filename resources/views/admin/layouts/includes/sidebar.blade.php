@@ -4,7 +4,7 @@
 
             <div class="clearfix" style="height: 50px;"></div>
             <!-- BEGIN SIDEBAR MENU -->
-            @if(Gate::denies('staff'))
+
                 <ul class="page-sidebar-menu" id="menu">
                 <li>
                     <a href="{{ route('admin.dashboard') }}">
@@ -114,6 +114,22 @@
                 </li>
 
 
+                <!--End promotions-->
+                <li>
+                    <a href="#">
+                        <i class="livicon" data-name="ban" data-size="18" data-c="#F89A14" data-hc="#F89A14" data-loop="true"></i>
+                        <span class="title">Cài đặt huỷ vé</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li>
+                            <a href="{{route('cancellations.index')}}">
+                                <i class="fa fa-angle-double-right"></i>
+                                Danh sách
+                            </a>
+                        </li>
+                    </ul>
+                </li>
 
                 <!--User-->
                 <li>
@@ -181,7 +197,7 @@
                     </li>
                 @endif
             </ul>
-            @endif
+
             <!-- END SIDEBAR MENU --> </div>
     </section>
     <!-- /.sidebar -->
