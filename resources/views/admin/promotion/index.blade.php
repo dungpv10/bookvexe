@@ -16,12 +16,13 @@
                 {!! Form::select('status', $statuses, '', ['class' => 'form-control select2', 'id' => 'filter_status']) !!}
             </div>
         </div>
-
-        <div class="col-md-3">
-            <div class="form-group">
-                {!! Form::select('agent_id', $agents, '', ['class' => 'form-control select2', 'id' => 'filter_agent_id']) !!}
+        @if(Gate::allows('root'))
+            <div class="col-md-3">
+                <div class="form-group">
+                    {!! Form::select('agent_id', $agents, '', ['class' => 'form-control select2', 'id' => 'filter_agent_id']) !!}
+                </div>
             </div>
-        </div>
+        @endif
 
 
     </div>

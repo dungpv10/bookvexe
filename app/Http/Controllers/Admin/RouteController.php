@@ -11,6 +11,7 @@ class RouteController extends Controller
 {
 
     private $service;
+    private $busService;
 
     public function __construct(RouteService $service, BusService $busService)
     {

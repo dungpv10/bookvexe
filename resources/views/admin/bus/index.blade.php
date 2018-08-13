@@ -7,11 +7,13 @@
         </div>
     </div>
 
-    <div class="col-md-3">
-        <div class="form-group">
-            {!! Form::select('agent_id', $agents, null, ['class' => 'form-control select2', 'id' => 'filter_agent_id']) !!}
+    @if(Gate::allows('root'))
+        <div class="col-md-3">
+            <div class="form-group">
+                {!! Form::select('agent_id', $agents, null, ['class' => 'form-control select2', 'id' => 'filter_agent_id']) !!}
+            </div>
         </div>
-    </div>
+    @endif
 
 
     <div class="col-md-12">
