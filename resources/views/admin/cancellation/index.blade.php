@@ -37,7 +37,7 @@
                     <h3 class="box-title">Thêm cài đặt</h3>
                 </div>
                 <div class="modal-body">
-                    {!! Form::open(['route' => 'cancellations.store', 'method' => 'POST']) !!}
+                    {!! Form::open(['route' => 'cancellations.store', 'method' => 'POST', 'id' => 'createSetting']) !!}
                     <div class="form-group">
                         <label for="">Chọn xe</label>
                         {!! Form::select('bus_id', $buses, '', ['class' => 'form-control select2']) !!}
@@ -54,15 +54,15 @@
 
                     <div class="form-group" id="div_percentage">
                         <label for="">Theo %</label>
-                        <input type="text" class="form-control" name="percentage" />
+                        <input type="number" class="form-control" name="percentage" />
                     </div>
 
                     <div class="form-group" id="div_flat" style="display: none;">
-                        <label for="">Theo chi phí</label>
-                        <input type="text" class="form-control" name="flat" />
+                        <label for="">Số tiền</label>
+                        <input type="number" class="form-control" name="flat" />
                     </div>
                     <div class="form-group">
-                        <button class="btn btn-primary">Thêm mới</button>
+                        <button class="btn btn-primary" type="submit">Thêm mới</button>
                     </div>
                     {!! Form::close() !!}
                 </div>
@@ -97,7 +97,7 @@
                 ajax: {
                     "url": '{!! route('cancellations.getJsonData') !!}'
                 },
-                order: [1, 'asc'],
+                
                 columns: [
                     { data: 'id', name: 'id', title: 'ID' },
                     { data: 'bus.bus_name', name: 'bus.bus_name', title: 'Xe' },
@@ -108,15 +108,17 @@
                     { data: 'id', name: 'id', title: 'Action', searchable: false,className: 'text-center', "orderable": false,
                         render: function(data, type, row, meta){
                             var busTypeId = "'" + data + "'";
-                            var actionLink = '<a href="javascript:;" data-toggle="tooltip" title="Xoá '+ row['name'] +'!" onclick="deleteBusTypeById('+ busTypeId +')"><i class=" fa-2x fa fa-trash" aria-hidden="true"></i></a>';
+                            var actionLink = '<a href="javascript:;" data-toggle="tooltip" title="Xoá '+ row['name'] +'!" onclick="deleteSetting('+ busTypeId +')"><i class=" fa-2x fa fa-trash" aria-hidden="true"></i></a>';
                             actionLink += '&nbsp;&nbsp;&nbsp;<a href="javascript:;" onclick="showViewEditBusType('+ busTypeId +')" data-toggle="tooltip" title="Sửa '+ row['bus_type_name'] +' !" ><i class="fa fa-2x fa-pencil-square-o" aria-hidden="true"></i></a>';
                             return actionLink;
                         }
                     }
                 ]
             });
+
+
         });
-        function deleteBusTypeById(id) {
+        function deleteSetting(id) {
             swal({
                 title: "Bạn có muốn xóa bus này?",
                 type: "warning",
@@ -127,17 +129,17 @@
             }).then((result) => {
                 if (result.value) {
                     $.ajax({
-                        url: '{!! route('bus-type.index') !!}' + '/' + id,
+                        url: '{!! route('cancellations.index') !!}' + '/' + id,
                         method: 'DELETE'
                     }).success(function(data){
                         if(data.code == 200)
                         {
                             swal(
                                 'Đã Xoá!',
-                                'Bạn đã xoá thành công người dùng!',
+                                'Bạn đã xoá thành công !',
                                 'success'
                             ).then(function(){
-                                busTypeTable.ajax.reload();
+                                cancellationTable.ajax.reload();
                             })
                         }
                         else {
@@ -146,7 +148,7 @@
                                 'Thao tác thất bại',
                                 'error'
                             ).then(function(){
-                                busTypeTable.ajax.reload();
+                                cancellationTable.ajax.reload();
                             })
                         }
                     }).error(function(data){
@@ -155,14 +157,14 @@
                             'Thao tác thất bại',
                             'error'
                         ).then(function(){
-                            busTypeTable.ajax.reload();
+                            cancellationTable.ajax.reload();
                         })
                     });
                     // result.dismiss can be 'overlay', 'cancel', 'close', 'esc', 'timer'
                 } else if (result.dismiss === 'cancel') {
                     swal(
                         'Bỏ Qua',
-                        'Bạn đã không xoá bus nữa',
+                        'Bỏ qua xoá cài đặt huỷ vé',
                         'error'
                     )
                 }
@@ -182,80 +184,25 @@
             });
             $("#editBusTypeModal").modal();
         }
-        // show create bus type
-        function showViewCreateBusType() {
-            $.ajax({
-                url: '{!! route('bus-type.create') !!}',
-                method: 'GET'
-            }).success(function(data){
-                $('#createBusTypeModal .modal-body').html(data).promise().done(function(){
-                    $('#frmCreateNewBusType').bootstrapValidator({});
-                });
-            }).error(function(data){
 
-            });
-            $("#createBusTypeModal").modal();
-        }
-        // delete bus type in checkbox
-        function deleteManyRow() {
-            var listBusTypeId = [];
-            $('input[type="checkbox"]').each(function(){
-                if ($(this).prop('checked')) {
-                    listBusTypeId.push($(this).val());
-                }
-            });
-            swal({
-                title: "Bạn có muốn xóa những xe này?",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#DD6B55",
-                cancelButtonText: 'Bỏ qua',
-                confirmButtonText: "Đồng ý",
-            }).then((result) => {
-                if (result.value) {
-                    $.ajax({
-                        url: '{!! route('bustype.delete_multiple') !!}',
-                        method: 'POST',
-                        data: {data:listBusTypeId}
-                    }).success(function(data){
-                        console.log(data);
-                        if(data.code == 200)
-                        {
-                            swal(
-                                'Đã Xoá!',
-                                'Bạn đã xoá thành công người dùng!',
-                                'success'
-                            ).then(function(){
-                                busTypeTable.ajax.reload();
-                            })
+        $('#createSetting').bootstrapValidator({
+            fields : {
+                bus_id: {
+                    validators : {
+                        notEmpty: {
+                            message : 'Vui lòng chọn xe'
                         }
-                        else {
-                            swal(
-                                'Thất bại',
-                                'Thao tác thất bại',
-                                'error'
-                            ).then(function(){
-                                busTypeTable.ajax.reload();
-                            })
+                    }
+                },
+                cancel_type : {
+                    validators : {
+                        notEmpty: {
+                            message : 'Vui lòng chọn loại giảm giá'
                         }
-                    }).error(function(data){
-                        swal(
-                            'Thất bại',
-                            'Thao tác thất bại',
-                            'error'
-                        ).then(function(){
-                            busTypeTable.ajax.reload();
-                        })
-                    });
-                    // result.dismiss can be 'overlay', 'cancel', 'close', 'esc', 'timer'
-                } else if (result.dismiss === 'cancel') {
-                    swal(
-                        'Bỏ Qua',
-                        'Bạn đã không xoá bus nữa',
-                        'error'
-                    )
-                }
-            });
-        }
+                    }
+                },
+            }
+        });
+
     </script>
 @stop

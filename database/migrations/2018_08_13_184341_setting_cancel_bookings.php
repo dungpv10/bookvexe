@@ -18,8 +18,8 @@ class SettingCancelBookings extends Migration
             $table->integer('bus_id')->unsigned();
             $table->foreign('bus_id')->references('id')->on('buses')->onDelete('cascade');
             $table->timestamp('cancel_time');
-            $table->float('percentage');
-            $table->float('flat');
+            $table->float('percentage')->nullable();
+            $table->float('flat')->nullable();
 
             $table->softDeletes();
             $table->timestamps();

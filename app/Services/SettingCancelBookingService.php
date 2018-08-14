@@ -35,4 +35,18 @@ class SettingCancelBookingService
 
         return $this->dataTables->of($builder)->make(true);
     }
+
+    public function destroy($setting){
+        return $setting->delete();
+    }
+
+    public function findById($id){
+        $setting = $this->model->find($id);
+
+        return !$setting ? false : $setting;
+    }
+
+    public function store($data){
+        return $this->model->fill($data)->save();
+    }
 }

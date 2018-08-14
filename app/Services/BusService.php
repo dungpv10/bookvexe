@@ -133,7 +133,7 @@ class BusService
 
     public function getAllBusName($busId = null)
     {
-        return $this->busModel->where('id', '!=', $busId)->pluck('bus_name', 'id');
+        return array_replace(['' => 'Chọn xe'],$this->busModel->where('id', '!=', $busId)->pluck('bus_name', 'id')->toArray());
     }
 
 
