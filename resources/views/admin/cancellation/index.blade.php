@@ -97,7 +97,7 @@
                 ajax: {
                     "url": '{!! route('cancellations.getJsonData') !!}'
                 },
-                
+
                 columns: [
                     { data: 'id', name: 'id', title: 'ID' },
                     { data: 'bus.bus_name', name: 'bus.bus_name', title: 'Xe' },
@@ -120,7 +120,7 @@
         });
         function deleteSetting(id) {
             swal({
-                title: "Bạn có muốn xóa bus này?",
+                title: "Bạn có muốn xóa cài đặt này?",
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#DD6B55",
