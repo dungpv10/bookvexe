@@ -24,13 +24,20 @@ class SettingCancelBookingService
         $this->busService = $busService;
     }
 
-    public function getJsonData()
+    public function getJsonData($filters)
     {
         $builder = $this->model->with('bus');
         $ids = $this->busService->getAllIdBusOfAgent();
 
         if(!empty($ids)){
             $builder->whereIn('bus_id', $ids);
+        }
+
+        foreach($filters as $key => $filter){
+            if($filter != ''){
+
+                $builder->where($key, $filter);
+            }
         }
 
         return $this->dataTables->of($builder)->make(true);
@@ -48,5 +55,14 @@ class SettingCancelBookingService
 
     public function store($data){
         return $this->model->fill($data)->save();
+    }
+
+    public function update($id, $data){
+        $setting = $this->findById($id);
+        if(!$setting){
+            return false;
+        }
+
+        return $setting->fill($data)->save();
     }
 }

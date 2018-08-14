@@ -50,7 +50,7 @@ class SettingCancelBookingController extends Controller
      */
     public function store(SettingCancellationRequest $request)
     {
-        $setting = $this->service->store($request->except('_token', 'cancel_type'));
+        $setting = $this->service->store($request->except('_token'));
         if(!$setting){
             return redirect()->back()->with('error', 'Tạo mới cài đặt thất bại');
         }
@@ -76,7 +76,20 @@ class SettingCancelBookingController extends Controller
      */
     public function edit($id)
     {
-        //
+        $setting = $this->service->findById($id);
+
+        if(!$setting){
+            return response()->json([
+                'code' => 400,
+                'msg' => 'Setting not found'
+            ]);
+        }
+
+        return response()->json([
+            'code' => 200,
+            'msg' => 'get information successfully',
+            'data' => $setting
+        ]);
     }
 
     /**
@@ -86,9 +99,14 @@ class SettingCancelBookingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(SettingCancellationRequest $request, $id)
     {
-        //
+        $setting = $this->service->update($id, $request->except('_token'));
+        if(!$setting){
+            return redirect()->back()->with('error', 'Cập nhật thất bại');
+        }
+
+        return redirect()->back()->with('success', 'Cập nhật thành công');
     }
 
     /**
@@ -115,6 +133,6 @@ class SettingCancelBookingController extends Controller
     }
 
     public function getJsonData(Request $request){
-        return $this->service->getJsonData();
+        return $this->service->getJsonData($request->only('cancel_type'));
     }
 }

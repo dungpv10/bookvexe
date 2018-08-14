@@ -20,7 +20,7 @@ class SettingCancelBookings extends Migration
             $table->timestamp('cancel_time');
             $table->float('percentage')->nullable();
             $table->float('flat')->nullable();
-
+            $table->tinyInteger('cancel_type')->default(0);
             $table->softDeletes();
             $table->timestamps();
         });
