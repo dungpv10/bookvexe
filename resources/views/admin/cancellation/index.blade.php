@@ -4,11 +4,8 @@
         <div class="box">
             <div class="box-header with-border margin-bottom-10">
                 <h3 class="box-title">Danh sách kiểu xe bus</h3>
-                <button class="btn btn-primary" type="button" onclick="showViewCreateBusType()">
+                <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#createCancellation">
                     <i class="fa fa-plus-circle" aria-hidden="true"></i> Thêm mới
-                </button>
-                <button class="btn btn-primary" type="button" onclick="deleteManyRow()">
-                    <i class="fa fa-trash" aria-hidden="true"></i> Xóa
                 </button>
             </div>
             <div class="table-responsive">
@@ -32,14 +29,42 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="createBusTypeModal" role="dialog">
+    <div class="modal fade" id="createCancellation" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h3 class="box-title">Thêm kiểu xe</h3>
+                    <h3 class="box-title">Thêm cài đặt</h3>
                 </div>
                 <div class="modal-body">
+                    {!! Form::open(['route' => 'cancellations.store', 'method' => 'POST']) !!}
+                    <div class="form-group">
+                        <label for="">Chọn xe</label>
+                        {!! Form::select('bus_id', $buses, '', ['class' => 'form-control select2']) !!}
+                    </div>
+                    <div class="form-group">
+                        <label for="">Thời gian hủy vé</label>
+                        <input type="text" class="form-control datepicker" name="cancel_time" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Chọn phương thức hủy</label>
+                        {!! Form::select('cancel_type', $cancelTypes, '', ['class' => 'form-control select2', 'id' => 'choose_type_method']) !!}
+                    </div>
+
+                    <div class="form-group" id="div_percentage">
+                        <label for="">Theo %</label>
+                        <input type="text" class="form-control" name="percentage" />
+                    </div>
+
+                    <div class="form-group" id="div_flat" style="display: none;">
+                        <label for="">Theo chi phí</label>
+                        <input type="text" class="form-control" name="flat" />
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary">Thêm mới</button>
+                    </div>
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>
@@ -47,6 +72,21 @@
 @stop
 @section('js')
     <script type="text/javascript">
+        $('#choose_type_method').on('change', function(e){
+            if($(this).val() == 0 ){
+                $('#div_percentage').css({display: 'block'});
+                $('#div_flat').css({display: 'none'});
+            }else{
+                $('#div_flat').css({display: 'block'});
+                $('#div_percentage').css({display: 'none'});
+            }
+        });
+
+        $('.datepicker').datetimepicker({
+            format: 'YYYY-MM-DD HH:mm:ss'
+        });
+        $('.select2').select2();
+        $('.select2-container--default').css({width: '100%'});
         var cancellationTable;
 
         $(function() {

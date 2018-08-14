@@ -60,8 +60,6 @@ class BusService
             $result->where('buses.user_id', $adminAgentId);
         }
 
-
-
         return DataTables::of($result)
         ->addColumn('busType', function (Bus $bus) {
             return $bus->busType->bus_type_name;

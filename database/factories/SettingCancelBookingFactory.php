@@ -15,7 +15,7 @@ $factory->define(App\Models\SettingCancelBooking::class, function (Faker\Generat
     return [
         'cancel_time' => date('Y-m-d H:i:s'),
         'percentage' => random_int(5, 25),
-        'flat' => random_int(20000, 100000)
+        'flat' => random_int(100, 300) * 1000
     ];
 
 });

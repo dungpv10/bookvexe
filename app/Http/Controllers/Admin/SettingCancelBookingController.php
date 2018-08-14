@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Services\BusService;
 use App\Services\SettingCancelBookingService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -9,10 +10,12 @@ use App\Http\Controllers\Controller;
 class SettingCancelBookingController extends Controller
 {
     protected $service;
+    protected $busService;
 
-    public function __construct(SettingCancelBookingService $service)
+    public function __construct(SettingCancelBookingService $service, BusService $busService)
     {
         $this->service = $service;
+        $this->busService = $busService;
     }
 
     /**
@@ -22,7 +25,10 @@ class SettingCancelBookingController extends Controller
      */
     public function index()
     {
-        return view('admin.cancellation.index');
+        $buses = $this->busService->getAllBusName();
+        $cancelTypes = $this->service->cancelTypes;
+
+        return view('admin.cancellation.index', compact('buses', 'cancelTypes'));
     }
 
     /**

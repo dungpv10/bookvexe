@@ -12,6 +12,11 @@ class SettingCancelBookingService
     public $dataTables;
     public $busService;
 
+    public $cancelTypes = [
+        PERCENTAGE => 'Theo %',
+        FLAT => 'Theo số tiền'
+    ];
+
     public function __construct(SettingCancelBooking $model, BusService $busService, DataTables $dataTables)
     {
         $this->model = $model;
