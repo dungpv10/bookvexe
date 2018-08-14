@@ -146,7 +146,7 @@
                     { data: 'percentage', name: 'percentage', title: '% vé' },
                     { data: 'flat', name: 'flat', title: 'Phí huỷ vé' },
                     { data: 'cancel_type', name: 'cancel_type', title: 'Phí huỷ vé', visible: false },
-                    { data: 'cancel_type_name', name: 'cancel_type_name', title: 'Loại phí',
+                    { data: 'cancel_type_name', name: 'cancel_type_name', title: 'Loại phí', searchable: false, orderable: false,
                         render: function(data, type, row, meta){
                             return row['cancel_type'] === 0 ? 'Theo %' : 'Theo tiền';
                         }
