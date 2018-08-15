@@ -27,8 +27,14 @@ class AgentService
     }
 
 
-    public function getJsonData(){
-        return $this->dataTables->of($this->model->with('users'))
+    public function getJsonData($filters){
+        $builder = $this->model->with('users');
+        foreach($filters as $key => $filter){
+            if($filter != ''){
+                $builder->where($key, $filter);
+            }
+        }
+        return $this->dataTables->of($builder)
             ->addColumn('statusName', function($agent){
                 return $this->status[$agent->status];
             })

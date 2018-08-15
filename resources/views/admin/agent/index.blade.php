@@ -153,6 +153,10 @@
         }
         var createAgent = $('#createAgent');
         var agentForm = $('#agentForm');
+        var filterStatus = $('#filter_status');
+        filterStatus.on('change', function(){
+            agentTable.ajax.reload();
+        });
         var editAgent = function(id){
             $.ajax({
                 method : 'GET',
@@ -190,7 +194,10 @@
                 processing: true,
                 serverSide: true,
                 ajax: {
-                    "url": '{!! route('agents.getJsonData') !!}'
+                    url: '{!! route('agents.getJsonData') !!}',
+                    data: function(d){
+                        d.status = filterStatus.val();
+                    }
                 },
                 columns: [
                     { data: 'id', name: 'id', searchable: false, title: 'ID' },
@@ -214,7 +221,7 @@
                                 actionLink = '<a href="javascript:;" data-toggle="tooltip" title="Xoá '+ row['name'] +'!" onclick="deleteAgent('+ agentId +')"><i class=" fa-2x fa fa-trash" aria-hidden="true"></i></a>';
                                 actionLink += '&nbsp;&nbsp;&nbsp;<a target="javascript:;" onclick="editAgent(' + row['id'] + ')"><i class="fa fa-2x fa-pencil-square-o" aria-hidden="true"></i></a>';
                             }
-                            actionLink += '<a href="" title="Liên kết nhà xe"><i class="fa fa-2x fa-stack-overflow" aria-hidden="true"></i></a>';
+                            actionLink += '&nbsp;&nbsp;&nbsp;<a href="" title="Liên kết nhà xe"><i class="fa fa-2x fa-stack-overflow" aria-hidden="true"></i></a>';
                             return actionLink;
                         }
                     }
