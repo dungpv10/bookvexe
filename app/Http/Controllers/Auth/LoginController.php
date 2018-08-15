@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Services\UserService;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
@@ -27,14 +28,17 @@ class LoginController extends Controller
      */
     protected $redirectTo = 'admin/bus';
 
+    protected $userService;
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(UserService $userService)
     {
         $this->middleware('guest', ['except' => 'logout']);
+        $this->userService = $userService;
     }
 
     /**
@@ -43,8 +47,8 @@ class LoginController extends Controller
      */
     public function authenticated()
     {
-        if(\Gate::allows('agent') && empty(auth()->user()->agent)) {
-            return redirect()->route('users.confirm');
+        if($this->userService->checkEmptyInformation()) {
+            return redirect()->route('agents.setting');
         }
 
         if(!\Gate::allows('customer')){
@@ -54,4 +58,5 @@ class LoginController extends Controller
 
         return redirect('/');
     }
+
 }

@@ -141,4 +141,9 @@ class AgentController extends Controller
         return redirect()->back()->with('success', 'Cập nhật trạng thái nhà xe thành công');
 
     }
+
+
+    public function getSetting(Request $request){
+        return view('admin.agent.setting');
+    }
 }

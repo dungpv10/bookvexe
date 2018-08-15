@@ -441,4 +441,12 @@ class UserService
         return false;
     }
 
+
+    public function checkEmptyInformation($agent = null){
+        if(empty($agent)){
+            $agent = auth()->user()->agent;
+        }
+
+        return \Gate::allows('agent') && (empty($agent->agent_license) || empty($agent->agent_address));
+    }
 }
