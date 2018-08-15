@@ -170,7 +170,7 @@
                     </ul>
                 </li>
                 <!--End User-->
-                @if(Gate::allows('admin'))
+                @if(Gate::allows('root'))
                     <li>
                         <a href="#">
                             <i class="livicon" data-name="recycled" data-size="18" data-c="#F89A14" data-hc="#F89A14" data-loop="true"></i>

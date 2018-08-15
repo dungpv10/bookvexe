@@ -200,6 +200,7 @@
                     { data: 'status', name: 'status', title: '', visible : false },
 
                     { data: 'statusName', name: 'statusName', title: 'Trạng thái' ,
+                        visible: isRoot,
                         render : function(data, type, row, meta){
                             var classBtn = row['status'] == 1 ? 'btn-success' : 'btn-danger';
                             return '<button onclick="updateStatus(' + row['id'] + ', ' + row['status'] + ')" class="btn ' + classBtn + '">' + row['statusName'] + '</button>';
@@ -207,11 +208,13 @@
                     },
                     { data: 'id', name: 'id', title: 'Thao Tác', searchable: false,className: 'text-center', "orderable": false,
                         render: function(data, type, row, meta){
-                            var agentId = "'" + row['id'] + "'";
-                            let urlEdit = window.location.origin + '/admin/agents/' + data + '/edit';
-                            let actionLink = '<a href="javascript:;" data-toggle="tooltip" title="Xoá '+ row['name'] +'!" onclick="deleteAgent('+ agentId +')"><i class=" fa-2x fa fa-trash" aria-hidden="true"></i></a>';
-                            actionLink += '&nbsp;&nbsp;&nbsp;<a target="javascript:;" onclick="editAgent(' + row['id'] + ')"><i class="fa fa-2x fa-pencil-square-o" aria-hidden="true"></i></a>';
-
+                            let actionLink = '';
+                            if(isRoot){
+                                var agentId = "'" + row['id'] + "'";
+                                actionLink = '<a href="javascript:;" data-toggle="tooltip" title="Xoá '+ row['name'] +'!" onclick="deleteAgent('+ agentId +')"><i class=" fa-2x fa fa-trash" aria-hidden="true"></i></a>';
+                                actionLink += '&nbsp;&nbsp;&nbsp;<a target="javascript:;" onclick="editAgent(' + row['id'] + ')"><i class="fa fa-2x fa-pencil-square-o" aria-hidden="true"></i></a>';
+                            }
+                            actionLink += '<a href="" title="Liên kết nhà xe"><i class="fa fa-2x fa-stack-overflow" aria-hidden="true"></i></a>';
                             return actionLink;
                         }
                     }

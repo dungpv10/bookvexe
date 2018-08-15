@@ -41,6 +41,10 @@ class AuthServiceProvider extends ServiceProvider
             return $this->hasRole($user, ['staff']);
         });
 
+        Gate::define('customer', function ($user) {
+            return $this->hasRole($user, ['customer']);
+        });
+
         Gate::define('team-member', function ($user, $team) {
             return ($user->teams->find($team->id));
         });

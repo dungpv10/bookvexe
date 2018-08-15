@@ -34,6 +34,11 @@
     <link href="{{asset('vendors/toastr/toastr.css')}}" rel="stylesheet" type="text/css" />
     @yield('css')
     <link href="{{ asset('css/admin/custom.css') }}" rel="stylesheet" type="text/css" />
+    <style>
+        .fa-trash {
+            color: red;
+        }
+    </style>
 
 </head>
 
@@ -111,8 +116,22 @@
             });
 
         var visible = false;
+
         @if(\Gate::allows('admin'))
             visible = true;
+        @endif
+
+
+        var isAgent = false;
+
+        @if(\Gate::allows('agent'))
+            isAgent = true;
+        @endif
+
+        var isRoot = false;
+
+        @if(\Gate::allows('root'))
+            isRoot = true;
         @endif
     </script>
     <!-- end of page level js -->

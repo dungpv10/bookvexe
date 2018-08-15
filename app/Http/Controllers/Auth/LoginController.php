@@ -47,7 +47,7 @@ class LoginController extends Controller
             return redirect()->route('users.confirm');
         }
 
-        if(\Gate::allows('admin')){
+        if(!\Gate::allows('customer')){
             return redirect()->route('bus.index');
         }
 
