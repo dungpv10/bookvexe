@@ -146,4 +146,17 @@ class AgentController extends Controller
     public function getSetting(Request $request){
         return view('admin.agent.setting');
     }
+
+    public function postSetting(Request $request){
+        $agentId = auth()->user()->agent->id;
+        $agent = $this->service->findByid($agentId);
+        if(!$agent){
+            return redirect()->back()->with('error', 'Bạn chưa thuộc trong nhà xe ');
+        }
+
+        $this->service->update($agent, $request->except('_token'));
+
+        return redirect()->route('bus.index')->with('success', 'Cập nhật thông tin nhà xe thành công');
+
+    }
 }
