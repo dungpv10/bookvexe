@@ -39,6 +39,15 @@
     <script>
 
         $(document).ready(function() {
+
+            function getCurrentDate(){
+                var date = new Date();
+                var currentYear = date.getFullYear();
+                var currentMonth = date.getMonth() + 1;
+                var currentDay = date.getDate();
+
+                return currentYear + '-' + (currentMonth < 10 ? '0' + currentMonth : currentMonth) + '-' + (currentDay < 10 ? '0' + currentDay : currentDay);
+            }
             var getEventRoute = "{{ route('initializes.get_events') }}";
             var events = [];
 
@@ -51,18 +60,27 @@
                 events.forEach(function(event){
                     eventObj.push(event);
                 });
-                console.log(eventObj);
                 $('#calendar').fullCalendar({
                     header: {
                         left: 'prev,next today',
                         center: 'title',
                         right: 'month,basicWeek,basicDay'
                     },
-                    defaultDate: '2018-03-12',
+                    defaultDate: getCurrentDate(),
                     navLinks: true, // can click day/week names to navigate views
                     editable: true,
                     eventLimit: true, // allow "more" link when too many events
-                    events: eventObj
+                    events: eventObj,
+                    eventRender: function(event, element) {
+                        element.popover({
+                            title: '<div style="z-index: 999999">' + event.title + '</div>',
+                            html : true,
+                            placement: 'bottom',
+                            content: event.description,
+                        });
+                        element.find('span.fc-event-title').html(element.find('span.fc-event-title').text());
+
+                    }
                 });
             }).fail(function(error){
                 console.log(error);

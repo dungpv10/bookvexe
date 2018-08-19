@@ -2,11 +2,19 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Services\BookingService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class InitializeController extends Controller
 {
+    protected $bookingService;
+
+    public function __construct(BookingService $bookingService)
+    {
+        $this->bookingService = $bookingService;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -84,19 +92,11 @@ class InitializeController extends Controller
     }
 
     public function getEvents(Request $request){
+        $data = $this->bookingService->getBookingForCalendar($request->except('_token'));
         return response()->json([
             'code' => 200,
             'msg' => 'get event successfully',
-            'events' => [
-                [
-                    'title' => '20 KH - Xe 001',
-                    'start' => '2018-03-01'
-                ],
-                [
-                    'title' => '35 KH',
-                    'start' => '2018-03-10'
-                ]
-            ]
+            'events' => $data
         ]);
     }
 }

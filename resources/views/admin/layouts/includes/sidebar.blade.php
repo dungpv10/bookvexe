@@ -137,7 +137,7 @@
                         <a href="{{ route('initializes.index') }}">
                             <i class="livicon" data-name="inbox" data-size="18" data-c="#EF6F6C" data-hc="#EF6F6C" data-loop="true"></i>
                             <span class="title">Quản lý khởi hành</span>
-                            <span class="fa arrow"></span>
+
                         </a>
                     </li>
 

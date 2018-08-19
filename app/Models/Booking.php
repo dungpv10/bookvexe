@@ -17,6 +17,7 @@ class Booking extends Model
         CANCEL_BOOKING => 'Đã huỷ'
     ];
 
+    protected $dates = ['board_time', 'drop_time'];
     public $types = [
 
     ];

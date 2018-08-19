@@ -185,10 +185,6 @@ Route::group(['middleware' => ['auth', 'active']], function () {
         Route::resource('bookings', 'BookingController');
 
 
-        Route::get('initializes/get_events', ['uses' => 'InitializeController@getEvents', 'as' => 'initializes.get_events']);
-        Route::resource('initializes', 'InitializeController', ['only' => 'index']);
-
-
         /*
         |--------------------------------------------------------------------------
         | Team Routes
@@ -230,6 +226,13 @@ Route::group(['middleware' => ['auth', 'active']], function () {
         | Admin group
         |--------------------------------------------------------------------------
         */
+        Route::group(['roles' => 'agent, staff'], function(){
+            Route::get('initializes/get_events', ['uses' => 'InitializeController@getEvents', 'as' => 'initializes.get_events']);
+            Route::resource('initializes', 'InitializeController', ['only' => 'index']);
+        });
+
+
+
         Route::group(['middleware' => 'roles:root'], function () {
 
             /*
