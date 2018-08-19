@@ -41,12 +41,13 @@ class BookingService
         $data = [];
         foreach($bookingByData as $date => $returnData){
             $pushData = [
-                'title' => '',
-                'start' => $date
+                'title' => 'Xem chi tiết',
+                'start' => $date,
+                'description' => ''
             ];
 
             foreach($returnData as $busOnDay){
-                $pushData['title'] .= count($busOnDay) . ' KH - ' . $busOnDay[0]->bus->bus_name . ' <br/> ';
+                $pushData['description'] .= count($busOnDay) . ' KH - ' . $busOnDay[0]->bus->bus_name . ' <br/> ';
             }
 
             array_push($data, $pushData);

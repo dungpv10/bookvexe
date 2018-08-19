@@ -73,10 +73,11 @@
                     events: eventObj,
                     eventRender: function(event, element) {
                         element.popover({
-                            title: '<div style="z-index: 999999">' + event.title + '</div>',
+                            trigger: "click",
+                            container:'body',
+                            content: '<div style="z-index: 999999">' + event.description + '</div>',
                             html : true,
-                            placement: 'bottom',
-                            content: event.description,
+                            placement: 'bottom'
                         });
                         element.find('span.fc-event-title').html(element.find('span.fc-event-title').text());
 
