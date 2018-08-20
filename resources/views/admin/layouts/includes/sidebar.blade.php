@@ -82,7 +82,7 @@
                 <!--Promotions-->
                 <li>
                     <a href="#">
-                        <i class="livicon" data-name="star-full" data-size="22" data-c="#EF6F6C" data-hc="#EF6F6C" data-loop="true"></i>
+                        <i class="livicon" data-name="biohazard" data-size="22" data-c="#418BCA" data-hc="#418BCA" data-loop="true"></i>
                         <span class="title">Quản lý khuyến mại</span>
                         <span class="fa arrow"></span>
                     </a>
@@ -99,7 +99,7 @@
 
                 <li>
                     <a href="#">
-                        <i class="livicon" data-name="spinner-four" data-size="18" data-c="#00bc8c" data-hc="#00bc8c" data-loop="true"></i>
+                        <i class="livicon" data-name="magic" data-size="18" data-c="#00bc8c" data-hc="#00bc8c" data-loop="true"></i>
                         <span class="title">Bookings</span>
                         <span class="fa arrow"></span>
                     </a>
@@ -163,6 +163,24 @@
                         {{--</li>--}}
                     </ul>
                 </li>
+
+
+                    <li>
+                        <a href="#">
+                            <i class="livicon" data-name="star-full" data-size="18" data-c="#00bc8c" data-hc="#00bc8c" data-loop="true"></i>
+                            <span class="title">Đánh giá</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="{{route('ratings.index')}}">
+                                    <i class="fa fa-angle-double-right"></i>
+                                    Danh sách
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
 
                 <li>
                     <a href="#">

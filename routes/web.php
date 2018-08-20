@@ -221,6 +221,16 @@ Route::group(['middleware' => ['auth', 'active']], function () {
         Route::get('cancellations/getJsonData', ['as' => 'cancellations.getJsonData', 'uses' => 'SettingCancelBookingController@getJsonData']);
         Route::resource('cancellations', 'SettingCancelBookingController');
 
+
+        /*
+        |--------------------------------------------------------------------------
+        | Cancellation
+        |--------------------------------------------------------------------------
+        */
+        Route::get('ratings/getJsonData', ['as' => 'cancellations.getJsonData', 'uses' => 'RatingController@getJsonData']);
+        Route::resource('ratings', 'RatingController');
+
+
         /*
         |--------------------------------------------------------------------------
         | Admin group
