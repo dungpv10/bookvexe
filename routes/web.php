@@ -227,7 +227,7 @@ Route::group(['middleware' => ['auth', 'active']], function () {
         | Cancellation
         |--------------------------------------------------------------------------
         */
-        Route::get('ratings/getJsonData', ['as' => 'cancellations.getJsonData', 'uses' => 'RatingController@getJsonData']);
+        Route::get('ratings/getJsonData', ['as' => 'ratings.getJsonData', 'uses' => 'RatingController@getJsonData']);
         Route::resource('ratings', 'RatingController');
 
 

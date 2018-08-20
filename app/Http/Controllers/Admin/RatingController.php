@@ -2,11 +2,22 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Services\BusService;
+use App\Services\RatingService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class RatingController extends Controller
 {
+    protected $ratingService;
+
+    protected $busService;
+    public function __construct(RatingService $ratingService, BusService $busService)
+    {
+        $this->ratingService = $ratingService;
+        $this->busService = $busService;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +25,8 @@ class RatingController extends Controller
      */
     public function index()
     {
-        //
+        $buses = $this->busService->all();
+        return view('admin.rating.index', compact('buses'));
     }
 
     /**
@@ -81,5 +93,10 @@ class RatingController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getJsonData(Request $request){
+
+        return $this->ratingService->getJsonData($request->only('bus_id'));
     }
 }

@@ -18,6 +18,8 @@ class CreateRatingsTable extends Migration
             $table->tinyInteger('rating_number')->default(0)->comment('rating number');
             $table->integer('bus_id')->unsigned()->comment('bus id');
             $table->foreign('bus_id')->references('id')->on('buses')->onDelete('cascade');
+
+            $table->softDeletes();
             $table->timestamps();
         });
     }

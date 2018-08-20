@@ -9,4 +9,8 @@ class Rate extends Model
     protected $table = 'ratings';
 
     protected $guarded = ['id'];
+
+    public function bus(){
+        return $this->belongsTo(Bus::class, 'bus_id', 'id');
+    }
 }
