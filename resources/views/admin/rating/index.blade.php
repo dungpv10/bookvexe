@@ -40,7 +40,7 @@
 
 @section('js')
     <script type="text/javascript">
-        var ratingTable;
+        var ratingTable, busId = $('#bus_id');
         $('.select2').select2();
         $('.select2-container--default').css({width: '100%'});
         $(function(){
@@ -50,7 +50,7 @@
                 ajax: {
                     "url": '{!! route('ratings.getJsonData') !!}',
                     "data": function (d) {
-                        d.bus_id = $('#bus_id').val();
+                        d.bus_id = busId.val();
                         // d.promotion_type = filterPromotionType.val()
                         // d.agent_id = filterAgentId.val()
                     }
@@ -60,6 +60,9 @@
                     {data: 'rating_number', name: 'rating_number', title: 'Đánh giá'},
 
                 ]
+            });
+            busId.on('change', function(){
+               ratingTable.ajax.reload();
             });
         })
 
