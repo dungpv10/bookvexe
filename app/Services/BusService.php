@@ -42,7 +42,7 @@ class BusService
 
     public function getJSONData($filters)
     {
-        $result = $this->busModel->with('busType')->with('user')->where('id', '!=', 0);
+        $result = $this->busModel->with('busType')->with('user');
 
         if(!empty($filters['bus_type_id'])){
             $result->where('bus_type_id', $filters['bus_type_id']);
@@ -57,7 +57,7 @@ class BusService
         $adminAgentId = $this->userService->getAdminAgentId();
 
         if(!empty($adminAgentId)){
-            $result->where('buses.user_id', $adminAgentId);
+            $result->where('user_id', $adminAgentId);
         }
 
         return DataTables::of($result)

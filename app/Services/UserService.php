@@ -414,6 +414,7 @@ class UserService
         if(empty($user)) $user = auth()->user();
 
         $agentId = $user->agent ? $user->agent->id : null;
+
         return $agentId != null ? $this->model->where('agent_id', $agentId)->where('role_id', 2)->first() : null;
     }
 

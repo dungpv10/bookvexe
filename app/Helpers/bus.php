@@ -2,8 +2,9 @@
 /**
  * Bus status
  */
-define('BUS_INACTIVE', 0);
-define('BUS_ACTIVE', 1);
+define('BUS_INACTIVE', 0); // Stop working
+define('BUS_ACTIVE', 1); // Free
+define('BUS_WORKING', 2);
 
 
 /**

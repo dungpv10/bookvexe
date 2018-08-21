@@ -23,7 +23,7 @@ $factory->define(App\Models\Bus::class, function (Faker\Generator $faker) {
         'start_time' => '12:00:00',
         'amenities' => 'Nước uống, Wifi, Điều hoà',
         'end_time' => '15:00:00',
-        'status' => array_rand([BUS_INACTIVE, BUS_ACTIVE])
+        'status' => array_rand([BUS_INACTIVE, BUS_ACTIVE, BUS_WORKING])
     ];
 
 

@@ -10,23 +10,30 @@
     </style>
 @stop
 @section('content')
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="box">
+                <div class="box-header with-border margin-bottom-10">
+                    <h3 class="box-title">Quản lý khởi hành</h3>
+                    <button type="button" class="btn btn-primary" id="createAgentBtn">
+                        <i class="fa fa-plus-circle" aria-hidden="true"></i>Thêm mới
+                    </button>
+                </div>
+                <table class="table table-bordered" id="initialize_table">
+
+                </table>
+            </div>
+        </div>
+    </div>
 
     <div class="col-md-12">
         <div class="box">
+            <div class="box-header with-border margin-bottom-10">
+                <h3 class="box-title">Lịch khởi hành</h3>
+            </div>
             <div id='calendar'></div>
 
-        </div>
-    </div>
-    <div class="modal fade" id="editBusTypeModal" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h3 class="box-title">Sửa kiểu xe</h3>
-                </div>
-                <div class="modal-body">
-                </div>
-            </div>
         </div>
     </div>
 
@@ -39,6 +46,49 @@
     <script>
 
         $(document).ready(function() {
+            var initializeTable = $('#initialize_table'), initializeDataTable;
+
+            initializeDataTable = initializeTable.DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: {
+                    url: '{!! route('initializes.getJsonData') !!}',
+                    data: function(d){
+
+                    }
+                },
+                columns: [
+                    { data: 'id', name: 'id', searchable: true, title: 'Mã khởi hành' },
+                    { data: 'id', name: 'id', title: 'Xe', sortable: false, searchable: false,
+                        render: function(data, type, row, meta){
+
+                            var busId = row['bus_id'];
+
+                            $('.select2').select2();
+                            $('.select2-container--default').css({width: '100%'});
+                            return '<select class="form-control select2">' +
+                                '<option>Chọn xe</option>' +
+                                '</select>';
+
+
+                        }
+
+                    },
+                    { data: 'initialize_name', name: 'initialize_name', title: 'Tên hành trình' },
+                    { data: 'number_customer', name: 'number_customer', title: 'Số lượng khách' },
+                    { data: 'start_time', name: 'start_time', title: 'Giờ khởi hành' },
+                    { data: 'user.name', name: 'user.name', title: 'Nhân viên tạo'},
+                    { data: 'driver.name', name: 'driver.name', title: 'Lái xe'},
+
+                    { data: 'accessory.name', name: 'accessory.name', title: 'Lơ xe'},
+                    { data: 'bus_id', name: 'bus_id', title: 'Lơ xe', visible: false},
+
+
+
+                ]
+            });
+
+
 
             function getCurrentDate(){
                 var date = new Date();

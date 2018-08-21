@@ -56,7 +56,7 @@ class BusController extends Controller
     public function create()
     {
         $busTypes = $this->busTypeService->getAllBusType();
-        $busNames = $this->busService->getAllBusName()->toArray();
+        $busNames = $this->busService->getAllBusName();
         $busRegs = $this->busService->getAllBusReg()->toArray();
         return view('admin.bus.create',[
             'busTypes' => $busTypes,

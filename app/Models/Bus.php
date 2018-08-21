@@ -12,7 +12,7 @@ class Bus extends Model
 
     protected $guarded = ['id'];
 
-    public static $busStatus = [BUS_INACTIVE => 'Chưa kích hoạt', BUS_ACTIVE => 'Đang hoạt động'];
+    public static $busStatus = [BUS_INACTIVE => 'Ngưng hoạt động', BUS_ACTIVE => 'Đang hoạt động', BUS_WORKING => 'Đang trên tuyến'];
 
     public function routes()
     {

@@ -3,16 +3,18 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Services\BookingService;
+use App\Services\InitializeService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class InitializeController extends Controller
 {
     protected $bookingService;
-
-    public function __construct(BookingService $bookingService)
+    protected $service;
+    public function __construct(BookingService $bookingService, InitializeService $service)
     {
         $this->bookingService = $bookingService;
+        $this->service = $service;
     }
 
     /**
@@ -98,5 +100,10 @@ class InitializeController extends Controller
             'msg' => 'get event successfully',
             'events' => $data
         ]);
+    }
+
+
+    public function getJsonData(Request $request){
+        return $this->service->getJsonData();
     }
 }
