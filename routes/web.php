@@ -125,12 +125,13 @@ Route::group(['middleware' => ['auth', 'active']], function () {
         |--------------------------------------------------------------------------
         */
 
+
         Route::resource('bus', 'BusController', ['except' => ['show', 'update']]);
         Route::get('bus/getJSONData', ['as'=>'bus.datatable', 'uses'=>'BusController@getJSONData']);
         Route::post('bus/update/{id}', ['as'=>'bus.update.bus', 'uses'=>'BusController@updateBus']);
         Route::get('bus/detail/{id?}', ['as'=>'bus.detail', 'uses'=>'BusController@detail']);
         Route::post('bus/deleteMultiple', ['as'=>'bus.delete_multiple', 'uses'=>'BusController@deleteMultiple']);
-
+        Route::get('bus/all', ['as' => 'bus.all', 'uses' => 'BusController@getAllBus']);
         /*
         |--------------------------------------------------------------------------
         | Bus Type

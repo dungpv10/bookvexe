@@ -223,4 +223,13 @@ class BusController extends Controller
 
         return redirect('admin/bus')->with('message', 'Failed to delete');
     }
+
+
+    public function getAllBus(Request $request){
+        return response()->json([
+            'code' => 200,
+            'msg' => 'get all bus successfully',
+            'data' => $this->busService->all()
+        ]);
+    }
 }

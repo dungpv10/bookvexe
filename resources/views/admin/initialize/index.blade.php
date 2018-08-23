@@ -46,6 +46,30 @@
     <script>
 
         $(document).ready(function() {
+
+            var getAllBus = function(callback, id, index){
+                $.ajax({
+                    method: 'get',
+                    data: {},
+                    url: "{{route('bus.all')}}"
+                }).done(function(response){
+                    if(response.code === 200){
+                        var html = '<select class="form-control select2" id=row_' + index + '>';
+                        response.data.map(function(bus){
+                            return html += '<option value=' + bus.id + '>' + bus.bus_name + '</option>';
+                        });
+                        html += '</select>';
+
+                        callback(html, id, index);
+
+                        $('.select2').select2();
+                        $('.select2-container--default').css({width: '100%'});
+                    }
+                }).fail(function(error){
+                    console.log('error', error)
+                });
+            };
+
             var initializeTable = $('#initialize_table'), initializeDataTable;
 
             initializeDataTable = initializeTable.DataTable({
@@ -53,26 +77,27 @@
                 serverSide: true,
                 ajax: {
                     url: '{!! route('initializes.getJsonData') !!}',
-                    data: function(d){
+                    data: function(d){}
+                },
+                initComplete : function(settings, json){
+                    json.data.map(function(row, index){
+                        var row = row['bus_id'];
+                        index++;
+                        return getAllBus(function(html, row, index){
+                            var chooseBus = $('#choose_bus_' + index);
+                            chooseBus.html(html);
+                            chooseBus.select2().select2('val', row);
+                            $('#row_' + index );
+                        },row['bus_id'], index);
+                    });
 
-                    }
                 },
                 columns: [
                     { data: 'id', name: 'id', searchable: true, title: 'Mã khởi hành' },
                     { data: 'id', name: 'id', title: 'Xe', sortable: false, searchable: false,
                         render: function(data, type, row, meta){
-
-                            var busId = row['bus_id'];
-
-                            $('.select2').select2();
-                            $('.select2-container--default').css({width: '100%'});
-                            return '<select class="form-control select2">' +
-                                '<option>Chọn xe</option>' +
-                                '</select>';
-
-
+                            return '<div id="choose_bus_' + data + '"></div>';
                         }
-
                     },
                     { data: 'initialize_name', name: 'initialize_name', title: 'Tên hành trình' },
                     { data: 'number_customer', name: 'number_customer', title: 'Số lượng khách' },
