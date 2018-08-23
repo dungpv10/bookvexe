@@ -54,16 +54,13 @@
                     url: "{{route('bus.all')}}"
                 }).done(function(response){
                     if(response.code === 200){
-                        var html = '<select class="form-control select2" id=row_' + index + '>';
+                        var html = '<select class="form-control select2" id="row_' + index + '">';
                         response.data.map(function(bus){
                             return html += '<option value=' + bus.id + '>' + bus.bus_name + '</option>';
                         });
                         html += '</select>';
 
                         callback(html, id, index);
-
-                        $('.select2').select2();
-                        $('.select2-container--default').css({width: '100%'});
                     }
                 }).fail(function(error){
                     console.log('error', error)
@@ -76,18 +73,19 @@
                 processing: true,
                 serverSide: true,
                 ajax: {
-                    url: '{!! route('initializes.getJsonData') !!}',
-                    data: function(d){}
+                    url: '{!! route('initializes.getJsonData') !!}'
                 },
                 initComplete : function(settings, json){
                     json.data.map(function(row, index){
-                        var row = row['bus_id'];
+                        var busId = row.bus_id;
                         index++;
-                        return getAllBus(function(html, row, index){
+                        return getAllBus(function(html, busId, index){
+                            console.log(index);
                             var chooseBus = $('#choose_bus_' + index);
                             chooseBus.html(html);
-                            chooseBus.select2().select2('val', row);
-                            $('#row_' + index );
+                            $('#row_' + index).select2().select2('val', busId);
+                            $('.select2').select2();
+                            $('.select2-container--default').css({width: '100%'});
                         },row['bus_id'], index);
                     });
 
