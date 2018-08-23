@@ -22,7 +22,7 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
         'dob' => $faker->time('Y-m-d'),
         'mobile' => $faker->phoneNumber,
         'gender' => array_rand([USER_GENDER_MALE, USER_GENDER_FEMALE]),
-        'status' => USER_STATUS_ACTIVE,
+        'status' => array_rand(USER_STATUS_ACTIVE, USER_STATUS_IN_WORKING),
         'avatar' => $faker->imageUrl(200, 200),
         'address' => $faker->address,
         'remember_token' => str_random(10),
