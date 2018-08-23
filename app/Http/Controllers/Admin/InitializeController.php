@@ -84,7 +84,19 @@ class InitializeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $initialize = $this->service->findById($id);
+        if(!$initialize){
+            return response()->json([
+                'code' => 404,
+                'msg' => 'Initialize not found'
+            ]);
+        }
+
+        $this->service->update($initialize, $request->except('_token'));
+        return response()->json([
+            'code' => 200,
+            'msg' => 'update successfully'
+        ]);
     }
 
     /**

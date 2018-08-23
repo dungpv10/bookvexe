@@ -50,6 +50,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
+                        <input type="hidden" name="id" value="" id = "initialize_id"/>
                         <select class="form-control select2" id="bus_id">
                             <option value="">Chọn xe</option>
                             @foreach($buses as $bus)
@@ -60,7 +61,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                    <button type="button" class="btn btn-primary" id="updateStatus">Cập nhật</button>
+                    <button type="button" class="btn btn-primary" id="updateBusId">Cập nhật</button>
                 </div>
             </div>
         </div>
@@ -80,10 +81,12 @@
             $('.select2').select2();
             $('.select2-container--default').css({width: '100%'});
 
-            $('#changeBus').on('shown.bs.modal', function(e){
+            var busIdElm = $('#bus_id'), initializeId = $('#initialize_id'), changeBusModal = $('#changeBus');
+            changeBusModal.on('shown.bs.modal', function(e){
                 var relatedTarget = $(e.relatedTarget);
-                var busIdElm = $('#bus_id');
+
                 busIdElm.val(relatedTarget.data('bus_id'));
+                initializeId.val(relatedTarget.data('id'));
                 busIdElm.select2().select2('val', relatedTarget.data('bus_id'));
             });
 
@@ -102,7 +105,7 @@
 
                     { data: 'bus_name', name: 'bus_name', title: 'Xe', sortable: false, searchable: false,
                         render: function(data, type, row, meta){
-                            return '<button data-bus_id = ' + row['bus_id'] + ' data-toggle="modal" data-target="#changeBus" class="btn btn-default">' + row['bus']['bus_name'] + '</button>';
+                            return '<button data-id=' + row['id'] + ' data-bus_id = ' + row['bus_id'] + ' data-toggle="modal" data-target="#changeBus" class="btn btn-default">' + row['bus']['bus_name'] + '</button>';
                         }
                     },
                     { data: 'initialize_name', name: 'initialize_name', title: 'Tên hành trình' },
@@ -112,9 +115,10 @@
                     { data: 'driver.name', name: 'driver.name', title: 'Lái xe'},
 
                     { data: 'accessory.name', name: 'accessory.name', title: 'Lơ xe'},
+                    { data: 'status_name', name: 'status_name', title: 'Trạng thái'},
                     { data: 'bus_id', name: 'bus_id', title: 'Lơ xe', visible: false},
 
-                    {data : 'action', name: 'action', searchable: false, orderable: false,
+                    {data : 'action', name: 'action', searchable: false, orderable: false, title: 'Thao tác',
                         render: function(data, type, row, meta){
                             var initializeId = row['id'];
                             var actionLink = '<a href="javascript:;" data-toggle="tooltip" title="Xoá '+ row['boardingPoint'] +'!" onclick="deleteInitialize('+ initializeId +')"><i class=" fa-2x fa fa-trash" aria-hidden="true"></i></a>';
@@ -127,7 +131,32 @@
             });
 
 
+            var updateBusId = $('#updateBusId');
 
+
+
+            updateBusId.on('click', function(e){
+                e.preventDefault();
+
+                $.ajax({
+                    method: 'PUT',
+                    url : "{{ route('initializes.index') }}/" + initializeId.val(),
+                    data: {
+                        bus_id: busIdElm.val()
+                    }
+                }).done(function(response){
+                    if(response.code === 200){
+                        changeBusModal.modal('hide');
+                        initializeDataTable.ajax.reload();
+
+                    }else{
+                        actionFail();
+                    }
+
+                }).fail(function(error){
+                    actionFail();
+                });
+            });
 
             function getCurrentDate(){
                 var date = new Date();
@@ -173,10 +202,21 @@
                     }
                 });
             }).fail(function(error){
-                console.log(error);
+                actionFail();
             });
 
         });
+
+        var actionFail = function(){
+            swal(
+                'Thất bại',
+                'Thao tác thất bại',
+                'error'
+            ).then(function(){
+                initializeDataTable.ajax.reload();
+            })
+        };
+
         var deleteInitialize = function(initializeId){
             swal({
                 title: "Bạn có muốn xóa?",
@@ -211,13 +251,7 @@
                             })
                         }
                     }).error(function(data){
-                        swal(
-                            'Thất bại',
-                            'Thao tác thất bại',
-                            'error'
-                        ).then(function(){
-                            initializeDataTable.ajax.reload();
-                        })
+                        actionFail();
                     });
                 } else if (result.dismiss === 'cancel') {
                     swal(

@@ -4,15 +4,18 @@ namespace App\Services;
 
 
 use App\Models\Booking;
+use App\Models\Bus;
 use DB;
 
 class BookingService
 {
     protected $model;
+    protected $userService;
 
-    public function __construct(Booking $booking)
+    public function __construct(Booking $booking, UserService $userService)
     {
         $this->model = $booking;
+        $this->userService = $userService;
     }
 
     public function getStatus()
@@ -34,7 +37,18 @@ class BookingService
     }
 
     public function getBookingForCalendar($filters){
-        $bookingByData = $this->model->with('bus')->get()->groupBy('bus_id')->groupBy(function($item){
+        $bookingByData = $this->model->with('bus');
+
+
+        $adminAgentId = $this->userService->getAdminAgentId();
+        if (!empty($adminAgentId)) {
+            $bookingByData = $bookingByData->whereHas('bus', function($q) use ($adminAgentId){
+                $q->where('user_id', $adminAgentId);
+            });
+        }
+
+
+        $bookingByData = $bookingByData->get()->groupBy('bus_id')->groupBy(function($item){
             return $item[0]->board_time->format('Y-m-d');
         });
 

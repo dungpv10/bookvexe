@@ -29,7 +29,13 @@ class InitializeService
 
         return $initialize ? $initialize : false;
     }
+
     public function destroy($initialize){
         return $initialize->delete();
     }
+
+    public function update($initialize, $data){
+        return $initialize->fill($data)->save();
+    }
+
 }

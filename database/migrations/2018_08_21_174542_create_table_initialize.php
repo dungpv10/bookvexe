@@ -31,6 +31,7 @@ class CreateTableInitialize extends Migration
             $table->integer('car_accessory_id')->unsigned()->nullable()->comment('driver on user table');
             $table->foreign('car_accessory_id')->references('id')->on('users')->onDelete('cascade')->comment('Car accessory id');
 
+            $table->tinyInteger('status')->default(0)->comment('status of initialize');
             $table->softDeletes();
             $table->timestamps();
         });
