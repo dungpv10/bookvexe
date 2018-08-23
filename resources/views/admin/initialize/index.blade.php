@@ -37,6 +37,36 @@
         </div>
     </div>
 
+
+    <div class="modal fade" id="changeBus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Chọn xe</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <select class="form-control select2" id="bus_id">
+                            <option value="">Chọn xe</option>
+                            @foreach($buses as $bus)
+                                <option value="{{ $bus->id }}">{{ $bus->bus_name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-primary" id="updateStatus">Cập nhật</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 @stop
 @section('js')
 
@@ -44,30 +74,20 @@
     <script src='/vendors/fullcalendar/fullcalendar.min.js'></script>
 
     <script>
-
+        var initializeTable = $('#initialize_table'), initializeDataTable;
         $(document).ready(function() {
 
-            var getAllBus = function(callback, id, index){
-                $.ajax({
-                    method: 'get',
-                    data: {},
-                    url: "{{route('bus.all')}}"
-                }).done(function(response){
-                    if(response.code === 200){
-                        var html = '<select class="form-control select2" id="row_' + index + '">';
-                        response.data.map(function(bus){
-                            return html += '<option value=' + bus.id + '>' + bus.bus_name + '</option>';
-                        });
-                        html += '</select>';
+            $('.select2').select2();
+            $('.select2-container--default').css({width: '100%'});
 
-                        callback(html, id, index);
-                    }
-                }).fail(function(error){
-                    console.log('error', error)
-                });
-            };
+            $('#changeBus').on('shown.bs.modal', function(e){
+                var relatedTarget = $(e.relatedTarget);
+                var busIdElm = $('#bus_id');
+                busIdElm.val(relatedTarget.data('bus_id'));
+                busIdElm.select2().select2('val', relatedTarget.data('bus_id'));
+            });
 
-            var initializeTable = $('#initialize_table'), initializeDataTable;
+
 
             initializeDataTable = initializeTable.DataTable({
                 processing: true,
@@ -75,26 +95,14 @@
                 ajax: {
                     url: '{!! route('initializes.getJsonData') !!}'
                 },
-                initComplete : function(settings, json){
-                    json.data.map(function(row, index){
-                        var busId = row.bus_id;
-                        index++;
-                        return getAllBus(function(html, busId, index){
-                            console.log(index);
-                            var chooseBus = $('#choose_bus_' + index);
-                            chooseBus.html(html);
-                            $('#row_' + index).select2().select2('val', busId);
-                            $('.select2').select2();
-                            $('.select2-container--default').css({width: '100%'});
-                        },row['bus_id'], index);
-                    });
 
-                },
                 columns: [
                     { data: 'id', name: 'id', searchable: true, title: 'Mã khởi hành' },
-                    { data: 'id', name: 'id', title: 'Xe', sortable: false, searchable: false,
+                    { data: 'bus.bus_name', name: 'bus.bus_name', searchable: true, title: '', visible: false },
+
+                    { data: 'bus_name', name: 'bus_name', title: 'Xe', sortable: false, searchable: false,
                         render: function(data, type, row, meta){
-                            return '<div id="choose_bus_' + data + '"></div>';
+                            return '<button data-bus_id = ' + row['bus_id'] + ' data-toggle="modal" data-target="#changeBus" class="btn btn-default">' + row['bus']['bus_name'] + '</button>';
                         }
                     },
                     { data: 'initialize_name', name: 'initialize_name', title: 'Tên hành trình' },
@@ -106,10 +114,18 @@
                     { data: 'accessory.name', name: 'accessory.name', title: 'Lơ xe'},
                     { data: 'bus_id', name: 'bus_id', title: 'Lơ xe', visible: false},
 
-
+                    {data : 'action', name: 'action', searchable: false, orderable: false,
+                        render: function(data, type, row, meta){
+                            var initializeId = row['id'];
+                            var actionLink = '<a href="javascript:;" data-toggle="tooltip" title="Xoá '+ row['boardingPoint'] +'!" onclick="deleteInitialize('+ initializeId +')"><i class=" fa-2x fa fa-trash" aria-hidden="true"></i></a>';
+                            actionLink += '&nbsp;&nbsp;&nbsp;<a href="javascript:;" onclick="editInitialize('+ initializeId +')" data-toggle="tooltip" title="Sửa '+ row['initialize_name'] +'!" ><i class="fa fa-2x fa-pencil-square-o" aria-hidden="true"></i></a>';
+                            return actionLink;
+                        }
+                    }
 
                 ]
             });
+
 
 
 
@@ -161,6 +177,60 @@
             });
 
         });
+        var deleteInitialize = function(initializeId){
+            swal({
+                title: "Bạn có muốn xóa?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                cancelButtonText: 'Bỏ qua',
+                confirmButtonText: "Đồng ý",
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url: '{!! route('initializes.index') !!}' + '/' + initializeId,
+                        method: 'DELETE'
+                    }).success(function(data){
+                        if(data.code == 200)
+                        {
+                            swal(
+                                'Đã Xoá!',
+                                'Bạn đã xoá thành công người dùng!',
+                                'success'
+                            ).then(function(){
+                                initializeDataTable.ajax.reload();
+                            })
+                        }
+                        else {
+                            swal(
+                                'Thất bại',
+                                'Thao tác thất bại',
+                                'error'
+                            ).then(function(){
+                                initializeDataTable.ajax.reload();
+                            })
+                        }
+                    }).error(function(data){
+                        swal(
+                            'Thất bại',
+                            'Thao tác thất bại',
+                            'error'
+                        ).then(function(){
+                            initializeDataTable.ajax.reload();
+                        })
+                    });
+                } else if (result.dismiss === 'cancel') {
+                    swal(
+                        'Bỏ Qua',
+                        'Bạn đã không xoá nữa',
+                        'error'
+                    )
+                }
+            });
+        };
 
+        var editInitialize = function(initializeId){
+
+        }
     </script>
 @stop

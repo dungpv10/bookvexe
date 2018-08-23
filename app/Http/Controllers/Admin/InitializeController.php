@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Services\BookingService;
+use App\Services\BusService;
 use App\Services\InitializeService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -11,10 +12,13 @@ class InitializeController extends Controller
 {
     protected $bookingService;
     protected $service;
-    public function __construct(BookingService $bookingService, InitializeService $service)
+    protected $busService;
+
+    public function __construct(BookingService $bookingService, InitializeService $service, BusService $busService)
     {
         $this->bookingService = $bookingService;
         $this->service = $service;
+        $this->busService = $busService;
     }
 
     /**
@@ -24,7 +28,8 @@ class InitializeController extends Controller
      */
     public function index()
     {
-        return view('admin.initialize.index');
+        $buses = $this->busService->all();
+        return view('admin.initialize.index', compact('buses'));
     }
 
     /**
@@ -90,7 +95,19 @@ class InitializeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $initialize = $this->service->findById($id);
+        if(!$initialize){
+            return response()->json([
+                'code' => 404,
+                'msg' => 'Initialize not found'
+            ]);
+        }
+        $this->service->destroy($initialize);
+
+        return response()->json([
+            'code' => 200,
+            'msg' => 'Delete successfully',
+        ]);
     }
 
     public function getEvents(Request $request){

@@ -240,7 +240,7 @@ Route::group(['middleware' => ['auth', 'active']], function () {
         Route::group(['roles' => 'agent, staff'], function(){
             Route::get('initializes/get_events', ['uses' => 'InitializeController@getEvents', 'as' => 'initializes.get_events']);
             Route::get('initializes/getJsonData', ['uses' => 'InitializeController@getJsonData', 'as' => 'initializes.getJsonData']);
-            Route::resource('initializes', 'InitializeController', ['only' => 'index']);
+            Route::resource('initializes', 'InitializeController');
         });
 
 

@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: dungpv
- * Date: 8/22/18
- * Time: 02:33
- */
 
 namespace App\Services;
 
@@ -28,5 +22,14 @@ class InitializeService
         $builder = $this->model->with(['user', 'driver', 'accessory', 'bus']);
 
         return $this->dataTable->of($builder)->make(true);
+    }
+
+    public function findById($id){
+        $initialize = $this->model->find($id);
+
+        return $initialize ? $initialize : false;
+    }
+    public function destroy($initialize){
+        return $initialize->delete();
     }
 }
