@@ -25,6 +25,11 @@ class CreateUsersTable extends Migration
                 ->comment('User Gender: 0: Female 1: Male');
             $table->tinyInteger('status')->default(0)
                 ->comment('Active/Inactive');
+
+            $table->tinyInteger('in_working')->default(0)
+                ->comment('Working/In working');
+
+
             $table->string('avatar')->nullable()
                 ->comment('ID of image in images table');
 
