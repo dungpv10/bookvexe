@@ -69,11 +69,24 @@
                         </div>
                     </a>
 
-                    {{--<a href="/user/settings">--}}
-                        {{--<i class="livicon" data-name="fa-cogs" data-size="16" data-c="#01BC8C" data-hc="#01BC8C"--}}
-                           {{--data-loop="true"></i><b> Cài đặt & Đổi password</b>--}}
-                    {{--</a>--}}
                 </li>
+
+
+                @if(Gate::allows('agent'))
+                    <li class="unread message">
+                        <a href="{{ route('agents.setting') }}" class="message">
+                            <i class="pull-right" data-toggle="tooltip" data-placement="top" title="Mark as Read">
+                                <span class="pull-right ol livicon" data-n="adjust" data-s="10" data-c="#287b0b"></span>
+                            </i>
+                            <div class="message-body">
+                                <strong>Cài đặt </strong>
+                                <br>
+                                Thông tin nhà xe
+                            </div>
+                        </a>
+
+                    </li>
+                @endif
                 <li class="footer">
                     <a href="{{ route('logout') }}">Đăng xuất</a>
                 </li>
