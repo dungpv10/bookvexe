@@ -18,7 +18,7 @@
     <!-- Site Title -->
     <title>BOOK - XE</title>
 
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
     <!--
     CSS
     ============================================= -->
@@ -30,6 +30,8 @@
     <link href="{{ asset('vendors/validation/css/bootstrapValidator.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{asset('vendors/datetimepicker/css/bootstrap-datetimepicker.min.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('vendors/timepicker/css/bootstrap-timepicker.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('vendors/select2/select2.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('vendors/select2/select2-bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="{{ asset('css/css/style.css') }}">
     @yield('css')
 </head>
@@ -49,6 +51,7 @@
 <script src="{{asset('js/bootstrap.min.js')}}" type="text/javascript"></script>
 <script type="text/javascript" src="{{ asset('vendors/validation/js/bootstrapValidator.min.js') }}" ></script>
 <script type="text/javascript" src="{{ asset('vendors/datetimepicker/js/moment.min.js') }}" ></script>
+<script type="text/javascript" src="{{ asset('vendors/select2/select2.min.js') }}" ></script>
 <script src="{{asset('vendors/datetimepicker/js/bootstrap-datetimepicker.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('vendors/timepicker/js/bootstrap-timepicker.js')}}" type="text/javascript"></script>
 <script src="{{ asset('js/pages/jquery-ui.js') }}"></script>

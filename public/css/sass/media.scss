@@ -1,0 +1,19 @@
+section {
+	padding: 45px 0px;
+	&.bg-section {
+		background-color: $color-bg-section;
+	}
+}
+.star {
+	font-size: 18px;
+	background-color: $color-bg-star;
+	color: $white;
+	height: 18px;
+	width: 18px;
+	&.rate {
+		background-color: $color-star;
+	}
+	&.rate-highlights {
+		background-color: $color-star-highlights;
+	}
+}
