@@ -1,0 +1,74 @@
+html, body {
+	margin: 0;
+	padding: 0;
+}
+body {
+	font-size: $font-size-default;
+	font-family: $font-family;
+	font-weight: 500;
+	background-color: $white;
+	position: relative;
+	overflow: hidden;
+	line-height: 18px;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+	color: $primary;
+	display: block;
+    margin: 0 0 10px;
+}
+h1, .h1 {
+	font-size: 24px;
+	line-height: 26px;
+}
+h2, .h2 {
+	font-size: 22px;
+	line-height: 24px;
+}
+h3, .h3 {
+	font-size: 20px;
+	line-height: 22px;
+}
+h4, .h4 {
+	font-size: 18px;
+	line-height: 20px;
+}
+h5, .h5 {
+	font-size: 16px;
+	line-height: 18px;
+}
+h6, .h6 {
+	font-size: 14px;
+	line-height: 16px;
+}
+ul {
+	list-style: none;
+    padding: 0;
+    margin: 0;
+	li {
+		list-style: none;
+    	margin: 0;
+	}
+}
+a {
+	color: $primary;
+	outline: none !important;
+	&:hover {
+		transition: all .3s, visibility 0s;
+    	-ms-transition: all .3s, visibility 0s;
+    	-webkit-transition: all .3s, visibility 0s;
+    	-moz-transition: all .3s, visibility 0s;
+		color: $secondary;
+		text-decoration: none;
+	}
+}
+span {
+	font-size: 14px;
+}
+section {
+	padding: 0px;
+	margin: 0px;
+	background-color: $white;
+	padding: 45px 0px;
+	position: relative;
+}

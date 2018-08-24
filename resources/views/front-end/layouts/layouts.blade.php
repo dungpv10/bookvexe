@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zxx" class="no-js">
+<html lang="html" class="no-js">
 <head>
     <!-- Mobile Specific Meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -30,8 +30,7 @@
     <link href="{{ asset('vendors/validation/css/bootstrapValidator.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{asset('vendors/datetimepicker/css/bootstrap-datetimepicker.min.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('vendors/timepicker/css/bootstrap-timepicker.css')}}" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="/home/css/owl.carousel.css">
-    <link rel="stylesheet" href="/home/css/main.css">
+    <link rel="stylesheet" href="{{ asset('css/css/style.css') }}">
     @yield('css')
 </head>
 <body>
@@ -53,8 +52,6 @@
 <script src="{{asset('vendors/datetimepicker/js/bootstrap-datetimepicker.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('vendors/timepicker/js/bootstrap-timepicker.js')}}" type="text/javascript"></script>
 <script src="{{ asset('js/pages/jquery-ui.js') }}"></script>
-<script src="/home/js/owl.carousel.min.js"></script>
-<script src="/home/js/main.js"></script>
 @yield("js")
 </body>
 </html>
