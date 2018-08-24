@@ -7,6 +7,7 @@
         </div>
     </div>
 
+
     @if(Gate::allows('root'))
         <div class="col-md-3">
             <div class="form-group">
@@ -14,7 +15,7 @@
             </div>
         </div>
     @endif
-
+    
 
     <div class="col-md-12">
         <div class="box">
