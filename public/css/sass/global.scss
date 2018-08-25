@@ -17,12 +17,12 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     margin: 0 0 10px;
 }
 h1, .h1 {
-	font-size: 30px;
-	line-height: 34px;
+	font-size: 34px;
+	line-height: 38px;
 }
 h2, .h2 {
-	font-size: 22px;
-	line-height: 24px;
+	font-size: 30px;
+	line-height: 34px;
 }
 h3, .h3 {
 	font-size: 20px;
@@ -67,6 +67,7 @@ p {
 	line-height: 16px;
 	&.highlights {
 		color: $color-content-highlights;
+		font-weight: 500;
 	}
 }
 span {

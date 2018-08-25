@@ -24,6 +24,8 @@
     ============================================= -->
     <link rel="stylesheet" href="{{asset('vendors/font-awesome/css/font-awesome.min.css')}}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('vendors/datetimepicker/css/bootstrap-datetimepicker-standalone.css') }}" />
     <link href="{{ asset('css/pages/jquery-ui.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('vendors/validation/css/bootstrapValidator.min.css') }}" rel="stylesheet" type="text/css" />
@@ -55,6 +57,8 @@
 <script src="{{asset('vendors/datetimepicker/js/bootstrap-datetimepicker.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('vendors/timepicker/js/bootstrap-timepicker.js')}}" type="text/javascript"></script>
 <script src="{{ asset('js/pages/jquery-ui.js') }}"></script>
+<script src="{{ asset('js/owl.carousel.min.js') }}"></script>
+<script src="{{ asset('js/custom.js') }}"></script>
 @yield("js")
 </body>
 </html>

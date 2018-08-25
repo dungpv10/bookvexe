@@ -16,12 +16,12 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   margin: 0 0 10px; }
 
 h1, .h1 {
-  font-size: 30px;
-  line-height: 34px; }
+  font-size: 34px;
+  line-height: 38px; }
 
 h2, .h2 {
-  font-size: 22px;
-  line-height: 24px; }
+  font-size: 30px;
+  line-height: 34px; }
 
 h3, .h3 {
   font-size: 20px;
@@ -63,12 +63,13 @@ p {
   font-size: 14px;
   line-height: 16px; }
   p.highlights {
-    color: #313131; }
+    color: #313131;
+    font-weight: 500; }
 
 span {
   font-size: 12px;
   line-height: 14px;
-  color: #a7a7a7; }
+  color: #9A9A9A; }
 
 section {
   padding: 0px;
@@ -88,15 +89,17 @@ section {
     background-color: #f8f9fa; }
 
 .star {
-  font-size: 18px;
+  font-size: 13px;
+  line-height: 18px;
   background-color: #9a9a9a;
   color: #fff;
   height: 18px;
+  text-align: center;
   width: 18px; }
   .star.rate {
-    background-color: #1fba95; }
-  .star.rate-highlights {
     background-color: #269b29; }
+  .star.rate-highlights {
+    background-color: #1fba95; }
 
 .white {
   color: #fff; }
@@ -112,6 +115,12 @@ section {
   font-size: 20px;
   line-height: 24px; }
 
+.bold {
+  font-weight: 500; }
+
+.underline {
+  text-decoration: underline; }
+
 .form-control {
   height: 40px;
   border-radius: 2px;
@@ -119,6 +128,9 @@ section {
   font-size: 16px;
   box-shadow: none;
   color: #9a9a9a; }
+
+.center {
+  text-align: center; }
 
 .button-submit {
   background-color: #269B29;
@@ -154,6 +166,50 @@ section {
 .entry-item .entry-content {
   padding-left: 25px;
   padding-right: 25px; }
+
+.owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span {
+  background-color: #162675; }
+
+.owl-theme .owl-dots .owl-dot:focus {
+  outline: none !important; }
+
+.owl-theme .owl-dots .owl-dot span {
+  background-color: #707070;
+  margin: 5px 30px; }
+
+.owl-carousel .owl-nav button {
+  width: 55px;
+  height: 55px;
+  background-color: #162675 !important;
+  border-radius: 100% !important;
+  opacity: 1 !important; }
+  .owl-carousel .owl-nav button i {
+    color: #fff;
+    font-size: 20px; }
+
+.owl-carousel .owl-nav button:focus {
+  background-color: #162675 !important;
+  outline: none !important; }
+
+.rate-item {
+  background-color: #f8f9fa;
+  padding: 20px 15px;
+  border-radius: 3px;
+  overflow: hidden; }
+  .rate-item .rate-header {
+    margin-bottom: 15px; }
+    .rate-item .rate-header .time {
+      float: right;
+      margin-top: 4px; }
+  .rate-item .rate-content {
+    margin-bottom: 25px; }
+  .rate-item .wrap-star {
+    position: relative;
+    display: inline-block; }
+    .rate-item .wrap-star .star-rate {
+      position: absolute;
+      top: 1px;
+      left: 0px; }
 
 .header {
   padding-top: 15px;
@@ -195,5 +251,33 @@ section {
   .section-provided li {
     display: inline-block;
     margin-left: 15px; }
+
+.section-promotion {
+  padding-top: 30px; }
+
+.widget-promotion .owl-nav {
+  position: relative; }
+.widget-promotion .owl-nav button.owl-prev {
+  position: absolute;
+  top: 0px;
+  left: 0px; }
+.widget-promotion .owl-stage-outer {
+  margin-bottom: 20px; }
+.widget-promotion .owl-nav {
+  margin-bottom: 43px; }
+.widget-promotion .owl-nav button.owl-next {
+  position: absolute;
+  top: 0px;
+  right: 0px; }
+
+.widget-rate .rate-item {
+  text-align: left; }
+.widget-rate .row {
+  margin-bottom: 25px; }
+.widget-rate p {
+  color: #313131; }
+  .widget-rate p span {
+    font-size: 14px;
+    color: #313131; }
 
 /*# sourceMappingURL=style.css.map */

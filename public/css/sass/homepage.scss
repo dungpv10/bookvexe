@@ -46,3 +46,43 @@
 		margin-left: 15px;
 	}
 }
+.section-promotion {
+	padding-top: 30px;
+}
+.widget-promotion {
+	.owl-nav {
+		position: relative;
+
+	}
+	.owl-nav button.owl-prev{
+		position: absolute;
+		top: 0px;
+		left: 0px;
+	}
+	.owl-stage-outer {
+		margin-bottom: 20px;
+	}
+	.owl-nav {
+		margin-bottom: 43px;
+	}
+	.owl-nav button.owl-next{
+		position: absolute;
+		top: 0px;
+		right: 0px;
+	}
+}
+.widget-rate {
+	.rate-item {
+		text-align: left;
+	}
+	.row {
+		margin-bottom: 25px;
+	}
+	p {
+		color: $color-content-highlights;
+		span {
+			font-size: 14px;
+			color: $color-content-highlights;
+		}
+	}
+}

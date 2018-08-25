@@ -5,10 +5,12 @@ section {
 	}
 }
 .star {
-	font-size: 18px;
+	font-size: 13px;
+	line-height: 18px;
 	background-color: $color-bg-star;
 	color: $white;
 	height: 18px;
+	text-align: center;
 	width: 18px;
 	&.rate {
 		background-color: $color-star;
@@ -31,6 +33,12 @@ section {
 	font-size: 20px;
 	line-height: 24px;
 }
+.bold {
+	font-weight: 500;
+}
+.underline {
+	text-decoration: underline;
+}
 .form-control {
 	height: 40px;
 	border-radius: 2px;
@@ -38,6 +46,9 @@ section {
 	font-size: 16px;
 	box-shadow: none;
 	color: $color-bg-star;
+}
+.center {
+	text-align: center;
 }
 .button-submit {
 	background-color: $color-button-submit;
@@ -80,5 +91,55 @@ section {
 	.entry-content {
 		padding-left: 25px;
 		padding-right: 25px;
+	}
+}
+.owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span {
+	background-color: $primary;
+}
+.owl-theme .owl-dots .owl-dot:focus {
+	outline: none !important;
+}
+.owl-theme .owl-dots .owl-dot span {
+	background-color: $color-border;
+	margin: 5px 30px;
+}
+.owl-carousel .owl-nav button {
+	width: 55px;
+	height: 55px;
+	background-color: $primary !important;
+	border-radius: 100% !important;
+	opacity: 1 !important;
+	i {
+		color: $white;
+		font-size: 20px;
+	}
+}
+.owl-carousel .owl-nav button:focus {
+	background-color: $primary !important;
+	outline: none !important;
+}
+.rate-item {
+	background-color: $color-bg-section;
+	padding: 20px 15px;
+	border-radius: 3px;
+	overflow: hidden;
+	.rate-header {
+		margin-bottom: 15px;
+		.time {
+			float: right;
+			margin-top: 4px;
+		}
+	}
+	.rate-content {
+		margin-bottom: 25px;
+	}
+	.wrap-star {
+		position: relative;
+		display: inline-block;
+		.star-rate {
+			position: absolute;
+			top: 1px;
+			left: 0px;
+		}
 	}
 }
