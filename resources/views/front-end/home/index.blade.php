@@ -376,4 +376,245 @@
 			</div>
 		</div>
 	</section>
+	<section class="bg-section section-popular">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="widget widget-popular">
+						<div class="widget-title">
+							<h2 class="title">Tuyến xe đặt phổ biến nhất</h2>
+						</div>
+						<div class="widget-content">
+							<div class="row">
+								<div class="col-md-3">
+									<article class="entry-item bg-white style-2">
+										<div class="entry-thumb">
+											<div class="position">
+												<i class="fa fa-map-marker"></i>
+												<p class="po">TP. Hồ Chí Minh - Cần thơ</p>
+											</div>
+											<div class="entry-thumb">
+												<a href="#">
+													<img src="{{ asset('img/front-end/popu-1.png') }}" alt="">
+												</a>
+											</div>
+										</div>
+										<div class="entry-content">
+											<div class="row">
+												<div class="col-md-6">
+													<a href="#">
+														<img src="{{ asset('img/front-end/logo-bus-3.png') }}" alt="">
+													</a>
+												</div>
+												<div class="col-md-6 price">
+													<p class="po">140.000.000</p>
+													<p class="po">VNĐ/1 Chiều</p>
+												</div>
+											</div>
+										</div>
+									</article>
+								</div>
+								<div class="col-md-3">
+									<article class="entry-item bg-white style-2">
+										<div class="entry-thumb">
+											<div class="position">
+												<i class="fa fa-map-marker"></i>
+												<p class="po">Đà Nẵng - Cần thơ</p>
+											</div>
+											<div class="entry-thumb">
+												<a href="#">
+													<img src="{{ asset('img/front-end/popu-2.png') }}" alt="">
+												</a>
+											</div>
+										</div>
+										<div class="entry-content">
+											<div class="row">
+												<div class="col-md-6">
+													<a href="#">
+														<img src="{{ asset('img/front-end/logo-bus-3.png') }}" alt="">
+													</a>
+												</div>
+												<div class="col-md-6 price">
+													<p class="po">340.000.000</p>
+													<p class="po">VNĐ/1 Chiều</p>
+												</div>
+											</div>
+										</div>
+									</article>
+								</div>
+								<div class="col-md-3">
+									<article class="entry-item bg-white style-2">
+										<div class="entry-thumb">
+											<div class="position">
+												<i class="fa fa-map-marker"></i>
+												<p class="po">Cà Mau - Bình Thuận</p>
+											</div>
+											<div class="entry-thumb">
+												<a href="#">
+													<img src="{{ asset('img/front-end/popu-3.png') }}" alt="">
+												</a>
+											</div>
+										</div>
+										<div class="entry-content">
+											<div class="row">
+												<div class="col-md-6">
+													<a href="#">
+														<img src="{{ asset('img/front-end/logo-bus-3.png') }}" alt="">
+													</a>
+												</div>
+												<div class="col-md-6 price">
+													<p class="po">560.000.000</p>
+													<p class="po">VNĐ/1 Chiều</p>
+												</div>
+											</div>
+										</div>
+									</article>
+								</div>
+								<div class="col-md-3">
+									<article class="entry-item bg-white style-2">
+										<div class="entry-thumb">
+											<div class="position">
+												<i class="fa fa-map-marker"></i>
+												<p class="po">Bình Dương - Đà Nẵng</p>
+											</div>
+											<div class="entry-thumb">
+												<a href="#">
+													<img src="{{ asset('img/front-end/popu-4.png') }}" alt="">
+												</a>
+											</div>
+										</div>
+										<div class="entry-content">
+											<div class="row">
+												<div class="col-md-6">
+													<a href="#">
+														<img src="{{ asset('img/front-end/logo-bus-1.png') }}" alt="">
+													</a>
+												</div>
+												<div class="col-md-6 price">
+													<p class="po">560.000.000</p>
+													<p class="po">VNĐ/1 Chiều</p>
+												</div>
+											</div>
+										</div>
+									</article>
+								</div>
+							</div>
+							<p class="sub">Giá trên chỉ mang tính tương đối. Chúng dựa trên khách hàng đặt vé được thực hiện trong 48 giờ qua và tùy thuộc vào ngày đặt vé.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="section-garapopulor">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="widget widget-garapopulor">
+						<div class="widget-title">
+							<h2 class="title">Top 4 nhà xe được ưa chuộng nhất 2018</h2>
+						</div>
+						<div class="widget-content">
+							<div class="row">
+								<div class="col-md-4">
+									<article class="entry-item style-3">
+										<div class="entry-thumb">
+											<a href="#">
+												<img src="{{ asset('img/front-end/logo-bus-3.png') }}" alt="">
+											</a>
+										</div>
+										<div class="entry-content">
+											<p class="highlights">Hoang Long Group</p>
+											<p>Tuyệt vời 8.3</p>
+										</div>
+									</article>
+								</div>
+								<div class="col-md-4">
+									<article class="entry-item style-3">
+										<div class="entry-thumb">
+											<a href="#">
+												<img src="{{ asset('img/front-end/logo-bus-3.png') }}" alt="">
+											</a>
+										</div>
+										<div class="entry-content">
+											<p class="highlights">Futa Bus Phương Trang</p>
+											<p>Tuyệt vời 8.3</p>
+										</div>
+									</article>
+								</div>
+								<div class="col-md-4">
+									<article class="entry-item style-3">
+										<div class="entry-thumb">
+											<a href="#">
+												<img src="{{ asset('img/front-end/logo-bus-3.png') }}" alt="">
+											</a>
+										</div>
+										<div class="entry-content">
+											<p class="highlights">Mai Linh Group</p>
+											<p>Tuyệt vời 8.3</p>
+										</div>
+									</article>
+								</div>
+								<div class="col-md-4">
+									<article class="entry-item style-3">
+										<div class="entry-thumb">
+											<a href="#">
+												<img src="{{ asset('img/front-end/logo-bus-3.png') }}" alt="">
+											</a>
+										</div>
+										<div class="entry-content">
+											<p class="highlights">Hoang Long Group</p>
+											<p>Tuyệt vời 8.3</p>
+										</div>
+									</article>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="bg-primary section-releson">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="widget wiget-choose-me">
+						<div class="widget-title">
+							<h2 class="title white">Tại sao chọn chúng tôi?</h2>
+						</div>
+						<div class="widget-content">
+							<i class="fa fa-check-circle"></i>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="widget widget-releson">
+						<div class="widget-content">
+
+							<article class="entry-item">
+								<div class="entry-content">
+									<h3 class="entry-title white">Cung cấp nhiều lựa chọn cho khách hàng</h3>
+									<p>Cung cấp dịch vụ đặt vé trực truyến với hơn 2.000 xe ô tô tại hơn  21 tỉnh thành Việt Nam, chúng tôi có thể tìm cho bạn một chiếc xe tuyệt vời ở đúng vị trí với mức giá tốt nhất</p>
+								</div>
+							</article>
+							<article class="entry-item">
+								<div class="entry-content">
+									<h3 class="entry-title white">Mức độ hài lòng cao</h3>
+									<p>Điểm đánh giá  8.9 / 10 Dựa trên phản hồi từ hàng nghìn khách hàng của chúng tôi</p>
+								</div>
+							</article>
+							<article class="entry-item">
+								<div class="entry-content">
+									<h3 class="entry-title white">Hỗ trợ cá nhân trong quá trình đặt vé</h3>
+									<p>Hỗ trợ khách hàng 24/7 qua kênh ưa thích của bạn Tư vấn -  Điện thoại -  Email </p>
+								</div>
+							</article>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 @stop

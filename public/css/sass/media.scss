@@ -24,6 +24,9 @@ section {
 }
 .widget-title {
 	margin-bottom: 25px;
+	.title {
+		font-weight: 400;
+	}
 }
 .f-50 {
 	font-size: 50px;
@@ -85,6 +88,57 @@ section {
 			border: 1px solid $color-border;
 		}
 	}
+	&.style-2 {
+		.entry-thumb {
+			margin-bottom: 15px;
+			.position {
+				padding: 15px;
+				padding-bottom: 5px;
+			}
+			p {
+				display: inline-block;
+			}
+			i {
+				color: $secondary;
+				font-size: 24px;
+				margin-right: 5px;
+			}
+		}
+		.entry-content {
+			padding-left: 15px;
+			padding-right: 15px;
+			padding-bottom: 15px;
+			.price {
+				margin-top: 5px;
+				text-align: right;
+				p {
+					margin: 0px;
+				}
+			}
+		}
+	}
+	&.style-3 {
+		border: 1px solid $color-border-2;
+		border-radius: 2px;
+		padding: 22px 25px; 
+		.entry-thumb {
+			display: inline-block;
+			margin-bottom: 0px;
+			float: left;
+			margin-right: 20px;
+			img {
+				width: auto;
+			}
+		}
+		.entry-content {
+			display: inline-block;
+			padding: 0px;
+			p {
+				font-size: 16px;
+				margin-bottom: 5px;
+			}
+		}
+	}
 	.entry-thumb {
 		margin-bottom: 30px;		
 	}
@@ -142,4 +196,7 @@ section {
 			left: 0px;
 		}
 	}
+}
+.bg-white {
+	background-color: $white;
 }
