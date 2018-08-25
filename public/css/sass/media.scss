@@ -17,3 +17,68 @@ section {
 		background-color: $color-star-highlights;
 	}
 }
+.white {
+	color: $white;
+}
+.widget-title {
+	margin-bottom: 25px;
+}
+.f-50 {
+	font-size: 50px;
+	line-height: 54px;
+}
+.f-20 {
+	font-size: 20px;
+	line-height: 24px;
+}
+.form-control {
+	height: 40px;
+	border-radius: 2px;
+	border: 0px;
+	font-size: 16px;
+	box-shadow: none;
+	color: $color-bg-star;
+}
+.button-submit {
+	background-color: $color-button-submit;
+	color: $white;
+	font-size: 22px;
+	line-height: 24px;
+	font-weight: 700;
+	border: 0px;
+	padding: 15px 5px;
+	border-radius: 5px;
+}
+.row-center {
+	text-align: center;
+	.col {
+		float: none;
+		display: inline-block;
+	}
+}
+.entry-thumb {
+	img {
+		width: 100%;
+	}
+}
+.entry-item {
+	&.style-1 {
+		background-color: $white;
+		border-radius: 5px;
+		border-bottom: 6px solid $color-border;
+		padding-bottom: 30px;
+		overflow: hidden;
+		.entry-thumb {
+			border-radius: 5px;
+			overflow: hidden;
+
+		}
+	}
+	.entry-thumb {
+		margin-bottom: 30px;		
+	}
+	.entry-content {
+		padding-left: 25px;
+		padding-right: 25px;
+	}
+}

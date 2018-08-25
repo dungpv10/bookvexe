@@ -1,26 +1,22 @@
-<header id="header" id="home">
+<header id="header" class="header">
     <div class="container">
-        <div class="row align-items-center justify-content-between d-flex">
-            <div id="logo">
-                <a href="index.html"><img src="img/logo.png" alt="" title="" /></a>
+        <div class="row">
+            <div class="col-md-3 ">
+                <div class="header-left">
+                    <a href="#" title="book xe">
+                        <img src="{{ asset('img/front-end/logo.png') }}" alt="logo">
+                    </a>
+                </div>
             </div>
-            <nav id="nav-menu-container">
-                <ul class="nav-menu">
-                    <li class="menu-active"><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="cars.html">Cars</a></li>
-                    <li><a href="service.html">Service</a></li>
-                    <li><a href="team.html">Team</a></li>
-                    <li><a href="blog-home.html">Blog</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li class="menu-has-children"><a href="">Pages</a>
-                        <ul>
-                            <li><a href="blog-single.html">Blog Single</a></li>
-                            <li><a href="elements.html">Elements</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </nav><!-- #nav-menu-container -->
+            <div class="col-md-9">
+                <div class="header-rigth">
+                    <ul>
+                        <li><a href="#" title="Liên hệ 24/7">Liên hệ 24/7</a></li>
+                        <li><a href="#" title="Giải đáp thắc mắc">Giải đáp thắc mắc</a></li>
+                        <li><a href="#" title="Đặt vé của tôi">Đặt vé của tôi</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 </header>

@@ -3,10 +3,9 @@ html, body {
 	padding: 0;
 }
 body {
-	font-weight: 500;
+	font-weight: 400;
 	background-color: $white;
 	position: relative;
-	overflow: hidden;
 	line-height: 18px;
 	font-size: $font-default;
 	font-family: $font-family;
@@ -81,4 +80,9 @@ section {
 	background-color: $white;
 	padding: 45px 0px;
 	position: relative;
+}
+label {
+	font-size: 14px;
+	color: $color-content-highlights;
+	font-weight: 400;
 }

@@ -1,0 +1,48 @@
+.header {
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+.header-rigth {
+	padding-top: 5px;
+	text-align: right;
+	li {
+		display: inline-block;
+		margin-left: 38px;
+	}
+}
+.bg-search {
+	background-image: url('../../img/front-end/bg-side.png');
+	padding-top: 40px;
+	padding-bottom: 100px;
+	.widget{
+		text-align: center;
+	}
+	.widget-content {
+		background-color: $secondary;
+		display: inline-block;
+		width: 67%;
+		padding: 25px;
+		text-align: left;
+		padding-top: 15px;
+	}
+	button {
+		float: right;
+	}
+}
+.bg-primary {
+	background-color: $primary;
+}
+.section-provided {
+	padding: 12px 0px;
+	span {
+		color: $white;
+		font-size: 14px;
+	}
+	ul {
+		display: inline-block;
+	}
+	li {
+		display: inline-block;
+		margin-left: 15px;
+	}
+}
