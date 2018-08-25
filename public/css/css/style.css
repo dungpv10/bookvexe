@@ -147,7 +147,8 @@ section {
   overflow: hidden; }
   .entry-item.style-1 .entry-thumb {
     border-radius: 5px;
-    overflow: hidden; }
+    overflow: hidden;
+    border: 1px solid #707070; }
 .entry-item .entry-thumb {
   margin-bottom: 30px; }
 .entry-item .entry-content {
