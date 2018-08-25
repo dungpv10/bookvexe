@@ -16,25 +16,35 @@
 					                <div class="col-md-6">
 					                    <div class="form-group">
 					                        <label for="start_point">Điểm xuất phát</label>
-					                        <input id="start_point" class="form-control geo_location" type="text" name="start_point"
+					                        <div class="input-group">
+					                        	<input id="start_point" class="form-control geo_location" type="text" name="start_point"
                                value="" placeholder="Select location" required>
-                               				<div class="wrap_location_end"></div>
+                               					<i class="fa fa-bus"></i>
+                           					</div>
+                               				<div class="wrap_location_start"></div>
 					                    </div>
-					                    <div class="form-group">
+					                    <div class="form-group datetime-picker">
 					                        <label for="start_time">Thời gian</label>
-					                        <div class="input-group date datetimepicker">
-					                            <input id="start_time" class="form-control" type="text" name="start_time" value="" required>
-					                            <span class="input-group-addon">
-					                                        <span class="glyphicon glyphicon-time"></span>
-					                                    </span>
+					                        <div class="wrap-datetime">
+						                        <div class="input-group datepicker">
+						                            <input id="start_date" class="form-control" type="text" name="start_date" value="" required>
+						                            <i class="fa fa-calendar-alt"></i>
+						                        </div>
+						                        <div class="input-group timepicker">
+						                            <input id="start_time" class="form-control" type="text" name="start_time" value="" required>
+						                            <i class="fa fa-clock"></i>
+						                        </div>
 					                        </div>
 					                    </div>
 					                </div>
 					                <div class="col-md-6">
 					                	<div class="form-group">
 					                        <label for="end_point">Điểm đến</label>
-					                        <input id="end_point" class="form-control geo_location" type="text" name="end_point"
+					                        <div class="input-group">
+					                        	<input id="end_point" class="form-control geo_location" type="text" name="end_point"
                                value="" placeholder="Select location" required>
+                               					<i class="fa fa-bus"></i>
+                           					</div>
                                				<div class="wrap_location_end"></div>
 					                    </div>
 					                    <div class="form-group">

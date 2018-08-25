@@ -79,6 +79,9 @@
 .widget-rate {
 	.rate-item {
 		text-align: left;
+		-webkit-box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.1);
+		-moz-box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.1);
+		box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.1);
 	}
 	.row {
 		margin-bottom: 25px;
@@ -96,6 +99,11 @@
 		text-align: center;
 		margin-top: 30px;
 		margin-bottom: 0px;
+	}
+	.entry-item {
+		-webkit-box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.1);
+		-moz-box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.1);
+		box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.1);
 	}
 }
 .section-garapopulor {
@@ -137,5 +145,72 @@
 		color: $white;
 		opacity: 0.7;
 		margin-bottom: 0px;
+	}
+}
+.footer-area {
+	.colection {
+		border-bottom: 1px solid $color-border-2;
+		padding-top: 25px;
+		padding-bottom: 40px;
+		ul {
+			display: inline-block;
+			margin-top: 15px;
+		}
+		li {
+			display: inline-block;
+			margin-right: 60px;
+			a {
+				color: $color-href-2;
+				font-size: 14px;
+				&:hover {
+					color: $color-hover;
+				}
+			}
+		}
+		.button {
+			float: right;
+		}
+	}
+	.info-me {
+		padding-bottom: 40px;
+		padding-top: 30px;
+	}
+	.footer-bottom {
+		background-color: $color-star;
+		padding: 16px 0px;
+		p {
+			text-align: center;
+			color: $white;
+			margin: 0px;
+		}
+	}
+}
+.datetime-picker {
+	label {
+		display: block;
+	}
+	.wrap-datetime {
+		clear: both;
+		content: '';
+		display: table;
+	}
+	.datepicker {
+		width: 67%;
+		display: inline-block;
+		float: left;
+	}
+	.timepicker {
+		width: 33%;
+		display: inline-block;
+		float: left;
+		input {
+			border-left: 1px solid $color-border-2;
+			padding-right: 25px;
+			padding-left: 12px;
+		}
+		i {
+			right: 15px;
+			left: auto;
+		}
 	}
 }
