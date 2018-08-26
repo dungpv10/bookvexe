@@ -38,4 +38,9 @@ class InitializeService
         return $initialize->fill($data)->save();
     }
 
+    public function store($data){
+
+        return $this->model->fill($data)->save();
+    }
+
 }

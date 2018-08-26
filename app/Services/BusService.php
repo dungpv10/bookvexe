@@ -40,6 +40,25 @@ class BusService
         return $this->busModel->all();
     }
 
+    public function pluck(){
+        $adminAgentId = $this->userService->getAdminAgentId();
+        if (!empty($adminAgentId)) {
+            $buses = $this->busModel->where('user_id', $adminAgentId)->pluck('bus_name', 'id');
+        }else{
+            $buses = $this->busModel->pluck('bus_name', 'id');
+        }
+
+        return array_replace(['' => 'Chọn xe'], $buses->toArray());
+    }
+
+
+    public function getAllBusName($busId = null)
+    {
+        return array_replace(['' => 'Chọn xe'], $this->busModel->where('id', '!=', $busId)->pluck('bus_name', 'id')->toArray());
+    }
+
+
+
     public function getJSONData($filters)
     {
         $result = $this->busModel->with('busType')->with('user');
@@ -129,11 +148,6 @@ class BusService
     public function countBusByRegNumberAndId($id, $regNumber)
     {
         return $this->busModel->where('bus_reg_number', $regNumber)->where('id', '!=', $id)->count();
-    }
-
-    public function getAllBusName($busId = null)
-    {
-        return array_replace(['' => 'Chọn xe'],$this->busModel->where('id', '!=', $busId)->pluck('bus_name', 'id')->toArray());
     }
 
 

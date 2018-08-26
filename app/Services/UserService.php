@@ -450,4 +450,18 @@ class UserService
 
         return \Gate::allows('agent') && (empty($agent->agent_license) || empty($agent->agent_address));
     }
+
+    public function getAllUserOfAgent(){
+        $user = auth()->user();
+        $agentId = $user->agent ? $user->agent->id : null;
+
+        $query = $this->model->where('agent_id', '!=', '')->orderBy('created_at', 'desc');
+
+        if(!empty($agentId)){
+            $query->where('agent_id', $agentId);
+        }
+
+        return array_replace(['' => 'Chọn nhân viên'] ,$query->pluck('name', 'id')->toArray());
+
+    }
 }

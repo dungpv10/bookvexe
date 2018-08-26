@@ -8,6 +8,9 @@
             text-align:center;
         }
     </style>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker-standalone.css"
+          rel="stylesheet"/>
 @stop
 @section('content')
     <div class="row">
@@ -16,9 +19,11 @@
             <div class="box">
                 <div class="box-header with-border margin-bottom-10">
                     <h3 class="box-title">Quản lý khởi hành</h3>
-                    <button type="button" class="btn btn-primary" id="createAgentBtn">
+{{--                    @if(\Gate::allows('agent'))--}}
+                    <button type="button" class="btn btn-primary" id="createInitializeBtn">
                         <i class="fa fa-plus-circle" aria-hidden="true"></i>Thêm mới
                     </button>
+                    {{--@endif--}}
                 </div>
                 <table class="table table-bordered" id="initialize_table">
 
@@ -51,12 +56,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <input type="hidden" name="id" value="" id = "initialize_id"/>
-                        <select class="form-control select2" id="bus_id">
-                            <option value="">Chọn xe</option>
-                            @foreach($buses as $bus)
-                                <option value="{{ $bus->id }}">{{ $bus->bus_name }}</option>
-                            @endforeach
-                        </select>
+                        {!! Form::select('driver_id', $buses, '', ['class' => 'form-control select2', 'id' => 'bus_id']) !!}
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -67,16 +67,74 @@
         </div>
     </div>
 
+    <div class="modal fade" id="createInitializeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            {!! Form::open(['route' => 'initializes.store', 'id' => '', 'method' => 'POST']) !!}
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Tạo mới giờ khởi hành</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="initialize_name">Tên chuyến</label>
+                        {!! Form::text('initialize_name', '', ['class' => 'form-control', 'id' => 'initialize_name']) !!}
+                    </div>
+                    <div class="form-group">
+                        <label for="start_time">Giờ khởi hành</label>
+                        {!! Form::text('start_time', '', ['class' => 'form-control datepicker']) !!}
+                    </div>
+                    <div class="form-group">
+                        <label for="number_customer">Số khách hàng</label>
+                        {!! Form::number('number_customer', '', ['class' => 'form-control', 'id' => 'number_customer']) !!}
+                    </div>
 
+                    <div class="form-group">
+                        <label for="driver_id">Lái xe</label>
+                        {!! Form::select('driver_id', $allUserOfAgent, '', ['class' => 'form-control select2']) !!}
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="car_accessory_id">Phụ xe</label>
+
+                        {!! Form::select('car_accessory_id', $allUserOfAgent, '', ['class' => 'form-control select2']) !!}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bus_id">Chọn xe</label>
+                        {!! Form::select('bus_id', $buses, '', ['class' => 'form-control select2']) !!}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                    <button type="submit" class="btn btn-primary" id="updateBusId">Cập nhật</button>
+                </div>
+            </div>
+            {!! Form::close() !!}
+        </div>
+    </div>
 @stop
 @section('js')
 
     <script src='/vendors/fullcalendar/moment.min.js'></script>
     <script src='/vendors/fullcalendar/fullcalendar.min.js'></script>
 
-    <script>
-        var initializeTable = $('#initialize_table'), initializeDataTable;
+    {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"--}}
+            {{--type="text/javascript"></script>--}}
+    <script type="text/javascript">
+        $('.datepicker').datetimepicker({
+            format: 'YYYY-MM-DD HH:mm:ss'
+        });
+        var initializeTable = $('#initialize_table'), initializeDataTable, createInitializeModal = $('#createInitializeModal'),createInitializeBtn = $('#createInitializeBtn');
         $(document).ready(function() {
+
+            createInitializeBtn.on('click', function(){
+                createInitializeModal.modal('show');
+            });
 
             $('.select2').select2();
             $('.select2-container--default').css({width: '100%'});

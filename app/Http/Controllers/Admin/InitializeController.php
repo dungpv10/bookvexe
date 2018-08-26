@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\InitializeRequest;
 use App\Services\BookingService;
 use App\Services\BusService;
 use App\Services\InitializeService;
+use App\Services\UserService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -13,12 +15,14 @@ class InitializeController extends Controller
     protected $bookingService;
     protected $service;
     protected $busService;
+    protected $userService;
 
-    public function __construct(BookingService $bookingService, InitializeService $service, BusService $busService)
+    public function __construct(BookingService $bookingService, InitializeService $service, BusService $busService, UserService $userService)
     {
         $this->bookingService = $bookingService;
         $this->service = $service;
         $this->busService = $busService;
+        $this->userService = $userService;
     }
 
     /**
@@ -28,8 +32,9 @@ class InitializeController extends Controller
      */
     public function index()
     {
-        $buses = $this->busService->all();
-        return view('admin.initialize.index', compact('buses'));
+        $buses = $this->busService->pluck();
+        $allUserOfAgent = $this->userService->getAllUserOfAgent();
+        return view('admin.initialize.index', compact('buses', 'allUserOfAgent'));
     }
 
     /**
@@ -39,7 +44,7 @@ class InitializeController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -48,9 +53,15 @@ class InitializeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(InitializeRequest $request)
     {
-        //
+        if($this->service->store(array_replace(['user_id' => auth()->user()->id],$request->except('_token')))){
+
+            return redirect()->back()->with('message.success', 'Tạo mới chuyến thành công');
+        }
+        return redirect()->back()->with('message.error', 'Tạo mới chuyến thất bại');
+
+
     }
 
     /**
