@@ -43,30 +43,6 @@
     </div>
 
 
-    <div class="modal fade" id="changeBus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Chọn xe</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <input type="hidden" name="id" value="" id = "initialize_id"/>
-                        {!! Form::select('driver_id', $buses, '', ['class' => 'form-control select2', 'id' => 'bus_id']) !!}
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                    <button type="button" class="btn btn-primary" id="updateBusId">Cập nhật</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div class="modal fade" id="createInitializeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -105,7 +81,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="bus_id">Chọn xe</label>
+                        <label for="bus_id">Ch xe</label>
                         {!! Form::select('bus_id', $buses, '', ['class' => 'form-control select2']) !!}
                     </div>
                 </div>
@@ -117,19 +93,70 @@
             {!! Form::close() !!}
         </div>
     </div>
+
+
+
+    <div class="modal fade" id="updateInitializeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            {!! Form::open(['route' => 'initializes.index', 'id' => '', 'method' => 'PUT']) !!}
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Cập nhật giờ khởi hành</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="update_initialize_name">Tên chuyến</label>
+                        {!! Form::text('initialize_name', '', ['class' => 'form-control', 'id' => 'update_initialize_name']) !!}
+                    </div>
+                    <div class="form-group">
+                        <label for="start_time">Giờ khởi hành</label>
+                        {!! Form::text('start_time', '', ['class' => 'form-control datepicker', 'id' => 'update_start_time']) !!}
+                    </div>
+                    <div class="form-group">
+                        <label for="update_number_customer">Số khách hàng</label>
+                        {!! Form::number('number_customer', '', ['class' => 'form-control', 'id' => 'update_number_customer']) !!}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="update_driver_id">Lái xe</label>
+                        {!! Form::select('driver_id', $allUserOfAgent, '', ['class' => 'form-control select2', 'id' => 'update_driver_id']) !!}
+                        {!! Form::hidden('id', '', ['id' => 'update_id']) !!}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="update_car_accessory_id">Phụ xe</label>
+
+                        {!! Form::select('car_accessory_id', $allUserOfAgent, '', ['class' => 'form-control select2', 'id' => 'update_car_accessory_id']) !!}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="update_bus_id">Chọn xe</label>
+                        {!! Form::select('bus_id', $buses, '', ['class' => 'form-control select2', 'id' => 'update_bus_id']) !!}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                    <button type="submit" class="btn btn-primary updateBusId">Cập nhật</button>
+                </div>
+            </div>
+            {!! Form::close() !!}
+        </div>
+    </div>
 @stop
 @section('js')
 
     <script src='/vendors/fullcalendar/moment.min.js'></script>
     <script src='/vendors/fullcalendar/fullcalendar.min.js'></script>
 
-    {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"--}}
-            {{--type="text/javascript"></script>--}}
     <script type="text/javascript">
         $('.datepicker').datetimepicker({
             format: 'YYYY-MM-DD HH:mm:ss'
         });
-        var initializeTable = $('#initialize_table'), initializeDataTable, createInitializeModal = $('#createInitializeModal'),createInitializeBtn = $('#createInitializeBtn');
+        var initializeTable = $('#initialize_table'), initializeDataTable, createInitializeModal = $('#createInitializeModal'),createInitializeBtn = $('#createInitializeBtn'), updateInitializeModal = $('#updateInitializeModal');
         $(document).ready(function() {
 
             createInitializeBtn.on('click', function(){
@@ -163,7 +190,7 @@
 
                     { data: 'bus_name', name: 'bus_name', title: 'Xe', sortable: false, searchable: false,
                         render: function(data, type, row, meta){
-                            return '<button data-id=' + row['id'] + ' data-bus_id = ' + row['bus_id'] + ' data-toggle="modal" data-target="#changeBus" class="btn btn-default">' + row['bus']['bus_name'] + '</button>';
+                            return row['bus']['bus_name'];
                         }
                     },
                     { data: 'initialize_name', name: 'initialize_name', title: 'Tên hành trình' },
@@ -189,22 +216,25 @@
             });
 
 
-            var updateBusId = $('#updateBusId');
+            var updateBusId = $('.updateBusId');
 
 
 
             updateBusId.on('click', function(e){
                 e.preventDefault();
 
+                var data = {};
+
+                ['driver_id', 'id', 'car_accessory_id', 'bus_id', 'initialize_name', 'number_customer', 'start_time'].forEach(function(elm){
+                    data[elm] = $('#update_' + elm).val();
+                });
                 $.ajax({
                     method: 'PUT',
-                    url : "{{ route('initializes.index') }}/" + initializeId.val(),
-                    data: {
-                        bus_id: busIdElm.val()
-                    }
+                    url : "{{ route('initializes.index') }}/" + $('#update_id').val(),
+                    data: data
                 }).done(function(response){
                     if(response.code === 200){
-                        changeBusModal.modal('hide');
+                        updateInitializeModal.modal('hide');
                         initializeDataTable.ajax.reload();
 
                     }else{
@@ -322,6 +352,31 @@
         };
 
         var editInitialize = function(initializeId){
+            var initializeRoute = "{{ route('initializes.index') }}";
+            $.ajax({
+                method: 'GET',
+                url:  initializeRoute + '/' + initializeId + '/edit'
+            }).done(function (response) {
+                if(response.code == 200){
+                    var initialize = response.data;
+                    for( var field in initialize){
+                        $('#update_' + field).val(initialize[field]);
+                    }
+                    ['driver_id', 'car_accessory_id', 'bus_id'].forEach(function(attr){
+                        $('#update_' + attr).select2().select2('val', initialize[attr]);
+                    });
+                    $('.select2').select2();
+                    $('.select2-container--default').css({width: '100%'});
+                    updateInitializeModal.find('form').attr('action', initializeRoute + '/' + initialize.id ).append('<input type="hidden" name="_method" value="PUT"/>');
+                    updateInitializeModal.modal('show');
+                }else{
+                    actionFail();
+                }
+
+            }).fail(function(error){
+                console.log(error);
+                actionFail();
+            });
 
         }
     </script>

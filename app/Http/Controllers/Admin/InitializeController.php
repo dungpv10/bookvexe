@@ -83,7 +83,18 @@ class InitializeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $initialize = $this->service->findById($id);
+        if(!$initialize){
+            return response()->json([
+                'code' => 404,
+                'msg' => 'Initialize not found',
+            ]);
+        }
+        return response()->json([
+            'code' => 200,
+            'msg' => 'get data successfully',
+            'data' => $initialize
+        ]);
     }
 
     /**
@@ -103,7 +114,7 @@ class InitializeController extends Controller
             ]);
         }
 
-        $this->service->update($initialize, $request->except('_token'));
+        $this->service->update($initialize, $request->except('_token', '_method'));
         return response()->json([
             'code' => 200,
             'msg' => 'update successfully'
