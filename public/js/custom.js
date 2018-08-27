@@ -29,12 +29,20 @@ $( document ).ready(function($) {
 	    margin: 30,
 	    navText: ["<i class='fa fa-chevron-left'></i>","<i class='fa fa-chevron-right'></i>"],
 	    responsive:{
-	        0:{
-	            items:1
+            320: {
+                items: 1,
+                dots : false,
+            },
+	        480:{
+	            items:2,
+                dots : false,
 	        },
 	        600:{
-	            items:3
+                items:2,
 	        },
+            992: {
+                item: 2,
+            }
 	    }
 	});
     $( "#start_point" ).autocomplete({

@@ -4,7 +4,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<div class="widget has-bg">
+					<div class="widget widget-search has-bg">
 						<div class="widget-title">
 							<h2 class="title white f-50">Đặt xe- Tìm kiếm, So sánh và Tiết kiệm</h2>
 							<span class="sub-title white f-20">So sánh hơn 90 công ty tại hơn 2000 địa điểm tại Việt Nam. Chúng tôi bảo đảm chất lượng tốt nhất. giá thấp nhất</span>
@@ -69,7 +69,7 @@
 		<div class="container">
 			<div class="row row-center">
 				<div class="col col-md-11">
-					<div class="widget">
+					<div class="widget widget-provided">
 						<div class="widget-content">
 							<span>Lựa chọn rất lớn cho khách hàng. Chúng tôi có hơn 50 nhà cung cấp đáng tin cậy:</span>
 							<ul>
@@ -254,14 +254,14 @@
 	<section>
 		<div class="container">
 			<div class="row row-center">
-				<div class="col col-md-11">
+				<div class="col col-lg-11 col-md-12">
 					<div class="widget widget-rate">
 						<div class="widget-title">
 							<h2 class="title center">Đánh giá của khách hàng về Dịch vụ của chúng tôi</h2>
 						</div>
 						<div class="widget-content">
 							<div class="row">
-								<div class="col-md-3">
+								<div class="col-lg-3 col-md-6 col-sm-6 col-xs-6">
 									<div class="rate-item">
 										<div class="rate-header">
 											<div class="wrap-star">
@@ -290,7 +290,7 @@
 										</div>
 									</div>	
 								</div>
-								<div class="col-md-3">
+								<div class="col-lg-3 col-md-6 col-sm-6 col-xs-6">
 									<div class="rate-item">
 										<div class="rate-header">
 											<div class="wrap-star">
@@ -320,7 +320,7 @@
 										</div>
 									</div>	
 								</div>
-								<div class="col-md-3">
+								<div class="col-lg-3 col-md-6 col-sm-6 col-xs-6">
 									<div class="rate-item">
 										<div class="rate-header">
 											<div class="wrap-star">
@@ -349,7 +349,7 @@
 										</div>
 									</div>	
 								</div>
-								<div class="col-md-3">
+								<div class="col-lg-3 col-md-6 col-sm-6 col-xs-6">
 									<div class="rate-item">
 										<div class="rate-header">
 											<div class="wrap-star">
@@ -396,7 +396,7 @@
 						</div>
 						<div class="widget-content">
 							<div class="row">
-								<div class="col-md-3">
+								<div class="col-lg-3 col-md-6 col-sm-6 col-xs-6">
 									<article class="entry-item bg-white style-2">
 										<div class="entry-thumb">
 											<div class="position">
@@ -411,12 +411,12 @@
 										</div>
 										<div class="entry-content">
 											<div class="row">
-												<div class="col-md-6">
+												<div class="col-md-6 col-sm-6 col-xs-6 ">
 													<a href="#">
 														<img src="{{ asset('img/front-end/logo-bus-3.png') }}" alt="">
 													</a>
 												</div>
-												<div class="col-md-6 price">
+												<div class="col-md-6 col-sm-6 col-xs-6 price">
 													<p class="po">140.000.000</p>
 													<p class="po">VNĐ/1 Chiều</p>
 												</div>
@@ -424,7 +424,7 @@
 										</div>
 									</article>
 								</div>
-								<div class="col-md-3">
+								<div class="col-lg-3 col-md-6 col-sm-6 col-xs-6">
 									<article class="entry-item bg-white style-2">
 										<div class="entry-thumb">
 											<div class="position">
@@ -439,12 +439,12 @@
 										</div>
 										<div class="entry-content">
 											<div class="row">
-												<div class="col-md-6">
+												<div class="col-md-6 col-sm-6 col-xs-6">
 													<a href="#">
 														<img src="{{ asset('img/front-end/logo-bus-3.png') }}" alt="">
 													</a>
 												</div>
-												<div class="col-md-6 price">
+												<div class="col-md-6 col-sm-6 col-xs-6 price">
 													<p class="po">340.000.000</p>
 													<p class="po">VNĐ/1 Chiều</p>
 												</div>
@@ -452,7 +452,7 @@
 										</div>
 									</article>
 								</div>
-								<div class="col-md-3">
+								<div class="col-lg-3 col-md-6 col-sm-6 col-xs-6">
 									<article class="entry-item bg-white style-2">
 										<div class="entry-thumb">
 											<div class="position">
@@ -467,12 +467,12 @@
 										</div>
 										<div class="entry-content">
 											<div class="row">
-												<div class="col-md-6">
+												<div class="col-md-6 col-sm-6 col-xs-6">
 													<a href="#">
 														<img src="{{ asset('img/front-end/logo-bus-3.png') }}" alt="">
 													</a>
 												</div>
-												<div class="col-md-6 price">
+												<div class="col-md-6 col-sm-6 col-xs-6 price">
 													<p class="po">560.000.000</p>
 													<p class="po">VNĐ/1 Chiều</p>
 												</div>
@@ -480,7 +480,7 @@
 										</div>
 									</article>
 								</div>
-								<div class="col-md-3">
+								<div class="col-lg-3 col-md-6 col-sm-6 col-xs-6">
 									<article class="entry-item bg-white style-2">
 										<div class="entry-thumb">
 											<div class="position">
@@ -495,12 +495,12 @@
 										</div>
 										<div class="entry-content">
 											<div class="row">
-												<div class="col-md-6">
+												<div class="col-md-6 col-sm-6 col-xs-6">
 													<a href="#">
 														<img src="{{ asset('img/front-end/logo-bus-1.png') }}" alt="">
 													</a>
 												</div>
-												<div class="col-md-6 price">
+												<div class="col-md-6 col-sm-6 col-xs-6 price">
 													<p class="po">560.000.000</p>
 													<p class="po">VNĐ/1 Chiều</p>
 												</div>
@@ -526,7 +526,7 @@
 						</div>
 						<div class="widget-content">
 							<div class="row">
-								<div class="col-md-4">
+								<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
 									<article class="entry-item style-3">
 										<div class="entry-thumb">
 											<a href="#">
@@ -539,7 +539,7 @@
 										</div>
 									</article>
 								</div>
-								<div class="col-md-4">
+								<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
 									<article class="entry-item style-3">
 										<div class="entry-thumb">
 											<a href="#">
@@ -552,7 +552,7 @@
 										</div>
 									</article>
 								</div>
-								<div class="col-md-4">
+								<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
 									<article class="entry-item style-3">
 										<div class="entry-thumb">
 											<a href="#">
@@ -565,7 +565,7 @@
 										</div>
 									</article>
 								</div>
-								<div class="col-md-4">
+								<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
 									<article class="entry-item style-3">
 										<div class="entry-thumb">
 											<a href="#">
