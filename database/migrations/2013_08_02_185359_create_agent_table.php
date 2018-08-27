@@ -16,8 +16,14 @@ class CreateAgentTable extends Migration
         Schema::create('agents', function (Blueprint $table) {
             $table->increments('id');
             $table->string('agent_name');
-            $table->string('agent_address');
-            $table->string('agent_license');
+            $table->string('agent_address')->nullable();
+            $table->string('agent_license')->nullable();
+            $table->string('agent_fax')->nullable();
+            $table->string('agent_email')->nullable();
+            $table->string('agent_website')->nullable();
+            $table->string('agent_representation')->nullable();
+            $table->string('agent_business_license_number')->nullable();
+            $table->string('logo_path')->nullable();
             $table->string('status', array_rand([AGENT_ACTIVE, AGENT_INACTIVE]));
             $table->softDeletes();
             $table->timestamps();

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers\Upload;
+use App\Http\Requests\AgentRequest;
 use App\Models\Agent;
 use App\Services\AgentService;
 use Illuminate\Http\Request;
@@ -147,14 +149,20 @@ class AgentController extends Controller
         return view('admin.agent.setting');
     }
 
-    public function postSetting(Request $request){
+    public function postSetting(AgentRequest $request){
         $agentId = auth()->user()->agent->id;
         $agent = $this->service->findByid($agentId);
         if(!$agent){
             return redirect()->back()->with('error', 'Bạn chưa thuộc trong nhà xe ');
         }
 
-        $this->service->update($agent, $request->except('_token'));
+        $data = $request->except('_token', 'logo_file');
+
+        if($request->hasFile('logo_file')){
+            $logoFile = $request->file('logo_file');
+            $data['logo_path'] = (new Upload($logoFile, 'upload/agent/' . $agentId, ['logo']))->upload();
+        }
+        $this->service->update($agent, $data);
 
         return redirect()->route('bus.index')->with('success', 'Cập nhật thông tin nhà xe thành công');
 
