@@ -193,6 +193,7 @@
 		clear: both;
 		content: '';
 		display: table;
+		width: 100%;
 	}
 	.datepicker {
 		width: 67%;
@@ -212,5 +213,8 @@
 			right: 15px;
 			left: auto;
 		}
+	}
+	input {
+		color: $color-content-highlights;
 	}
 }

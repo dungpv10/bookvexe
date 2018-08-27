@@ -1,14 +1,14 @@
 <header id="header" class="header">
     <div class="container">
         <div class="row">
-            <div class="col-md-3 ">
+            <div class="col-md-3 col-sm-2">
                 <div class="header-left">
                     <a href="#" title="book xe">
                         <img src="{{ asset('img/front-end/logo.png') }}" alt="logo">
                     </a>
                 </div>
             </div>
-            <div class="col-md-9">
+            <div class="col-md-9 col-sm-10">
                 <div class="header-rigth">
                     <ul>
                         <li><a href="#" title="Liên hệ 24/7">Liên hệ 24/7</a></li>

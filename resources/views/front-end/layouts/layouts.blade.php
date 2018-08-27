@@ -49,7 +49,6 @@
 <!-- start footer Area -->
 @include('front-end.layouts.includes.footer')
 <!-- End footer Area -->
-
 <script src="{{asset('js/jquery-1.11.3.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/bootstrap.min.js')}}" type="text/javascript"></script>
 <script type="text/javascript" src="{{ asset('vendors/validation/js/bootstrapValidator.min.js') }}" ></script>
@@ -59,6 +58,8 @@
 <script src="{{asset('vendors/timepicker/js/bootstrap-timepicker.js')}}" type="text/javascript"></script>
 <script src="{{ asset('js/pages/jquery-ui.js') }}"></script>
 <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
+<script src="{{ asset('js/jquery.matchHeigth.js') }}"></script>
+<script src="//cdn.jsdelivr.net/npm/jquery.marquee@1.5.0/jquery.marquee.min.js" type="text/javascript"></script>
 <script src="{{ asset('js/custom.js') }}"></script>
 @yield("js")
 </body>

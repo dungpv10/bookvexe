@@ -29,12 +29,20 @@ $( document ).ready(function($) {
 	    margin: 30,
 	    navText: ["<i class='fa fa-chevron-left'></i>","<i class='fa fa-chevron-right'></i>"],
 	    responsive:{
-	        0:{
-	            items:1
+            320: {
+                items: 1,
+                dots : false,
+            },
+	        480:{
+	            items:2,
+                dots : false,
 	        },
 	        600:{
-	            items:3
+                items:2,
 	        },
+            992: {
+                item: 2,
+            }
 	    }
 	});
     $( "#start_point" ).autocomplete({
@@ -61,11 +69,13 @@ $( document ).ready(function($) {
     $('#number_customer').select2({
     });
     $(".timepicker input").timepicker({
-    	timeFormat: 'h:m',
+    	showMeridian: false,
 	    defaultTime: '11',
+
     });
     $(".datepicker input").datetimepicker({
     	defaultDate: new Date(),
         format: 'MM/DD/YYYY'
     });
+    $('.match_height>div').matchHeight();
 });

@@ -13,7 +13,7 @@
                     </div>
                     <div class="info-me">
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-4 col-sm-4">
                                 <div class="list-info">
                                     <h3 class="title">Bookvexe</h3>
                                     <ul class="list-down">
@@ -24,7 +24,7 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4 col-sm-4">
                                 <div class="list-info">
                                     <h3 class="title">Hỗ Trợ</h3>
                                     <ul class="list-down">
@@ -34,7 +34,7 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4 col-sm-4">
                                 <div class="list-info">
                                     <h3 class="title">Kết nối với chúng tôi</h3>
                                     <ul class="so-list">
