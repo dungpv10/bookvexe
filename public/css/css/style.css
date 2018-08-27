@@ -396,6 +396,9 @@ div[class^="wrap_location"] .ui-widget-content {
   right: 0px;
   width: 40px; }
 
+.owl-carousel {
+  display: none; }
+
 .header {
   padding-top: 15px;
   padding-bottom: 15px; }
