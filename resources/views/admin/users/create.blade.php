@@ -35,7 +35,7 @@
                         </select>
                     </div>
 
-                    @if(Gate::allows('admin'))
+                    @if(Gate::allows('root'))
 
                         <div class="row form-group" id="slect_agent">
 
@@ -43,12 +43,14 @@
                             {!! Form::select('agent_id', $teams, '', ['id' => 'team_id', 'class' => 'form-control']) !!}
                         </div>
 
-                        <div class="row form-group">
-                            <label for="Role">Quyền</label>
-                            {!! Form::select('role_id', $roles, '', ['class' => 'form-control', 'id' => 'roles']) !!}
-                        </div>
-
+                    @else
+                        {!! Form::hidden('agent_id', auth()->user()->agent->id) !!}
                     @endif
+
+                    <div class="row form-group">
+                        <label for="Role">Quyền</label>
+                        {!! Form::select('role_id', $roles, '', ['class' => 'form-control', 'id' => 'roles']) !!}
+                    </div>
                     <div class="row text-center">
                         <button class="btn btn-primary" id="addUser" type="submit"><i class="fa fa-check" aria-hidden="true"></i>Tạo
                             mới

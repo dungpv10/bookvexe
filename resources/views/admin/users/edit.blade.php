@@ -42,18 +42,18 @@
         <input id="address" class="form-control" type="text" name="address" value="{{ $user->address }}">
     </div>
 
-    @if(Gate::allows('admin'))
+    @if(Gate::allows('root'))
         <div class="row form-group" id="slect_agent">
             <label for="team_id">Agent</label>
             {!! Form::select('agent_id', $teams, '', ['id' => 'team_id', 'class' => 'form-control']) !!}
         </div>
-
-        <div class="row  form-group">
-            <label for="Role">Quyền</label>
-            {!! Form::select('role_id', $roles, $user->role->id, ['class' => 'form-control', 'id' => 'roles']) !!}
-        </div>
-
+    @else
+        {!! Form::hidden('agent_id', auth()->user()->agent->id) !!}
     @endif
+    <div class="row  form-group">
+        <label for="Role">Quyền</label>
+        {!! Form::select('role_id', $roles, $user->role->id, ['class' => 'form-control', 'id' => 'roles']) !!}
+    </div>
     <div class="row text-center">
         <button class="btn btn-primary" type="submit"><i class="fa fa-check" aria-hidden="true"></i>Cập nhật</button>
     </div>
