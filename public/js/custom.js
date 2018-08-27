@@ -69,7 +69,7 @@ $( document ).ready(function($) {
     $('#number_customer').select2({
     });
     $(".timepicker input").timepicker({
-    	timeFormat: 'h:mm',
+    	showMeridian: false,
 	    defaultTime: '11',
 
     });
