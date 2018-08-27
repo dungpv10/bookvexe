@@ -72,7 +72,7 @@
 					<div class="widget widget-provided">
 						<div class="widget-content">
 							<span>Lựa chọn rất lớn cho khách hàng. Chúng tôi có hơn 50 nhà cung cấp đáng tin cậy:</span>
-							<ul>
+							<ul class="marquee">
 								<li>
 									<a href="#" title="">
 										<img src="{{ asset('img/front-end/logo-bus-1.png') }}" alt="">
@@ -527,54 +527,62 @@
 						<div class="widget-content">
 							<div class="row">
 								<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-									<article class="entry-item style-3">
+									<article class="entry-item match_height style-3">
 										<div class="entry-thumb">
 											<a href="#">
 												<img src="{{ asset('img/front-end/logo-bus-3.png') }}" alt="">
 											</a>
 										</div>
 										<div class="entry-content">
-											<p class="highlights">Hoang Long Group</p>
-											<p>Tuyệt vời 8.3</p>
+											<div>
+												<p class="highlights">Hoang Long Group</p>
+												<p>Tuyệt vời 8.3</p>
+											</div>
 										</div>
 									</article>
 								</div>
 								<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-									<article class="entry-item style-3">
+									<article class="entry-item match_height style-3">
 										<div class="entry-thumb">
 											<a href="#">
 												<img src="{{ asset('img/front-end/logo-bus-3.png') }}" alt="">
 											</a>
 										</div>
 										<div class="entry-content">
-											<p class="highlights">Futa Bus Phương Trang</p>
-											<p>Tuyệt vời 8.3</p>
+											<div>
+												<p class="highlights">Futa Bus Phương Trang</p>
+												<p>Tuyệt vời 8.3</p>
+											</div>
 										</div>
 									</article>
 								</div>
 								<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-									<article class="entry-item style-3">
+									<article class="entry-item match_height style-3">
 										<div class="entry-thumb">
 											<a href="#">
 												<img src="{{ asset('img/front-end/logo-bus-3.png') }}" alt="">
 											</a>
 										</div>
 										<div class="entry-content">
-											<p class="highlights">Mai Linh Group</p>
-											<p>Tuyệt vời 8.3</p>
+											<div>
+												<p class="highlights">Mai Linh Group</p>
+												<p>Tuyệt vời 8.3</p>
+											</div>
 										</div>
 									</article>
 								</div>
 								<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-									<article class="entry-item style-3">
+									<article class="entry-item match_height style-3">
 										<div class="entry-thumb">
 											<a href="#">
 												<img src="{{ asset('img/front-end/logo-bus-3.png') }}" alt="">
 											</a>
 										</div>
 										<div class="entry-content">
-											<p class="highlights">Hoang Long Group</p>
-											<p>Tuyệt vời 8.3</p>
+											<div>
+												<p class="highlights">Hoang Long Group</p>
+												<p>Tuyệt vời 8.3</p>
+											</div>
 										</div>
 									</article>
 								</div>

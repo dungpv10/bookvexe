@@ -76,4 +76,5 @@ $( document ).ready(function($) {
     	defaultDate: new Date(),
         format: 'MM/DD/YYYY'
     });
+    $('.match_height>div').matchHeight();
 });

@@ -139,17 +139,25 @@ section {
 		border-radius: 2px;
 		padding: 22px 25px; 
 		.entry-thumb {
-			display: inline-block;
+			display: table;
 			margin-bottom: 0px;
 			float: left;
 			margin-right: 20px;
+			a {
+				display: table-cell;
+				vertical-align: middle;
+			}
 			img {
 				width: auto;
 			}
 		}
 		.entry-content {
-			display: inline-block;
+			display: table;
 			padding: 0px;
+			>div {
+				display: table-cell;
+				vertical-align: middle;
+			}
 			p {
 				font-size: 16px;
 				margin-bottom: 5px;

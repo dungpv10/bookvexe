@@ -59,6 +59,8 @@
 <script src="{{asset('vendors/timepicker/js/bootstrap-timepicker.js')}}" type="text/javascript"></script>
 <script src="{{ asset('js/pages/jquery-ui.js') }}"></script>
 <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
+<script src="{{ asset('js/jquery.matchHeigth.js') }}"></script>
+<script src="//cdn.jsdelivr.net/npm/jquery.marquee@1.5.0/jquery.marquee.min.js" type="text/javascript"></script>
 <script src="{{ asset('js/custom.js') }}"></script>
 @yield("js")
 </body>
