@@ -69,8 +69,9 @@ $( document ).ready(function($) {
     $('#number_customer').select2({
     });
     $(".timepicker input").timepicker({
-    	timeFormat: 'h:m',
+    	timeFormat: 'h:mm',
 	    defaultTime: '11',
+
     });
     $(".datepicker input").datetimepicker({
     	defaultDate: new Date(),

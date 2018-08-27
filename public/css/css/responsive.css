@@ -60,6 +60,9 @@
 @media only screen and (max-width: 767px) {
   .header .header-left, .header .header-rigth {
     text-align: center; } }
+@media only screen and (max-width: 630px) {
+  .widget-garapopulor .widget-content > .row > div {
+    width: 100%; } }
 @media only screen and (max-width: 600px) {
   .widget-search .title {
     font-size: 24px;

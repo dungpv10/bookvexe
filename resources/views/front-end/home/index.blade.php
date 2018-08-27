@@ -526,7 +526,7 @@
 						</div>
 						<div class="widget-content">
 							<div class="row">
-								<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+								<div class="col-lg-4 col-md-6 col-sm-6 col-xs-6">
 									<article class="entry-item match_height style-3">
 										<div class="entry-thumb">
 											<a href="#">
@@ -541,7 +541,7 @@
 										</div>
 									</article>
 								</div>
-								<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+								<div class="col-lg-4 col-md-6 col-sm-6 col-xs-6">
 									<article class="entry-item match_height style-3">
 										<div class="entry-thumb">
 											<a href="#">
@@ -556,7 +556,7 @@
 										</div>
 									</article>
 								</div>
-								<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+								<div class="col-lg-4 col-md-6 col-sm-6 col-xs-6">
 									<article class="entry-item match_height style-3">
 										<div class="entry-thumb">
 											<a href="#">
@@ -571,7 +571,7 @@
 										</div>
 									</article>
 								</div>
-								<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+								<div class="col-lg-4 col-md-6 col-sm-6 col-xs-6">
 									<article class="entry-item match_height style-3">
 										<div class="entry-thumb">
 											<a href="#">
