@@ -16,27 +16,11 @@
 
                 <!--Bus-->
                 <li>
-                    <a href="#">
+                    <a href="{{route('bus.index')}}">
                         <i class="livicon" data-name="car" data-size="22" data-c="#00bc8c" data-hc="#00bc8c" data-loop="true"></i>
                         <span class="title">Quản lý xe</span>
-                        <span class="fa arrow"></span>
                     </a>
-                    <ul class="sub-menu">
-                        <li>
-                            <a href="{{route('bus.index')}}">
-                                <i class="fa fa-angle-double-right"></i>
-                                Danh sách
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{route('bus-type.index')}}">
-                                <i class="fa fa-angle-double-right"></i>
-                                Loại xe
-                            </a>
-                        </li>
 
-
-                    </ul>
                 </li>
                 <!--End bus-->
 
@@ -44,175 +28,91 @@
 
                 <!--Route-->
                 <li>
-                    <a href="#">
+                    <a href="{{route('routes.index')}}">
                         <i class="livicon" data-name="vector-line" data-size="22" data-c="#F89A14" data-hc="#F89A14" data-loop="true"></i>
                         <span class="title">Quản lý tuyến đường</span>
-                        <span class="fa arrow"></span>
                     </a>
-                    <ul class="sub-menu">
-                        <li>
-                            <a href="{{route('routes.index')}}">
-                                <i class="fa fa-angle-double-right"></i>
-                                Danh sách
-                            </a>
-                        </li>
 
-                    </ul>
                 </li>
                 <!--End route-->
 
                 <!--Points-->
                 <li>
-                    <a href="#">
+                    <a href="{{route('points.index')}}">
                         <i class="livicon" data-name="pin-on" data-size="22" data-c="#5bc0de" data-hc="#5bc0de" data-loop="true"></i>
                         <span class="title">Quản lý điểm dừng</span>
-                        <span class="fa arrow"></span>
                     </a>
-                    <ul class="sub-menu">
-                        <li>
-                            <a href="{{route('points.index')}}">
-                                <i class="fa fa-angle-double-right"></i>
-                                Danh sách
-                            </a>
-                        </li>
-                    </ul>
+
                 </li>
                 <!--End points-->
 
                 <!--Promotions-->
                 <li>
-                    <a href="#">
+                    <a href="{{route('promotions.index')}}">
                         <i class="livicon" data-name="biohazard" data-size="22" data-c="#418BCA" data-hc="#418BCA" data-loop="true"></i>
                         <span class="title">Quản lý khuyến mại</span>
-                        <span class="fa arrow"></span>
                     </a>
-                    <ul class="sub-menu">
-                        <li>
-                            <a href="{{route('promotions.index')}}">
-                                <i class="fa fa-angle-double-right"></i>
-                                Danh sách
-                            </a>
-                        </li>
-                    </ul>
                 </li>
                 <!--End promotions-->
 
                 <li>
-                    <a href="#">
+                    <a href="{{route('bookings.index')}}">
                         <i class="livicon" data-name="magic" data-size="18" data-c="#00bc8c" data-hc="#00bc8c" data-loop="true"></i>
                         <span class="title">Bookings</span>
-                        <span class="fa arrow"></span>
                     </a>
-                    <ul class="sub-menu">
-                        <li>
-                            <a href="{{route('bookings.index')}}">
-                                <i class="fa fa-angle-double-right"></i>
-                                Danh sách
-                            </a>
-                        </li>
-                    </ul>
+
                 </li>
 
 
                 <!--End promotions-->
                 <li>
-                    <a href="#">
+                    <a href="{{route('cancellations.index')}}">
                         <i class="livicon" data-name="ban" data-size="18" data-c="#F89A14" data-hc="#F89A14" data-loop="true"></i>
                         <span class="title">Cài đặt huỷ vé</span>
-                        <span class="fa arrow"></span>
                     </a>
-                    <ul class="sub-menu">
-                        <li>
-                            <a href="{{route('cancellations.index')}}">
-                                <i class="fa fa-angle-double-right"></i>
-                                Danh sách
-                            </a>
-                        </li>
-                    </ul>
                 </li>
 
 
                     <!--End promotions-->
-                    <li>
-                        <a href="{{ route('initializes.index') }}">
-                            <i class="livicon" data-name="inbox" data-size="18" data-c="#EF6F6C" data-hc="#EF6F6C" data-loop="true"></i>
-                            <span class="title">Quản lý khởi hành</span>
+                <li>
+                    <a href="{{ route('initializes.index') }}">
+                        <i class="livicon" data-name="inbox" data-size="18" data-c="#EF6F6C" data-hc="#EF6F6C" data-loop="true"></i>
+                        <span class="title">Quản lý khởi hành</span>
 
-                        </a>
-                    </li>
+                    </a>
+                </li>
 
                 <!--User-->
                 <li>
-                    <a href="#">
+                    <a href="{{route('users.index')}}">
                         <i class="livicon" data-name="user" data-size="22" data-c="#418bca" data-hc="#418bca" data-loop="true"></i>
                         <span class="title">Thành viên</span>
-                        <span class="fa arrow"></span>
                     </a>
-                    <ul class="sub-menu">
-                        <li>
-                            <a href="{{route('users.index')}}">
-                                <i class="fa fa-angle-double-right"></i>
-                                Danh sách
-                            </a>
-                        </li>
-                        {{--<li>--}}
-                            {{--<a href="{{route('users.invite')}}">--}}
-                                {{--<i class="fa fa-angle-double-right"></i>--}}
-                                {{--Tạo mới--}}
-                            {{--</a>--}}
-                        {{--</li>--}}
-                    </ul>
                 </li>
 
 
                     <li>
-                        <a href="#">
+                        <a href="{{route('ratings.index')}}">
                             <i class="livicon" data-name="star-full" data-size="18" data-c="#00bc8c" data-hc="#00bc8c" data-loop="true"></i>
                             <span class="title">Đánh giá</span>
-                            <span class="fa arrow"></span>
                         </a>
-                        <ul class="sub-menu">
-                            <li>
-                                <a href="{{route('ratings.index')}}">
-                                    <i class="fa fa-angle-double-right"></i>
-                                    Danh sách
-                                </a>
-                            </li>
-                        </ul>
                     </li>
 
 
                 <li>
-                    <a href="#">
+                    <a href="{{route('agents.index')}}">
                         <i class="livicon" data-name="presentation" data-size="18" data-c="#EF6F6C" data-hc="#EF6F6C" data-loop="true"></i>
                         <span class="title">Nhà xe</span>
-                        <span class="fa arrow"></span>
                     </a>
-                    <ul class="sub-menu">
-                        <li>
-                            <a href="{{route('agents.index')}}">
-                                <i class="fa fa-angle-double-right"></i>
-                                Danh sách
-                            </a>
-                        </li>
-                    </ul>
+
                 </li>
                 <!--End User-->
                 @if(Gate::allows('root'))
                     <li>
-                        <a href="#">
+                        <a href="{{route('roles.index')}}">
                             <i class="livicon" data-name="recycled" data-size="18" data-c="#F89A14" data-hc="#F89A14" data-loop="true"></i>
                             <span class="title">Quyền</span>
-                            <span class="fa arrow"></span>
                         </a>
-                        <ul class="sub-menu">
-                            <li>
-                                <a href="{{route('roles.index')}}">
-                                    <i class="fa fa-angle-double-right"></i>
-                                    Danh sách
-                                </a>
-                            </li>
-                        </ul>
                     </li>
 
                     <!--End User-->
