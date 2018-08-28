@@ -176,4 +176,6 @@ class BusService
 
         return $this->busModel->pluck('id')->toArray();
     }
+
+//    public function count
 }

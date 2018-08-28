@@ -3,11 +3,25 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests;
+use App\Services\AgentService;
+use App\Services\BookingService;
+use App\Services\BusService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class DashboardController extends Controller
 {
+    protected $busService;
+    protected $bookingService;
+    protected $agentService;
+
+    public function __construct(BusService $busService, BookingService $bookingService, AgentService $agentService)
+    {
+        $this->busService = $busService;
+        $this->bookingService = $bookingService;
+        $this->agentService = $agentService;
+    }
+
     /**
      * Dashboard
      *
@@ -15,6 +29,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+
+        return view('admin.dashboard.index');
     }
 }
