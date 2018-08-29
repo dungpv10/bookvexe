@@ -13,4 +13,8 @@ class Rate extends Model
     public function bus(){
         return $this->belongsTo(Bus::class, 'bus_id', 'id');
     }
+
+    public function user(){
+    	return $this->belongsTo(User::class, 'user_id', 'id')->where('user_id', '!=', 0);
+    }
 }

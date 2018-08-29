@@ -19,6 +19,11 @@ class CreateRatingsTable extends Migration
             $table->integer('bus_id')->unsigned()->comment('bus id');
             $table->foreign('bus_id')->references('id')->on('buses')->onDelete('cascade');
 
+            $table->integer('user_id')->unsigned()->nullable()->comment('Customer vote');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            
+            $table->string('comment')->comment('Comment of customer');
+
             $table->softDeletes();
             $table->timestamps();
         });

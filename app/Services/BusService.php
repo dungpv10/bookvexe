@@ -85,6 +85,9 @@ class BusService
         ->addColumn('busType', function (Bus $bus) {
             return $bus->busType->bus_type_name;
         })
+        ->addColumn('userUpdate', function(Bus $bus){
+            return $bus->userUpdate ? $bus->userUpdate->name : 'Chưa cập nhật'; 
+        })
         ->addColumn('agentName', function($result){
             return isset($result->user->agent->agent_name) ? $result->user->agent->agent_name : '';
         })->make(true);

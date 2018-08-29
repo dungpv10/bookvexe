@@ -14,6 +14,7 @@
 $factory->define(App\Models\Rate::class, function (Faker\Generator $faker) {
 
     return [
-        'rating_number' => random_int(1, 5)
+        'rating_number' => random_int(1, 5),
+        'comment' => 'Your service is very good'
     ];
 });

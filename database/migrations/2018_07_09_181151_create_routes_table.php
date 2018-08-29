@@ -24,6 +24,11 @@ class CreateRoutesTable extends Migration
             $table->time('start_time')->comment('start time');
             $table->time('arrived_time')->comment('arrived time');
 
+            $table->integer('user_id')->unsigned()->comment('user id create');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            
+            $table->integer('modify_user_id')->unsigned()->comment('user update')->nullable();
+
             $table->softDeletes();
             $table->timestamps();
         });

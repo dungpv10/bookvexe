@@ -178,6 +178,13 @@ class User extends Authenticatable
         return $this->belongsTo(Agent::class, 'agent_id', 'id');
     }
 
+    public function ratings(){
+        return $this->hasMany(Rating::class, 'user_id', 'id');
+    }
+
+    public function routes(){
+        return $this->hasMany(Route::class, 'user_id', 'id');
+    }
 
     public function getAvatar() {
         if (!empty($this->avatar)) {

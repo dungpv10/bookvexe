@@ -161,6 +161,15 @@
                     { data: 'busType', name: 'busType.bus_type_name', title: 'Kiểu xe buýt', orderable : false },
                     { data: 'number_seats', name: 'number_seats', title: 'Chỗ ngồi' },
                     { data: 'start_point', name: 'start_point', title: 'Điểm bắt đầu'},
+                    { data: 'end_point', name: 'end_point', title: 'Điểm kết thúc'},
+
+                    { data: 'user.name', name: 'user.name', title: 'Người tạo'},
+                    { data: 'userUpdate', name: 'userUpdate', title: 'Người cập nhật'},
+
+
+                    { data: 'created_at', name: 'created_at', title: 'Thời gian tạo'},
+                    { data: 'updated_at', name: 'updated_at', title: 'Thời gian cập nhật'},
+
                     { data: 'start_time', name: 'start_time', title: 'Thời gian bắt đầu',
                         render: function(data, type, row, meta){
                             var element = data.split(":");
@@ -170,7 +179,7 @@
                             return data;
                         }
                     },
-                    { data: 'end_point', name: 'end_point', title: 'Điểm kết thúc'},
+                    
                     { data: 'end_time', name: 'end_time', title: 'Thời gian kết thúc',
                         render: function(data, type, row, meta){
                             var element = data.split(":");

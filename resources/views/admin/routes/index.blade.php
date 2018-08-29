@@ -121,6 +121,9 @@
                 { data: 'price', name: 'price', title: 'Giá' },
                 { data: 'from_place', name: 'from_place', title: 'Bắt đầu' },
                 { data: 'arrived_place', name: 'arrived_place', title: 'Kết thúc'},
+                { data: 'user.name', name: 'user.name', title: 'Người tạo'},
+                { data: 'updateUser', name: 'updateUser', title: 'Người cập nhật'},
+                
                 { data: 'start_time', name: 'start_time', title: 'Giờ đi',
                     render: function(data, type, row, meta){
                         var element = data.split(":");

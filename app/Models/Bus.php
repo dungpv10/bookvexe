@@ -34,6 +34,10 @@ class Bus extends Model
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
+    public function userUpdate(){
+        return $this->belongsTo(User::class, 'modify_user_id', 'id');
+    }
+
     public function busType()
     {
         return $this->belongsTo(BusType::class, 'bus_type_id', 'id');

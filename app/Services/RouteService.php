@@ -139,7 +139,7 @@ class RouteService
 
     public function getJSONData($busId = null, $search = "")
     {
-        $builder = $this->model->with('bus')
+        $builder = $this->model->with('bus')->with('user')
             ->join('buses', 'buses.id', '=', 'routes.bus_id')
             ->select('routes.*');
         if (!empty($busId)) {
@@ -171,6 +171,9 @@ class RouteService
             ->addColumn('busName', function (Route $route) {
                     return $route->bus->bus_name;
                 })
+            ->addColumn('updateUser', function(Route $route){
+                return $route->updateUser ? $route->updateUser->name : 'Chưa cập nhật';
+            })
             ->make(true);
     }
 

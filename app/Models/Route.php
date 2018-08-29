@@ -16,4 +16,12 @@ class Route extends Model
         return $this->belongsTo(Bus::class, 'bus_id', 'id');
     }
 
+    public function user(){
+
+    	return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function updateUser(){
+    	return $this->belongsTo(User::class, 'modify_user_id', 'id');
+    }
 }

@@ -23,7 +23,7 @@ class RatingService
 
 
     public function getJsonData($filters){
-        $builder = $this->model->with('bus');
+        $builder = $this->model->with('bus')->with('user');
 
         $adminAgentId = $this->userService->getAdminAgentId();
 
