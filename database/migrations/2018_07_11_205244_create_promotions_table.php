@@ -21,6 +21,13 @@ class CreatePromotionsTable extends Migration
             $table->date('expiry_date')->nullable()->comment('Expired date');
             $table->integer('agent_id')->comment('agent id')->unsigned();
             $table->foreign('agent_id')->references('id')->on('agents')->onDelete('cascade');
+
+            $table->integer('user_id')->nullable()->unsigned()->comment('create user');
+            $table->foreign('user_id')->references('id')->on('users');
+
+            $table->integer('modify_user_id')->nullable()->unsigned()->comment('user update');
+            $table->foreign('modify_user_id')->references('id')->on('users');
+
             $table->integer('promotion_type')->default(PROMOTION_FOR_CUSTOMER)->comment('0 : Both, 1 : new customer, 2 : old customer');
             $table->softDeletes();
             $table->timestamps();

@@ -114,7 +114,7 @@ class BusController extends Controller
     {
         $busDetail = $this->busService->findById($id);
         $busTypes = $this->busTypeService->getAllBusType();
-        $busNames = $this->busService->getAllBusName($id)->toArray();
+        $busNames = $this->busService->getAllBusName($id);
         $busRegs = $this->busService->getAllBusReg($id)->toArray();
         return view('admin.bus.edit',[
             'busDetail' => $busDetail,

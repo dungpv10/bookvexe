@@ -33,7 +33,14 @@ class PromotionService
             $builder->where('agent_id', $userAgent->id);
         }
 
-        return $this->dataTables->of($builder)->make(true);
+        return $this->dataTables->of($builder)
+            ->addColumn('userCreate', function(Promotion $promotion){
+                return $promotion->user ? $promotion->user->name : '';
+            })
+            ->addColumn('userUpdate', function(Promotion $promotion){
+                return $promotion->userUpdate ? $promotion->userUpdate->name : 'Chưa cập nhật';
+            })
+            ->make(true);
     }
 
 

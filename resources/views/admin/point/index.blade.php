@@ -131,9 +131,14 @@
                             return data;
                         }
                     },
-                    { data: 'landmark', name: 'landmark', title: 'Dấu đất'},
+                    { data: 'landmark', name: 'landmark', title: 'Landmark'},
                     { data: 'address', name: 'address', title: 'Địa chỉ'},
                     { data: 'agentName', name: 'agentName', title: 'Tên đại lý', orderable : false},
+                    { data: 'userCreate', name: 'userCreate', title: 'Người tạo', orderable : false},
+                    { data: 'userUpdate', name: 'userUpdate', title: 'Người cập nhật', orderable : false},
+                    { data: 'created_at', name: 'created_at', title: 'Thời gian tạo'},
+                    { data: 'updated_at', name: 'updated_at', title: 'Thời gian cập nhật'},
+
                     { data: 'id', name: 'id', title: 'Action', searchable: false,className: 'text-center', "orderable": false,
                         visible: visible,
                         render: function(data, type, row, meta){

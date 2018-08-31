@@ -174,6 +174,9 @@ class RouteService
             ->addColumn('updateUser', function(Route $route){
                 return $route->updateUser ? $route->updateUser->name : 'Chưa cập nhật';
             })
+            ->addColumn('userCreate', function(Route $route){
+                return $route->user ? $route->user->name : '';
+            })
             ->make(true);
     }
 

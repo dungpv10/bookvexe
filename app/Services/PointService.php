@@ -41,7 +41,14 @@ class PointService
             return $result->pointType->point_type_name;
         })->addColumn('agentName', function($result){
             return isset($result->user->agent->agent_name) ? $result->user->agent->agent_name : '';
-        })->make(true);
+        })
+        ->addColumn('userUpdate', function($result){
+            return $result->userUpdate ? $result->userUpdate->name : 'Chưa cập nhật';
+        })
+        ->addColumn('userCreate', function($result){
+            return $result->user ? $result->user->name : '';
+        })
+            ->make(true);
     }
 
     public function destroy($id = null)

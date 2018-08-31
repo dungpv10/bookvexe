@@ -187,6 +187,10 @@
                     {data: 'amount', name: 'amount', title: 'Số lượng'},
                     {data: 'agent.agent_name', name: 'amount', title: 'Thuộc nhà xe'},
                     {data: 'expiry_date', name: 'expiry_date', title: 'Ngày hết hạn'},
+                    {data: 'userCreate', name: 'userCreate', title: 'Người tạo'},
+                    {data: 'userUpdate', name: 'userUpdate', title: 'Người cập nhật'},
+                    {data: 'created_at', name: 'created_at', title: 'Ngày tạo'},
+                    {data: 'updated_at', name: 'updated_at', title: 'Ngày cập nhật'},
                     {
                         data: 'promotion_type_name',
                         name: 'promotion_type_name',

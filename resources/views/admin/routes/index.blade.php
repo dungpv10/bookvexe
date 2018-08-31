@@ -121,9 +121,9 @@
                 { data: 'price', name: 'price', title: 'Giá' },
                 { data: 'from_place', name: 'from_place', title: 'Bắt đầu' },
                 { data: 'arrived_place', name: 'arrived_place', title: 'Kết thúc'},
-                { data: 'user.name', name: 'user.name', title: 'Người tạo'},
+                { data: 'userCreate', name: 'userCreate', title: 'Người tạo'},
                 { data: 'updateUser', name: 'updateUser', title: 'Người cập nhật'},
-                
+
                 { data: 'start_time', name: 'start_time', title: 'Giờ đi',
                     render: function(data, type, row, meta){
                         var element = data.split(":");
@@ -149,7 +149,6 @@
                     visible: visible,
                     render: function(data, type, row, meta){
                         var routeId = "'" + row['id'] + "'";
-                        let urlEdit = window.location.origin + '/admin/routes/' + data + '/edit';
                         let actionLink = '<a href="javascript:;" data-toggle="tooltip" title="Xoá '+ row['route_name'] +'!" onclick="deleteRouteById('+ routeId +')"><i class=" fa-2x fa fa-trash" aria-hidden="true"></i></a>';
                         actionLink += '&nbsp;&nbsp;&nbsp;<a href="javascript:;" onclick="editRoute('+ routeId +')" data-toggle="tooltip" title="Sửa '+ row['route_name'] +'!" ><i class="fa fa-2x fa-pencil-square-o" aria-hidden="true"></i></a>';
                         return actionLink;

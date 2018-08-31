@@ -21,6 +21,11 @@ class CreatePointsTable extends Migration
             $table->foreign('route_id')->references('id')->on('routes')->onDelete('cascade');
             $table->integer('user_id')->unsigned()->comment('user id create');
             $table->foreign('user_id')->references('id')->on('users')->comment('user create');
+
+            $table->integer('modify_user_id')->unsigned()->comment('user id create')->nullable();
+            $table->foreign('modify_user_id')->references('id')->on('users')->comment('user update');
+
+
             $table->time('drop_time')->comment('time to drop customer'); // 00 -> 23
             $table->string('address', 255)->comment('address of drop point');
             $table->string('landmark')->comment('Address to pick customer');
