@@ -25,6 +25,8 @@ class CreateAgentTable extends Migration
             $table->string('agent_business_license_number')->nullable();
             $table->string('logo_path')->nullable();
             $table->string('status', array_rand([AGENT_ACTIVE, AGENT_INACTIVE]));
+            $table->integer('user_id')->unsigned()->comment('User create')->nullable();
+            $table->integer('modify_user_id')->unsigned()->comment('User update')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

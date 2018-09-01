@@ -38,6 +38,12 @@ class AgentService
             ->addColumn('statusName', function($agent){
                 return $this->status[$agent->status];
             })
+            ->addColumn('userCreate', function($agent){
+                return $agent->user ? $agent->user->name : '';
+            })
+            ->addColumn('userUpdate', function($agent){
+                return $agent->userUpdate ? $agent->userUpdate->name : 'Chưa cập nhật';
+            })
             ->make(true);
     }
 

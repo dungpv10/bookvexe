@@ -47,7 +47,9 @@ class AgentController extends Controller
      */
     public function store(Request $request)
     {
-        $agent = $this->service->store($request->except('_token'));
+        $agent = $this->service->store(array_replace($request->except('_token'), [
+            'user_id' => auth()->user()->id
+        ]));
         if($agent){
             return redirect()->back()->with('success', 'Tạo mới nhà xe thành công');
         }
@@ -101,7 +103,9 @@ class AgentController extends Controller
         if(!$agent)
             return redirect()->back()->with('err', 'Nhà xe không tồn tại');
 
-        $this->service->update($agent, $request->except('_token'));
+        $this->service->update($agent, array_replace($request->except('_token'), [
+            'modify_user_id' => auth()->user()->id
+        ]));
 
         return redirect()->back()->with('success', 'Cập nhật nhà xe thành công');
     }
@@ -138,7 +142,9 @@ class AgentController extends Controller
         if(!$agent)
             return redirect()->back()->with('err', 'Nhà xe không tồn tại');
 
-        $this->service->update($agent, $request->except('_token'));
+        $this->service->update($agent, array_replace($request->except('_token'), [
+            'modify_user_id' => auth()->user()->id
+        ]));
 
         return redirect()->back()->with('success', 'Cập nhật trạng thái nhà xe thành công');
 

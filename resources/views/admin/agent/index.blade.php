@@ -204,6 +204,10 @@
                     { data: 'agent_name', name: 'agent_name', title: 'Tên nhà xe' },
                     { data: 'agent_address', name: 'agent_address', title: 'Địa chỉ' },
                     { data: 'agent_license', name: 'agent_license', title: 'Mã số thuế' },
+                    { data: 'userCreate', name: 'userCreate', title: 'Người tạo' },
+                    { data: 'userUpdate', name: 'userUpdate', title: 'Người cập nhật' },
+                    { data: 'created_at', name: 'created_at', title: 'Ngày tạo' },
+                    { data: 'updated_at', name: 'updated_at', title: 'Ngày cập nhật' },
                     { data: 'status', name: 'status', title: '', visible : false },
 
                     { data: 'statusName', name: 'statusName', title: 'Trạng thái' ,

@@ -76,6 +76,7 @@ class PointService
             return false;
         }
         $dataPoint['drop_time'] = $this->getTime($dataPoint['drop_time']);
+        $dataPoint['modify_user_id'] = auth()->user()->id;
         $point->update($dataPoint);
         return true;
     }

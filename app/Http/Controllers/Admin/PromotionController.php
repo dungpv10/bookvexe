@@ -51,7 +51,9 @@ class PromotionController extends Controller
      */
     public function store(PromotionRequest $request)
     {
-        $promotion = $this->service->insert($request->except('_token'));
+        $promotion = $this->service->insert(array_replace($request->except('_token'), [
+            'user_id' => auth()->user()->id
+        ]));
         if($promotion){
             return redirect()->back()->with('success', 'Thêm mới mã giảm giá thành công');
         }
@@ -107,7 +109,9 @@ class PromotionController extends Controller
             return redirect()->back()->with('error', 'Mã giảm giá không tồn tại');
         }
 
-        $this->service->update($promotion, $request->except('_token'));
+        $this->service->update($promotion, array_replace($request->except('_token'), [
+            'modify_user_id' => auth()->user()->id
+        ]));
 
         return redirect()->back()->with('success', 'Cập nhật mã giảm giá thành công');
     }

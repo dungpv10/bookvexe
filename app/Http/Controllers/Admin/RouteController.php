@@ -49,7 +49,9 @@ class RouteController extends Controller
      */
     public function store(Request $request)
     {
-        $created = $this->service->create($request->except('_token'));
+        $created = $this->service->create(array_replace($request->except('_token'), [
+            'user_id' => auth()->user()->id
+        ]));
         if ($created) {
             return back()->with('success', 'Thêm mới thành công');
         }
@@ -91,7 +93,9 @@ class RouteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $updated = $this->service->update($id, $request->except('_token', '_method'));
+        $updated = $this->service->update($id, array_replace($request->except('_token', '_method'), [
+            'modify_user_id' => auth()->user()->id
+        ]));
         if ($updated) {
             return back()->with('success', 'Cập nhật thành công');
         }
