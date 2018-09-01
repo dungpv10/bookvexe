@@ -40,7 +40,14 @@ class SettingCancelBookingService
             }
         }
 
-        return $this->dataTables->of($builder)->make(true);
+        return $this->dataTables->of($builder)
+            ->addColumn('userCreate', function(SettingCancelBooking $booking){
+                return $booking->user ? $booking->user->name : '';
+            })
+            ->addColumn('userUpdate', function(SettingCancelBooking $booking){
+                return $booking->userUpdate ? $booking->userUpdate->name : 'Chưa cập nhật';
+            })
+            ->make(true);
     }
 
     public function destroy($setting){

@@ -46,13 +46,13 @@
                     "url": '{!! route('ratings.getJsonData') !!}',
                     "data": function (d) {
                         d.bus_id = busId.val();
-                        // d.promotion_type = filterPromotionType.val()
-                        // d.agent_id = filterAgentId.val()
                     }
                 },
                 columns: [
                     {data: 'bus.bus_name', name: 'bus.bus_name', title: 'Tên xe'},
                     {data: 'rating_number', name: 'rating_number', title: 'Đánh giá'},
+                    {data: 'customerName', name: 'customerName', title: 'Khách hàng'},
+                    {data: 'comment', name: 'comment', title: 'Nhận xét'},
 
                 ]
             });

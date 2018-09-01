@@ -21,6 +21,11 @@ class SettingCancelBookings extends Migration
             $table->float('percentage')->nullable();
             $table->float('flat')->nullable();
             $table->tinyInteger('cancel_type')->default(0);
+
+            $table->integer('user_id')->unsigned()->comment('user create')->nullable();
+            $table->foreign('user_id')->references('id')->on('users');
+
+            $table->integer('modify_user_id')->unsigned()->comment('user update')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

@@ -25,14 +25,13 @@ class RatingService
     public function getJsonData($filters){
         $builder = $this->model->with('bus')->with('user');
 
-        $adminAgentId = $this->userService->getAdminAgentId();
-
         foreach($filters as $key => $filter){
             if(!empty($filter)){
                 $builder->where($key, $filter);
             }
         }
 
+        $adminAgentId = $this->userService->getAdminAgentId();
 
         if(!empty($adminAgentId)){
             $builder->whereHas('bus', function($q) use ($adminAgentId) {
@@ -40,6 +39,11 @@ class RatingService
             });
         }
 
-        return $this->dataTable->of($builder)->make(true);
+        return $this->dataTable->of($builder)
+            ->addColumn('customerName', function($rate){
+
+                return !empty($rate->user) ? $rate->user->name : 'Khách vãng lai';
+            })
+            ->make(true);
     }
 }
