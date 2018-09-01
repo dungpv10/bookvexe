@@ -76,7 +76,9 @@ class BusController extends Controller
         try {
             DB::beginTransaction();
             $images = $request->file('image_bus');
-            $dataRequest = $request->except('_token', 'image_bus');
+            $dataRequest = array_replace($request->except('_token', 'image_bus'), [
+                'user_id' => auth()->user()->id
+            ]);
 
             $result = $this->busService->insertBus($dataRequest);
             if (!empty($images)) {
@@ -137,7 +139,9 @@ class BusController extends Controller
             DB::beginTransaction();
             $images = $request->file('image_bus');
             $imagesRemove = $request->input('image_remove_bus');
-            $dataRequest = $request->except('_token', 'image_bus', 'image_remove_bus');
+            $dataRequest = array_replace($request->except('_token', 'image_bus', 'image_remove_bus'), [
+                'modify_user_id' => auth()->user()->id
+            ]);
 
             $result = $this->busService->updateBus($id, $dataRequest);
             if (!empty($images)) {
