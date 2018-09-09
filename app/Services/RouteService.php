@@ -137,13 +137,16 @@ class RouteService
 
 
 
-    public function getJSONData($busId = null, $search = "")
+    public function getJSONData($busId = null, $search = "", $routeId=null)
     {
         $builder = $this->model->with('bus')->with('user')
             ->join('buses', 'buses.id', '=', 'routes.bus_id')
             ->select('routes.*');
         if (!empty($busId)) {
             $builder = $builder->where('buses.id', '=', $busId);
+        }
+        if (!empty($routeId)) {
+            $builder = $builder->where('routes.id', '=', $routeId);
         }
 
         $adminAgentId = $this->userService->getAdminAgentId();

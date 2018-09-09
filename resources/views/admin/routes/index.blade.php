@@ -13,6 +13,16 @@
                 </select>
             </div>
         </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <select class="form-control" id="route_id">
+                    <option value="">Chọn Tuyến</option>
+                    @foreach($routes as $route)
+                        <option value="{{ $route->id }}">{{ $route->route_name }}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
     </div>
     <div class="row">
         <div class="col-md-12">
@@ -100,9 +110,22 @@
             theme: 'bootstrap',
             with: '100%'
         });
+        $('#route_id').select2({
+            theme: 'bootstrap',
+            with: '100%'
+        });
 
         $('#bus_id').on('change', function(){
-            routeTable.ajax.reload();
+            if ($(this).val() !="") {
+                routeTable.ajax.reload();
+                $('#route_id').val("").change();
+            }
+        });
+        $('#route_id').on('change', function(){
+            if ($(this).val() !="") {
+                routeTable.ajax.reload();
+                $('#bus_id').val("").change();
+            }
         });
 
         routeTable = $('#route_table').DataTable({
@@ -113,6 +136,7 @@
                 "method": "POST",
                 "data": function ( d ) {
                     d.bus_id = $('#bus_id').val();
+                    d.route_id = $('#route_id').val();
                 }
             },
             columns: [

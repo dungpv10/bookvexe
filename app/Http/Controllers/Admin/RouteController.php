@@ -27,7 +27,8 @@ class RouteController extends Controller
     public function index()
     {
         $buses = $this->busService->all();
-        return view('admin.routes.index')->with('buses', $buses);
+        $routes = $this->service->all();
+        return view('admin.routes.index')->with('buses', $buses)->with('routes', $routes);
     }
 
     /**
@@ -128,7 +129,8 @@ class RouteController extends Controller
     public function getJSONData(Request $request)
     {
         $busId = $request->get('bus_id');
+        $routeId = $request->get('route_id');
         $search = $request->get('search')['value'];
-        return $this->service->getJSONData($busId, $search);
+        return $this->service->getJSONData($busId, $search, $routeId);
     }
 }
