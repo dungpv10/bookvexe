@@ -72,13 +72,34 @@
                             <input name="agent_name" id="agent_name" class="form-control"/>
                         </div>
                         <div class="form-group">
+                            <label for="agent_license">Mã số thuế</label>
+                            <input name="agent_license" id="agent_license" class="form-control"/>
+                        </div>
+                        <div class="form-group">
                             <label for="agent_address">Địa chỉ nhà xe</label>
                             <input name="agent_address" id="agent_address" class="form-control"/>
                         </div>
                         <div class="form-group">
-                            <label for="agent_license">Mã số thuế</label>
-                            <input name="agent_license" id="agent_license" class="form-control"/>
+                            <label for="agent_mobile">SĐT</label>
+                            <input name="agent_mobile" id="agent_mobile" class="form-control"/>
                         </div>
+                        <div class="form-group">
+                            <label for="agent_email">Email</label>
+                            <input name="agent_email" id="agent_email" class="form-control"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="agent_website">Website</label>
+                            <input name="agent_website" id="agent_website" class="form-control"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="agent_representation">Người đại diện</label>
+                            <input name="agent_representation" id="agent_representation" class="form-control"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="agent_representation_mobile">SĐT Người đại diện</label>
+                            <input name="agent_representation_mobile" id="agent_representation_mobile" class="form-control"/>
+                        </div>
+                        
 
                         <div class="form-group">
                             <label for="status">Trạng thái</label>
@@ -166,6 +187,11 @@
                 $('#agent_address').val(response.data.agent_address);
                 $('#agent_license').val(response.data.agent_license);
                 $('#agent_status').val(response.data.status);
+                $('#agent_mobile').val(response.data.agent_mobile);
+                $('#agent_email').val(response.data.agent_email);
+                $('#agent_representation').val(response.data.agent_representation);
+                $('#agent_representation_mobile').val(response.data.agent_representation_mobile);
+                $('#agent_website').val(response.data.agent_website);
                 $('#agentForm').attr('action', window.location.origin + '/admin/agents/' + id).append('<input type="hidden" name="_method" value="PATCH"/>');
                 createAgent.modal('show');
             }).fail(function(err){
@@ -203,10 +229,13 @@
                     { data: 'id', name: 'id', searchable: false, title: 'ID' },
                     { data: 'agent_name', name: 'agent_name', title: 'Tên nhà xe' },
                     { data: 'agent_address', name: 'agent_address', title: 'Địa chỉ' },
+                    { data: 'agent_mobile', name: 'agent_mobile', title: 'SĐT' },
                     { data: 'agent_license', name: 'agent_license', title: 'Mã số thuế' },
+                    { data: 'agent_representation', name: 'agent_representation', title: 'Người đại diện' },
+                    { data: 'agent_representation', name: 'agent_representation', title: 'SĐT Người đại diện' },
                     { data: 'userCreate', name: 'userCreate', title: 'Người tạo' },
                     { data: 'userUpdate', name: 'userUpdate', title: 'Người cập nhật' },
-                    { data: 'created_at', name: 'created_at', title: 'Ngày tạo' },
+                    { data: 'created_at', name: 'created_at', title: 'Ngày đăng ký' },
                     { data: 'updated_at', name: 'updated_at', title: 'Ngày cập nhật' },
                     { data: 'status', name: 'status', title: '', visible : false },
 
@@ -260,6 +289,13 @@
                             }
                         }
                     },
+                    agent_email: {
+                        validators : {
+                            emailAddress: {
+                                message: 'Địa chỉ email nhà xe không đúng định dạng',
+                            }
+                        }
+                    },
                     agent_license: {
                         validators : {
                             notEmpty: {
@@ -269,6 +305,13 @@
                                 min: 3,
                                 max: 255,
                                 message: 'Địa chỉ dài từ 3 tới 255 ký tự'
+                            }
+                        }
+                    },
+                    agent_mobile: {
+                        validators : {
+                            notEmpty: {
+                                message: 'Mobile nhà xe không được bỏ trống',
                             }
                         }
                     },

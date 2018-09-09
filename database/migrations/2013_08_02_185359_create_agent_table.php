@@ -19,9 +19,11 @@ class CreateAgentTable extends Migration
             $table->string('agent_address')->nullable();
             $table->string('agent_license')->nullable();
             $table->string('agent_fax')->nullable();
+            $table->string('agent_mobile')->nullable();
             $table->string('agent_email')->nullable();
             $table->string('agent_website')->nullable();
             $table->string('agent_representation')->nullable();
+            $table->string('agent_representation_mobile')->nullable();
             $table->string('agent_business_license_number')->nullable();
             $table->string('logo_path')->nullable();
             $table->string('status', array_rand([AGENT_ACTIVE, AGENT_INACTIVE]));
