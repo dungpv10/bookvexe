@@ -6,6 +6,16 @@
             {!! Form::select('point_type_id', ['' => 'Chọn kiểu điểm dừng'] + $pointTypes->toArray(), null, ['class' => 'form-control', 'id' => 'point_type_id_search']) !!}
         </div>
     </div>
+    <div class="col-md-3">
+            <div class="form-group">
+                <select class="form-control" id="bus_id">
+                    <option value="">Chọn Bus</option>
+                    @foreach($buses as $bus)
+                        <option value="{{ $bus->id }}">{{ $bus->bus_name }}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
     <div class="col-md-12">
         <div class="box">
             <div class="box-header with-border margin-bottom-10">
@@ -94,7 +104,8 @@
         };
         $(document).ready(function() {
             $('#point_type_id_search').select2({});
-            $('#point_type_id_search').on('change', function(){
+            $('#bus_id').select2({});
+            $('#point_type_id_search,#bus_id').on('change', function(){
                 pointTable.ajax.reload();
             });
         });
@@ -106,6 +117,7 @@
                     "url": '{!! route('point.datatable') !!}',
                     "data": function ( d ) {
                         d.point_type_id = $('#point_type_id_search').val();
+                        d.bus_id = $('#bus_id').val();
                     }
                 },
                 order: [7, 'asc'],

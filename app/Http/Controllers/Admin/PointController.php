@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Services\PointService;
 use App\Services\RouteService;
+use App\Services\BusService;
 use App\Services\PointTypeService;
 
 class PointController extends Controller
@@ -14,11 +15,13 @@ class PointController extends Controller
     public $pointService;
     public $routeService;
     public $pointTypeService;
+    public $busService;
 
-    public function __construct(PointService $pointService, RouteService $routeService, PointTypeService $pointTypeService) {
+    public function __construct(PointService $pointService, RouteService $routeService, PointTypeService $pointTypeService, BusService $busService) {
         $this->pointService = $pointService;
         $this->routeService = $routeService;
         $this->pointTypeService = $pointTypeService;
+        $this->busService = $busService;
     }
     /**
      * Display a listing of the resource.
@@ -28,8 +31,10 @@ class PointController extends Controller
     public function index()
     {
         $pointTypes = $this->pointTypeService->getAllPointType();
+        $buses = $this->busService->all();
         return view('admin.point.index', [
             'pointTypes' => $pointTypes,
+            'buses' => $buses
         ]);
     }
 
@@ -142,7 +147,8 @@ class PointController extends Controller
     {
         $search = $request->get('search')['value'];
         $pointTypeId = $request->get('point_type_id');
-        return $this->pointService->getJSONData($pointTypeId, $search);
+        $busId = $request->get('bus_id');
+        return $this->pointService->getJSONData($pointTypeId, $search, $busId);
     }
 
     public function deleteMultiple(Request $request)

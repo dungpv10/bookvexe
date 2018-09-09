@@ -10,20 +10,25 @@ class PointService
 {
     protected $pointModel;
     protected $userService;
+    protected $busService;
 
-    public function __construct(Point $pointModel, UserService $userService)
+    public function __construct(Point $pointModel, UserService $userService, BusService $busService)
     {
         $this->pointModel = $pointModel;
         $this->userService = $userService;
+        $this->busService = $busService;
     }
 
-    public function getJSONData($pointTypeId = null, $search='')
+    public function getJSONData($pointTypeId = null, $search='', $busId = null)
     {
         $result = $this->pointModel->with('route')->with('pointType');
         if (!empty($pointTypeId)) {
             $result->where('point_type_id', $pointTypeId);
         }
-
+        if (!empty($busId)) {
+            $result = $result->join('routes', 'points.route_id', '=', 'routes.id')
+                        ->where('routes.bus_id', $busId);
+        }
         $adminAgentId = $this->userService->getAdminAgentId();
         if (!empty($adminAgentId)) {
             $result->where('points.user_id', $adminAgentId);
