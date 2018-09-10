@@ -188,7 +188,7 @@
                     $('#booking_created').html(data.created_at);
                     $('#booking_barcode').html(data.barcode);
                     $('#booking_payment_status').html(data.payment_status);
-                    $('#bus_info').html(data.bus.start_point +' - '+ data.bus.end_point);
+                    $('#bus_info').html(data.pickup_point +' - '+ data.drop_point);
                 };
                 var id = $(e.relatedTarget).data('id');
                 $.ajax({
