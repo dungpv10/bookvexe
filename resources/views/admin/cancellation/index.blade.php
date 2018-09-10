@@ -44,13 +44,14 @@
                 </div>
                 <div class="modal-body">
                     {!! Form::open(['route' => 'cancellations.store', 'method' => 'POST', 'id' => 'createSetting']) !!}
-                    <div class="form-group">
-                        <label for="">Chọn xe</label>
-                        {!! Form::select('bus_id', $buses, '', ['class' => 'form-control select2']) !!}
-                    </div>
+                    {{--Todo --}}
+                    {{--<div class="form-group">--}}
+                        {{--<label for="">Chọn xe</label>--}}
+                        {{--{!! Form::select('bus_id', $buses, '', ['class' => 'form-control select2']) !!}--}}
+                    {{--</div>--}}
                     <div class="form-group">
                         <label for="">Thời gian hủy vé</label>
-                        <input type="text" class="form-control datepicker" name="cancel_time" />
+                        <input type="number" class="form-control" name="cancel_time" />
                     </div>
 
                     <div class="form-group">
@@ -81,17 +82,18 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h3 class="box-title">Thêm cài đặt</h3>
+                    <h3 class="box-title">Sửa cài đặt</h3>
                 </div>
                 <div class="modal-body">
                     {!! Form::open(['method' => 'PUT', 'id' => 'updateSetting']) !!}
-                    <div class="form-group">
-                        <label for="">Chọn xe</label>
-                        {!! Form::select('bus_id', $buses, '', ['class' => 'form-control select2', 'id' => 'edit_bus_id']) !!}
-                    </div>
+                    {{--Todo --}}
+                    {{--<div class="form-group">--}}
+                        {{--<label for="">Chọn xe</label>--}}
+                        {{--{!! Form::select('bus_id', $buses, '', ['class' => 'form-control select2', 'id' => 'edit_bus_id']) !!}--}}
+                    {{--</div>--}}
                     <div class="form-group">
                         <label for="">Thời gian hủy vé</label>
-                        <input type="text" class="form-control datepicker" name="cancel_time" id="edit_cancel_time"/>
+                        <input type="number" class="form-control" name="cancel_time" id="edit_cancel_time"/>
                     </div>
 
                     <div class="form-group">
@@ -109,7 +111,7 @@
                         <input type="number" class="form-control" name="flat" id="edit_flat" />
                     </div>
                     <div class="form-group">
-                        <button class="btn btn-primary" type="submit">Thêm mới</button>
+                        <button class="btn btn-primary" type="submit">Sửa</button>
                     </div>
                     {!! Form::close() !!}
                 </div>
@@ -141,8 +143,13 @@
 
                 columns: [
                     { data: 'id', name: 'id', title: 'ID' },
-                    { data: 'bus.bus_name', name: 'bus.bus_name', title: 'Xe' },
-                    { data: 'cancel_time', name: 'cancel_time', title: 'Thời gian huỷ vé' },
+                    // { data: 'bus.bus_name', name: 'bus.bus_name', title: 'Xe' },
+                    { data: 'cancel_time', name: 'cancel_time', title: 'Thời gian huỷ vé',
+                        render: function(data, type, row, meta){
+                            return '<input type="number" data-bus-id="'+row['bus_id']+'" class="form-control cancel_time_'+row['id']+'" style="display: inline-block; max-width: 80px; margin-bottom: 5px;" name="cancel_time" value="'+row['cancel_time']+'"><span> h</span>' +
+                                '<button class="btn btn-primary" type="button" id="update_cancel_time" onclick="updateCancelTime('+row['id']+')">Update</button>';
+                        }
+                    },
                     { data: 'percentage', name: 'percentage', title: '% vé' },
                     { data: 'flat', name: 'flat', title: 'Phí huỷ vé' },
                     { data: 'cancel_type', name: 'cancel_type', title: 'Phí huỷ vé', visible: false },
@@ -224,13 +231,37 @@
                 }
             });
         }
+        // update cancel time
+        function updateCancelTime(id) {
+            $.ajax({
+                url: window.location.origin + '/admin/cancellations/' + id,
+                method: 'PUT',
+                data: {
+                    cancel_time: jQuery('.cancel_time_' + id).val(),
+                    // bus_id: jQuery('.cancel_time_' + id).attr('data-bus-id')
+                },
+            }).success(function(data){
+                swal(
+                    'Thành công',
+                    'Thao tác thành công',
+                    'success'
+                );
+                cancellationTable.ajax.reload();
+            }).error(function(error){
+                swal(
+                    'Thất bại',
+                    'Thao tác thất bại',
+                    'error'
+                );
+            });
+        }
         // show edit bus type
         function editSetting(id) {
             $.ajax({
                 url: '{!! route('cancellations.index') !!}' +'/'+ id + '/edit',
                 method: 'GET'
             }).success(function(data){
-                $('#edit_bus_id').select2().select2('val', data.data.bus_id);
+                //$('#edit_bus_id').select2().select2('val', data.data.bus_id);
                 $('#edit_cancel_time').val(data.data.cancel_time);
 
 
