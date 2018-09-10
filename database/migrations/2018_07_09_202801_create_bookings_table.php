@@ -26,7 +26,7 @@ class CreateBookingsTable extends Migration
             $table->string('drop_point')->comment('Place drop customer');
             $table->string('seat_number')->comment('Number of customer seat');
             $table->float('amount')->comment('Price of seat')->default(0);
-
+            $table->string('barcode')->comment('Number of barcode booking');
             $table->timestamp('board_time')->comment('Board time')->nullable();
             $table->timestamp('drop_time')->comment('Drop time')->nullable();
             $table->softDeletes();

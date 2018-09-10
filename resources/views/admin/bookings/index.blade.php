@@ -24,7 +24,7 @@
 
     <div class="modal fade" id="viewBooking" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog" role="document" style="width: 70%">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Xem thông tin booking</h5>
@@ -40,6 +40,13 @@
                             <th>Tuổi</th>
                             <th>Giới tính</th>
                             <th>Vị trí ghế</th>
+                            <th>Số điện thoại</th>
+                            <th>email</th>
+                            <th>Mã đặt vé</th>
+                            <th>Ngày đặt vé</th>
+                            <th>Tình trạng vé</th>
+                            <th>QR code</th>
+                            <th>Thông tin hành trình</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -48,6 +55,13 @@
                             <td id="customer_age"></td>
                             <td id="customer_gender"></td>
                             <td id="customer_position"></td>
+                            <td id="customer_number_phone"></td>
+                            <td id="customer_email"></td>
+                            <td id="booking_id"></td>
+                            <td id="booking_created"></td>
+                            <td id="booking_payment_status"></td>
+                            <td id="booking_barcode"></td>
+                            <td id="bus_info"></td>
                         </tr>
                         </tbody>
                     </table>
@@ -151,10 +165,30 @@
 
             $('#viewBooking').on('shown.bs.modal', function (e) {
                 var fillData = function (data) {
+                    switch(data.payment_status) {
+                        case 0:
+                            data.payment_status = 'Chưa thanh toán';
+                            break;
+                        case 1:
+                            data.payment_status = 'Đang xử lý';
+                            break;
+                        case 2:
+                            data.payment_status = 'Thành công';
+                            break;
+                        default:
+                            data.payment_status = 'Đã huỷ';
+                    }
                     $('#customer_name').html(data.customer.customer_name);
                     $('#customer_age').html(data.customer.age);
                     $('#customer_gender').html(data.customer.gender_name);
                     $('#customer_position').html(data.seat_number);
+                    $('#customer_number_phone').html(data.customer.number_phone);
+                    $('#customer_email').html(data.customer.email);
+                    $('#booking_id').html(data.id);
+                    $('#booking_created').html(data.created_at);
+                    $('#booking_barcode').html(data.barcode);
+                    $('#booking_payment_status').html(data.payment_status);
+                    $('#bus_info').html(data.bus.start_point +' - '+ data.bus.end_point);
                 };
                 var id = $(e.relatedTarget).data('id');
                 $.ajax({

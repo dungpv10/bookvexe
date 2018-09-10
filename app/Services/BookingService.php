@@ -30,7 +30,7 @@ class BookingService
 
     public function getBooking($id)
     {
-        $booking = $this->model->with('customer')->find($id);
+        $booking = $this->model->with('customer')->with('bus')->find($id);
 
         return $booking ?? false;
 

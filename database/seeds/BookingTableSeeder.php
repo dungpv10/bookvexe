@@ -25,6 +25,7 @@ class BookingTableSeeder extends Seeder
                 'drop_point' => 'Drop ' . $i,
                 'seat_number' => random_int(30, 40),
                 'amount' => random_int(300000, 400000),
+                'barcode' => (string)random_int(100000000, 900000000),
                 'board_time' => date('Y-m-d H:i:s'),
                 'drop_time' => date('Y-m-d H:i:s'),
                 'created_at' => date('Y-m-d H:i:s'),
