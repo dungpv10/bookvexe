@@ -80,10 +80,12 @@
                             {!! Form::select('status', $statuses, '', ['class' => 'form-control select2']) !!}
                         </div>
 
-                        <div class="form-group">
-                            <label>Nhà xe </label>
-                            {!! Form::select('agent_id', $agents, '', ['class' => 'form-control select2']) !!}
-                        </div>
+                        @if(Auth::user()->role_id != 1)
+                            <div class="form-group">
+                                <label>Nhà xe </label>
+                                {!! Form::select('agent_id', $agents, '', ['class' => 'form-control select2']) !!}
+                            </div>
+                        @endif
 
                         <div class="form-group">
                             <label>Loại mã </label>
@@ -128,10 +130,12 @@
                             {!! Form::select('status', $statuses, '', ['class' => 'form-control select2', 'id' => 'update-status']) !!}
                         </div>
 
-                        <div class="form-group">
-                            <label>Nhà xe </label>
-                            {!! Form::select('agent_id', $agents, '', ['class' => 'form-control select2', 'id' => 'update-agent_id']) !!}
-                        </div>
+                        @if(Auth::user()->role_id != 1)
+                            <div class="form-group">
+                                <label>Nhà xe </label>
+                                {!! Form::select('agent_id', $agents, '', ['class' => 'form-control select2', 'id' => 'update-agent_id']) !!}
+                            </div>
+                        @endif
 
                         <div class="form-group">
                             <label>Loại mã </label>
@@ -185,7 +189,7 @@
                 columns: [
                     {data: 'code', name: 'code', title: 'Mã giảm giá'},
                     {data: 'amount', name: 'amount', title: 'Số lượng'},
-                    {data: 'agent.agent_name', name: 'amount', title: 'Thuộc nhà xe'},
+                    {data: 'agentName', name: 'agentName', title: 'Thuộc nhà xe'},
                     {data: 'expiry_date', name: 'expiry_date', title: 'Ngày hết hạn'},
                     {data: 'userCreate', name: 'userCreate', title: 'Người tạo'},
                     {data: 'userUpdate', name: 'userUpdate', title: 'Người cập nhật'},
@@ -295,7 +299,9 @@
                     $('#update-amount').val(response.data.amount);
                     $('#update-expiry_date').val(response.data.expiry_date);
                     $('#update-status').select2().select2('val',response.data.status);
-                    $('#update-agent_id').select2().select2('val',response.data.agent_id);
+                    if ($('#update-agent_id').length) {
+                        $('#update-agent_id').select2().select2('val',response.data.agent_id);
+                    }
                     $('#update-promotion_type').select2().select2('val',response.data.promotion_type);
 
                     $('#updatePromotionModal').modal('show');

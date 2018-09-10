@@ -19,7 +19,7 @@ class CreatePromotionsTable extends Migration
             $table->float('amount')->comment('price promotion');
             $table->tinyInteger('status')->default(1)->comment('0 : Inactive / 1 : Active');
             $table->date('expiry_date')->nullable()->comment('Expired date');
-            $table->integer('agent_id')->comment('agent id')->unsigned();
+            $table->integer('agent_id')->comment('agent id')->unsigned()->nullable();
             $table->foreign('agent_id')->references('id')->on('agents')->onDelete('cascade');
 
             $table->integer('user_id')->nullable()->unsigned()->comment('create user');

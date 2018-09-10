@@ -27,7 +27,7 @@ class PromotionRequest extends FormRequest
             'code' => 'required|unique:promotions,code',
             'amount' => 'required|integer',
             'status' => 'required',
-            'agent_id' => 'required',
+//            'agent_id' => 'required',
             'promotion_type' => 'required',
             'expiry_date' => 'required|date'
         ];
