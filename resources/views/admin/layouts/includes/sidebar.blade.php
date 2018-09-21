@@ -90,6 +90,13 @@
                     </a>
                 </li>
 
+                <li>
+                    <a href="{{route('customer.index')}}">
+                        <i class="livicon" data-name="customer" data-size="22" data-c="#418bca" data-hc="#418bca" data-loop="true"></i>
+                        <span class="title">Khách hàng</span>
+                    </a>
+                </li>
+
 
                     <li>
                         <a href="{{route('ratings.index')}}">
