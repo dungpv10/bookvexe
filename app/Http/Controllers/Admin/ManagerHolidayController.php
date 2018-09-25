@@ -2,11 +2,18 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Services\ManageHolidayService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class ManagerHolidayController extends Controller
 {
+    protected $service;
+    public function __construct(ManageHolidayService $service)
+    {
+        $this->service = $service;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +21,7 @@ class ManagerHolidayController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.holiday.index');
     }
 
     /**
@@ -35,7 +42,11 @@ class ManagerHolidayController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $holiday = $this->service->create($request->except('_token'));
+        if($holiday){
+            return redirect()->back()->with('success', 'Tạo mới thành công');
+        }
+        return redirect()->back()->with('error', 'Tạo mới thất bại');
     }
 
     /**
@@ -81,5 +92,10 @@ class ManagerHolidayController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    public function getJSONData(Request $request){
+        return $this->service->getJsonData();
     }
 }

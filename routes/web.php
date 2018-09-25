@@ -272,7 +272,8 @@ Route::group(['middleware' => ['auth', 'active']], function () {
             | Holiday management
             |--------------------------------------------------------------------------
             */
-            Route::resource('holidays', 'ManagerHolidayController', ['only' => ['index', 'update']]);
+            Route::get('holidays/getJSONData', ['as'=>'holidays.datatable', 'uses'=>'ManagerHolidayController@getJSONData']);
+            Route::resource('holidays', 'ManagerHolidayController');
         });
 
     });
