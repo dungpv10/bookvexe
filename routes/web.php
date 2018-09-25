@@ -266,6 +266,13 @@ Route::group(['middleware' => ['auth', 'active']], function () {
 
             Route::resource('setting', 'SettingController', ['only' => ['index', 'update']]);
 
+
+            /*
+            |--------------------------------------------------------------------------
+            | Holiday management
+            |--------------------------------------------------------------------------
+            */
+            Route::resource('holidays', 'ManagerHolidayController', ['only' => ['index', 'update']]);
         });
 
     });

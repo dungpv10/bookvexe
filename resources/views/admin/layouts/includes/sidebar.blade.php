@@ -108,6 +108,15 @@
                 </li>
                 <!--End User-->
                 @if(Gate::allows('root'))
+
+                        <li>
+                            <a href="{{route('holidays.index')}}">
+                                <i class="livicon" data-name="recycled" data-size="18" data-c="#F89A14" data-hc="#F89A14" data-loop="true"></i>
+                                <span class="title">Cài đặt ngày nghỉ</span>
+                            </a>
+                        </li>
+
+
                     <li>
                         <a href="{{route('roles.index')}}">
                             <i class="livicon" data-name="recycled" data-size="18" data-c="#F89A14" data-hc="#F89A14" data-loop="true"></i>
