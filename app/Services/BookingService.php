@@ -75,4 +75,7 @@ class BookingService
         return $this->model->status(CANCEL_BOOKING)->count();
     }
 
+    public function totalBenefits() {
+        return $this->model->status(PAYMENT_SUCCESS)->sum('');
+    }
 }
