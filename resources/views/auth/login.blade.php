@@ -19,8 +19,8 @@
                                                                                    data-hc="#3c8dbc"></i>
                     Tên đăng nhập
                 </label>
-                <input id="username" name="email" required type="text" placeholder="username or e-mail"
-                       value="{{ old('email') }}"/>
+                <input id="username" name="username" required type="text" placeholder="username"
+                       value="{{ old('username') }}"/>
             </p>
             <p>
                 <label style="margin-bottom:0px;" for="password" class="youpasswd"> <i class="livicon"
