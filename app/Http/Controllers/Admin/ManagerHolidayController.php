@@ -57,7 +57,20 @@ class ManagerHolidayController extends Controller
      */
     public function show($id)
     {
-        //
+      $holiday = $this->service->findById($id);
+
+      if(!$holiday){
+        return response()->json([
+          'code' => 404,
+          'msg' => 'Not found'
+        ]);
+      }
+      return response()->json([
+        'code' => 200,
+        'msg' => 'Get detail successfully',
+        'data' => $holiday
+      ]);
+
     }
 
     /**
@@ -68,7 +81,7 @@ class ManagerHolidayController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
@@ -80,7 +93,14 @@ class ManagerHolidayController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $holiday = $this->service->findById($id);
+
+        if(!$holiday){
+          return redirect()->back()->with('error','Ngày nghỉ không tồn tại');
+        }
+
+        $this->service->update($holiday, $request->except('_token'));
+        return redirect()->back()->with('success','Cập nhật ngày nghỉ thành công');
     }
 
     /**
@@ -91,7 +111,20 @@ class ManagerHolidayController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $holiday = $this->service->findById($id);
+        if(!$holiday){
+          return response()->json([
+            'code' => 404,
+            'msg' => 'Holiday not found'
+          ]);
+        }
+
+        $this->service->destroy($holiday);
+
+        return response()->json([
+          'code' => 200,
+          'msg' => 'Delete holiday successfully'
+        ]);
     }
 
 

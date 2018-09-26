@@ -27,4 +27,18 @@ class ManageHolidayService
     public function create($data){
         return $this->holiday->fill($data)->save();
     }
+
+    public function findById($id){
+        $holiday = $this->holiday->find($id);
+
+        return $holiday ? $holiday : false;
+    }
+
+    public function destroy($holiday){
+        return $holiday->delete();
+    }
+
+    public function update($holiday, $data){
+      return $holiday->fill($data)->save();
+    }
 }

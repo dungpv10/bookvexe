@@ -111,7 +111,7 @@
 
                         <li>
                             <a href="{{route('holidays.index')}}">
-                                <i class="livicon" data-name="recycled" data-size="18" data-c="#F89A14" data-hc="#F89A14" data-loop="true"></i>
+                                <i class="livicon" data-name="alarm" data-size="18" data-c="#6CC66C" data-hc="#6CC66C" data-loop="true"></i>
                                 <span class="title">Cài đặt ngày nghỉ</span>
                             </a>
                         </li>

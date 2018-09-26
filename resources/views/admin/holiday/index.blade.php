@@ -49,8 +49,9 @@
 
 
                         <div class="form-group text-right">
-                            <button class="btn btn-primary" type="submit"><i class="fa fa-check" aria-hidden="true"></i>Tạo
-                                mới
+                            <button class="btn btn-primary" type="submit"><i class="fa fa-check" aria-hidden="true"></i>
+                              <span id="submitBtn">Tạo
+                                mới</span>
                             </button>
                         </div>
                     {!! Form::close() !!}
@@ -64,12 +65,10 @@
         $('.datepicker').datetimepicker({
             format: 'MM/DD'
         });
-
-
         var holidayTable;
-        function deleteAgent(id) {
+        function deleteHoliday(id) {
             swal({
-                title: "Bạn có muốn xóa nhà xe này?",
+                title: "Bạn có muốn xóa kỳ nghỉ này?",
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#DD6B55",
@@ -78,7 +77,7 @@
             }).then((result) => {
                 if (result.value) {
                     $.ajax({
-                        url: window.location.origin + '/admin/agents/' + id,
+                        url: window.location.origin + '/admin/holidays/' + id,
                         method: 'DELETE'
                     }).success(function(data){
                         if(data.code == 200)
@@ -88,7 +87,7 @@
                                 'Bạn đã xoá thành công Role!',
                                 'success'
                             ).then(function(){
-                                agentTable.ajax.reload();
+                                holidayTable.ajax.reload();
                             })
                         }
                         else {
@@ -97,7 +96,7 @@
                                 'Thao tác thất bại',
                                 'error'
                             ).then(function(){
-                                agentTable.ajax.reload();
+                                holidayTable.ajax.reload();
                             })
                         }
                     }).error(function(data){
@@ -106,7 +105,7 @@
                             'Thao tác thất bại',
                             'error'
                         ).then(function(){
-                            agentTable.ajax.reload();
+                            holidayTable.ajax.reload();
                         })
                     });
                     // result.dismiss can be 'overlay', 'cancel', 'close', 'esc', 'timer'
@@ -120,34 +119,23 @@
             });
         }
         var createHoliday = $('#createHoliday');
-
-        var filterStatus = $('#filter_status');
-        filterStatus.on('change', function(){
-            agentTable.ajax.reload();
-        });
-        var editAgent = function(id){
-            // $.ajax({
-            //     method : 'GET',
-            //     url : window.location.origin + '/admin/agents/' + id
-            // }).done(function(response){
-            //     $('#agent_name').val(response.data.agent_name);
-            //     $('#agent_address').val(response.data.agent_address);
-            //     $('#agent_license').val(response.data.agent_license);
-            //     $('#agent_status').val(response.data.status);
-            //     $('#agent_mobile').val(response.data.agent_mobile);
-            //     $('#agent_email').val(response.data.agent_email);
-            //     $('#agent_representation').val(response.data.agent_representation);
-            //     $('#agent_representation_mobile').val(response.data.agent_representation_mobile);
-            //     $('#agent_website').val(response.data.agent_website);
-            //     $('#agentForm').attr('action', window.location.origin + '/admin/agents/' + id).append('<input type="hidden" name="_method" value="PATCH"/>');
-            //     createAgent.modal('show');
-            // }).fail(function(err){
-            //     swal(
-            //         'Thất bại',
-            //         'Thao tác thất bại',
-            //         'error'
-            //     );
-            // });
+        var editHoliday = function(id){
+            $.ajax({
+                method : 'GET',
+                url : window.location.origin + '/admin/holidays/' + id
+            }).done(function(response){
+                $('#date').val(response.data.date);
+                $('#increase_price').val(response.data.increase_price);
+                $('#createForm').attr('action', window.location.origin + '/admin/holidays/' + id).append('<input type="hidden" name="_method" value="PATCH"/>');
+            
+                createHoliday.modal('show');
+            }).fail(function(err){
+                swal(
+                    'Thất bại',
+                    'Thao tác thất bại',
+                    'error'
+                );
+            });
         };
 
         $('#createHolidayBtn').on('click', function(e){
@@ -163,9 +151,7 @@
                 serverSide: true,
                 ajax: {
                     url: '{!! route('holidays.datatable') !!}',
-                    data: function(d){
-                        d.status = filterStatus.val();
-                    }
+                    data: function(d){}
                 },
                 columns: [
                     { data: 'id', name: 'id', searchable: false, title: 'ID' },
@@ -175,11 +161,11 @@
                     { data: 'id', name: 'id', title: 'Thao Tác', searchable: false,className: 'text-center', "orderable": false,
                         render: function(data, type, row, meta){
                             let actionLink = '';
-                            if(isRoot){
-                                var agentId = "'" + row['id'] + "'";
-                                actionLink = '<a href="javascript:;" data-toggle="tooltip" title="Xoá '+ row['name'] +'!" onclick="deleteAgent('+ agentId +')"><i class=" fa-2x fa fa-trash" aria-hidden="true"></i></a>';
-                                actionLink += '&nbsp;&nbsp;&nbsp;<a target="javascript:;" onclick="editAgent(' + row['id'] + ')"><i class="fa fa-2x fa-pencil-square-o" aria-hidden="true"></i></a>';
-                            }
+
+                            var agentId = "'" + row['id'] + "'";
+                            actionLink = '<a href="javascript:;" data-toggle="tooltip" onclick="deleteHoliday('+ agentId +')"><i class=" fa-2x fa fa-trash" aria-hidden="true"></i></a>';
+                            actionLink += '&nbsp;&nbsp;&nbsp;<a target="javascript:;" onclick="editHoliday(' + row['id'] + ')"><i class="fa fa-2x fa-pencil-square-o" aria-hidden="true"></i></a>';
+
                             return actionLink;
                         }
                     }
