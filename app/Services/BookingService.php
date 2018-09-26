@@ -70,4 +70,9 @@ class BookingService
         return $data;
     }
 
+    public function totalCancelBookings(){
+
+        return $this->model->status(CANCEL_BOOKING)->count();
+    }
+
 }

@@ -6,6 +6,7 @@ use App\Http\Requests;
 use App\Services\AgentService;
 use App\Services\BookingService;
 use App\Services\BusService;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -20,6 +21,7 @@ class DashboardController extends Controller
         $this->busService = $busService;
         $this->bookingService = $bookingService;
         $this->agentService = $agentService;
+        
     }
 
     /**
@@ -29,7 +31,10 @@ class DashboardController extends Controller
      */
     public function index()
     {
+        $totalAgents = $this->agentService->totalAgents();
+        $totalBuses = $this->busService->totalBuses();
+        $totalCancelBooking = $this->bookingService->totalCancelBookings();
 
-        return view('admin.dashboard.index');
+        return view('admin.dashboard.index', compact('totalAgents', 'totalBuses', 'totalCancelBooking'));
     }
 }

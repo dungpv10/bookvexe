@@ -86,7 +86,7 @@ class BusService
             return $bus->busType->bus_type_name;
         })
         ->addColumn('userUpdate', function(Bus $bus){
-            return $bus->userUpdate ? $bus->userUpdate->name : 'Chưa cập nhật'; 
+            return $bus->userUpdate ? $bus->userUpdate->name : 'Chưa cập nhật';
         })
         ->addColumn('agentName', function($result){
             return isset($result->user->agent->agent_name) ? $result->user->agent->agent_name : '';
@@ -180,5 +180,7 @@ class BusService
         return $this->busModel->pluck('id')->toArray();
     }
 
-//    public function count
+    public function totalBuses(){
+      return $this->busModel->count();
+    }
 }

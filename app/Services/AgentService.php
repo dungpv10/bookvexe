@@ -63,4 +63,8 @@ class AgentService
     public function update($agent, $data) {
         return $agent->fill($data)->save();
     }
+
+    public function totalAgents(){
+      return $this->model->count();
+    }
 }

@@ -23,14 +23,14 @@
                             <i class="livicon  pull-right" data-name="money" data-l="true" data-c="#fff" data-hc="#fff" data-s="70"></i>
                         </div>
                         <div class="row">
-                            <div class="col-xs-6">
-                                <small class="stat-label">Last Week</small>
-                                <h4 id="myTargetElement1.1"></h4>
-                            </div>
-                            <div class="col-xs-6 text-right">
-                                <small class="stat-label">Last Month</small>
-                                <h4 id="myTargetElement1.2"></h4>
-                            </div>
+                            {{--<div class="col-xs-6">--}}
+                                {{--<small class="stat-label">Last Week</small>--}}
+                                {{--<h4 id="myTargetElement1.1"></h4>--}}
+                            {{--</div>--}}
+                            {{--<div class="col-xs-6 text-right">--}}
+                                {{--<small class="stat-label">Last Month</small>--}}
+                                {{--<h4 id="myTargetElement1.2"></h4>--}}
+                            {{--</div>--}}
                         </div>
                     </div>
                 </div>
@@ -49,14 +49,14 @@
                             <i class="livicon pull-right" data-name="remove-circle" data-l="true" data-c="#fff" data-hc="#fff" data-s="70"></i>
                         </div>
                         <div class="row">
-                            <div class="col-xs-6">
-                                <small class="stat-label">Last Week</small>
-                                <h4 id="myTargetElement2.1"></h4>
-                            </div>
-                            <div class="col-xs-6 text-right">
-                                <small class="stat-label">Last Month</small>
-                                <h4 id="myTargetElement2.2"></h4>
-                            </div>
+                            {{--<div class="col-xs-6">--}}
+                                {{--<small class="stat-label">Last Week</small>--}}
+                                {{--<h4 id="myTargetElement2.1"></h4>--}}
+                            {{--</div>--}}
+                            {{--<div class="col-xs-6 text-right">--}}
+                                {{--<small class="stat-label">Last Month</small>--}}
+                                {{--<h4 id="myTargetElement2.2"></h4>--}}
+                            {{--</div>--}}
                         </div>
                     </div>
                 </div>
@@ -75,14 +75,12 @@
                             <i class="livicon pull-right" data-name="car" data-l="true" data-c="#fff" data-hc="#fff" data-s="70"></i>
                         </div>
                         <div class="row">
-                            <div class="col-xs-6">
-                                <small class="stat-label">Last Week</small>
-                                <h4 id="myTargetElement3.1"></h4>
-                            </div>
-                            <div class="col-xs-6 text-right">
-                                <small class="stat-label">Last Month</small>
-                                <h4 id="myTargetElement3.2"></h4>
-                            </div>
+                            {{--<div class="col-xs-6">--}}
+                                {{--<h4 id="myTargetElement3.1"></h4>--}}
+                            {{--</div>--}}
+                            {{--<div class="col-xs-6 text-right">--}}
+                                {{--<h4 id="myTargetElement3.2"></h4>--}}
+                            {{--</div>--}}
                         </div>
                     </div>
                 </div>
@@ -101,14 +99,14 @@
                             <i class="livicon pull-right" data-name="users" data-l="true" data-c="#fff" data-hc="#fff" data-s="70"></i>
                         </div>
                         <div class="row">
-                            <div class="col-xs-6">
-                                <small class="stat-label">Last Week</small>
-                                <h4 id="myTargetElement4.1"></h4>
-                            </div>
-                            <div class="col-xs-6 text-right">
-                                <small class="stat-label">Last Month</small>
-                                <h4 id="myTargetElement4.2"></h4>
-                            </div>
+                            {{--<div class="col-xs-6">--}}
+                                {{--<small class="stat-label">Last Week</small>--}}
+                                {{--<h4 id="myTargetElement4.1"></h4>--}}
+                            {{--</div>--}}
+                            {{--<div class="col-xs-6 text-right">--}}
+                                {{--<small class="stat-label">Last Month</small>--}}
+                                {{--<h4 id="myTargetElement4.2"></h4>--}}
+                            {{--</div>--}}
                         </div>
                     </div>
                 </div>
@@ -121,6 +119,11 @@
 
 
 @section('js')
+    <script>
+      var totalBuses = "{{ $totalBuses }}";
+      var totalAgents = "{{ $totalAgents }}";
+      var totalCancelBookings = "{{ $totalCancelBooking }}";
+    </script>
     <script src="/js/todolist.js"></script>
     <!-- EASY PIE CHART JS -->
     <script src="/vendors/charts/easypiechart.min.js"></script>

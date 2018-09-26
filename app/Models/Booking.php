@@ -44,4 +44,8 @@ class Booking extends Model
         return $query;
     }
 
+    public function scopeStatus($query, $status){
+        return $query->where('payment_status', $status);
+    }
+
 }
