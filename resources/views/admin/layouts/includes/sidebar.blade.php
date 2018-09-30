@@ -6,6 +6,7 @@
             <!-- BEGIN SIDEBAR MENU -->
 
                 <ul class="page-sidebar-menu" id="menu">
+                @if(Gate::allows('dashboard'))
                 <li>
                     <a href="{{ route('admin.dashboard') }}">
                         <i class="livicon" data-name="home" data-size="18" data-c="#418BCA" data-hc="#418BCA" data-loop="true"></i>
@@ -13,7 +14,7 @@
                     </a>
 
                 </li>
-
+                @endif
                 <!--Bus-->
                 <li>
                     <a href="{{route('bus.index')}}">

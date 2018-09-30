@@ -25,7 +25,12 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::define('root', function($user){
+        Gate::define('dashboard', function ($user) {
+            return in_array(0, $user->role->module_ids_as_array);
+        });
+
+
+        Gate::define('root', function ($user) {
             return $this->hasRole($user, ['root']);
         });
 
@@ -51,7 +56,8 @@ class AuthServiceProvider extends ServiceProvider
     }
 
 
-    private function hasRole($user, $roles){
+    private function hasRole($user, $roles)
+    {
         $roleName = $user->role->name;
 
         return (in_array($roleName, $roles));
