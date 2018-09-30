@@ -57,4 +57,10 @@ class Role extends Model
     {
         return Role::where('name', $name)->firstOrFail();
     }
+
+
+    public function getModuleIdsAsArrayAttribute(){
+      $modulesIds = $this->getAttribute('module_ids');
+      return $modulesIds ? explode(',', $modulesIds) : [];
+    }
 }

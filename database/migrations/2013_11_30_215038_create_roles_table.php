@@ -17,6 +17,7 @@ class CreateRolesTable extends Migration
             $table->string('name')->nullable();
             $table->string('label')->nullable();
             $table->text('permissions')->nullable();
+            $table->text('module_ids')->nullable();
         });
     }
 

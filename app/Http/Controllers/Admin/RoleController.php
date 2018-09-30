@@ -22,8 +22,12 @@ class RoleController extends Controller
      */
     public function index()
     {
+        $modules = config('modules');
         $roles = $this->service->all();
-        return view('admin.roles.index')->with('roles', $roles);
+
+        return view('admin.roles.permission')->with(compact('modules', 'roles'));
+        // $roles = $this->service->all();
+        // return view('admin.roles.index')->with('roles', $roles);
     }
 
     /**
@@ -56,8 +60,9 @@ class RoleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(RoleCreateRequest $request)
+    public function store(Request $request)
     {
+        dd($request->all());
         $result = $this->service->create($request->except(['_token', '_method']));
 
         if ($result) {
