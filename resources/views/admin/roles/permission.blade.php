@@ -9,22 +9,24 @@
                     <button type="button" class="btn btn-primary" id="createRoleBtn">
                         <i class="fa fa-plus-circle" aria-hidden="true"></i>Thêm mới
                     </button>
-                    <button class="btn btn-danger" type="button" onclick="deleteManyRow()">
-                        <i class="fa fa-trash" aria-hidden="true"></i> Xóa nhiều
-                    </button>
                 </div>
 
                 {!! Form::open(['route' => 'roles.store', 'method' => 'POST']) !!}
-                    <div class="accordion" id="accordionExample">
+                @include('admin.roles.partials.form_create')
+                <div class="accordion" id="accordionExample">
+
                     @foreach($roles as $key => $role)
-                        <input type="hidden" value="{{ $role->id }}" name="{{$role->name}}[id]" />
+                        <input type="hidden" value="{{ $role->id }}" name="{{$role->name}}[id]"/>
                         <div class="card">
                             <div class="card-header" id="heading{{$key}}">
                                 <h5 class="mb-0">
-                                    <button class="btn btn-primary" style="width: 100%; text-transform: uppercase;" type="button" data-toggle="collapse"
-                                            data-target="#collapse{{$key}}" aria-expanded="false" aria-controls="collapse{{$key}}">
-                                        {{ $role->name }}
-                                    </button>
+                                    {!! Form::text($role->name . '[name]', $role->name, [
+                                        'class' => 'form-control',
+                                        'data-target' => '#collapse' . $key,
+                                        'data-toggle' => "collapse",
+                                        'aria-expanded' => 'false',
+                                        'aria-controls' => 'collapse' . $key
+                                    ]) !!}
                                 </h5>
                             </div>
 
@@ -32,26 +34,30 @@
                                  data-parent="#accordionExample">
                                 <div class="card-body">
 
-                                        <table class="table table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th>
-                                                        Tên module
-                                                    </th>
-                                                    <th>
-                                                        Thao tác
-                                                    </th>
-                                                </tr>
-                                            </thead>
-                                            @foreach($modules as $keyModule => $module)
-                                                <tr>
-                                                    <td>{{ $module }}</td>
-                                                    <td>
-                                                        <input value="1" name="{{$role->name}}[module_ids][]" type="checkbox" @if(in_array($keyModule, $role->module_ids_as_array)) checked @endif />
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        </table>
+                                    <table class="table table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th>
+                                                Tên module
+                                            </th>
+                                            <th>
+                                                Thao tác
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        @foreach($modules as $keyModule => $module)
+                                            <tr>
+                                                <td><label for="{{$role->name}}_{{$keyModule}}">{{ $module }}</label>
+                                                </td>
+                                                <td>
+                                                    <input value="{{$keyModule}}" name="{{$role->name}}[module_ids][]"
+                                                           id="{{$role->name}}_{{$keyModule}}"
+                                                           type="checkbox"
+                                                           @if(in_array($keyModule, $role->module_ids_as_array)) checked @endif />
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </table>
 
                                 </div>
                             </div>
@@ -59,9 +65,9 @@
                     @endforeach
 
                 </div>
-                    <div>
-                        {!! Form::submit('Cập nhật', ['class' => 'btn btn-success']) !!}
-                    </div>
+                <div>
+                    {!! Form::submit('Cập nhật', ['class' => 'btn btn-success']) !!}
+                </div>
                 {!! Form::close() !!}
             </div>
         </div>
@@ -84,5 +90,9 @@
 @stop
 @section('js')
     <script type="text/javascript">
+        $('#createRoleBtn').on('click', function (e) {
+            e.preventDefault();
+            $('#createForm').toggle('normal');
+        });
     </script>
 @stop

@@ -21,10 +21,8 @@ class Role extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'name',
-        'label',
-        'permissions'
+    protected $guarded = [
+        'id'
     ];
 
     /**

@@ -10,6 +10,8 @@ use App\Http\Requests\RoleCreateRequest;
 
 class RoleController extends Controller
 {
+    protected $service;
+
     public function __construct(RoleService $roleService)
     {
         $this->service = $roleService;
@@ -62,15 +64,12 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
-        $result = $this->service->create($request->except(['_token', '_method']));
+        $roleData = $request->except('_token');
 
-        if ($result) {
-            if ($request->ajax()) {
-                return response()->json(['code' => '200', 'message' => 'Tạo mới quyền thành công']);
-            }
+        $result = $this->service->store($roleData);
+
+        if($result)
             return redirect('admin/roles')->with('success', 'Tạo mới quyền thành công!');
-        }
 
         return back()->with('error', 'Failed to invite');
     }

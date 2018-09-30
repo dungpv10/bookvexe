@@ -178,4 +178,24 @@ class RoleService
             })
             ->make(true);
     }
+
+    public function store($roleData) {
+        $updateData = array_filter($roleData, function($data){
+            return isset($data['id']) && !empty($data['id']);;
+        });
+        $resultUpdate = [];
+
+        foreach($updateData as $data) {
+            $data['module_ids'] = isset($data['module_ids']) ? implode(',', $data['module_ids']) : '';
+            $resultUpdate[] = $this->model->find($data['id'])->fill($data)->save();
+        }
+        $insertData = $roleData['insert'];
+        $resultInsert = false;
+        if($insertData['name']){
+            $insertData['module_ids'] = implode(',', $insertData['module_ids']);
+            $resultInsert = $this->model->fill($insertData)->save();
+        }
+
+        return in_array(false, array_merge($resultUpdate, [$resultInsert]));
+    }
 }
