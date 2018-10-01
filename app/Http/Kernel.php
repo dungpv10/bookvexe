@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\IsManager;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -62,7 +63,7 @@ class Kernel extends HttpKernel
 		'cabin-api' => \App\Http\Middleware\CabinApi::class,
 		'cabin-analytics' => \Yab\Cabin\Middleware\CabinAnalytics::class,
 		'cabin-language' => \App\Http\Middleware\CabinLanguage::class,
-        
+
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
@@ -73,6 +74,6 @@ class Kernel extends HttpKernel
 
         'permissions' => \App\Http\Middleware\Permissions::class,
         'roles' => \App\Http\Middleware\Roles::class,
-        'active' => \App\Http\Middleware\Active::class,
+        'is_manager' => IsManager::class
     ];
 }
