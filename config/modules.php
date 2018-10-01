@@ -1,18 +1,17 @@
 <?php
-  return [
-    DASHBOARD => 'Dashboard',
-    1 => 'Quản lý thành viên',
-    2 => 'Quản lý xe',
-    3 => 'Quản lý tuyến đường',
-    4 => 'Quản lý điểm dừng',
-    5 => 'Quản lý khuyến mại',
-    6 => 'Bookings',
-    7 => 'Cài đặt huỷ vé',
-    8 => 'Quản lý khởi hành',
-    9 => 'Quản lý thành viên',
-    10 => 'Đánh giá',
-    11 => 'Nhà xe',
-    12 => 'Cài đặt ngày nghỉ',
-    13 => 'Quyền',
-    14 => 'Cài đặt chung'
-  ];
+return [
+    DASHBOARD_ROLE => 'Dashboard',
+    USER_ROLE => 'Quản lý thành viên',
+    BUS_ROLE => 'Quản lý xe',
+    ROUTE_ROLE => 'Quản lý tuyến đường',
+    POINT_ROLE => 'Quản lý điểm dừng',
+    PROMOTION_ROLE => 'Quản lý khuyến mại',
+    BOOKING_ROLE => 'Bookings',
+    CANCELLATION_ROLE => 'Cài đặt huỷ vé',
+    INITIALIZE_ROLE => 'Quản lý khởi hành',
+    RATING_ROLE => 'Đánh giá',
+    AGENT_ROLE => 'Nhà xe',
+    HOLIDAY_ROLE => 'Cài đặt ngày nghỉ',
+    PERMISSION_ROLE => 'Quyền',
+    SETTING_ROLE => 'Cài đặt chung'
+];

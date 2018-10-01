@@ -181,7 +181,7 @@ class RoleService
 
     public function store($roleData) {
         $updateData = array_filter($roleData, function($data){
-            return isset($data['id']) && !empty($data['id']);;
+            return isset($data['id']) && !empty($data['id']);
         });
         $resultUpdate = [];
 

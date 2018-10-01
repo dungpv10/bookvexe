@@ -25,9 +25,60 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::define('dashboard', function ($user) {
-            return in_array(0, $user->role->module_ids_as_array);
+        Gate::define('dashboard_perm', function ($user) {
+            return in_array(DASHBOARD_ROLE, $user->role->module_ids_as_array);
         });
+
+        Gate::define('user_perm', function ($user) {
+            return in_array(USER_ROLE, $user->role->module_ids_as_array);
+        });
+
+        Gate::define('bus_perm', function ($user) {
+            return in_array(BUS_ROLE, $user->role->module_ids_as_array);
+        });
+        Gate::define('route_perm', function ($user) {
+            return in_array(ROUTE_ROLE, $user->role->module_ids_as_array);
+        });
+
+        Gate::define('point_perm', function ($user) {
+            return in_array(POINT_ROLE, $user->role->module_ids_as_array);
+        });
+
+        Gate::define('initialize_perm', function ($user) {
+            return in_array(INITIALIZE_ROLE, $user->role->module_ids_as_array);
+        });
+
+        Gate::define('booking_perm', function ($user) {
+            return in_array(BOOKING_ROLE, $user->role->module_ids_as_array);
+        });
+
+        Gate::define('cancellation_perm', function ($user) {
+            return in_array(CANCELLATION_ROLE, $user->role->module_ids_as_array);
+        });
+        Gate::define('promotion_perm', function ($user) {
+            return in_array(PROMOTION_ROLE, $user->role->module_ids_as_array);
+        });
+        Gate::define('rating_perm', function ($user) {
+            return in_array(RATING_ROLE, $user->role->module_ids_as_array);
+        });
+        Gate::define('agent_perm', function ($user) {
+            return in_array(AGENT_ROLE, $user->role->module_ids_as_array);
+        });
+
+        Gate::define('holiday_perm', function ($user) {
+            return in_array(HOLIDAY_ROLE, $user->role->module_ids_as_array);
+        });
+
+        Gate::define('role_perm', function ($user) {
+            return in_array(PERMISSION_ROLE, $user->role->module_ids_as_array);
+        });
+        Gate::define('setting_perm', function ($user) {
+            return in_array(SETTING_ROLE, $user->role->module_ids_as_array);
+        });
+
+
+
+
 
 
         Gate::define('root', function ($user) {
