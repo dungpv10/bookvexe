@@ -21,8 +21,10 @@ class IsManager
         $roleName = auth()->user()->role->name;
 
         if(!in_array($roleName, $managers)){
+
             abort(403, 'Permission denied');
         }
+
         return $next($request);
     }
 }

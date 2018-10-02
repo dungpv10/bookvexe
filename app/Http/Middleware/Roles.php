@@ -15,11 +15,15 @@ class Roles
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next, ... $roles)
+    public function handle($request, Closure $next, ...$roles)
     {
-        $roleName = auth()->user()->role->name;
+        $userRoles = auth()->user()->role->module_ids_as_array;
+        $check = [];
+        foreach($roles as $role){
+            $check[] = in_array($role, $userRoles);
+        }
 
-        if(in_array($roleName, $roles)){
+        if(in_array(true, $check)){
             return $next($request);
         }
 

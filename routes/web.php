@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group([
     'namespace' => 'FrontEnd'
-], function(){
+], function () {
     Route::get('/', 'HomeController@home');
 });
 
@@ -99,25 +99,28 @@ Route::group(['middleware' => ['auth', 'active']], function () {
     */
 
     Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'is_manager'], function () {
-        Route::get('/', function(){
+        Route::get('/', function () {
             return redirect()->route('bus.index');
         });
-        Route::get('dashboard', ['uses' => 'DashboardController@index', 'as' => 'admin.dashboard']);
+        Route::get('dashboard', ['middleware' => 'roles:' . DASHBOARD_ROLE, 'uses' => 'DashboardController@index', 'as' => 'admin.dashboard']);
 
         /*
         |--------------------------------------------------------------------------
         | Users
         |--------------------------------------------------------------------------
         */
-        Route::resource('users', 'UserController', ['except' => ['show']]);
-        Route::post('users/search', ['uses' => 'UserController@search', 'as' => 'users.search.post']);
-        Route::get('users/invite', ['uses' => 'UserController@getInvite', 'as' => 'users.invite']);
-        Route::get('users/switch/{id}', 'UserController@switchToUser');
-        Route::post('users/invite', 'UserController@postInvite');
-        Route::get('users/getJSONData', ['as'=>'users.datatable', 'uses'=>'UserController@getJSONData']);
-        Route::get('users/confirm/{id}', ['as' => 'users.confirm', 'uses' => 'UserController@getConfirm']);
-        Route::post('users/multiple-delete', ['uses' => 'UserController@multipleDelete', 'as' =>'user.multiple.delete']);
-        Route::post('users/togleStatusUser', ['uses' => 'UserController@togleStatusUser', 'as' =>'user.togleStatus']);
+        Route::group(['middleware' => 'roles:' . USER_ROLE], function () {
+            Route::resource('users', 'UserController', ['except' => ['show']]);
+            Route::post('users/search', ['uses' => 'UserController@search', 'as' => 'users.search.post']);
+            Route::get('users/invite', ['uses' => 'UserController@getInvite', 'as' => 'users.invite']);
+            Route::get('users/switch/{id}', 'UserController@switchToUser');
+            Route::post('users/invite', 'UserController@postInvite');
+            Route::get('users/getJSONData', ['as' => 'users.datatable', 'uses' => 'UserController@getJSONData']);
+            Route::get('users/confirm/{id}', ['as' => 'users.confirm', 'uses' => 'UserController@getConfirm']);
+            Route::post('users/multiple-delete', ['uses' => 'UserController@multipleDelete', 'as' => 'user.multiple.delete']);
+            Route::post('users/togleStatusUser', ['uses' => 'UserController@togleStatusUser', 'as' => 'user.togleStatus']);
+        });
+
 
         /*
         |--------------------------------------------------------------------------
@@ -125,72 +128,78 @@ Route::group(['middleware' => ['auth', 'active']], function () {
         |--------------------------------------------------------------------------
         */
 
+        Route::group(['middleware' => 'roles:' . BUS_ROLE], function () {
+            Route::resource('bus', 'BusController', ['except' => ['show', 'update']]);
+            Route::get('bus/getJSONData', ['as' => 'bus.datatable', 'uses' => 'BusController@getJSONData']);
+            Route::post('bus/update/{id}', ['as' => 'bus.update.bus', 'uses' => 'BusController@updateBus']);
+            Route::get('bus/detail/{id?}', ['as' => 'bus.detail', 'uses' => 'BusController@detail']);
+            Route::post('bus/deleteMultiple', ['as' => 'bus.delete_multiple', 'uses' => 'BusController@deleteMultiple']);
+            Route::get('bus/all', ['as' => 'bus.all', 'uses' => 'BusController@getAllBus']);
 
-        Route::resource('bus', 'BusController', ['except' => ['show', 'update']]);
-        Route::get('bus/getJSONData', ['as'=>'bus.datatable', 'uses'=>'BusController@getJSONData']);
-        Route::post('bus/update/{id}', ['as'=>'bus.update.bus', 'uses'=>'BusController@updateBus']);
-        Route::get('bus/detail/{id?}', ['as'=>'bus.detail', 'uses'=>'BusController@detail']);
-        Route::post('bus/deleteMultiple', ['as'=>'bus.delete_multiple', 'uses'=>'BusController@deleteMultiple']);
-        Route::get('bus/all', ['as' => 'bus.all', 'uses' => 'BusController@getAllBus']);
-        /*
-        |--------------------------------------------------------------------------
-        | Bus Type
-        |--------------------------------------------------------------------------
-        */
+            /*
+            |--------------------------------------------------------------------------
+            | Bus Type
+            |--------------------------------------------------------------------------
+            */
 
-        Route::resource('bus-type', 'BusTypeController', ['except' => ['show']]);
-        Route::get('bus-type/getJSONData', ['as'=>'bus-type.datatable', 'uses'=>'BusTypeController@getJSONData']);
-        Route::post('bustype/deleteMultiple', ['as'=>'bustype.delete_multiple', 'uses'=>'BusTypeController@deleteMultiple']);
+            Route::resource('bus-type', 'BusTypeController', ['except' => ['show']]);
+            Route::get('bus-type/getJSONData', ['as' => 'bus-type.datatable', 'uses' => 'BusTypeController@getJSONData']);
+            Route::post('bustype/deleteMultiple', ['as' => 'bustype.delete_multiple', 'uses' => 'BusTypeController@deleteMultiple']);
+        });
+
 
         /*
         |--------------------------------------------------------------------------
         | Route
         |--------------------------------------------------------------------------
         */
-
-        Route::resource('routes', 'RouteController', ['except' => ['show']]);
-        Route::post('routes/getJSONData', ['as'=>'routes.datatable', 'uses'=>'RouteController@getJSONData']);
-
+        Route::group(['middleware' => 'roles:' . ROUTE_ROLE], function () {
+            Route::resource('routes', 'RouteController', ['except' => ['show']]);
+            Route::post('routes/getJSONData', ['as' => 'routes.datatable', 'uses' => 'RouteController@getJSONData']);
+        });
         /*
         |--------------------------------------------------------------------------
         | Point
         |--------------------------------------------------------------------------
         */
-
-        Route::resource('points', 'PointController');
-        Route::get('point/getJSONData', ['as'=>'point.datatable', 'uses'=>'PointController@getJSONData']);
-        Route::post('point/deleteMultiple', ['as'=>'point.delete_multiple', 'uses'=>'PointController@deleteMultiple']);
-
+        Route::group(['middleware' => 'roles:' . POINT_ROLE], function () {
+            Route::resource('points', 'PointController');
+            Route::get('point/getJSONData', ['as' => 'point.datatable', 'uses' => 'PointController@getJSONData']);
+            Route::post('point/deleteMultiple', ['as' => 'point.delete_multiple', 'uses' => 'PointController@deleteMultiple']);
+        });
         /*
         |--------------------------------------------------------------------------
         | Promotion
         |--------------------------------------------------------------------------
         */
-        Route::get('promotions/getJsonData', ['as' => 'promotions.json_data', 'uses' => 'PromotionController@getJsonData']);
-        Route::post('promotions/activePromotion', ['as' => 'promotions.active', 'uses' => 'PromotionController@activePromotion']);
-        Route::resource('promotions', 'PromotionController', ['except' => ['create']]);
-
+        Route::group(['middleware' => 'roles:' . PROMOTION_ROLE], function () {
+            Route::get('promotions/getJsonData', ['as' => 'promotions.json_data', 'uses' => 'PromotionController@getJsonData']);
+            Route::post('promotions/activePromotion', ['as' => 'promotions.active', 'uses' => 'PromotionController@activePromotion']);
+            Route::resource('promotions', 'PromotionController', ['except' => ['create']]);
+        });
         /*
         |--------------------------------------------------------------------------
         | Booking
         |--------------------------------------------------------------------------
         */
-        Route::get('bookings/jsonData', [
-            'uses' => 'BookingController@getJsonData',
-            'as' => 'bookings.json_data'
-        ]);
-        Route::post('bookings/update-status/{id}', [
-            'uses' => 'BookingController@updateStatus',
-            'as' => 'bookings.update_status'
-        ]);
-        Route::resource('bookings', 'BookingController');
-
+        Route::group(['middleware' => 'roles:' . BOOKING_ROLE], function () {
+            Route::get('bookings/jsonData', [
+                'uses' => 'BookingController@getJsonData',
+                'as' => 'bookings.json_data'
+            ]);
+            Route::post('bookings/update-status/{id}', [
+                'uses' => 'BookingController@updateStatus',
+                'as' => 'bookings.update_status'
+            ]);
+            Route::resource('bookings', 'BookingController');
+        });
 
         /*
         |--------------------------------------------------------------------------
         | Team Routes
         |--------------------------------------------------------------------------
         */
+
         Route::get('team/getJsonData', ['uses' => 'TeamController@getJsonData', 'as' => 'teams.get_json_data']);
         Route::get('team/{name}', 'TeamController@showByName');
         Route::resource('teams', 'TeamController', ['except' => ['show']]);
@@ -207,45 +216,49 @@ Route::group(['middleware' => ['auth', 'active']], function () {
         | Agent
         |--------------------------------------------------------------------------
         */
-        Route::get('agents/jsonData', ['as' => 'agents.getJsonData', 'uses' => 'AgentController@getJsonData']);
-        Route::post('agents/update-status', ['as' => 'agents.update_status', 'uses' => 'AgentController@updateStatus']);
-        Route::get('agents/setting', ['as' => 'agents.setting', 'uses' => 'AgentController@getSetting']);
-        Route::post('agents/setting', ['as' => 'agents.post.setting', 'uses' => 'AgentController@postSetting']);
-        Route::resource('agents', 'AgentController');
-
-
-        /*
-        |--------------------------------------------------------------------------
-        | Cancellation
-        |--------------------------------------------------------------------------
-        */
-        Route::get('cancellations/getJsonData', ['as' => 'cancellations.getJsonData', 'uses' => 'SettingCancelBookingController@getJsonData']);
-        Route::resource('cancellations', 'SettingCancelBookingController');
-
+        Route::group(['middleware' => 'roles:' . AGENT_ROLE], function () {
+            Route::get('agents/jsonData', ['as' => 'agents.getJsonData', 'uses' => 'AgentController@getJsonData']);
+            Route::post('agents/update-status', ['as' => 'agents.update_status', 'uses' => 'AgentController@updateStatus']);
+            Route::get('agents/setting', ['as' => 'agents.setting', 'uses' => 'AgentController@getSetting']);
+            Route::post('agents/setting', ['as' => 'agents.post.setting', 'uses' => 'AgentController@postSetting']);
+            Route::resource('agents', 'AgentController');
+        });
 
         /*
         |--------------------------------------------------------------------------
         | Cancellation
         |--------------------------------------------------------------------------
         */
-        Route::get('ratings/getJsonData', ['as' => 'ratings.getJsonData', 'uses' => 'RatingController@getJsonData']);
-        Route::resource('ratings', 'RatingController');
+        Route::group(['middleware' => 'roles:' . CANCELLATION_ROLE], function () {
+            Route::get('cancellations/getJsonData', ['as' => 'cancellations.getJsonData', 'uses' => 'SettingCancelBookingController@getJsonData']);
+            Route::resource('cancellations', 'SettingCancelBookingController');
+        });
 
+        /*
+        |--------------------------------------------------------------------------
+        | Cancellation
+        |--------------------------------------------------------------------------
+        */
+
+        Route::group(['middleware' => 'roles:' . RATING_ROLE], function () {
+            Route::get('ratings/getJsonData', ['as' => 'ratings.getJsonData', 'uses' => 'RatingController@getJsonData']);
+            Route::resource('ratings', 'RatingController');
+        });
 
         /*
         |--------------------------------------------------------------------------
         | Admin group
         |--------------------------------------------------------------------------
         */
-        Route::group(['roles' => 'agent, staff'], function(){
+
+        Route::group(['middleware' => 'roles:' . INITIALIZE_ROLE], function () {
             Route::get('initializes/get_events', ['uses' => 'InitializeController@getEvents', 'as' => 'initializes.get_events']);
             Route::get('initializes/getJsonData', ['uses' => 'InitializeController@getJsonData', 'as' => 'initializes.getJsonData']);
             Route::resource('initializes', 'InitializeController');
         });
 
 
-
-        Route::group(['middleware' => 'roles:root'], function () {
+        Route::group(['middleware' => 'roles:' . PERMISSION_ROLE], function () {
 
             /*
             |--------------------------------------------------------------------------
@@ -255,9 +268,11 @@ Route::group(['middleware' => ['auth', 'active']], function () {
             Route::resource('roles', 'RoleController', ['except' => ['show']]);
             Route::post('roles/search', 'RoleController@search');
             Route::get('roles/search', 'RoleController@index');
-            Route::get('roles/getJSONData', ['as'=>'roles.datatable', 'uses'=>'RoleController@getJSONData']);
-            Route::post('roles/multiple-delete', ['uses' => 'RoleController@multipleDelete', 'as' =>'role.multiple.delete']);
+            Route::get('roles/getJSONData', ['as' => 'roles.datatable', 'uses' => 'RoleController@getJSONData']);
+            Route::post('roles/multiple-delete', ['uses' => 'RoleController@multipleDelete', 'as' => 'role.multiple.delete']);
 
+        });
+        Route::group(['middleware' => 'roles:' . SETTING_ROLE], function () {
             /*
             |--------------------------------------------------------------------------
             | Setting
@@ -266,13 +281,14 @@ Route::group(['middleware' => ['auth', 'active']], function () {
 
             Route::resource('setting', 'SettingController', ['only' => ['index', 'update']]);
 
-
+        });
+        Route::group(['middleware' => 'roles:' . HOLIDAY_ROLE], function () {
             /*
             |--------------------------------------------------------------------------
             | Holiday management
             |--------------------------------------------------------------------------
             */
-            Route::get('holidays/getJSONData', ['as'=>'holidays.datatable', 'uses'=>'ManagerHolidayController@getJSONData']);
+            Route::get('holidays/getJSONData', ['as' => 'holidays.datatable', 'uses' => 'ManagerHolidayController@getJSONData']);
             Route::resource('holidays', 'ManagerHolidayController');
         });
 
