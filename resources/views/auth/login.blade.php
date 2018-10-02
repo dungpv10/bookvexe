@@ -19,6 +19,7 @@
                                                                                    data-hc="#3c8dbc"></i>
                     Tên đăng nhập
                 </label>
+
                 <input id="username" name="username" required type="text" placeholder="username"
                        value="{{ old('username') }}"/>
             </p>

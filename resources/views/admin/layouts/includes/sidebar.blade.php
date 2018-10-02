@@ -106,6 +106,7 @@
                     </li>
                 @endif
                 @if(Gate::allows('rating_perm'))
+
                     <li>
                         <a href="{{route('ratings.index')}}">
                             <i class="livicon" data-name="star-full" data-size="18" data-c="#00bc8c" data-hc="#00bc8c"

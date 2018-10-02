@@ -43,6 +43,15 @@ class LoginController extends Controller
     }
 
     /**
+     * Add login user name
+     *
+     * @return void
+     */
+    public function username() {
+        return 'username';
+    }
+    
+    /**
      * Check user's role and redirect user based on their role
      * @return
      */

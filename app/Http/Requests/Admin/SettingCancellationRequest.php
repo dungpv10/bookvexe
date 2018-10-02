@@ -24,8 +24,8 @@ class SettingCancellationRequest extends FormRequest
     public function rules()
     {
         return [
-            'bus_id' => 'required',
-            'cancel_time' => 'date'
+//            'bus_id' => 'required',
+            'cancel_time' => 'numeric'
         ];
     }
 }

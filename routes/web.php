@@ -236,6 +236,15 @@ Route::group(['middleware' => ['auth', 'active']], function () {
 
         /*
         |--------------------------------------------------------------------------
+        | Customer
+        |--------------------------------------------------------------------------
+        */
+        Route::get('customer/getJsonData', ['as' => 'customer.getJsonData', 'uses' => 'CustomerController@getJsonData']);
+        Route::resource('customer', 'CustomerController');
+
+
+        /*
+        |--------------------------------------------------------------------------
         | Cancellation
         |--------------------------------------------------------------------------
         */

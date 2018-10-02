@@ -15,9 +15,9 @@ class SettingCancelBookings extends Migration
     {
         Schema::create('setting_cancel_bookings', function(Blueprint $table){
             $table->increments('id');
-            $table->integer('bus_id')->unsigned();
+            $table->integer('bus_id')->unsigned()->nullable();
             $table->foreign('bus_id')->references('id')->on('buses')->onDelete('cascade');
-            $table->timestamp('cancel_time');
+            $table->integer('cancel_time')->nullable();
             $table->float('percentage')->nullable();
             $table->float('flat')->nullable();
             $table->tinyInteger('cancel_type')->default(0);

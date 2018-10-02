@@ -4,6 +4,7 @@ namespace App\Services;
 
 
 use App\Models\SettingCancelBooking;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\DataTables;
 
 class SettingCancelBookingService
@@ -29,9 +30,9 @@ class SettingCancelBookingService
         $builder = $this->model->with('bus');
         $ids = $this->busService->getAllIdBusOfAgent();
 
-        if(!empty($ids)){
-            $builder->whereIn('bus_id', $ids);
-        }
+//        if(!empty($ids)){
+//            $builder->whereIn('bus_id', $ids);
+//        }
 
         foreach($filters as $key => $filter){
             if($filter != ''){
@@ -61,10 +62,13 @@ class SettingCancelBookingService
     }
 
     public function store($data){
+        $data['user_id'] = Auth::user()->id;
+        $data['modify_user_id'] = Auth::user()->id;
         return $this->model->fill($data)->save();
     }
 
     public function update($id, $data){
+        $data['modify_user_id'] = Auth::user()->id;
         $setting = $this->findById($id);
         if(!$setting){
             return false;

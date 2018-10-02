@@ -5,6 +5,7 @@ namespace App\Services;
 
 use App\Models\Promotion;
 use Yajra\DataTables\DataTables;
+use Auth;
 
 class PromotionService
 {
@@ -36,6 +37,9 @@ class PromotionService
         return $this->dataTables->of($builder)
             ->addColumn('userCreate', function(Promotion $promotion){
                 return $promotion->user ? $promotion->user->name : '';
+            })
+            ->addColumn('agentName', function(Promotion $promotion){
+                return $promotion->agent ? $promotion->agent->agent_name : '';
             })
             ->addColumn('userUpdate', function(Promotion $promotion){
                 return $promotion->userUpdate ? $promotion->userUpdate->name : 'Chưa cập nhật';
@@ -70,10 +74,13 @@ class PromotionService
     }
 
     public function insert($data){
+        $data['user_id'] = Auth::user()->id;
+        $data['modify_user_id'] = Auth::user()->id;
         return $this->model->fill($data)->save();
     }
 
     public function update($promotion, $data){
+        $data['modify_user_id'] = Auth::user()->id;
         return $promotion->fill($data)->save();
     }
 }

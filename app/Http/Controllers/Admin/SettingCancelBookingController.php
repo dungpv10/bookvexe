@@ -103,9 +103,20 @@ class SettingCancelBookingController extends Controller
     {
         $setting = $this->service->update($id, $request->except('_token'));
         if(!$setting){
+            if($request->ajax()){
+                return response()->json([
+                    'code' => 400,
+                    'msg' => 'Cập nhật thất bại'
+                ]);
+            }
             return redirect()->back()->with('error', 'Cập nhật thất bại');
         }
-
+        if($request->ajax()){
+            return response()->json([
+                'code' => 200,
+                'msg' => 'Cập nhật thành công'
+            ]);
+        }
         return redirect()->back()->with('success', 'Cập nhật thành công');
     }
 
