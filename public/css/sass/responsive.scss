@@ -1,18 +1,15 @@
 @media only screen and (max-width: 1365px)  {
 	.bg-search {
 		padding-bottom: 40px;
-	} 
+	}
+	.widget-ads {
+		img {
+			width: 100%;
+		}
+	}
 	.widget-search {
-		.title {
-			font-size: 40px;
-			line-height: 44px;
-		}
-		.sub-title {
-			font-size: 18px;
-			line-height: 22px;
-		}
 		.widget-content {
-			width: 75%;
+			width: 100%;
 		}
 	}
 	.widget-provided {
@@ -45,19 +42,39 @@
 	}
 }
 @media only screen and (max-width: 991px) {
-	.widget-search {
-		.title {
-			font-size: 30px;
-			line-height: 34px;
-		}
-		.sub-title {
-			font-size: 16px;
-			line-height: 20px;
-		}
+	.wrap-commitment .title {
+		margin-bottom: 15px;
+	}
+	.wrap-commitment {
+		margin-top: 0px;
+		margin-bottom: 15px;
+	}
+	.widget-search .widget-content {
+		padding-bottom: 30px;
 	}
 	h2 {
 		font-size: 24px;
 		line-height: 26px;
+	}
+	section {
+		padding-top: 30px;
+		padding-bottom: 30px;
+	}
+	.section-garapopulor {
+		padding-bottom: 0px;
+	}
+	.footer-area {
+		padding-top: 30px;
+		padding-bottom: 30px;
+	}
+	.footer-top .entry-footer {
+		border-right: 0px;
+		margin-bottom: 10px;
+	}
+	.footer-top.match_height {
+		>div {
+			display: block;
+		}
 	}
 	.wiget-choose-me {
 		margin-bottom: 25px;
@@ -81,6 +98,81 @@
 	.list-info .title {
 		font-size: 20px;
 	}
+	.header-left .menu {
+		display: none;
+	}
+	#header {
+		position: relative;
+		.menu-mobile-con {
+			display: block;
+			text-align: right;
+			i {
+				font-size: 30px;
+			}
+		}
+		.menu-mobile {
+			display: block;
+			margin-bottom: 20px;
+			.menu-primary {
+				margin-top: 0px;
+				a {
+					color: $white;
+				}
+				li {
+					display: block;
+					padding: 10px 0px;
+					border-bottom: 1px solid $color-border-3;
+					margin-right: 0px;
+					margin-left: 0px;
+				}
+			}
+		}
+		.header-rigth {
+			position: absolute;
+			height: 500px;
+			width: 320px;
+			top: 45px;
+			right: -10px;
+			background-color: $black;
+			z-index: 999;
+			padding: 30px 15px;
+			text-align: left;
+			display: none;
+			&.active {
+				display: block;
+			}
+			.bootstrap-select > .dropdown-toggle {
+				background-color: unset;
+				margin-bottom: 10px;
+			}
+			.bootstrap-select .filter-option {
+				color: $white;
+			}
+			.bootstrap-select {
+				margin-left: 0px !important;
+			}
+			.call-support {
+				top: 0px;
+				margin-left: 0px;
+				color: $white;
+				display: block;
+				margin-bottom: 10px;
+			}
+			.fa-info-circle {
+				display: none;
+			}
+			.dropdown-menu {
+				top: 15px;
+				li {
+					display: block;
+				}
+				a,span {
+					color: $color-text;
+					font-size: 14px;
+				}
+			}
+		}
+	}
 }
 @media only screen and (max-width: 767px){
 	.header {
@@ -95,15 +187,17 @@
 	}
 }
 @media only screen and (max-width: 600px) {
-	.widget-search .title{
-		font-size: 24px;
-		line-height: 26px;
-	}
 	.widget-search .widget-content {
 		width: 100%;
 	}
 	section {
-		padding: 30px 0px;
+		padding: 20px 0px;
+	}
+	.section-promotion {
+		padding-top: 20px;
+	}
+	.widget-customer-review {
+		margin-bottom: 14px;
 	}
 	.footer-area .colection li {
 		margin-right: 20px;
@@ -145,13 +239,42 @@
 			margin-bottom: 0px;
 		}
 	}
-	
+	.footer-menu.style-1 li {
+		margin-right: 30px;
+	}
+	.footer-middle .footer-menu.style-1 {
+		margin-top: 20px;
+	}
+	.footer-bottom {
+		margin-top: 20px;
+	}
+	.footer-middle .footer-menu.style-3 {
+		margin-top: 15px;
+	}
+	.widget-title {
+		margin-bottom: 15px;
+	}
+	.bg-search .button-submit {
+		margin-bottom: 10px;
+	}
 }
 @media only screen and (max-width: 550px) {
 	.widget-popular {
 		.widget-content>.row>div{
 			width: 100%;
 		}
+	}
+	.entry-item.style-3 .entry-content-top {
+		span, a {
+			float: none;
+			display: block;
+		}
+	}
+	.widget-garapopulor .entry-item {
+		margin-bottom: 0px;
+	}
+	.section-garapopulor {
+		padding-bottom: 20px;
 	}
 }
 @media only screen and (max-width: 480px) {
@@ -173,9 +296,6 @@
 			width: 100%;
 		}
 	}
-	.entry-item.style-3 {
-		padding: 10px;
-	}
 	.entry-item.style-3 .entry-thumb {
 		margin-right: 10px;
 	}
@@ -187,5 +307,19 @@
 	}
 	.widget-promotion .owl-nav {
 		top: 30%;
+	}
+}
+@media only screen and (max-width: 360px) {
+	.entry-item.style-3 .entry-content-bottom li {
+		a, .price-wrap{
+			float: none;
+			display: block;
+		}
+		.price-wrap {
+			margin-bottom: 5px;
+		}
+	}
+	.entry-item.style-3 .entry-content-bottom .entry-content {
+		padding-top: 0px;
 	}
 }
