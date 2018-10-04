@@ -12,6 +12,7 @@ $( document ).ready(function($) {
                 username: "vuvanky"
             },
             success: function( data ) {
+
                 response( $.map( data.geonames, function( item ) {
                     return {
                         label: item.name + (item.adminName1 ? ", " + item.adminName1 : "") + ", " + item.countryCode,
@@ -20,6 +21,7 @@ $( document ).ready(function($) {
                         lng: item.lng
                     }
                 }));
+                $('.wrap_location_start').find('li.ui-menu-item').css({fontSize: '13px'});
             }
         });
     };
