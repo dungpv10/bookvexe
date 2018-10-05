@@ -62,6 +62,9 @@
 		background-color: $bg-percent;
 		padding: 7px 5px;
 		margin-bottom: 15px;
+		&:hover {
+			background-color: $color-hover;
+		}
 	}
 	.action {
 		margin-top: 15px;
@@ -124,5 +127,8 @@
 	}
 	.filter-type-best {
 		margin-bottom: 15px;
+	}
+	.entry-item-bus {
+		margin-top: 15px; 
 	}
 }

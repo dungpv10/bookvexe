@@ -262,6 +262,191 @@
 								</div>
 							</div>
 						</div>
+						<div class="entry-item-bus clear-fix">
+							<div class="entry-thumb">
+								<a href="#" title=""><img src="{{ asset('img/front-end/list-bus-3.png') }}" alt=""></a>
+							</div>
+							<div class="entry-content">
+								<div class="content-header">
+									<div class="left">
+										<h3 class="entry-title"><a href="#" title="">Nhà xe Futas Bus Phương Trang</a></h3>
+										<div class="rate-item">
+											<div class="wrap-star">
+												<span class="star-no-rate">
+													<i class="fa fa-star star"></i>
+													<i class="fa fa-star star"></i>
+													<i class="fa fa-star star"></i>
+													<i class="fa fa-star star"></i>
+													<i class="fa fa-star star"></i>
+												</span>
+												<span class="star-rate">
+													<i class="fa fa-star star rate"></i>
+													<i class="fa fa-star star rate"></i>
+													<i class="fa fa-star star rate"></i>
+													<i class="fa fa-star star rate"></i>
+												</span>
+											</div>
+										</div>
+									</div>
+									<div class="right">
+										<div class="customer-rate">
+											<div class="text">
+												<p>Rất tốt</p>
+												<span>50+ đánh giá</span>
+											</div>
+											<div class="number">
+												<span>8.6</span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="content-middle">
+									<div class="wrap-position-time">
+										<div class="position">
+											<p>07:30 0h40</p>
+											<span>Khuất Duy Tiến</span>
+										</div>
+										<i class="fa fa-arrow-right"></i>
+										<div class="position">
+											<p>08:10</p>
+											<span>Văn phòng Liêm Tuyền</span>
+										</div>
+									</div>
+									<div class="wrap-detail-price">
+										<ul>
+											<li>Giường nằm 44 chỗ</li>
+											<li>35 Ghế trống</li>
+										</ul>
+										<span class="price">80.000 vnđ</span>
+									</div>
+								</div>
+								<div class="content-footer">
+									<div class="bus-nav-tab">
+										<ul class="nav nav-tabs">
+                                            <li class=""><a href="#tab-profile1" data-toggle="tab" title="new" aria-expanded="true">Hình ảnh</a></li>
+                                            <li class=""><a href="#tab-profile2" data-toggle="tab" title="new" aria-expanded="false">Lịch trình</a></li>
+                                            <li class=""><a href="#tab-profile3" data-toggle="tab" title="new" aria-expanded="false">Chính sách</a></li>
+                                            <li class=""><a href="#tab-profile4" data-toggle="tab" title="new" aria-expanded="false">Viết đánh giá</a></li>
+                                            <li class=""><a href="#tab-profile5" data-toggle="tab" title="new" aria-expanded="false">Giờ khởi hành khác</a></li>
+                                            <form method="post" action="#" id="reservations-bus" enctype="multipart/form-data">
+		        								<input type="hidden" name="_token" value="{{csrf_token()}}">
+		        								<button type="submit" class="button button-submit" name="submit"><i class="fa fa-bus"></i>Đặt chỗ</button>
+		        							</form>
+                                        </ul>
+                                        <div class="tab-content">
+                                        	<div class="tab-pane" id="tab-profile1">
+                                        		<p>content-1</p>
+                                        	</div>
+                                        	<div class="tab-pane" id="tab-profile2">
+                                        		<p>content-2</p>
+                                        	</div>
+                                        	<div class="tab-pane" id="tab-profile3">
+                                        		<p>content-3</p>
+                                        	</div>
+                                        	<div class="tab-pane" id="tab-profile4">
+                                        		<p>content-4</p>
+                                        	</div>
+                                        	<div class="tab-pane" id="tab-profile5">
+                                        		<p>content-5</p>
+                                        	</div>
+                                        </div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="entry-item-bus clear-fix">
+							<div class="entry-thumb">
+								<a href="#" title=""><img src="{{ asset('img/front-end/list-bus-3.png') }}" alt=""></a>
+							</div>
+							<div class="entry-content">
+								<div class="content-header">
+									<div class="left">
+										<h3 class="entry-title"><a href="#" title="">Nhà xe Futas Bus Phương Trang</a></h3>
+										<div class="rate-item">
+											<div class="wrap-star">
+												<span class="star-no-rate">
+													<i class="fa fa-star star"></i>
+													<i class="fa fa-star star"></i>
+													<i class="fa fa-star star"></i>
+													<i class="fa fa-star star"></i>
+													<i class="fa fa-star star"></i>
+												</span>
+												<span class="star-rate">
+													<i class="fa fa-star star rate"></i>
+													<i class="fa fa-star star rate"></i>
+													<i class="fa fa-star star rate"></i>
+													<i class="fa fa-star star rate"></i>
+												</span>
+											</div>
+										</div>
+									</div>
+									<div class="right">
+										<div class="customer-rate">
+											<div class="text">
+												<p>Rất tốt</p>
+												<span>50+ đánh giá</span>
+											</div>
+											<div class="number">
+												<span>8.6</span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="content-middle">
+									<div class="wrap-position-time">
+										<div class="position">
+											<p>07:30 0h40</p>
+											<span>Khuất Duy Tiến</span>
+										</div>
+										<i class="fa fa-arrow-right"></i>
+										<div class="position">
+											<p>08:10</p>
+											<span>Văn phòng Liêm Tuyền</span>
+										</div>
+									</div>
+									<div class="wrap-detail-price">
+										<ul>
+											<li>Giường nằm 44 chỗ</li>
+											<li>35 Ghế trống</li>
+										</ul>
+										<span class="price">80.000 vnđ</span>
+									</div>
+								</div>
+								<div class="content-footer">
+									<div class="bus-nav-tab">
+										<ul class="nav nav-tabs">
+                                            <li class=""><a href="#tab-profile1" data-toggle="tab" title="new" aria-expanded="true">Hình ảnh</a></li>
+                                            <li class=""><a href="#tab-profile2" data-toggle="tab" title="new" aria-expanded="false">Lịch trình</a></li>
+                                            <li class=""><a href="#tab-profile3" data-toggle="tab" title="new" aria-expanded="false">Chính sách</a></li>
+                                            <li class=""><a href="#tab-profile4" data-toggle="tab" title="new" aria-expanded="false">Viết đánh giá</a></li>
+                                            <li class=""><a href="#tab-profile5" data-toggle="tab" title="new" aria-expanded="false">Giờ khởi hành khác</a></li>
+                                            <form method="post" action="#" id="reservations-bus" enctype="multipart/form-data">
+		        								<input type="hidden" name="_token" value="{{csrf_token()}}">
+		        								<button type="submit" class="button button-submit" name="submit"><i class="fa fa-bus"></i>Đặt chỗ</button>
+		        							</form>
+                                        </ul>
+                                        <div class="tab-content">
+                                        	<div class="tab-pane" id="tab-profile1">
+                                        		<p>content-1</p>
+                                        	</div>
+                                        	<div class="tab-pane" id="tab-profile2">
+                                        		<p>content-2</p>
+                                        	</div>
+                                        	<div class="tab-pane" id="tab-profile3">
+                                        		<p>content-3</p>
+                                        	</div>
+                                        	<div class="tab-pane" id="tab-profile4">
+                                        		<p>content-4</p>
+                                        	</div>
+                                        	<div class="tab-pane" id="tab-profile5">
+                                        		<p>content-5</p>
+                                        	</div>
+                                        </div>
+									</div>
+								</div>
+							</div>
+						</div>
+						@include('front-end.element.paginator') 
 					</div>
 				</div>
 			</div>

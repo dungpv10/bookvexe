@@ -448,7 +448,7 @@ div[class^="wrap_location"] .ui-widget-content{
 	padding-right: 12px;
 	border: none;
 	&:focus, &:hover, &:active {
-		background-color: unset;
+		background-color: inherit;
 		border-color: unset;
 		border: none;
 		box-shadow: none;
@@ -462,7 +462,7 @@ div[class^="wrap_location"] .ui-widget-content{
 }
 .btn-group.open .dropdown-toggle {
 	box-shadow: none;
-	background-color: unset !important;
+	background-color: inherit !important;
 }
 .call-support {
 	font-size: 13px;
@@ -689,6 +689,10 @@ div[class^="wrap_location"] .ui-widget-content{
 	}
 }
 .entry-item-bus {
+	padding: 15px;
+	background-color: $white;
+	border: 1px solid $color-border-6;
+	border-radius: 5px;
 	.entry-thumb{
 		float: left;
 		margin-right: 15px;
@@ -699,7 +703,7 @@ div[class^="wrap_location"] .ui-widget-content{
 		margin-bottom: 2px;
 	}
 	.rate-item {
-		background-color: unset;
+		background-color: inherit;
 		padding: 0px;
 		border: 0px;
 	}
@@ -779,6 +783,7 @@ div[class^="wrap_location"] .ui-widget-content{
 		}
 		.wrap-detail-price {
 			@extend .clear-fix;
+			margin-bottom: 10px;
 			ul {
 				display: inline-block;
 				li {
@@ -814,6 +819,7 @@ div[class^="wrap_location"] .ui-widget-content{
 	.content-footer {
 		form {
 			display: inline-block;
+			margin-left: 15px;
 		}
 	}
 }
@@ -821,7 +827,7 @@ div[class^="wrap_location"] .ui-widget-content{
 	border-bottom: 0px;
 	text-align: right;
 	li {
-		margin-right: 20px;
+		margin-right: 18px;
 		float: none;
 		display: inline-block;
 		&:last-child {
@@ -838,10 +844,10 @@ div[class^="wrap_location"] .ui-widget-content{
 		padding-left: 5px;
 		border: 0px;
 		margin-right: 0px;
-		border-bottom: 4px solid $color-bg-section;
+		border-bottom: 4px solid $white;
 		padding-bottom: 10px;
 		&:hover {
-			background-color: unset;
+			background-color: inherit;
 			border-bottom: 4px solid $primary;
 		}
 	}
@@ -854,13 +860,18 @@ div[class^="wrap_location"] .ui-widget-content{
 		padding-bottom: 9px;
 		padding-left: 20px;
 		padding-right: 20px;
+		position: relative;
+		top: -10px;
 		i {
 			font-size: 20px;
 			line-height: 8px;
 			display: inline-block;
 			margin-right: 5px;
 			position: relative;
-			top: 2px;
+			top: 3px;
+		}
+		&:hover {
+			background-color: $bg-percent;
 		}
 	}
 }
@@ -875,5 +886,73 @@ div[class^="wrap_location"] .ui-widget-content{
 	margin-right: 0px;
 	border-bottom: 4px solid $primary;
 	padding-bottom: 10px;
-	background-color: unset;
+	background-color: inherit;
+}
+.bootstrap-select.btn-group .dropdown-menu li a span.text {
+	color: $color-text;
+}
+.wrap-pagination {
+	@extend .clear-fix;
+	background-color: $white;
+	margin-top: 15px;
+	padding-top: 8px;
+	padding-bottom: 5px;
+	padding-right: 20px;
+	border: 1px solid $color-border-6;
+	border-radius: 3px;
+	.detail-pagination {
+		font-size: 13px;
+		line-height: 31px;
+		color: $color-text-5;
+		float: right;
+	}
+}
+.wrap-pagination .pagination {
+	margin-top: 0px;
+	margin-bottom: 0px;
+	li {
+		display: inline-block;
+	}
+	.page-item {
+		a {
+			font-size: 13px;
+			line-height: 15px;
+			color: $primary;
+			background-color: inherit;
+			border: 1px solid $white;
+			&:hover {
+				border: 1px solid $color-border-7;
+				color: $color-text-5;
+				border-radius: 3px;
+			}
+		}
+		&.disabled,&.has-many {
+			.page-link{
+				border: 0px;
+				background-color: inherit;
+			}
+		}
+		&.prev-page, &.next-page {
+			.page-link {
+				color: $color-text;
+			}
+		}
+		&.prev-page {
+			margin-left: 7px;
+			margin-right: 35px;
+		}
+		&.next-page {
+			margin-left: 25px;
+		}
+		&.active {
+			.page-link{
+				border: 1px solid $color-border-7;
+				background-color: inherit;
+				color: $color-text-5;
+				font-size: 13px;
+				line-height: 15px;
+				border-radius: 3px;
+			}
+		}
+	}
 }
