@@ -186,7 +186,7 @@ section {
 				overflow: hidden;
 				padding-left: 0px;
 				padding-right: 0px;
-				padding-top: 10px;
+				padding-top: 5px;
 			}
 			li {
 				@extend .clear-fix;
@@ -203,7 +203,6 @@ section {
 				a {
 					font-size: 13px;
 					line-height: 15px;
-					float: left;
 				}
 			}
 		}
@@ -416,7 +415,7 @@ div[class^="wrap_location"] .ui-widget-content{
     right: 0px;
     width: 40px;
 }
-.owl-carousel {
+.owl-theme {
 	display: none;
 }
 .menu-primary {

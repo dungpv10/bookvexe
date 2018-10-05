@@ -25,8 +25,8 @@ $( document ).ready(function($) {
             }
         });
     };
-    if (jQuery('.owl-carousel').length > 0) {
-        jQuery('.owl-carousel').owlCarousel({
+    if (jQuery('.widget-promotion .owl-carousel').length > 0) {
+        jQuery('.widget-promotion .owl-carousel').owlCarousel({
     	    nav:false,
     	    items:3,
     	    margin: 30,
@@ -48,6 +48,30 @@ $( document ).ready(function($) {
                 }
     	    }
     	});
+    }
+    if (jQuery('.widget-rate .owl-carousel').length > 0) {
+        jQuery('.widget-rate .owl-carousel').owlCarousel({
+            nav:false,
+            items:4,
+            margin: 30,
+            dots: false,
+            responsive:{
+                320: {
+                    items: 1,
+                    dots : false,
+                },
+                480:{
+                    items:2,
+                    dots : false,
+                },
+                600:{
+                    items:2,
+                },
+                992: {
+                    item: 3,
+                }
+            }
+        });
     }
     if (jQuery('#start_point').length > 0) {
         $( "#start_point" ).autocomplete({
