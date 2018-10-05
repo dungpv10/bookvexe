@@ -10,4 +10,8 @@ class HomeController extends Controller
     public function home(){
         return view('front-end.home.index');
     }
+
+    public function getListBus(){
+        return view('front-end.list-bus.bus');
+    }
 }

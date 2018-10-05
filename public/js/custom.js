@@ -104,4 +104,7 @@ $( document ).ready(function($) {
             jQuery('.header-rigth').addClass('active');
         }
     });
+    jQuery('.close-notice').on('click', function(){
+        jQuery(this).closest('.notice-success').css('display', 'none');
+    });
 });

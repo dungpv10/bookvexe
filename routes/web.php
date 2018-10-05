@@ -23,6 +23,7 @@ Route::group([
     'namespace' => 'FrontEnd'
 ], function () {
     Route::get('/', 'HomeController@home');
+    Route::get('/list-bus', 'HomeController@getListBus');
 });
 
 
