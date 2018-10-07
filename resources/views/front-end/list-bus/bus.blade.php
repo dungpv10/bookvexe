@@ -229,36 +229,146 @@
 									</div>
 								</div>
 								<div class="content-footer">
+									<form method="post" action="#" id="reservations-bus" enctype="multipart/form-data">
 									<div class="bus-nav-tab">
 										<ul class="nav nav-tabs">
                                             <li class=""><a href="#tab-profile1" data-toggle="tab" title="new" aria-expanded="true">Hình ảnh</a></li>
                                             <li class=""><a href="#tab-profile2" data-toggle="tab" title="new" aria-expanded="false">Lịch trình</a></li>
                                             <li class=""><a href="#tab-profile3" data-toggle="tab" title="new" aria-expanded="false">Chính sách</a></li>
-                                            <li class=""><a href="#tab-profile4" data-toggle="tab" title="new" aria-expanded="false">Viết đánh giá</a></li>
+                                            <li class=""><a href="javascript:void(0)" onclick="showCustomerComment(this)">Viết đánh giá</a></li>
                                             <li class=""><a href="#tab-profile5" data-toggle="tab" title="new" aria-expanded="false">Giờ khởi hành khác</a></li>
-                                            <form method="post" action="#" id="reservations-bus" enctype="multipart/form-data">
-		        								<input type="hidden" name="_token" value="{{csrf_token()}}">
-		        								<button type="submit" class="button button-submit" name="submit"><i class="fa fa-bus"></i>Đặt chỗ</button>
-		        							</form>
+	        								<input type="hidden" name="_token" value="{{csrf_token()}}">
+	        								<button type="submit" class="button button-submit" name="submit"><i class="fa fa-bus"></i>Đặt chỗ</button>
                                         </ul>
                                         <div class="tab-content">
                                         	<div class="tab-pane" id="tab-profile1">
-                                        		<p>content-1</p>
+                                        		<div class="galery-bus-tab">
+													<h3>Hình ảnh của Xe Futas Bus Phương Trang</h3>
+													<div class="owl-carousel owl-theme">
+														<div class="item">
+															<div class="entry-thumb">
+																<img src="{{ asset('img/front-end/img-bus-1.png') }}" alt="">
+															</div>
+														</div>
+														<div class="item">
+															<div class="entry-thumb">
+																<img src="{{ asset('img/front-end/img-bus-2.png') }}" alt="">
+															</div>
+														</div>
+														<div class="item">
+															<div class="entry-thumb">
+																<img src="{{ asset('img/front-end/img-bus-3.png') }}" alt="">
+															</div>
+														</div>
+														<div class="item">
+															<div class="entry-thumb">
+																<img src="{{ asset('img/front-end/img-bus-1.png') }}" alt="">
+															</div>
+														</div>
+														<div class="item">
+															<div class="entry-thumb">
+																<img src="{{ asset('img/front-end/img-bus-2.png') }}" alt="">
+															</div>
+														</div>
+														<div class="item">
+															<div class="entry-thumb">
+																<img src="{{ asset('img/front-end/img-bus-3.png') }}" alt="">
+															</div>
+														</div>
+													</div>
+												</div>
                                         	</div>
                                         	<div class="tab-pane" id="tab-profile2">
-                                        		<p>content-2</p>
+                                        		<div class="schedule-tab">
+                                        			<h3>Lịch trình xe Futas Bus Phương Trang từ Thanh Xuân - Hà Nội đến Thành phố Hồ Chí Minh</h3>
+                                        			<table class="table">
+                                        				<thead>
+                                        					<tr>
+	                                        					<th>Thời gian (đến)</th>
+	                                        					<th>Điển đi (đến)</th>
+	                                        					<th>Địa chỉ</th>
+	                                        				</tr>
+                                        				</thead>
+                                        				<tbody>
+                                        					<tr>
+	                                        					<td class="bold">7.30</td>
+	                                        					<td>Khuất Duy Tiến</td>
+	                                        					<td>166, 168 Khuất Duy Tiến - Thanh Xuân - Hà Nội</td>
+	                                        				</tr>
+	                                        				<tr>
+	                                        					<td class="bold">08.10</td>
+	                                        					<td>Văn phòng Liêm Tuyền</td>
+	                                        					<td>Quốc lộ 1A, Cạnh trạm thu phí Liêm Tuyền - Thanh Liêm - Hà Nam</td>
+	                                        				</tr>
+                                        				</tbody>
+                                        			</table>
+                                        			<span class="attention">Lưu ý:</span>
+                                        			<p>Đây là lịch trình tham khảo, sẽ thay đổi tuỳ thuộc vào từng chuyến xe. Để biết thêm thông tin chi tiết, xin quý khách vui lòng liên hệ với Bookvexe qua số Hotline: 1900 7075 (miền Bắc) hoặc 1900 969681 - 1900 7070 (miền Nam)</p>
+                                        		</div>
                                         	</div>
                                         	<div class="tab-pane" id="tab-profile3">
-                                        		<p>content-3</p>
-                                        	</div>
-                                        	<div class="tab-pane" id="tab-profile4">
-                                        		<p>content-4</p>
+                                        		<div class="policy-tab">
+                                        			<h3>Lịch trình xe Futas Bus Phương Trang từ Thanh Xuân - Hà Nội đến Thành phố Hồ Chí Minh</h3>
+                                        			<table class="table">
+                                        				<thead>
+                                        					<tr>
+	                                        					<th>Thời gian hủy</th>
+	                                        					<th>Phí hủy</th>
+	                                        				</tr>
+                                        				</thead>
+                                        				<tbody>
+                                        					<tr>
+	                                        					<td>Từ 0 tiếng đến 2 tiếng trước giờ khởi hành</td>
+	                                        					<td>Không hoàn tiền</td>
+	                                        				</tr>
+	                                        				<tr>
+	                                        					<td>Trước 2 tiếng trước giờ khởi hành</td>
+	                                        					<td>6%</td>
+	                                        				</tr>
+                                        				</tbody>
+                                        			</table>
+                                        			<span class="attention">Lưu ý:</span>
+                                        			<p>Mọi thắc mắc về quy trình hay các vấn đề liên quan đặt vé, hãy gọi Tổng đài của chúng tôi:</p>
+                                        			<a class="hot-line" href="callto:"><span>Hotline:</span>  1900 878 999</a>
+                                        		</div>
                                         	</div>
                                         	<div class="tab-pane" id="tab-profile5">
-                                        		<p>content-5</p>
+                                        		<div class="timestart-tab">
+                                        			<h3>Chọn giờ khởi hành khác của Xe Futas Bus Phương Trang</h3>
+                                        			<div class="time-list">
+                                        				<span>Giường nằm</span>
+														<button type="button" class="button button-time" data-type="bed" data-time="07:00">07:00</button>
+														<button type="button" class="button button-time" data-type="bed" data-time="08:00">08:00</button>
+														<button type="button" class="button button-time" data-type="bed" data-time="09:00">09:00</button>
+														<button type="button" class="button button-time" data-type="bed" data-time="10:00">10:00</button>
+														<button type="button" class="button button-time" data-type="bed" data-time="11:00">11:00</button>
+														<button type="button" class="button button-time" data-type="bed" data-time="12:00">12:00</button>
+                                        			</div>
+                                        			<div class="time-list">
+                                        				<span>Ghế ngả</span>
+														<button type="button" class="button button-time" data-type="seat" data-time="07:00">07:00</button>
+														<button type="button" class="button button-time" data-type="seat" data-time="08:00">08:00</button>
+														<button type="button" class="button button-time" data-type="seat" data-time="09:00">09:00</button>
+														<button type="button" class="button button-time" data-type="seat" data-time="10:00">10:00</button>
+														<button type="button" class="button button-time" data-type="seat" data-time="11:00">11:00</button>
+														<button type="button" class="button button-time" data-type="seat" data-time="12:00">12:00</button>
+                                        			</div>
+                                        			<div class="time-list">
+                                        				<span>Ghế ngả VIP</span>
+														<button type="button" class="button button-time" data-type="seat-vip" data-time="07:00">07:00</button>
+														<button type="button" class="button button-time" data-type="seat-vip" data-time="08:00">08:00</button>
+														<button type="button" class="button button-time" data-type="seat-vip" data-time="09:00">09:00</button>
+														<button type="button" class="button button-time" data-type="seat-vip" data-time="10:00">10:00</button>
+														<button type="button" class="button button-time" data-type="seat-vip" data-time="11:00">11:00</button>
+														<button type="button" class="button button-time" data-type="seat-vip" data-time="12:00">12:00</button>
+                                        			</div>
+                                        			<input type="hidden" id="type-bus" class="type-bus" name="type-bus" value="">
+                                        			<input type="hidden" id="time-bus" class="time-bus" name="time-bus" value="">
+                                        		</div>
                                         	</div>
                                         </div>
 									</div>
+									</form>
 								</div>
 							</div>
 						</div>
@@ -321,36 +431,146 @@
 									</div>
 								</div>
 								<div class="content-footer">
+									<form method="post" action="#" id="reservations-bus" enctype="multipart/form-data">
 									<div class="bus-nav-tab">
 										<ul class="nav nav-tabs">
-                                            <li class=""><a href="#tab-profile1" data-toggle="tab" title="new" aria-expanded="true">Hình ảnh</a></li>
-                                            <li class=""><a href="#tab-profile2" data-toggle="tab" title="new" aria-expanded="false">Lịch trình</a></li>
-                                            <li class=""><a href="#tab-profile3" data-toggle="tab" title="new" aria-expanded="false">Chính sách</a></li>
-                                            <li class=""><a href="#tab-profile4" data-toggle="tab" title="new" aria-expanded="false">Viết đánh giá</a></li>
-                                            <li class=""><a href="#tab-profile5" data-toggle="tab" title="new" aria-expanded="false">Giờ khởi hành khác</a></li>
-                                            <form method="post" action="#" id="reservations-bus" enctype="multipart/form-data">
-		        								<input type="hidden" name="_token" value="{{csrf_token()}}">
-		        								<button type="submit" class="button button-submit" name="submit"><i class="fa fa-bus"></i>Đặt chỗ</button>
-		        							</form>
+                                            <li class=""><a href="#tab-profile11" data-toggle="tab" title="new" aria-expanded="true">Hình ảnh</a></li>
+                                            <li class=""><a href="#tab-profile21" data-toggle="tab" title="new" aria-expanded="false">Lịch trình</a></li>
+                                            <li class=""><a href="#tab-profile31" data-toggle="tab" title="new" aria-expanded="false">Chính sách</a></li>
+                                            <li class=""><a href="javascript:void(0)" onclick="showCustomerComment(this)">Viết đánh giá</a></li>
+                                            <li class=""><a href="#tab-profile51" data-toggle="tab" title="new" aria-expanded="false">Giờ khởi hành khác</a></li>
+	        								<input type="hidden" name="_token" value="{{csrf_token()}}">
+	        								<button type="submit" class="button button-submit" name="submit"><i class="fa fa-bus"></i>Đặt chỗ</button>
                                         </ul>
                                         <div class="tab-content">
-                                        	<div class="tab-pane" id="tab-profile1">
-                                        		<p>content-1</p>
+                                        	<div class="tab-pane" id="tab-profile11">
+                                        		<div class="galery-bus-tab">
+													<h3>Hình ảnh của Xe Futas Bus Phương Trang</h3>
+													<div class="owl-carousel owl-theme">
+														<div class="item">
+															<div class="entry-thumb">
+																<img src="{{ asset('img/front-end/img-bus-1.png') }}" alt="">
+															</div>
+														</div>
+														<div class="item">
+															<div class="entry-thumb">
+																<img src="{{ asset('img/front-end/img-bus-2.png') }}" alt="">
+															</div>
+														</div>
+														<div class="item">
+															<div class="entry-thumb">
+																<img src="{{ asset('img/front-end/img-bus-3.png') }}" alt="">
+															</div>
+														</div>
+														<div class="item">
+															<div class="entry-thumb">
+																<img src="{{ asset('img/front-end/img-bus-1.png') }}" alt="">
+															</div>
+														</div>
+														<div class="item">
+															<div class="entry-thumb">
+																<img src="{{ asset('img/front-end/img-bus-2.png') }}" alt="">
+															</div>
+														</div>
+														<div class="item">
+															<div class="entry-thumb">
+																<img src="{{ asset('img/front-end/img-bus-3.png') }}" alt="">
+															</div>
+														</div>
+													</div>
+												</div>
                                         	</div>
-                                        	<div class="tab-pane" id="tab-profile2">
-                                        		<p>content-2</p>
+                                        	<div class="tab-pane" id="tab-profile21">
+                                        		<div class="schedule-tab">
+                                        			<h3>Lịch trình xe Futas Bus Phương Trang từ Thanh Xuân - Hà Nội đến Thành phố Hồ Chí Minh</h3>
+                                        			<table class="table">
+                                        				<thead>
+                                        					<tr>
+	                                        					<th>Thời gian (đến)</th>
+	                                        					<th>Điển đi (đến)</th>
+	                                        					<th>Địa chỉ</th>
+	                                        				</tr>
+                                        				</thead>
+                                        				<tbody>
+                                        					<tr>
+	                                        					<td class="bold">7.30</td>
+	                                        					<td>Khuất Duy Tiến</td>
+	                                        					<td>166, 168 Khuất Duy Tiến - Thanh Xuân - Hà Nội</td>
+	                                        				</tr>
+	                                        				<tr>
+	                                        					<td class="bold">08.10</td>
+	                                        					<td>Văn phòng Liêm Tuyền</td>
+	                                        					<td>Quốc lộ 1A, Cạnh trạm thu phí Liêm Tuyền - Thanh Liêm - Hà Nam</td>
+	                                        				</tr>
+                                        				</tbody>
+                                        			</table>
+                                        			<span class="attention">Lưu ý:</span>
+                                        			<p>Đây là lịch trình tham khảo, sẽ thay đổi tuỳ thuộc vào từng chuyến xe. Để biết thêm thông tin chi tiết, xin quý khách vui lòng liên hệ với Bookvexe qua số Hotline: 1900 7075 (miền Bắc) hoặc 1900 969681 - 1900 7070 (miền Nam)</p>
+                                        		</div>
                                         	</div>
-                                        	<div class="tab-pane" id="tab-profile3">
-                                        		<p>content-3</p>
+                                        	<div class="tab-pane" id="tab-profile31">
+                                        		<div class="policy-tab">
+                                        			<h3>Lịch trình xe Futas Bus Phương Trang từ Thanh Xuân - Hà Nội đến Thành phố Hồ Chí Minh</h3>
+                                        			<table class="table">
+                                        				<thead>
+                                        					<tr>
+	                                        					<th>Thời gian hủy</th>
+	                                        					<th>Phí hủy</th>
+	                                        				</tr>
+                                        				</thead>
+                                        				<tbody>
+                                        					<tr>
+	                                        					<td>Từ 0 tiếng đến 2 tiếng trước giờ khởi hành</td>
+	                                        					<td>Không hoàn tiền</td>
+	                                        				</tr>
+	                                        				<tr>
+	                                        					<td>Trước 2 tiếng trước giờ khởi hành</td>
+	                                        					<td>6%</td>
+	                                        				</tr>
+                                        				</tbody>
+                                        			</table>
+                                        			<span class="attention">Lưu ý:</span>
+                                        			<p>Mọi thắc mắc về quy trình hay các vấn đề liên quan đặt vé, hãy gọi Tổng đài của chúng tôi:</p>
+                                        			<a class="hot-line" href="callto:"><span>Hotline:</span>  1900 878 999</a>
+                                        		</div>
                                         	</div>
-                                        	<div class="tab-pane" id="tab-profile4">
-                                        		<p>content-4</p>
-                                        	</div>
-                                        	<div class="tab-pane" id="tab-profile5">
-                                        		<p>content-5</p>
+                                        	<div class="tab-pane" id="tab-profile51">
+                                        		<div class="timestart-tab">
+                                        			<h3>Chọn giờ khởi hành khác của Xe Futas Bus Phương Trang</h3>
+                                        			<div class="time-list">
+                                        				<span>Giường nằm</span>
+														<button type="button" class="button button-time" data-type="bed" data-time="07:00">07:00</button>
+														<button type="button" class="button button-time" data-type="bed" data-time="08:00">08:00</button>
+														<button type="button" class="button button-time" data-type="bed" data-time="09:00">09:00</button>
+														<button type="button" class="button button-time" data-type="bed" data-time="10:00">10:00</button>
+														<button type="button" class="button button-time" data-type="bed" data-time="11:00">11:00</button>
+														<button type="button" class="button button-time" data-type="bed" data-time="12:00">12:00</button>
+                                        			</div>
+                                        			<div class="time-list">
+                                        				<span>Ghế ngả</span>
+														<button type="button" class="button button-time" data-type="seat" data-time="07:00">07:00</button>
+														<button type="button" class="button button-time" data-type="seat" data-time="08:00">08:00</button>
+														<button type="button" class="button button-time" data-type="seat" data-time="09:00">09:00</button>
+														<button type="button" class="button button-time" data-type="seat" data-time="10:00">10:00</button>
+														<button type="button" class="button button-time" data-type="seat" data-time="11:00">11:00</button>
+														<button type="button" class="button button-time" data-type="seat" data-time="12:00">12:00</button>
+                                        			</div>
+                                        			<div class="time-list">
+                                        				<span>Ghế ngả VIP</span>
+														<button type="button" class="button button-time" data-type="seat-vip" data-time="07:00">07:00</button>
+														<button type="button" class="button button-time" data-type="seat-vip" data-time="08:00">08:00</button>
+														<button type="button" class="button button-time" data-type="seat-vip" data-time="09:00">09:00</button>
+														<button type="button" class="button button-time" data-type="seat-vip" data-time="10:00">10:00</button>
+														<button type="button" class="button button-time" data-type="seat-vip" data-time="11:00">11:00</button>
+														<button type="button" class="button button-time" data-type="seat-vip" data-time="12:00">12:00</button>
+                                        			</div>
+                                        			<input type="hidden" id="type-bus" class="type-bus" name="type-bus" value="">
+                                        			<input type="hidden" id="time-bus" class="time-bus" name="time-bus" value="">
+                                        		</div>
                                         	</div>
                                         </div>
 									</div>
+									</form>
 								</div>
 							</div>
 						</div>
@@ -413,36 +633,146 @@
 									</div>
 								</div>
 								<div class="content-footer">
+									<form method="post" action="#" id="reservations-bus" enctype="multipart/form-data">
 									<div class="bus-nav-tab">
 										<ul class="nav nav-tabs">
-                                            <li class=""><a href="#tab-profile1" data-toggle="tab" title="new" aria-expanded="true">Hình ảnh</a></li>
-                                            <li class=""><a href="#tab-profile2" data-toggle="tab" title="new" aria-expanded="false">Lịch trình</a></li>
-                                            <li class=""><a href="#tab-profile3" data-toggle="tab" title="new" aria-expanded="false">Chính sách</a></li>
-                                            <li class=""><a href="#tab-profile4" data-toggle="tab" title="new" aria-expanded="false">Viết đánh giá</a></li>
-                                            <li class=""><a href="#tab-profile5" data-toggle="tab" title="new" aria-expanded="false">Giờ khởi hành khác</a></li>
-                                            <form method="post" action="#" id="reservations-bus" enctype="multipart/form-data">
-		        								<input type="hidden" name="_token" value="{{csrf_token()}}">
-		        								<button type="submit" class="button button-submit" name="submit"><i class="fa fa-bus"></i>Đặt chỗ</button>
-		        							</form>
+                                            <li class=""><a href="#tab-profile12" data-toggle="tab" title="new" aria-expanded="true">Hình ảnh</a></li>
+                                            <li class=""><a href="#tab-profile22" data-toggle="tab" title="new" aria-expanded="false">Lịch trình</a></li>
+                                            <li class=""><a href="#tab-profile32" data-toggle="tab" title="new" aria-expanded="false">Chính sách</a></li>
+                                            <li class=""><a href="javascript:void(0)" onclick="showCustomerComment(this)">Viết đánh giá</a></li>
+                                            <li class=""><a href="#tab-profile52" data-toggle="tab" title="new" aria-expanded="false">Giờ khởi hành khác</a></li>
+	        								<input type="hidden" name="_token" value="{{csrf_token()}}">
+	        								<button type="submit" class="button button-submit" name="submit"><i class="fa fa-bus"></i>Đặt chỗ</button>
                                         </ul>
                                         <div class="tab-content">
-                                        	<div class="tab-pane" id="tab-profile1">
-                                        		<p>content-1</p>
+                                        	<div class="tab-pane" id="tab-profile12">
+                                        		<div class="galery-bus-tab">
+													<h3>Hình ảnh của Xe Futas Bus Phương Trang</h3>
+													<div class="owl-carousel owl-theme">
+														<div class="item">
+															<div class="entry-thumb">
+																<img src="{{ asset('img/front-end/img-bus-1.png') }}" alt="">
+															</div>
+														</div>
+														<div class="item">
+															<div class="entry-thumb">
+																<img src="{{ asset('img/front-end/img-bus-2.png') }}" alt="">
+															</div>
+														</div>
+														<div class="item">
+															<div class="entry-thumb">
+																<img src="{{ asset('img/front-end/img-bus-3.png') }}" alt="">
+															</div>
+														</div>
+														<div class="item">
+															<div class="entry-thumb">
+																<img src="{{ asset('img/front-end/img-bus-1.png') }}" alt="">
+															</div>
+														</div>
+														<div class="item">
+															<div class="entry-thumb">
+																<img src="{{ asset('img/front-end/img-bus-2.png') }}" alt="">
+															</div>
+														</div>
+														<div class="item">
+															<div class="entry-thumb">
+																<img src="{{ asset('img/front-end/img-bus-3.png') }}" alt="">
+															</div>
+														</div>
+													</div>
+												</div>
                                         	</div>
-                                        	<div class="tab-pane" id="tab-profile2">
-                                        		<p>content-2</p>
+                                        	<div class="tab-pane" id="tab-profile22">
+                                        		<div class="schedule-tab">
+                                        			<h3>Lịch trình xe Futas Bus Phương Trang từ Thanh Xuân - Hà Nội đến Thành phố Hồ Chí Minh</h3>
+                                        			<table class="table">
+                                        				<thead>
+                                        					<tr>
+	                                        					<th>Thời gian (đến)</th>
+	                                        					<th>Điển đi (đến)</th>
+	                                        					<th>Địa chỉ</th>
+	                                        				</tr>
+                                        				</thead>
+                                        				<tbody>
+                                        					<tr>
+	                                        					<td class="bold">7.30</td>
+	                                        					<td>Khuất Duy Tiến</td>
+	                                        					<td>166, 168 Khuất Duy Tiến - Thanh Xuân - Hà Nội</td>
+	                                        				</tr>
+	                                        				<tr>
+	                                        					<td class="bold">08.10</td>
+	                                        					<td>Văn phòng Liêm Tuyền</td>
+	                                        					<td>Quốc lộ 1A, Cạnh trạm thu phí Liêm Tuyền - Thanh Liêm - Hà Nam</td>
+	                                        				</tr>
+                                        				</tbody>
+                                        			</table>
+                                        			<span class="attention">Lưu ý:</span>
+                                        			<p>Đây là lịch trình tham khảo, sẽ thay đổi tuỳ thuộc vào từng chuyến xe. Để biết thêm thông tin chi tiết, xin quý khách vui lòng liên hệ với Bookvexe qua số Hotline: 1900 7075 (miền Bắc) hoặc 1900 969681 - 1900 7070 (miền Nam)</p>
+                                        		</div>
                                         	</div>
-                                        	<div class="tab-pane" id="tab-profile3">
-                                        		<p>content-3</p>
+                                        	<div class="tab-pane" id="tab-profile32">
+                                        		<div class="policy-tab">
+                                        			<h3>Lịch trình xe Futas Bus Phương Trang từ Thanh Xuân - Hà Nội đến Thành phố Hồ Chí Minh</h3>
+                                        			<table class="table">
+                                        				<thead>
+                                        					<tr>
+	                                        					<th>Thời gian hủy</th>
+	                                        					<th>Phí hủy</th>
+	                                        				</tr>
+                                        				</thead>
+                                        				<tbody>
+                                        					<tr>
+	                                        					<td>Từ 0 tiếng đến 2 tiếng trước giờ khởi hành</td>
+	                                        					<td>Không hoàn tiền</td>
+	                                        				</tr>
+	                                        				<tr>
+	                                        					<td>Trước 2 tiếng trước giờ khởi hành</td>
+	                                        					<td>6%</td>
+	                                        				</tr>
+                                        				</tbody>
+                                        			</table>
+                                        			<span class="attention">Lưu ý:</span>
+                                        			<p>Mọi thắc mắc về quy trình hay các vấn đề liên quan đặt vé, hãy gọi Tổng đài của chúng tôi:</p>
+                                        			<a class="hot-line" href="callto:"><span>Hotline:</span>  1900 878 999</a>
+                                        		</div>
                                         	</div>
-                                        	<div class="tab-pane" id="tab-profile4">
-                                        		<p>content-4</p>
-                                        	</div>
-                                        	<div class="tab-pane" id="tab-profile5">
-                                        		<p>content-5</p>
+                                        	<div class="tab-pane" id="tab-profile52">
+                                        		<div class="timestart-tab">
+                                        			<h3>Chọn giờ khởi hành khác của Xe Futas Bus Phương Trang</h3>
+                                        			<div class="time-list">
+                                        				<span>Giường nằm</span>
+														<button type="button" class="button button-time" data-type="bed" data-time="07:00">07:00</button>
+														<button type="button" class="button button-time" data-type="bed" data-time="08:00">08:00</button>
+														<button type="button" class="button button-time" data-type="bed" data-time="09:00">09:00</button>
+														<button type="button" class="button button-time" data-type="bed" data-time="10:00">10:00</button>
+														<button type="button" class="button button-time" data-type="bed" data-time="11:00">11:00</button>
+														<button type="button" class="button button-time" data-type="bed" data-time="12:00">12:00</button>
+                                        			</div>
+                                        			<div class="time-list">
+                                        				<span>Ghế ngả</span>
+														<button type="button" class="button button-time" data-type="seat" data-time="07:00">07:00</button>
+														<button type="button" class="button button-time" data-type="seat" data-time="08:00">08:00</button>
+														<button type="button" class="button button-time" data-type="seat" data-time="09:00">09:00</button>
+														<button type="button" class="button button-time" data-type="seat" data-time="10:00">10:00</button>
+														<button type="button" class="button button-time" data-type="seat" data-time="11:00">11:00</button>
+														<button type="button" class="button button-time" data-type="seat" data-time="12:00">12:00</button>
+                                        			</div>
+                                        			<div class="time-list">
+                                        				<span>Ghế ngả VIP</span>
+														<button type="button" class="button button-time" data-type="seat-vip" data-time="07:00">07:00</button>
+														<button type="button" class="button button-time" data-type="seat-vip" data-time="08:00">08:00</button>
+														<button type="button" class="button button-time" data-type="seat-vip" data-time="09:00">09:00</button>
+														<button type="button" class="button button-time" data-type="seat-vip" data-time="10:00">10:00</button>
+														<button type="button" class="button button-time" data-type="seat-vip" data-time="11:00">11:00</button>
+														<button type="button" class="button button-time" data-type="seat-vip" data-time="12:00">12:00</button>
+                                        			</div>
+                                        			<input type="hidden" id="type-bus" class="type-bus" name="type-bus" value="">
+                                        			<input type="hidden" id="time-bus" class="time-bus" name="time-bus" value="">
+                                        		</div>
                                         	</div>
                                         </div>
 									</div>
+									</form>
 								</div>
 							</div>
 						</div>
@@ -452,4 +782,115 @@
 			</div>
 		</div>
 	</section>
+	<div class="modal fade bd-example-modal-lg" id="customer-comment" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 class="box-title">Viết đánh giá nhà xe Futas Bus Phương Trang</h3>
+                </div>
+                <div class="modal-body">
+                	<form method="post" action="#" id="form-customer-comment" enctype="multipart/form-data">
+            			<input type="hidden" name="_token" value="{{csrf_token()}}">
+            			<p class="router">Tuyến đường: Cầu Giấy - Nam Định</p>
+            			<div class="row">
+	                		<div class="col-md-6 col-sm-6 col-xs-12">
+	                			<div class="form-group">
+	                				<label for="full-name">Họ và tên:<span>*</span></label>
+	                				<input type="text" class="form-control full-name" name="full-name" value="" placeholder="Họ và tên khách hàng">
+	                			</div>
+	                			<div class="form-group">
+	                				<label for="full-name">Email:<span>*</span></label>
+	                				<input type="email" class="form-control email" name="email" value="" placeholder="Địa chỉ email">
+	                			</div>
+	                			<div class="form-group datetime-picker">
+	                				<label for="start_date">Chọn ngày đi:<span>*</span></label>
+	                				<div class="wrap-datetime">
+				                        <div class="input-group datepicker">
+				                            <input id="start_date" class="form-control" type="text" name="start_date" value="" required="">
+				                        </div>
+			                        </div>
+	                			</div>
+	                		</div>
+	                		<div class="col-md-6 col-sm-6 col-xs-12">
+	                			<div class="wrap-rate-star">
+	                				<span>Xin vui lòng bấm để đánh giá</span>
+	                				<div class="comment-form-rating">
+	                                    <span>Tổng quan:</span>
+	                                    <div class="rating">
+	                                        <span class="star" data-value="5">☆</span>
+	                                        <span class="star" data-value="4">☆</span>
+	                                        <span class="star" data-value="3">☆</span>
+	                                        <span class="star" data-value="2">☆</span>
+	                                        <span class="star" data-value="1">☆</span>
+	                                    </div>
+	                                    <input type="hidden" name="star-overview" class="rating-number" value="">
+	                                </div>
+	                                <div class="comment-form-rating">
+	                                    <span>Chất lượng:</span>
+	                                    <div class="rating">
+	                                        <span class="star" data-value="5">☆</span>
+	                                        <span class="star" data-value="4">☆</span>
+	                                        <span class="star" data-value="3">☆</span>
+	                                        <span class="star" data-value="2">☆</span>
+	                                        <span class="star" data-value="1">☆</span>
+	                                    </div>
+	                                    <input type="hidden" name="star-quality" class="rating-number" value="">
+	                                </div>
+	                                <div class="comment-form-rating">
+	                                    <span>Đúng giờ:</span>
+	                                    <div class="rating">
+	                                        <span class="star" data-value="5">☆</span>
+	                                        <span class="star" data-value="4">☆</span>
+	                                        <span class="star" data-value="3">☆</span>
+	                                        <span class="star" data-value="2">☆</span>
+	                                        <span class="star" data-value="1">☆</span>
+	                                    </div>
+	                                    <input type="hidden" name="star-ontime" class="rating-number" value="">
+	                                </div>
+	                                <div class="comment-form-rating">
+	                                    <span>Thái độ phục vụ:</span>
+	                                    <div class="rating">
+	                                        <span class="star" data-value="5">☆</span>
+	                                        <span class="star" data-value="4">☆</span>
+	                                        <span class="star" data-value="3">☆</span>
+	                                        <span class="star" data-value="2">☆</span>
+	                                        <span class="star" data-value="1">☆</span>
+	                                    </div>
+	                                    <input type="hidden" name="star-service-attitude" class="rating-number" value="">
+	                                </div>
+	                			</div>
+	                		</div>
+                		</div>
+                		<div class="row">
+                			<div class="col-md-6 col-sm-6 col-xs-12">
+								<div class="form-group">
+	                				<label for="comment">Viết đánh giá (tối thiểu 100 chữ)</label>
+	                				<textarea name="comment" id="comment" cols="30" rows="10" placeholder="Viết cảm nhận của bạn về chuyến đi">
+	                				</textarea>
+	                			</div>
+                			</div>
+                			<div class="col-md-6 col-sm-6 col-xs-12">
+                				<div class="form-group">
+	                				<label for="rate-point">Điểm đánh giá (trên thang điểm 10)</label>
+	                				<input type="text" class="form-control rate-point" name="rate-point" value="9.0">
+	                			</div>
+                			</div>
+                		</div>
+                		<div class="row">
+                			<div class="col-md-12">
+                				<div class="form-check">
+								    <input type="checkbox" class="form-check-input" id="agreer-checkbox">
+								    <label class="form-check-label" for="agreer-checkbox">Tôi xác nhận rằng đánh giá này hoàn toàn dựa trên trải nghiệm cá nhân của tôi khi đi chuyến này và tôi không có mối quan hệ cá nhân hay kinh doanh với các hãng xe.</label>
+								</div>
+								<div class="center">
+									<button type="submit" class="button button-submit">Gửi Đánh Giá</button>
+								</div>
+                			</div>
+                		</div>
+                	</form>
+                </div>
+            </div>
+        </div>
+    </div>
 @stop

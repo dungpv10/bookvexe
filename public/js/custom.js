@@ -73,6 +73,26 @@ $( document ).ready(function($) {
             }
         });
     }
+    if (jQuery('.galery-bus-tab .owl-carousel').length > 0) {
+        jQuery('.galery-bus-tab .owl-carousel').owlCarousel({
+            items:3,
+            margin: 10,
+            responsive:{
+                320: {
+                    items: 1,
+                },
+                480:{
+                    items:2,
+                },
+                600:{
+                    items:2,
+                },
+                992: {
+                    item: 3,
+                }
+            }
+        });
+    }
     if (jQuery('#start_point').length > 0) {
         $( "#start_point" ).autocomplete({
             source: dataLocation,
@@ -128,7 +148,32 @@ $( document ).ready(function($) {
             jQuery('.header-rigth').addClass('active');
         }
     });
-    jQuery('.close-notice').on('click', function(){
+    jQuery('.close-notice').on('click', function() {
         jQuery(this).closest('.notice-success').css('display', 'none');
     });
+    jQuery('.button-time').on('click', function() {
+        var type_bus = jQuery(this).attr('data-type');
+        var time_bus = jQuery(this).attr('data-time');
+        jQuery('.button-time').each(function() {
+            jQuery(this).removeClass('active');
+        });
+        jQuery(this).addClass('active');
+        jQuery('#type-bus').val(type_bus);
+        jQuery('#time-bus').val(time_bus);
+    });
+    jQuery(document).on('click', '.rating span', function () {
+        var rateNumber = jQuery(this).attr('data-value');
+        var parent = jQuery(this).closest('.comment-form-rating');
+        parent.find('.rating-number').val(rateNumber);
+        parent.find('.rating span').removeClass('active');
+        parent.find('.rating span').each(function (index) {
+            if (jQuery(this).attr('data-value') <= rateNumber) {
+                jQuery(this).addClass('active');
+            }
+        });
+    });
 });
+function showCustomerComment (element) {
+    //TO DO update id for form modal
+    $("#customer-comment").modal();
+}
