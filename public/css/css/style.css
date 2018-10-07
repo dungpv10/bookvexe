@@ -762,8 +762,7 @@ div[class^="wrap_location"] .ui-widget-content {
         color: #269B29;
         font-weight: bold;
         text-transform: uppercase; }
-  .entry-item-bus .content-footer form {
-    display: inline-block;
+  .entry-item-bus .content-footer .button-submit {
     margin-left: 15px; }
 
 .nav-tabs {
@@ -873,6 +872,112 @@ div[class^="wrap_location"] .ui-widget-content {
     font-size: 13px;
     line-height: 15px;
     border-radius: 3px; }
+
+.table tbody tr:first-child td {
+  padding-top: 17px; }
+.table thead tr th {
+  font-size: 13px;
+  line-height: 14px;
+  border-top: 0px;
+  background-color: #abadaf;
+  color: #181818;
+  padding: 10px; }
+.table tbody tr td {
+  font-size: 13px;
+  line-height: 14px;
+  border-top: 0px;
+  color: #181818;
+  padding: 10px; }
+
+.bus-nav-tab .tab-pane > div {
+  background-color: #ececec;
+  padding-top: 30px;
+  margin-left: -16px;
+  margin-right: -16px;
+  margin-bottom: -16px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 20px;
+  position: relative;
+  z-index: 5;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px; }
+  .bus-nav-tab .tab-pane > div h3 {
+    font-size: 16px;
+    line-height: 16px;
+    text-align: center;
+    margin-bottom: 30px; }
+
+.policy-tab .attention {
+  font-size: 13px;
+  font-weight: bold;
+  color: #f41515;
+  display: inline-block; }
+.policy-tab > p {
+  color: #000;
+  margin-bottom: 5px;
+  font-weight: bold; }
+.policy-tab .hot-line {
+  font-size: 24px;
+  line-height: 26px;
+  font-weight: bold; }
+  .policy-tab .hot-line span {
+    color: #259b29;
+    font-size: 24px;
+    line-height: 26px;
+    font-weight: bold; }
+
+.timestart-tab .time-list {
+  margin-bottom: 11px;
+  padding-left: 30px;
+  padding-right: 30px; }
+  .timestart-tab .time-list span {
+    font-size: 13px;
+    color: #003580;
+    font-weight: bold;
+    display: inline-block;
+    min-width: 80px; }
+.timestart-tab .button-time {
+  font-size: 13px;
+  line-height: 14px;
+  font-weight: bold;
+  color: #181818;
+  background-color: #fff;
+  border: 1px solid #cfcfcf;
+  border-radius: 3px;
+  padding: 6px 15px;
+  margin-right: 10px; }
+  .timestart-tab .button-time:focus {
+    outline: 0px; }
+  .timestart-tab .button-time.active {
+    background-color: #04be03;
+    color: #fff;
+    border: 1px solid #04be03; }
+
+.galery-bus-tab .entry-thumb {
+  border: 1px solid #cfcfcf;
+  border-radius: 2px;
+  margin-right: 0px; }
+  .galery-bus-tab .entry-thumb img {
+    width: 100%; }
+.galery-bus-tab .owl-theme .owl-dot span {
+  margin-left: 3px;
+  margin-right: 3px;
+  background-color: #b5b2b2; }
+
+.schedule-tab .attention {
+  font-size: 13px;
+  font-weight: bold;
+  color: #f41515;
+  display: inline-block; }
+.schedule-tab > p {
+  color: #000;
+  margin-bottom: 0px;
+  font-weight: bold; }
+.schedule-tab .bold {
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 18px; }
 
 .header {
   padding-top: 15px;
