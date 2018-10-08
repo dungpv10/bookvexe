@@ -1024,7 +1024,7 @@ div[class^="wrap_location"] .ui-widget-content{
 }
 .timestart-tab {
 	.time-list {
-		margin-bottom: 11px;
+		margin-bottom: 6px;
 		padding-left: 30px;
 		padding-right: 30px;
 		span {
@@ -1045,6 +1045,7 @@ div[class^="wrap_location"] .ui-widget-content{
 		border-radius: 3px;
 		padding: 6px 15px;
 		margin-right: 10px;
+		margin-bottom: 5px;
 		&:focus {
 			outline: 0px;
 		}
@@ -1060,6 +1061,7 @@ div[class^="wrap_location"] .ui-widget-content{
 		border: 1px solid $color-border-8;
 		border-radius: 2px;
 		margin-right: 0px;
+		width: 100%;
 		img {
 			width: 100%;
 		}

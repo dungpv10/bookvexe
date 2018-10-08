@@ -30,35 +30,35 @@
                            					</div>
                                				<div class="wrap_location_end"></div>
 					                    </div>
-					                    <div class="row">
-					                    	<div class="col-md-12 col-sm-6">
-					                    		<div class="form-group datetime-picker">
-							                        <label for="start_time">Ngày khởi hành</label>
-							                        <div class="wrap-datetime">
-								                        <div class="input-group datepicker">
-								                            <input id="start_date" class="form-control" type="text" name="start_date" value="" required>
-								                            <i class="fa fa-calendar-alt"></i>
-								                        </div>
-							                        </div>
-							                    </div>
-					                    	</div>
-					                    	<div class="col-md-12 col-sm-6">
-					                    		<div class="form-group datetime-picker">
-							                        <label for="end_time">Ngày đến</label>
-							                        <div class="wrap-datetime">
-								                        <div class="input-group datepicker">
-								                            <input id="end_date" class="form-control" type="text" name="end_date" value="" required>
-								                            <i class="fa fa-calendar-alt"></i>
-								                        </div>
-							                        </div>
-							                    </div>
-					                    	</div>
+					                </div>
+			                    	<div class="col-md-12 col-sm-3">
+			                    		<div class="form-group datetime-picker">
+					                        <label for="start_time">Ngày khởi hành</label>
+					                        <div class="wrap-datetime">
+						                        <div class="input-group datepicker">
+						                            <input id="start_date" class="form-control" type="text" name="start_date" value="" required>
+						                            <i class="fa fa-calendar-alt"></i>
+						                        </div>
+					                        </div>
 					                    </div>
+			                    	</div>
+			                    	<div class="col-md-12 col-sm-3">
+			                    		<div class="form-group datetime-picker">
+					                        <label for="end_time">Ngày đến</label>
+					                        <div class="wrap-datetime">
+						                        <div class="input-group datepicker">
+						                            <input id="end_date" class="form-control" type="text" name="end_date" value="" required>
+						                            <i class="fa fa-calendar-alt"></i>
+						                        </div>
+					                        </div>
+					                    </div>
+			                    	</div>
+			                    	<div class="col-md-12 col-sm-6">
 					                    <div class="form-group">
 					                        <label for="number_customer">Số người</label>
 					                        {!! Form::select('number_customer', [1,2,3,4], null, ['class' => 'form-control select2', 'id' => 'number_customer']) !!}
 					                    </div>
-					                </div>
+				                    </div>
 					            </div>
 					            <div class="row">
 					            	<div class="col-md-12">
@@ -82,11 +82,12 @@
 						    <img class="icon-image" src="{{ asset('img/front-end/icon-widget.png') }}" alt="">
 						</div>
 					</div>
-					<div class="widget widget-filter">
+					<div class="widget widget-filter active">
 						<div class="widget-title">
 							<h2 class="title style-1">Bộ Lọc Tìm Kiếm theo</h2>
+							<span class="show-hidden active"></span>
 						</div>
-						<div class="widget-content">
+						<div class="widget-content active">
 							<form method="post" action="#" id="filter-bus" enctype="multipart/form-data">
 								<input type="hidden" name="_token" value="{{csrf_token()}}">
 								<div class="wrap-filter-type">

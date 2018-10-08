@@ -172,6 +172,19 @@ $( document ).ready(function($) {
             }
         });
     });
+    jQuery(document).on('click', '.show-hidden', function() {
+        var widget = jQuery(this).closest('.widget-filter');
+        var content = jQuery(this).closest('.widget-filter').find('.widget-content');
+        if (content.hasClass('active')) {
+            content.removeClass('active');
+            widget.removeClass('active');
+            jQuery(this).removeClass('active');
+        } else {
+            content.addClass('active');
+            widget.addClass('active');
+            jQuery(this).addClass('active');
+        }
+    });
 });
 function showCustomerComment (element) {
     //TO DO update id for form modal

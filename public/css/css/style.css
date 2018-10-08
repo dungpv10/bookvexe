@@ -927,7 +927,7 @@ div[class^="wrap_location"] .ui-widget-content {
     font-weight: bold; }
 
 .timestart-tab .time-list {
-  margin-bottom: 11px;
+  margin-bottom: 6px;
   padding-left: 30px;
   padding-right: 30px; }
   .timestart-tab .time-list span {
@@ -945,7 +945,8 @@ div[class^="wrap_location"] .ui-widget-content {
   border: 1px solid #cfcfcf;
   border-radius: 3px;
   padding: 6px 15px;
-  margin-right: 10px; }
+  margin-right: 10px;
+  margin-bottom: 5px; }
   .timestart-tab .button-time:focus {
     outline: 0px; }
   .timestart-tab .button-time.active {
@@ -956,7 +957,8 @@ div[class^="wrap_location"] .ui-widget-content {
 .galery-bus-tab .entry-thumb {
   border: 1px solid #cfcfcf;
   border-radius: 2px;
-  margin-right: 0px; }
+  margin-right: 0px;
+  width: 100%; }
   .galery-bus-tab .entry-thumb img {
     width: 100%; }
 .galery-bus-tab .owl-theme .owl-dot span {
@@ -1472,7 +1474,14 @@ div[class^="wrap_location"] .ui-widget-content {
     padding-right: 15px;
     padding-bottom: 40px; }
   .widget-filter .widget-title {
-    margin-bottom: 18px; }
+    margin-bottom: 18px;
+    position: relative; }
+    .widget-filter .widget-title .show-hidden {
+      position: absolute;
+      display: none;
+      top: 13px;
+      right: 20px;
+      color: #fff; }
   .widget-filter .wrap-filter-type {
     margin-bottom: 15px; }
     .widget-filter .wrap-filter-type .type {
@@ -1525,7 +1534,13 @@ div[class^="wrap_location"] .ui-widget-content {
   .widget-popular .entry-item {
     margin-bottom: 20px; }
   .widget-popular .sub {
-    margin-top: 0px; } }
+    margin-top: 0px; }
+
+  .filter-type-best a {
+    padding: 5px 35px; }
+
+  #customer-comment .modal-dialog {
+    width: 90%; } }
 @media only screen and (max-width: 991px) {
   .wrap-commitment .title {
     margin-bottom: 15px; }
@@ -1641,10 +1656,65 @@ div[class^="wrap_location"] .ui-widget-content {
     padding-left: 12px; }
     .footer-menu.style-3 li:first-child:before {
       height: 5px;
-      width: 5px; } }
+      width: 5px; }
+
+  .side-bar .widget-search .widget-content {
+    padding-bottom: 25px; }
+
+  .side-bar .widget:last-child {
+    margin-bottom: 15px; }
+
+  .widget-filter .widget-content {
+    padding-bottom: 0px; }
+
+  .widget-filter .widget-title .show-hidden {
+    display: inline-block; }
+    .widget-filter .widget-title .show-hidden:before {
+      content: "\f077";
+      font-size: 16px;
+      color: #fff;
+      font-family: FontAwesome; }
+    .widget-filter .widget-title .show-hidden.active:before {
+      content: "\f078"; }
+
+  .widget-filter .widget-title {
+    margin-bottom: 0px; }
+    .widget-filter .widget-title .title {
+      margin-bottom: 0px; }
+  .widget-filter.active .widget-title {
+    margin-bottom: 18px; }
+    .widget-filter.active .widget-title .title {
+      margin-bottom: 10px; }
+  .widget-filter .widget-content {
+    display: none; }
+    .widget-filter .widget-content.active {
+      display: block; } }
 @media only screen and (max-width: 767px) {
-  .header .header-left, .header .header-rigth {
-    text-align: center; } }
+  .filter-type-best a {
+    padding: 5px 25px; }
+
+  .entry-item-bus .entry-thumb {
+    float: none;
+    margin-right: 0px;
+    width: 100%;
+    margin-bottom: 20px; }
+
+  .nav-tabs li {
+    margin-right: 13px; }
+
+  .nav-tabs {
+    text-align: left;
+    margin-left: -5px; }
+
+  .entry-item-bus .content-footer .button-submit {
+    margin-left: 5px;
+    margin-top: 20px; }
+
+  .wrap-pagination .pagination .page-item.prev-page {
+    margin-right: 5px; }
+
+  .wrap-pagination .pagination .page-item.next-page {
+    margin-left: -5px; } }
 @media only screen and (max-width: 630px) {
   .widget-garapopulor .widget-content > .row > div {
     width: 100%; } }
@@ -1720,7 +1790,43 @@ div[class^="wrap_location"] .ui-widget-content {
     margin-bottom: 15px; }
 
   .section-garapopulor {
-    padding-bottom: 20px; } }
+    padding-bottom: 20px; }
+
+  .notice-success .show-notice {
+    float: none;
+    top: 0px;
+    margin-top: 10px; }
+
+  .entry-item-bus .content-header .right {
+    float: none;
+    margin-top: 6px; }
+
+  .entry-item-bus .content-footer .button-submit {
+    display: block; }
+
+  .nav-tabs li a {
+    border-bottom: 0px;
+    padding-bottom: 5px; }
+
+  .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
+    border-bottom: 0px;
+    padding-bottom: 5px;
+    color: #04be03; }
+
+  .entry-item-bus .content-footer .button-submit {
+    margin-top: 15px; }
+
+  .timestart-tab .time-list {
+    padding-left: 0px;
+    padding-right: 0px; }
+
+  .wrap-pagination {
+    padding-right: 10px;
+    padding-left: 10px; }
+
+  .wrap-pagination .detail-pagination {
+    float: none;
+    margin-left: 12px; } }
 @media only screen and (max-width: 480px) {
   .header-rigth li {
     margin-left: 7px;
@@ -1748,7 +1854,18 @@ div[class^="wrap_location"] .ui-widget-content {
     top: 30%; }
 
   .entry-item.style-3 .entry-title h3 {
-    margin-bottom: 5px; } }
+    margin-bottom: 5px; }
+
+  .entry-item-bus .content-middle .wrap-position-time i.fa {
+    padding-left: 15px;
+    padding-right: 15px; }
+
+  .entry-item-bus .content-middle .wrap-detail-price .price {
+    font-size: 20px;
+    line-height: 22px; }
+
+  .nav-tabs li {
+    margin-right: 0px; } }
 @media only screen and (max-width: 360px) {
   .entry-item.style-3 .entry-content-bottom li a, .entry-item.style-3 .entry-content-bottom li .price-wrap {
     float: none;
@@ -1757,6 +1874,25 @@ div[class^="wrap_location"] .ui-widget-content {
     margin-bottom: 5px; }
 
   .entry-item.style-3 .entry-content-bottom .entry-content {
-    padding-top: 0px; } }
+    padding-top: 0px; }
+
+  .filter-type-best a {
+    padding: 5px 20px; }
+
+  .entry-item-bus .entry-title {
+    font-size: 16px;
+    line-height: 18px; }
+
+  .entry-item-bus .content-middle .wrap-position-time i.fa {
+    padding-left: 10px;
+    padding-right: 10px; }
+
+  .entry-item-bus .content-middle .wrap-detail-price .price {
+    float: none;
+    display: block; }
+
+  #customer-comment .modal-content {
+    padding-left: 10px;
+    padding-right: 10px; } }
 
 /*# sourceMappingURL=style.css.map */

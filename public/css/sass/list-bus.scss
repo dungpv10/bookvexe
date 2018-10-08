@@ -96,6 +96,14 @@
 	}
 	.widget-title {
 		margin-bottom: 18px;
+		position: relative;
+		.show-hidden {
+			position: absolute;
+			display: none;
+			top: 13px;
+			right: 20px;
+			color: $white;
+		}
 	}
 	.wrap-filter-type {
 		margin-bottom: 15px;
