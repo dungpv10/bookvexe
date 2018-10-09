@@ -1824,7 +1824,11 @@ div[class^="wrap_location"] .ui-widget-content {
     margin-right: 5px; }
 
   .wrap-pagination .pagination .page-item.next-page {
-    margin-left: -5px; } }
+    margin-left: -5px; }
+
+  .list-step li {
+    width: 50%;
+    margin-top: 5px; } }
 @media only screen and (max-width: 630px) {
   .widget-garapopulor .widget-content > .row > div {
     width: 100%; } }
