@@ -9,12 +9,15 @@
 		padding-right: 25px;
 		padding-bottom: 12px;
 		background-color: $white;
+		border-radius: 5px;
 	}
 	.widget-title {
 		margin-bottom: 0px;
 		padding-left: 25px;
 		padding-right: 25px;
 		background-color: $color-bg-section;
+		border-top-left-radius: 5px;
+		border-top-right-radius: 5px;
 		.title {
 			font-size: 13px;
 			line-height: 14px;
