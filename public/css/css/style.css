@@ -1633,6 +1633,8 @@ div[class^="wrap_location"] .ui-widget-content {
   font-size: 16px;
   line-height: 18px;
   padding: 8px 20px; }
+  .widget-info-ticket .button-back:hover {
+    background-color: #04be03; }
 
 .widget-select-payment {
   padding-bottom: 50px;
