@@ -241,6 +241,11 @@
 			margin-bottom: 20px;
 		}
 	}
+	.section-page-payment-method-bus {
+		.widget-info-ticket {
+			margin-bottom: 15px;
+		}
+	}
 }
 @media only screen and (max-width: 767px){
 	.header {
@@ -488,5 +493,9 @@
 	#customer-comment .modal-content {
 		padding-left: 10px;
 		padding-right: 10px;
+	}
+	.list-step li {
+		padding-right: 0px;
+		padding-left: 0px;
 	}
 }

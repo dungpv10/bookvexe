@@ -22,4 +22,8 @@ class HomeController extends Controller
     public function getInfoCustomer() {
     	return view('front-end.payment.info-customer');
     }
+
+    public function getPaymentMethod() {
+        return view('front-end.payment.payment-method');
+    }
 }

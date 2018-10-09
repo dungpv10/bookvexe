@@ -1610,12 +1610,80 @@ div[class^="wrap_location"] .ui-widget-content {
     font-weight: bold;
     color: #259b29; }
 
-.section-page-payment-bus {
+.section-page-payment-bus, .section-page-payment-method-bus {
   padding-top: 20px;
   padding-bottom: 55px; }
 
 .widget-payment-step {
   margin-bottom: 20px; }
+
+.widget-info-ticket .widget-content {
+  padding-top: 5px;
+  padding-bottom: 10px; }
+.widget-info-ticket .table {
+  margin-bottom: 40px; }
+  .widget-info-ticket .table tr {
+    border-bottom: 1px solid #e7e7e7; }
+  .widget-info-ticket .table td:first-child {
+    font-weight: bold;
+    padding-left: 0px; }
+.widget-info-ticket .button-back {
+  background-color: #003580;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 18px;
+  padding: 8px 20px; }
+
+.widget-select-payment {
+  padding-bottom: 50px;
+  position: relative; }
+  .widget-select-payment .widget-content {
+    padding-top: 15px; }
+  .widget-select-payment .match_height > div {
+    margin-bottom: 20px; }
+  .widget-select-payment .entry-item-payment-method {
+    background-color: #f9f7f7;
+    border: 1px solid #d3d3d3;
+    text-align: center;
+    border-radius: 5px;
+    padding: 20px;
+    padding-bottom: 13px; }
+  .widget-select-payment img {
+    width: 100%;
+    margin-bottom: 15px; }
+  .widget-select-payment .name-method {
+    font-size: 13px;
+    line-height: 14px;
+    color: #181818;
+    font-weight: 500;
+    margin-bottom: 20px; }
+  .widget-select-payment input {
+    height: 16px;
+    width: 16px; }
+  .widget-select-payment .button-submit {
+    display: block;
+    font-weight: normal;
+    width: 100%;
+    font-size: 16px;
+    line-height: 18px;
+    padding: 8px 20px;
+    margin-top: 0px; }
+    .widget-select-payment .button-submit:hover {
+      background-color: #003580; }
+  .widget-select-payment .hot-line {
+    font-size: 24px;
+    line-height: 26px;
+    font-weight: bold;
+    display: block;
+    margin-top: 30px;
+    position: absolute;
+    left: 25px;
+    bottom: 20px; }
+    .widget-select-payment .hot-line span {
+      font-size: 24px;
+      line-height: 26px;
+      font-weight: bold;
+      color: #259b29; }
 
 @media only screen and (max-width: 1365px) {
   .bg-search {
@@ -1798,10 +1866,13 @@ div[class^="wrap_location"] .ui-widget-content {
     .widget-filter .widget-content.active {
       display: block; }
 
-  .section-page-payment-bus {
+  .section-page-payment-bus, .section-page-payment-method-bus {
     padding-bottom: 20px; }
-    .section-page-payment-bus .widget-info-customer {
-      margin-bottom: 20px; } }
+    .section-page-payment-bus .widget-info-customer, .section-page-payment-method-bus .widget-info-customer {
+      margin-bottom: 20px; }
+
+  .section-page-payment-method-bus .widget-info-ticket {
+    margin-bottom: 15px; } }
 @media only screen and (max-width: 767px) {
   .filter-type-best a {
     padding: 5px 25px; }
@@ -2010,6 +2081,10 @@ div[class^="wrap_location"] .ui-widget-content {
 
   #customer-comment .modal-content {
     padding-left: 10px;
-    padding-right: 10px; } }
+    padding-right: 10px; }
+
+  .list-step li {
+    padding-right: 0px;
+    padding-left: 0px; } }
 
 /*# sourceMappingURL=style.css.map */
