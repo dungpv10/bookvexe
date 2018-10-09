@@ -1,0 +1,99 @@
+.widget-has-border {
+	border: 1px solid $color-border-11;
+	border-radius: 5px;
+	position: relative;
+	height: 100%;
+	background-color: $white;
+	.widget-content {
+		padding-left: 25px;
+		padding-right: 25px;
+		padding-bottom: 12px;
+		background-color: $white;
+	}
+	.widget-title {
+		margin-bottom: 0px;
+		padding-left: 25px;
+		padding-right: 25px;
+		background-color: $color-bg-section;
+		.title {
+			font-size: 13px;
+			line-height: 14px;
+			text-transform: uppercase;
+			font-weight: bold;
+			text-align: center;
+			margin-bottom: 0px;
+			padding-bottom: 18px;
+			padding-top: 18px;
+		}
+	}
+}
+.widget-info-customer {
+	.widget-content {
+		@extend #form-customer-comment;
+		padding-top: 20px;
+		.form-check-label {
+			font-weight: normal;
+			a {
+				font-weight: normal;
+				text-decoration: underline;
+				color: $color-text-6;
+			}
+		}
+		.button-submit {
+			font-size: 16px;
+			line-height: 18px;
+			font-weight: normal;
+			&.button-back {
+				background-color: $primary;
+				&:hover {
+					background-color: $bg-percent;
+				}
+			}
+		}
+	}
+}
+.widget-notice-customer {
+	.widget-content {
+		padding-top: 25px;
+	}
+	label {
+		font-size: 13px;
+	    line-height: 14px;
+	    font-weight: bold;
+	    color: #181818;
+	    display: block;
+	    margin-bottom: 12px;
+	    span {
+	    	color: $color-text-6;
+	    }
+	}
+	p {
+		font-size: 13px;
+		line-height: 15px;
+		color: $color-text-5;
+		span {
+			color: $color-text-6;
+			font-weight: bold;
+		}
+	}
+	.hot-line {
+		font-size: 24px;
+	    line-height: 26px;
+	    font-weight: bold;
+	    display: block;
+	    margin-top: 30px;
+	    span {
+	    	font-size: 24px;
+		    line-height: 26px;
+		    font-weight: bold;
+	    	color: $color-text-7;
+	    }
+	}
+}
+.section-page-payment-bus {
+	padding-top: 20px;
+	padding-bottom: 55px;
+}
+.widget-payment-step {
+	margin-bottom: 20px;
+}

@@ -14,4 +14,12 @@ class HomeController extends Controller
     public function getListBus(){
         return view('front-end.list-bus.bus');
     }
+
+    public function getChooseSeat() {
+    	return view('front-end.payment.choose-seat');
+    }
+
+    public function getInfoCustomer() {
+    	return view('front-end.payment.info-customer');
+    }
 }

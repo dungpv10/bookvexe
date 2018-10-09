@@ -136,6 +136,9 @@ $( document ).ready(function($) {
     if (jQuery('.match_height>div').length > 0) {
         $('.match_height>div').matchHeight();
     }
+    if (jQuery('.match_height_as').length > 0) {
+        $('.match_height_as>div').matchHeight();
+    }
     if (jQuery('.selectpicker').length > 0) {
         $('.selectpicker').selectpicker();
     }

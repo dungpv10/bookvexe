@@ -24,6 +24,8 @@ Route::group([
 ], function () {
     Route::get('/', 'HomeController@home');
     Route::get('/list-bus', 'HomeController@getListBus');
+    Route::get('/choose-seat', 'HomeController@getChooseSeat');
+    Route::get('/info-customer', 'HomeController@getInfoCustomer');
 });
 
 
