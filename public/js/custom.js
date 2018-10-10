@@ -121,6 +121,10 @@ $( document ).ready(function($) {
         $('#number_customer').select2({
         });
     }
+    if (jQuery('#choose_start_time').length > 0) {
+        $('#choose_start_time').select2({
+        });
+    }
     if (jQuery('.timepicker input').length > 0) {
         $(".timepicker input").timepicker({
         	showMeridian: false,
@@ -188,6 +192,9 @@ $( document ).ready(function($) {
             jQuery(this).addClass('active');
         }
     });
+    if (jQuery('.widget-payment-custom-info-bus').length > 0) {
+        jQuery('.select2-results__option').css('font-size', '13px');
+    }
 });
 function showCustomerComment (element) {
     //TO DO update id for form modal

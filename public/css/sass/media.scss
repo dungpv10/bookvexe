@@ -1281,3 +1281,19 @@ div[class^="wrap_location"] .ui-widget-content{
 		color: $color-text-5;
 	}
 }
+.widget-custom-bg {
+	background-color: $primary;
+	color: $white;
+	padding-left: 13px;
+	padding-right: 13px;
+	padding-bottom: 30px;
+}
+.widget-title {
+	.title.style-2 {
+		font-size: 13px;
+		line-height: 14px;
+		text-transform: uppercase;
+		color: $color-bg-button;
+		text-align: center;
+	}
+}
