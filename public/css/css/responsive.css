@@ -1,21 +1,21 @@
 /*
 Error: Undefined variable: "$white".
-        on line 125 of D:\xampp\htdocs\bookvexe\public\css\sass\responsive.scss
+        on line 134 of D:\xampp\htdocs\bookvexe\public\css\sass\responsive.scss
 
-120: 			display: block;
-121: 			margin-bottom: 20px;
-122: 			.menu-primary {
-123: 				margin-top: 0px;
-124: 				a {
-125: 					color: $white;
-126: 				}
-127: 				li {
-128: 					display: block;
-129: 					padding: 10px 0px;
-130: 					border-bottom: 1px solid $color-border-3;
+129: 			display: block;
+130: 			margin-bottom: 20px;
+131: 			.menu-primary {
+132: 				margin-top: 0px;
+133: 				a {
+134: 					color: $white;
+135: 				}
+136: 				li {
+137: 					display: block;
+138: 					padding: 10px 0px;
+139: 					border-bottom: 1px solid $color-border-3;
 
 Backtrace:
-D:\xampp\htdocs\bookvexe\public\css\sass\responsive.scss:125
+D:\xampp\htdocs\bookvexe\public\css\sass\responsive.scss:134
 C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/script/tree/variable.rb:49:in `_perform'
 C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/script/tree/node.rb:50:in `perform'
 C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:402:in `visit_prop'
@@ -109,4 +109,4 @@ C:/Program Files (x86)/Koala/bin/sass:22:in `<main>'
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$white\".\A         on line 125 of D:\xampp\htdocs\bookvexe\public\css\sass\responsive.scss\A \A 120: 			display: block;\A 121: 			margin-bottom: 20px;\A 122: 			.menu-primary {\A 123: 				margin-top: 0px;\A 124: 				a {\A 125: 					color: $white;\A 126: 				}\A 127: 				li {\A 128: 					display: block;\A 129: 					padding: 10px 0px;\A 130: 					border-bottom: 1px solid $color-border-3;"; }
+  content: "Error: Undefined variable: \"$white\".\A         on line 134 of D:\xampp\htdocs\bookvexe\public\css\sass\responsive.scss\A \A 129: 			display: block;\A 130: 			margin-bottom: 20px;\A 131: 			.menu-primary {\A 132: 				margin-top: 0px;\A 133: 				a {\A 134: 					color: $white;\A 135: 				}\A 136: 				li {\A 137: 					display: block;\A 138: 					padding: 10px 0px;\A 139: 					border-bottom: 1px solid $color-border-3;"; }

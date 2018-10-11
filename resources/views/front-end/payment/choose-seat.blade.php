@@ -1,4 +1,8 @@
 @extends('front-end/layouts/layouts')
+@section('css')
+	<!-- TODO update fontawesome miss icon-->
+	<link href="{{ asset('css/jquery.seat-charts.css') }}" rel="stylesheet" type="text/css" />
+@stop
 @section('content')
 <section class="bg-section section-page-payment-choose-seat">
 	<div class="container">
@@ -203,6 +207,32 @@
 							</div>
 						</div>
 					</div>
+					<div class="widget widget-booking-details">
+						<div class="widget-content">
+							<div class="booking-details">
+							    <h3>Số ghế: <ul id="selected-seats"></ul></h3>
+							    <span>Tổng tiền:  <span>(<span id="total">0</span> VND)</span></span>
+							</div>
+							<div id="seat-map">
+							    <div class="front-indicator">Sơ đồ ghế</div>
+							    <div class="control-seat"><i class="fa fa-adjust"></i></div>
+							</div>
+							<div class="seat-map-note">
+								<div class="selected">
+									<span></span>
+									Đã chọn
+								</div>
+								<div class="select">
+									<span></span>
+									Đang chọn
+								</div>
+								<div class="still_empty">
+									<span></span>
+									Còn trống
+								</div>
+							</div>
+						</div>	
+					</div>
 				</div>
 			</form>
 		</div>
@@ -319,4 +349,114 @@
         </div>
     </div>
 </div>
+@stop
+@section('js')
+	<script src="{{asset('js/jquery.seat-charts.js')}}" type="text/javascript"></script>
+	<script type="text/javascript">
+		var firstSeatLabel = 1;
+
+		  $(document).ready(function() {
+		    var $cart = $('#selected-seats'),
+		      $counter = $('#counter'),
+		      $total = $('#total'),
+		      sc = $('#seat-map').seatCharts({
+		      map: [
+		        'ff_ff',
+		        'ff_ff',
+		        'ee_ee',
+		        'ee_ee',
+		        'ee___',
+		        'ee_ee',
+		        'ee_ee',
+		        'ee_ee',
+		        'eeeee',
+		      ],
+		      seats: {
+		        f: {
+		          price   : 100.000,
+		          classes : 'first-class', //your custom CSS class
+		          category: 'First Class'
+		        },
+		        e: {
+		          price   : 40.000,
+		          classes : 'economy-class', //your custom CSS class
+		          category: 'Economy Class'
+		        }         
+		      
+		      },
+		      naming : {
+		        top : false,
+		        getLabel : function (character, row, column) {
+		          return firstSeatLabel++;
+		        },
+		      },
+		      legend : {
+		        node : $('#legend'),
+		          items : [
+		          [ 'f', 'available',   'First Class' ],
+		          [ 'e', 'available',   'Economy Class'],
+		          [ 'f', 'unavailable', 'Already Booked']
+		          ]         
+		      },
+		      click: function () {
+		        if (this.status() == 'available') {
+		          var content_seat = $cart.html();
+		          if (content_seat == '') {
+		          	$('<li>'+this.settings.label+'</li>')
+		            .attr('id', 'cart-item-'+this.settings.id)
+		            .data('seatId', this.settings.id)
+		            .appendTo($cart);
+		          } else {
+		          	$('<li>'+', '+this.settings.label+'</li>')
+		            .attr('id', 'cart-item-'+this.settings.id)
+		            .data('seatId', this.settings.id)
+		            .appendTo($cart);
+		          }
+		          
+		          $counter.text(sc.find('selected').length+1);
+		          $total.text(recalculateTotal(sc)+this.data().price);
+		          
+		          return 'selected';
+		        } else if (this.status() == 'selected') {
+		          //update the counter
+		          $counter.text(sc.find('selected').length-1);
+		          //and total
+		          $total.text(recalculateTotal(sc)-this.data().price);
+		        
+		          //remove the item from our cart
+		          $('#cart-item-'+this.settings.id).remove();
+		        
+		          //seat has been vacated
+		          return 'available';
+		        } else if (this.status() == 'unavailable') {
+		          //seat has been already booked
+		          return 'unavailable';
+		        } else {
+		          return this.style();
+		        }
+		      }
+		    });
+
+		    //this will handle "[cancel]" link clicks
+		    $('#selected-seats').on('click', '.cancel-cart-item', function () {
+		      //let's just trigger Click event on the appropriate seat, so we don't have to repeat the logic here
+		      sc.get($(this).parents('li:first').data('seatId')).click();
+		    });
+
+		    //let's pretend some seats have already been booked
+		    sc.get(['1_2', '4_1', '7_1', '7_2']).status('unavailable');
+
+		});
+
+		function recalculateTotal(sc) {
+		  var total = 0;
+
+		  //basically find every selected seat and sum its price
+		  sc.find('selected').each(function () {
+		    total += this.data().price;
+		  });
+		  
+		  return total;
+		}
+	</script>
 @stop

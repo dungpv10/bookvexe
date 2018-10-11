@@ -46,6 +46,15 @@
 	#customer-comment .modal-dialog {
 		width: 90%;
 	}
+	.widget-payment-custom-info-bus .button-submit {
+		padding: 9px 14px;
+		&.button-back {
+			padding: 8px 14px;
+		}
+	}
+	.widget-payment-info-draw .wrap-start-end-bus .start-end > span {
+		margin-left: 5px;
+	}
 }
 @media only screen and (max-width: 991px) {
 	.wrap-commitment .title {
@@ -359,6 +368,30 @@
 	}
 	.bg-search .button-submit {
 		margin-bottom: 10px;
+	}
+	.widget-list-bus.style-1 {
+		.nav-tabs {
+			margin-left: 0px;
+		}
+	}
+	.widget-list-bus.style-1 .content-header .rate-item {
+		float: none;
+	}
+	.widget-list-bus.style-1 .nav-tabs li {
+		margin-right: 15px;
+		&:last-child {
+			margin-right: 0px;
+		} 
+	}
+	#seat-map .front-indicator {
+		padding-top: 15px;
+    	padding-bottom: 15px;
+	}
+	#seat-map .control-seat {
+		padding-bottom: 15px;
+	}
+	.seat-map-note > div {
+		padding-left: 13px;
 	}
 }
 @media only screen and (max-width: 550px) {
