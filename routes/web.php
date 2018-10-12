@@ -25,6 +25,7 @@ Route::group([
     Route::get('/', 'HomeController@home');
     Route::get('/list-bus', 'HomeController@getListBus');
     Route::get('/choose-seat', 'HomeController@getChooseSeat');
+    Route::get('/choose-seat-floor', 'HomeController@getChooseSeatFloor');
     Route::get('/info-customer', 'HomeController@getInfoCustomer');
     Route::get('/payment-method', 'HomeController@getPaymentMethod');
 });

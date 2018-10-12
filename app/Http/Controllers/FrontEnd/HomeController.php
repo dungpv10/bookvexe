@@ -26,4 +26,8 @@ class HomeController extends Controller
     public function getPaymentMethod() {
         return view('front-end.payment.payment-method');
     }
+
+    public function getChooseSeatFloor() {
+        return view('front-end.payment.choose-seat-floor');
+    }
 }

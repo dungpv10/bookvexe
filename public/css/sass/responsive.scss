@@ -448,6 +448,18 @@
 		float: none;
 		margin-left: 12px;
 	}
+	.widget-booking-details.widget-seat-floor {
+		.nav-tabs {
+			margin-left: 0px;
+		}
+		.nav-tabs > li.active > a {
+			padding-bottom: 10px;
+			color: $primary;
+		}
+	}
+	.widget-booking-details.widget-seat-floor .front-indicator {
+		padding-bottom: 25px;
+	}
 }
 @media only screen and (max-width: 480px) {
 	.header-rigth li {

@@ -227,6 +227,16 @@
 	background-color: $white;
 	border-radius: 5px;
 	border: 1px solid $color-border-11;
+	.front-indicator {
+		text-align: center;
+		text-transform: uppercase;
+		font-size: 18px;
+		line-height: 20px;
+		color: $primary;
+		font-weight: bold;
+		padding-top: 25px;
+		padding-bottom: 40px;
+	}
 }
 .booking-details {
 	background-color: $color-bg-section;
@@ -283,6 +293,14 @@
 		    font-weight: bold;
 		    display: inline-block;
 		}
+		&.seat-bed {
+			height: 52px;
+			.wrapper {
+				background-image: url('../../img/front-end/seat-bed-selected.png');
+				width: 28px;
+				height: 52px;
+			}
+		}
 	}
 	div.seatCharts-seat.available {
 		background-color: inherit;
@@ -299,6 +317,14 @@
 		    color: $color-text-5;
 		    font-weight: bold;
 		    display: inline-block;
+		}
+		&.seat-bed {
+			height: 52px;
+			.wrapper {
+				background-image: url('../../img/front-end/seat-bed-variable.png');
+				width: 28px;
+				height: 52px;
+			}
 		}
 	}
 	div.seatCharts-seat.focused {
@@ -317,6 +343,14 @@
 		    font-weight: bold;
 		    display: inline-block;
 		}
+		&.seat-bed {
+			height: 52px;
+			.wrapper {
+				background-image: url('../../img/front-end/seat-bed-select.png');
+				width: 28px;
+				height: 52px;
+			}
+		}
 	}
 	div.seatCharts-seat.selected {
 		background-color: inherit;
@@ -334,6 +368,14 @@
 		    font-weight: bold;
 		    display: inline-block;
 		}
+		&.seat-bed {
+			height: 52px;
+			.wrapper {
+				background-image: url('../../img/front-end/seat-bed-select.png');
+				width: 28px;
+				height: 52px;
+			}
+		}
 	}
 	/* TO DO add css for many type row*/
 	div.seatCharts-cell {
@@ -342,27 +384,19 @@
 		margin-top: 0px;
 		margin-bottom: 0px;
 		text-align: center;
+		background-color: inherit;
 	}
 	div.seatCharts-row-5 div.seatCharts-cell {
 		width: 20%;
 		float: left;
 	}
 	div.seatCharts-row {
-		height: 36px;
+		height: auto;
+		@extend .clear-fix;
 		margin-bottom: 15px;
 		>div:first-child {
 			display: none;
 		}
-	}
-	.front-indicator {
-		text-align: center;
-		text-transform: uppercase;
-		font-size: 18px;
-		line-height: 20px;
-		color: $primary;
-		font-weight: bold;
-		padding-top: 25px;
-		padding-bottom: 40px;
 	}
 	.control-seat {
 		text-align: center;
@@ -410,6 +444,61 @@
 			span {
 				background-color: $white;
 			}
+		}
+	}
+}
+#seat-map-2-floor {
+	@extend #seat-map;
+}
+.widget-booking-details.widget-seat-floor {
+	.nav-tabs {
+		text-align: left;
+		@extend .clear-fix;
+	}
+	.bus-seat-floor {
+		.wrap {
+			margin-left: 15px;
+			margin-right: 15px;
+			margin-bottom: 25px;
+			.tab-content {
+				background-color: $color-bg-section;
+				border: 1px solid $color-border-13; 
+			}
+		}
+	}
+	.nav-tabs li {
+		margin-right: 0px;
+		float: left;
+		&.active {
+			a {
+				background-color: $color-bg-section;
+				border: 1px solid $color-border-13;
+				border-bottom: 1px solid $color-bg-section;
+			}
+		}
+	}
+	.nav-tabs li a {
+		background-color: $white;
+		font-size: 14px;
+		line-height: 16px;
+		text-transform: uppercase;
+		font-weight: normal;
+		border-bottom: 0px;
+		padding-left: 35px;
+		padding-right: 35px;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		border: 1px solid $white;
+		border-bottom: 1px solid $color-border-13;
+		border-radius: 0px;
+	}
+	.tab-content {
+		padding-top: 30px;
+		padding-bottom: 15px;
+	}
+	.seat-map-note > div{
+		&:first-child {
+			padding-left: 15px;
 		}
 	}
 }
