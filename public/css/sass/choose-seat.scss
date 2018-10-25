@@ -237,6 +237,9 @@
 		padding-top: 25px;
 		padding-bottom: 40px;
 	}
+	#seat-map {
+		margin-bottom: 40px;
+	}
 }
 .booking-details {
 	background-color: $color-bg-section;
@@ -498,7 +501,16 @@
 	}
 	.seat-map-note > div{
 		&:first-child {
-			padding-left: 15px;
+			padding-left: 53px;
 		}
+	}
+	.front-indicator-floor {
+		text-align: center;
+		text-transform: uppercase;
+		font-size: 16px;
+		color: $color-text-5;
+	}
+	#seat-map {
+		margin-bottom: 0px;
 	}
 }
