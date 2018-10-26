@@ -460,6 +460,18 @@
 	.widget-booking-details.widget-seat-floor .front-indicator {
 		padding-bottom: 25px;
 	}
+	#seat-map-2-floor {
+		margin-top: 30px;
+		.control-seat {
+			display: none;
+		}
+		.front-indicator-floor {
+			margin-bottom: 10px;
+		}
+	}
+	.widget-booking-details.widget-seat-floor .seat-map-note > div:first-child {
+		padding-left: 15px;
+	}
 }
 @media only screen and (max-width: 480px) {
 	.header-rigth li {

@@ -31,7 +31,7 @@
                                				<div class="wrap_location_end"></div>
 					                    </div>
 					                </div>
-			                    	<div class="col-md-12 col-sm-3">
+			                    	<div class="col-md-12 col-sm-6">
 			                    		<div class="form-group datetime-picker">
 					                        <label for="start_time">Ngày khởi hành</label>
 					                        <div class="wrap-datetime">
@@ -42,7 +42,7 @@
 					                        </div>
 					                    </div>
 			                    	</div>
-			                    	<div class="col-md-12 col-sm-3">
+			                    	<!-- <div class="col-md-12 col-sm-3">
 			                    		<div class="form-group datetime-picker">
 					                        <label for="end_time">Ngày đến</label>
 					                        <div class="wrap-datetime">
@@ -52,7 +52,7 @@
 						                        </div>
 					                        </div>
 					                    </div>
-			                    	</div>
+			                    	</div> -->
 			                    	<div class="col-md-12 col-sm-6">
 					                    <div class="form-group">
 					                        <label for="number_customer">Số người</label>

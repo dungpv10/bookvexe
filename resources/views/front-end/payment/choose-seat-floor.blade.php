@@ -76,7 +76,7 @@
 					</div>
 				</div>
 				<div class="col-lg-9 col-md-9">
-					<div class="widget widget-list-bus style-1">
+					<!-- <div class="widget widget-list-bus style-1">
 						<div class="entry-item-bus clear-fix">
 							<div class="entry-content">
 								<div class="content-header">
@@ -206,7 +206,7 @@
 								</div>
 							</div>
 						</div>
-					</div>
+					</div> -->
 					<div class="widget widget-booking-details widget-seat-floor">
 						<div class="widget-content">
 							<div class="booking-details">
@@ -215,22 +215,14 @@
 							</div>
 							<div class="bus-seat-floor">
 								<div class="front-indicator">Sơ đồ ghế</div>
-								<div class="wrap">
-									<ul class="nav nav-tabs">
-										<li class="active"><a href="#tab-seat-floor-1" data-toggle="tab" title="new" aria-expanded="true">Tầng 1</a></li>
-	                                    <li class=""><a href="#tab-seat-floor-2" data-toggle="tab" title="new" aria-expanded="false">Tầng 2</a></li>
-									</ul>
-									<div class="tab-content">
-										<div class="tab-pane active" id="tab-seat-floor-1">
-											<div id="seat-map">
-											    <div class="control-seat"><i class="fa fa-adjust"></i></div>
-											</div>
-										</div>
-										<div class="tab-pane" id="tab-seat-floor-2">
-											<div id="seat-map-2-floor">
-											    <div class="control-seat"><i class="fa fa-adjust"></i></div>
-											</div>
-										</div>
+								<div class="wrap row">
+									<div id="seat-map" class="col-md-6 col-sm-6">
+										<div class="front-indicator-floor">Tầng 1</div>
+									    <div class="control-seat"><i class="fa fa-adjust"></i></div>
+									</div>
+									<div id="seat-map-2-floor" class="col-md-6 col-sm-6">
+										<div class="front-indicator-floor">Tầng 2</div>
+									    <div class="control-seat"><i class="fa"></i></div>
 									</div>
 								</div>
 							</div>

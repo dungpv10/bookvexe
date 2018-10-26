@@ -76,7 +76,7 @@
 					</div>
 				</div>
 				<div class="col-lg-9 col-md-9">
-					<div class="widget widget-list-bus style-1">
+					<!-- <div class="widget widget-list-bus style-1">
 						<div class="entry-item-bus clear-fix">
 							<div class="entry-content">
 								<div class="content-header">
@@ -206,7 +206,7 @@
 								</div>
 							</div>
 						</div>
-					</div>
+					</div> -->
 					<div class="widget widget-booking-details">
 						<div class="widget-content">
 							<div class="booking-details">

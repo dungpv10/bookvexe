@@ -1733,6 +1733,8 @@ div[class^="wrap_location"] .ui-widget-content {
     font-weight: bold;
     padding-top: 25px;
     padding-bottom: 40px; }
+  .widget-booking-details #seat-map, .widget-booking-details #seat-map-2-floor {
+    margin-bottom: 40px; }
 
 .booking-details {
   background-color: #f9f7f7;
@@ -1939,7 +1941,14 @@ div[class^="wrap_location"] .ui-widget-content {
   padding-top: 30px;
   padding-bottom: 15px; }
 .widget-booking-details.widget-seat-floor .seat-map-note > div:first-child {
-  padding-left: 15px; }
+  padding-left: 53px; }
+.widget-booking-details.widget-seat-floor .front-indicator-floor {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 16px;
+  color: #181818; }
+.widget-booking-details.widget-seat-floor #seat-map, .widget-booking-details.widget-seat-floor #seat-map-2-floor {
+  margin-bottom: 0px; }
 
 .widget-has-border {
   border: 1px solid #d3d3d3;
@@ -2461,7 +2470,17 @@ div[class^="wrap_location"] .ui-widget-content {
     color: #003580; }
 
   .widget-booking-details.widget-seat-floor .front-indicator {
-    padding-bottom: 25px; } }
+    padding-bottom: 25px; }
+
+  #seat-map-2-floor {
+    margin-top: 30px; }
+    #seat-map-2-floor .control-seat {
+      display: none; }
+    #seat-map-2-floor .front-indicator-floor {
+      margin-bottom: 10px; }
+
+  .widget-booking-details.widget-seat-floor .seat-map-note > div:first-child {
+    padding-left: 15px; } }
 @media only screen and (max-width: 480px) {
   .header-rigth li {
     margin-left: 7px;
