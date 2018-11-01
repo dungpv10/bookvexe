@@ -712,7 +712,7 @@ div[class^="wrap_location"] .ui-widget-content{
 		overflow: hidden;
 		margin-bottom: 15px;
 		.left {
-			display: inline-block;
+			display: inline;
 		}
 		.right {
 			float: right;
@@ -819,6 +819,7 @@ div[class^="wrap_location"] .ui-widget-content{
 	.content-footer {
 		.button-submit {
 			margin-left: 15px;
+			float: right;
 		}
 	}
 }
@@ -826,7 +827,7 @@ div[class^="wrap_location"] .ui-widget-content{
 	border-bottom: 0px;
 	text-align: right;
 	li {
-		margin-right: 18px;
+		margin-right: 23px;
 		float: none;
 		display: inline-block;
 		&:last-child {
@@ -850,6 +851,31 @@ div[class^="wrap_location"] .ui-widget-content{
 			border-bottom: 4px solid $primary;
 		}
 	}
+	.button-submit {
+		background-color: $primary;
+		font-size: 13px;
+		line-height: 13px;
+		text-transform: uppercase;
+		padding-top: 9px;
+		padding-bottom: 9px;
+		padding-left: 20px;
+		padding-right: 20px;
+		position: relative;
+		top: -10px;
+		i {
+			font-size: 20px;
+			line-height: 8px;
+			display: inline-block;
+			margin-right: 5px;
+			position: relative;
+			top: 3px;
+		}
+		&:hover {
+			background-color: $bg-percent;
+		}
+	}
+}
+.bus-nav-tab {
 	.button-submit {
 		background-color: $primary;
 		font-size: 13px;
@@ -1296,4 +1322,10 @@ div[class^="wrap_location"] .ui-widget-content{
 		color: $color-bg-button;
 		text-align: center;
 	}
+}
+.hide-des-show-mobile {
+	display: none;
+}
+.tab-content .close-tab {
+	display: none;
 }

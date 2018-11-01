@@ -195,6 +195,19 @@ $( document ).ready(function($) {
     if (jQuery('.widget-payment-custom-info-bus').length > 0) {
         jQuery('.select2-results__option').css('font-size', '13px');
     }
+    jQuery('.close-tab').on('click', function() {
+        jQuery('.tab-pane').removeClass('active');
+        jQuery('.nav-tabs li').removeClass('active');
+        jQuery('body').removeClass('active-tab');
+    });
+    jQuery('.modal-header .close').on('click', function() {
+        jQuery('.tab-pane').removeClass('active');
+        jQuery('.nav-tabs li').removeClass('active');
+        jQuery('body').removeClass('active-tab');
+    });
+    jQuery('.nav-tabs li').on('click', function(){
+        jQuery('body').addClass('active-tab');
+    });
 });
 function showCustomerComment (element) {
     //TO DO update id for form modal

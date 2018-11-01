@@ -14,16 +14,16 @@
 		<li class="page-item">
 			<a class="page-link" href="#">2</a>
 		</li>
-		<li class="page-item">
+		<li class="page-item hide-on-mobile">
 			<a class="page-link" href="#">3</a>
 		</li>
-		<li class="page-item">
+		<li class="page-item hide-on-mobile">
 			<a class="page-link" href="#">4</a>
 		</li>
-		<li class="page-item">
+		<li class="page-item hide-on-mobile">
 			<a href="#" class="page-link">5</a>
 		</li>
-		<li class="page-item">
+		<li class="page-item hide-on-mobile">
 			<a class="page-link" href="#">6</a>
 		</li>
 		<li class="page-item has-many"><span class="page-link">...</span></li>

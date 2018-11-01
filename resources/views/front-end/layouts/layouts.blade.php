@@ -49,6 +49,7 @@
 
 <!-- start footer Area -->
 @include('front-end.layouts.includes.footer')
+<div class="bg-tab-show-mobile"></div>
 <!-- End footer Area -->
 <script src="{{asset('js/jquery-1.11.3.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/bootstrap.min.js')}}" type="text/javascript"></script>
