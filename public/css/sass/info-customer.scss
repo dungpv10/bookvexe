@@ -4,6 +4,7 @@
 	position: relative;
 	height: 100%;
 	background-color: $white;
+	overflow: hidden;
 	.widget-content {
 		padding-left: 25px;
 		padding-right: 25px;
@@ -77,6 +78,9 @@
 		span {
 			color: $color-text-6;
 			font-weight: bold;
+			&.name-web {
+				color: $color-text-5;
+			}
 		}
 	}
 	.hot-line {

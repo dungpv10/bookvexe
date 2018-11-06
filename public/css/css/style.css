@@ -540,7 +540,7 @@ div[class^="wrap_location"] .ui-widget-content {
   height: 0;
   clear: both; }
 
-.clear-fix:after, .entry-item.style-3 .entry-content-bottom li:after, .entry-item-bus .content-header:after, .entry-item-bus .content-middle .wrap-position-time:after, .entry-item-bus .content-middle .wrap-detail-price:after, .wrap-pagination:after, .list-step:after, .booking-details:after, #seat-map div.seatCharts-row:after, #seat-map-2-floor div.seatCharts-row:after, .widget-booking-details.widget-seat-floor .nav-tabs:after {
+.clear-fix:after, .entry-item.style-3 .entry-content-bottom li:after, .entry-item-bus .content-header:after, .entry-item-bus .content-middle .wrap-position-time:after, .entry-item-bus .content-middle .wrap-detail-price:after, .wrap-pagination:after, .timestart-tab .time-list:after, .list-step:after, .registration-list:after, .booking-details:after, #seat-map div.seatCharts-row:after, #seat-map-2-floor div.seatCharts-row:after, .widget-booking-details.widget-seat-floor .nav-tabs:after {
   content: ".";
   visibility: hidden;
   display: block;
@@ -957,7 +957,12 @@ div[class^="wrap_location"] .ui-widget-content {
     color: #003580;
     font-weight: bold;
     display: inline-block;
-    min-width: 80px; }
+    min-width: 90px;
+    float: left;
+    position: relative;
+    top: 6px; }
+  .timestart-tab .time-list .wrap {
+    overflow: hidden; }
 .timestart-tab .button-time {
   font-size: 13px;
   line-height: 14px;
@@ -1177,6 +1182,56 @@ div[class^="wrap_location"] .ui-widget-content {
 
 .tab-content .close-tab {
   display: none; }
+
+p .name-web {
+  text-transform: uppercase;
+  font-size: 13px;
+  color: #181818;
+  font-weight: bold; }
+
+#form-ticket-history .form-group {
+  display: inline-block; }
+#form-ticket-history label {
+  font-size: 13px;
+  color: #181818;
+  font-weight: bold; }
+#form-ticket-history .input-group .form-control {
+  background-color: #f9f7f7;
+  font-size: 13px;
+  color: #636363;
+  height: 30px; }
+#form-ticket-history .input-group i {
+  top: 7px; }
+#form-ticket-history .button-submit {
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: normal;
+  padding: 6px 25px;
+  border-radius: 2px;
+  margin-left: 22px; }
+
+table.style-1 thead tr th {
+  background-color: #003580;
+  color: #fff;
+  font-weight: normal;
+  border-bottom: 0px;
+  border-left: 1px solid #003580;
+  border-right: 1px solid #003580; }
+table.style-1 tbody tr {
+  border-left: 1px solid #d5d5d5;
+  border-right: 1px solid #d5d5d5;
+  border-bottom: 1px solid #d5d5d5;
+  color: #131313; }
+  table.style-1 tbody tr a {
+    color: #259b29;
+    text-decoration: underline; }
+    table.style-1 tbody tr a:hover {
+      color: #003580; }
+
+.registration-list li {
+  display: inline-block;
+  float: left;
+  margin-right: 8px; }
 
 .header {
   padding-top: 15px;
@@ -1983,7 +2038,8 @@ div[class^="wrap_location"] .ui-widget-content {
   border-radius: 5px;
   position: relative;
   height: 100%;
-  background-color: #fff; }
+  background-color: #fff;
+  overflow: hidden; }
   .widget-has-border .widget-content {
     padding-left: 25px;
     padding-right: 25px;
@@ -2042,6 +2098,8 @@ div[class^="wrap_location"] .ui-widget-content {
   .widget-notice-customer p span {
     color: #f41515;
     font-weight: bold; }
+    .widget-notice-customer p span.name-web {
+      color: #181818; }
 .widget-notice-customer .hot-line {
   font-size: 24px;
   line-height: 26px;
@@ -2130,6 +2188,74 @@ div[class^="wrap_location"] .ui-widget-content {
       line-height: 26px;
       font-weight: bold;
       color: #259b29; }
+
+.list-step.style-1 li {
+  background-color: #003580; }
+  .list-step.style-1 li.active {
+    background-color: #259b29; }
+  .list-step.style-1 li a {
+    color: #fff; }
+  .list-step.style-1 li i {
+    margin-right: 5px; }
+
+.widget-reward-points table {
+  width: 100%;
+  margin-top: 25px;
+  margin-bottom: 40px; }
+.widget-reward-points td {
+  width: 50%;
+  font-size: 13px;
+  line-height: 14px;
+  color: #259b29;
+  font-weight: bold;
+  padding-bottom: 14px;
+  text-transform: uppercase; }
+  .widget-reward-points td i {
+    margin-right: 8px; }
+  .widget-reward-points td:first-child {
+    color: #181818;
+    text-transform: inherit; }
+.widget-reward-points p {
+  color: #181818;
+  margin-bottom: 17px; }
+
+.widget-ticket-history .widget-content {
+  padding-top: 15px;
+  padding-bottom: 40px; }
+.widget-ticket-history table {
+  margin-bottom: 0px; }
+.widget-ticket-history #form-ticket-history .form-group {
+  margin-bottom: 20px; }
+
+.registration-diff-acc span {
+  font-size: 13px;
+  color: #181818;
+  display: inline-block;
+  margin-bottom: 10px;
+  font-weight: bold; }
+.registration-diff-acc > a {
+  font-size: 13px;
+  color: #181818;
+  display: inline-block;
+  margin-top: 10px; }
+  .registration-diff-acc > a:hover {
+    color: #003580; }
+
+.back-login > a {
+  font-size: 13px;
+  color: #181818;
+  display: inline-block;
+  margin-bottom: 20px; }
+  .back-login > a:hover {
+    color: #003580; }
+
+.widget-info-customer .registration-diff-acc {
+  margin-bottom: 25px; }
+
+.widget-welcome-customer .widget-content {
+  padding: 0px; }
+  .widget-welcome-customer .widget-content img {
+    width: 100%; }
 
 @media only screen and (max-width: 1365px) {
   .bg-search {
@@ -2627,7 +2753,18 @@ div[class^="wrap_location"] .ui-widget-content {
     margin-right: 0px; }
 
   .wrap-pagination .pagination li.hide-on-mobile {
-    display: none; } }
+    display: none; }
+
+  .widget-ticket-history .label-submit {
+    display: none; }
+  .widget-ticket-history #form-ticket-history .button-submit {
+    margin-left: 0px; }
+  .widget-ticket-history .datetime-picker .datepicker {
+    width: 100%; }
+  .widget-ticket-history #form-ticket-history .form-group {
+    display: block; }
+  .widget-ticket-history .widget-content {
+    overflow-x: scroll; } }
 @media only screen and (max-width: 480px) {
   .header-rigth li {
     margin-left: 7px;

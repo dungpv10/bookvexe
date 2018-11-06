@@ -1,24 +1,32 @@
 /*
-Error: Undefined variable: "$color-border-11".
-        on line 2 of D:\xampp\htdocs\bookvexe\public\css\sass\info-customer.scss
+Error: Undefined variable: "$primary".
+        on line 3 of D:\xampp\htdocs\bookvexe\public\css\sass\customer.scss
 
-1: .widget-has-border {
-2: 	border: 1px solid $color-border-11;
-3: 	border-radius: 5px;
-4: 	position: relative;
-5: 	height: 100%;
-6: 	background-color: $white;
-7: 	overflow: hidden;
+1: .list-step.style-1 {
+2: 	li {
+3: 		background-color: $primary;
+4: 		&.active {
+5: 			background-color: $color-text-7;
+6: 		}
+7: 		a {
+8: 			color: $white;
 
 Backtrace:
-D:\xampp\htdocs\bookvexe\public\css\sass\info-customer.scss:2
+D:\xampp\htdocs\bookvexe\public\css\sass\customer.scss:3
 C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/script/tree/variable.rb:49:in `_perform'
 C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/script/tree/node.rb:50:in `perform'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/script/tree/list_literal.rb:75:in `block in _perform'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/script/tree/list_literal.rb:75:in `map'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/script/tree/list_literal.rb:75:in `_perform'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/script/tree/node.rb:50:in `perform'
 C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:402:in `visit_prop'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/base.rb:36:in `visit'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:162:in `block in visit'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:79:in `block in with_base'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:135:in `with_frame'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:79:in `with_base'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:162:in `visit'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:444:in `block (2 levels) in visit_rule'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:444:in `map'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:444:in `block in visit_rule'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:183:in `with_environment'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:442:in `visit_rule'
 C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/base.rb:36:in `visit'
 C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:162:in `block in visit'
 C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:79:in `block in with_base'
@@ -62,4 +70,4 @@ C:/Program Files (x86)/Koala/bin/sass:22:in `<main>'
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$color-border-11\".\A         on line 2 of D:\xampp\htdocs\bookvexe\public\css\sass\info-customer.scss\A \A 1: .widget-has-border {\A 2: 	border: 1px solid $color-border-11;\A 3: 	border-radius: 5px;\A 4: 	position: relative;\A 5: 	height: 100%;\A 6: 	background-color: $white;\A 7: 	overflow: hidden;"; }
+  content: "Error: Undefined variable: \"$primary\".\A         on line 3 of D:\xampp\htdocs\bookvexe\public\css\sass\customer.scss\A \A 1: .list-step.style-1 {\A 2: 	li {\A 3: 		background-color: $primary;\A 4: 		&.active {\A 5: 			background-color: $color-text-7;\A 6: 		}\A 7: 		a {\A 8: 			color: $white;"; }
