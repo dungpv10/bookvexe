@@ -31,6 +31,10 @@ class HomeController extends Controller
         return view('front-end.payment.choose-seat-floor');
     }
 
+    public function getRewardPoints() {
+        return view('front-end.customer.reward-points');
+    }
+
     public function getPersonalInformation() {
         return view('front-end.customer.personal-information');
     }
