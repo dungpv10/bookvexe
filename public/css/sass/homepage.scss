@@ -97,6 +97,9 @@
 		width: 100%;
 		background-color: $color-bg-button;
 		padding: 7px 5px;
+		&:hover {
+			background-color: $primary;
+		}
 	}
 	.action {
 		margin-top: 25px;
@@ -178,6 +181,7 @@
 	.rate-footer {
 		span {
 			font-style: italic;
+			color: $color-content;
 		}
 	}
 }
@@ -355,14 +359,14 @@
 		top: 4px;
 	}
 	.star {
-		background-color: unset;
+		background-color: inherit;
 		height: auto;
 		width: auto;
 		font-size: 18px;
 	}
 	.star.rate {
 		color: $color-text;
-		background-color: unset;
+		background-color: inherit;
 	}
 	.percent {
 		height: 37px;

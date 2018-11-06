@@ -36,8 +36,8 @@
     <link href="{{ asset('vendors/select2/select2.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('vendors/select2/select2-bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
-    <link rel="stylesheet" href="{{ asset('css/css/style.css') }}">
     @yield('css')
+    <link rel="stylesheet" href="{{ asset('css/css/style.css') }}">
 </head>
 <body>
 
@@ -49,6 +49,7 @@
 
 <!-- start footer Area -->
 @include('front-end.layouts.includes.footer')
+<div class="bg-tab-show-mobile"></div>
 <!-- End footer Area -->
 <script src="{{asset('js/jquery-1.11.3.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/bootstrap.min.js')}}" type="text/javascript"></script>
@@ -62,8 +63,8 @@
 <script src="{{ asset('js/jquery.matchHeigth.js') }}"></script>
 <script src="//cdn.jsdelivr.net/npm/jquery.marquee@1.5.0/jquery.marquee.min.js" type="text/javascript"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
-<script src="{{ asset('js/custom.js') }}"></script>
 @yield("js")
+<script src="{{ asset('js/custom.js') }}"></script>
 </body>
 </html>
 

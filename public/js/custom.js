@@ -25,8 +25,8 @@ $( document ).ready(function($) {
             }
         });
     };
-    if (jQuery('.owl-carousel').length > 0) {
-        jQuery('.owl-carousel').owlCarousel({
+    if (jQuery('.widget-promotion .owl-carousel').length > 0) {
+        jQuery('.widget-promotion .owl-carousel').owlCarousel({
     	    nav:false,
     	    items:3,
     	    margin: 30,
@@ -48,6 +48,50 @@ $( document ).ready(function($) {
                 }
     	    }
     	});
+    }
+    if (jQuery('.widget-rate .owl-carousel').length > 0) {
+        jQuery('.widget-rate .owl-carousel').owlCarousel({
+            nav:false,
+            items:4,
+            margin: 30,
+            dots: false,
+            responsive:{
+                320: {
+                    items: 1,
+                    dots : false,
+                },
+                480:{
+                    items:2,
+                    dots : false,
+                },
+                600:{
+                    items:2,
+                },
+                992: {
+                    item: 3,
+                }
+            }
+        });
+    }
+    if (jQuery('.galery-bus-tab .owl-carousel').length > 0) {
+        jQuery('.galery-bus-tab .owl-carousel').owlCarousel({
+            items:3,
+            margin: 10,
+            responsive:{
+                320: {
+                    items: 1,
+                },
+                480:{
+                    items:2,
+                },
+                600:{
+                    items:2,
+                },
+                992: {
+                    item: 3,
+                }
+            }
+        });
     }
     if (jQuery('#start_point').length > 0) {
         $( "#start_point" ).autocomplete({
@@ -77,6 +121,10 @@ $( document ).ready(function($) {
         $('#number_customer').select2({
         });
     }
+    if (jQuery('#choose_start_time').length > 0) {
+        $('#choose_start_time').select2({
+        });
+    }
     if (jQuery('.timepicker input').length > 0) {
         $(".timepicker input").timepicker({
         	showMeridian: false,
@@ -92,6 +140,9 @@ $( document ).ready(function($) {
     if (jQuery('.match_height>div').length > 0) {
         $('.match_height>div').matchHeight();
     }
+    if (jQuery('.match_height_as').length > 0) {
+        $('.match_height_as>div').matchHeight();
+    }
     if (jQuery('.selectpicker').length > 0) {
         $('.selectpicker').selectpicker();
     }
@@ -104,4 +155,61 @@ $( document ).ready(function($) {
             jQuery('.header-rigth').addClass('active');
         }
     });
+    jQuery('.close-notice').on('click', function() {
+        jQuery(this).closest('.notice-success').css('display', 'none');
+    });
+    jQuery('.button-time').on('click', function() {
+        var type_bus = jQuery(this).attr('data-type');
+        var time_bus = jQuery(this).attr('data-time');
+        jQuery('.button-time').each(function() {
+            jQuery(this).removeClass('active');
+        });
+        jQuery(this).addClass('active');
+        jQuery('#type-bus').val(type_bus);
+        jQuery('#time-bus').val(time_bus);
+    });
+    jQuery(document).on('click', '.rating span', function () {
+        var rateNumber = jQuery(this).attr('data-value');
+        var parent = jQuery(this).closest('.comment-form-rating');
+        parent.find('.rating-number').val(rateNumber);
+        parent.find('.rating span').removeClass('active');
+        parent.find('.rating span').each(function (index) {
+            if (jQuery(this).attr('data-value') <= rateNumber) {
+                jQuery(this).addClass('active');
+            }
+        });
+    });
+    jQuery(document).on('click', '.show-hidden', function() {
+        var widget = jQuery(this).closest('.widget-filter');
+        var content = jQuery(this).closest('.widget-filter').find('.widget-content');
+        if (content.hasClass('active')) {
+            content.removeClass('active');
+            widget.removeClass('active');
+            jQuery(this).removeClass('active');
+        } else {
+            content.addClass('active');
+            widget.addClass('active');
+            jQuery(this).addClass('active');
+        }
+    });
+    if (jQuery('.widget-payment-custom-info-bus').length > 0) {
+        jQuery('.select2-results__option').css('font-size', '13px');
+    }
+    jQuery('.close-tab').on('click', function() {
+        jQuery('.tab-pane').removeClass('active');
+        jQuery('.nav-tabs li').removeClass('active');
+        jQuery('body').removeClass('active-tab');
+    });
+    jQuery('.modal-header .close').on('click', function() {
+        jQuery('.tab-pane').removeClass('active');
+        jQuery('.nav-tabs li').removeClass('active');
+        jQuery('body').removeClass('active-tab');
+    });
+    jQuery('.nav-tabs li').on('click', function(){
+        jQuery('body').addClass('active-tab');
+    });
 });
+function showCustomerComment (element) {
+    //TO DO update id for form modal
+    $("#customer-comment").modal();
+}

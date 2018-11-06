@@ -23,6 +23,18 @@ Route::group([
     'namespace' => 'FrontEnd'
 ], function () {
     Route::get('/', 'HomeController@home');
+    Route::get('/list-bus', 'HomeController@getListBus');
+    Route::get('/choose-seat', 'HomeController@getChooseSeat');
+    Route::get('/choose-seat-floor', 'HomeController@getChooseSeatFloor');
+    Route::get('/info-customer', 'HomeController@getInfoCustomer');
+    Route::get('/payment-method', 'HomeController@getPaymentMethod');
+    Route::get('/reward-points', 'HomeController@getRewardPoints');
+    Route::get('/personal-information', 'HomeController@getPersonalInformation');
+    Route::get('/change-password', 'HomeController@getChangePassword');
+    Route::get('/ticket-history', 'HomeController@getTicketHistory');
+    Route::get('/registration', 'HomeController@getRegistration');
+    Route::get('/customer-login', 'HomeController@getCustomerlogin');
+    Route::get('/forgot-password', 'HomeController@getForgotPassword');
 });
 
 

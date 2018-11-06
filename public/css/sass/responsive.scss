@@ -40,6 +40,21 @@
 			margin-top: 0px;
 		}
 	}
+	.filter-type-best a {
+		padding: 5px 35px;
+	}
+	#customer-comment .modal-dialog {
+		width: 90%;
+	}
+	.widget-payment-custom-info-bus .button-submit {
+		padding: 9px 14px;
+		&.button-back {
+			padding: 8px 14px;
+		}
+	}
+	.widget-payment-info-draw .wrap-start-end-bus .start-end > span {
+		margin-left: 5px;
+	}
 }
 @media only screen and (max-width: 991px) {
 	.wrap-commitment .title {
@@ -173,12 +188,109 @@
 			}
 		}
 	}
+	.footer-menu.style-3 {
+		li {
+			&:first-child {
+				padding-left: 12px;
+				&:before {
+					height: 5px;
+					width: 5px;
+				}
+			}
+		}
+	}
+	.side-bar .widget-search .widget-content {
+		padding-bottom: 25px;
+	}
+	.side-bar .widget:last-child {
+		margin-bottom: 15px;
+	}
+	.widget-filter .widget-content {
+		padding-bottom: 0px;
+	}
+	.widget-filter .widget-title .show-hidden {
+		display: inline-block;
+		&:before {
+			content: "\f077";
+			font-size: 16px;
+			color: $white;
+			font-family: FontAwesome;
+		}
+		&.active {
+			&:before {
+				content: "\f078";
+			}
+		}
+	}
+	.widget-filter {
+		.widget-title {
+			margin-bottom: 0px;
+			.title {
+				margin-bottom: 0px;
+			}
+		}
+		&.active {
+			.widget-title {
+				margin-bottom: 18px;
+				.title {
+					margin-bottom: 10px;
+				}
+			}
+		}
+		.widget-content {
+			display: none;
+			&.active {
+				display: block;
+			}
+		}
+	}
+	.section-page-payment-bus {
+		padding-bottom: 20px;
+		.widget-info-customer {
+			margin-bottom: 20px;
+		}
+	}
+	.section-page-payment-method-bus {
+		.widget-info-ticket {
+			margin-bottom: 15px;
+		}
+	}
 }
 @media only screen and (max-width: 767px){
 	.header {
 		.header-left, .header-rigth {
-			text-align: center;
+			//text-align: center;
 		}
+	}
+	.filter-type-best a {
+		padding: 5px 25px;
+	}
+	.entry-item-bus .entry-thumb {
+		float: none;
+		margin-right: 0px;
+		width: 100%;
+		margin-bottom: 20px;
+	}
+	.nav-tabs li {
+		margin-right: 13px;
+	}
+	.nav-tabs {
+		text-align: left;
+		margin-left: -5px;
+	}
+	.entry-item-bus .content-footer .button-submit {
+		margin-left: 5px;
+		margin-top: 20px;
+	}
+	.wrap-pagination .pagination .page-item.prev-page {
+		margin-right: 5px;
+	}
+	.wrap-pagination .pagination .page-item.next-page {
+		margin-left: -5px;
+	}
+	.list-step li {
+		width: 50%;
+		margin-top: 5px;
 	}
 }
 @media only screen and (max-width: 630px) {
@@ -257,6 +369,30 @@
 	.bg-search .button-submit {
 		margin-bottom: 10px;
 	}
+	.widget-list-bus.style-1 {
+		.nav-tabs {
+			margin-left: 0px;
+		}
+	}
+	.widget-list-bus.style-1 .content-header .rate-item {
+		float: none;
+	}
+	.widget-list-bus.style-1 .nav-tabs li {
+		margin-right: 15px;
+		&:last-child {
+			margin-right: 0px;
+		} 
+	}
+	#seat-map .front-indicator {
+		padding-top: 15px;
+    	padding-bottom: 15px;
+	}
+	#seat-map .control-seat {
+		padding-bottom: 15px;
+	}
+	.seat-map-note > div {
+		padding-left: 13px;
+	}
 }
 @media only screen and (max-width: 550px) {
 	.widget-popular {
@@ -271,10 +407,211 @@
 		}
 	}
 	.widget-garapopulor .entry-item {
-		margin-bottom: 0px;
+		margin-bottom: 15px;
 	}
 	.section-garapopulor {
 		padding-bottom: 20px;
+	}
+	.notice-success .show-notice {
+		float: none;
+		top: 0px;
+		margin-top: 10px;
+	}
+	.entry-item-bus .content-header .right {
+		float: right;
+		margin-top: 6px;
+	}
+	.entry-item-bus .content-header .customer-rate .text {
+		display: none;
+	}
+	.entry-item-bus .content-header .left .rate-item {
+		display: none;
+	}
+	.entry-item-bus .content-footer .button-submit {
+		display: block;
+	}
+	.nav-tabs li a {
+		border-bottom: 0px;
+		padding-bottom: 5px;
+	}
+	.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+		border-bottom: 0px;
+		padding-bottom: 5px;
+		color: $bg-percent;
+	}
+	.entry-item-bus .content-footer .button-submit {
+		margin-top: 5px;
+	}
+	.timestart-tab .time-list {
+		padding-left: 0px;
+		padding-right: 0px;
+	}
+	.wrap-pagination {
+		padding-right: 10px;
+		padding-left: 10px;
+	}
+	.wrap-pagination .detail-pagination {
+		margin-left: 12px;
+		line-height: 20px;
+	}
+	.widget-booking-details.widget-seat-floor {
+		.nav-tabs {
+			margin-left: 0px;
+		}
+		.nav-tabs > li.active > a {
+			padding-bottom: 10px;
+			color: $primary;
+		}
+	}
+	.widget-booking-details.widget-seat-floor .front-indicator {
+		padding-bottom: 25px;
+	}
+	#seat-map-2-floor {
+		margin-top: 30px;
+		.control-seat {
+			display: none;
+		}
+		.front-indicator-floor {
+			margin-bottom: 10px;
+		}
+	}
+	.widget-booking-details.widget-seat-floor .seat-map-note > div:first-child {
+		padding-left: 15px;
+	}
+	.hide-des-show-mobile {
+		display: inline-block;
+	}
+	.entry-item-bus .content-header .customer-rate .number {
+		float: none;
+		display: block;
+		text-align: center;
+		height: auto;
+		width: auto;
+		background-color: inherit;
+		top: 0;
+		span {
+			color: $color-bg-button;
+			line-height: 19px;
+		}
+	}
+	.entry-item-bus .content-header .customer-rate {
+		text-align: center;
+		margin-left: 5px;
+	}
+	.entry-item-bus .content-header .right {
+		.star.rate {
+			background-color: inherit;
+			color: $color-bg-button;
+			font-size: 11px;
+			height: 11px;
+			width: 11px;
+			letter-spacing: 0.5px;
+			line-height: 11px;
+		}
+	}
+	.entry-item-bus .content-middle .position span {
+		display: none;
+	}
+	.nav-tabs {
+		float: left;
+	}
+	.entry-item-bus >.entry-thumb {
+		float: left;
+		max-width: 90px;
+		margin-right: 10px;
+	}
+	.entry-item-bus .content-header .right {
+		margin-top: 0px;
+	}
+	.entry-item-bus .entry-title {
+		font-size: 13px;
+		line-height: 15px;
+	}
+	.entry-item-bus .content-header .customer-rate .number span {
+		font-size: 16px;
+		line-height: 16px;
+	}
+	.entry-item-bus .content-header .customer-rate .wrap-star {
+		position: relative;
+		top: -5px;
+	}
+	.entry-item-bus .content-header {
+		margin-bottom: 5px;
+	}
+	.entry-item-bus .content-middle .wrap-detail-price ul li {
+		font-size: 12px;
+		line-height: 14px;
+		padding-left: 8px;
+		&:after {
+			height: 5px;
+			width: 5px;
+			top: 6px;
+		}
+	}
+	.entry-item-bus .content-middle .wrap-detail-price .price {
+		font-size: 15px;
+		line-height: 22px;
+	}
+	.tab-content>.tab-pane {
+		position: relative;
+	}
+	.bus-nav-tab .tab-pane > div {
+		position: absolute;
+		top: -100px;
+		left: 16px;
+		width: 100%;
+		background-color: $color-bg-tab;
+		z-index: 9999;
+	}
+	.tab-content .close-tab {
+		display: block;
+		top: 5px;
+		right: 10px;
+		color: red;
+		font-size: 15px;
+		position: absolute;
+	}
+	.active-tab {
+		position: relative;
+		>.bg-tab-show-mobile {
+			position: absolute;
+			height: 100%;
+			width: 100%;
+			background-color: $black;
+			opacity: 0.3;
+			top: 0px;
+		}
+	}
+	.bus-nav-tab .tab-pane > div {
+		border-top-right-radius: 6px;
+		border-top-left-radius: 6px;
+	}
+	.pagination>li>a, .pagination>li>span {
+		padding: 1px 5px;
+	}
+	.wrap-pagination .pagination .page-item.prev-page {
+		margin-left: 0px;
+		margin-right: 0px;
+	}
+	.wrap-pagination .pagination li.hide-on-mobile {
+		display: none;
+	}
+	.widget-ticket-history {
+		.label-submit {
+			display: none;
+		}
+		#form-ticket-history .button-submit {
+			margin-left: 0px;
+		}
+		.datetime-picker .datepicker {
+			width: 100%;
+		}
+		#form-ticket-history .form-group {
+			display: block;
+		}
+		.widget-content {
+			overflow-x:scroll;
+		}
 	}
 }
 @media only screen and (max-width: 480px) {
@@ -308,6 +645,20 @@
 	.widget-promotion .owl-nav {
 		top: 30%;
 	}
+	.entry-item.style-3 .entry-title h3 {
+		margin-bottom: 5px;
+	}
+	.entry-item-bus .content-middle .wrap-position-time i.fa {
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+	.entry-item-bus .content-middle .wrap-detail-price .price {
+		font-size: 15px;
+		line-height: 22px;	
+	}
+	.nav-tabs li {
+		margin-right: 0px;
+	}
 }
 @media only screen and (max-width: 360px) {
 	.entry-item.style-3 .entry-content-bottom li {
@@ -321,5 +672,35 @@
 	}
 	.entry-item.style-3 .entry-content-bottom .entry-content {
 		padding-top: 0px;
+	}
+	.filter-type-best a {
+		padding: 5px 20px;
+	}
+	.entry-item-bus .entry-title {
+		font-size: 16px;
+		line-height: 18px;
+	}
+	.entry-item-bus .content-middle .wrap-position-time i.fa {
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+	.entry-item-bus .content-middle .wrap-detail-price .price {
+		display: block;
+	}
+	#customer-comment .modal-content {
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+	.list-step li {
+		padding-right: 0px;
+		padding-left: 0px;
+	}
+	.entry-item-bus > .entry-thumb {
+		width: 100%;
+		max-width: inherit;
+		margin-right: 0px;
+	}
+	.entry-item-bus .content-header {
+		overflow: inherit;
 	}
 }
