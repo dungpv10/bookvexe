@@ -349,30 +349,36 @@
                                         			<h3>Chọn giờ khởi hành khác của Xe Futas Bus Phương Trang</h3>
                                         			<div class="time-list">
                                         				<span>Giường nằm</span>
-														<button type="button" class="button button-time" data-type="bed" data-time="07:00">07:00</button>
-														<button type="button" class="button button-time" data-type="bed" data-time="08:00">08:00</button>
-														<button type="button" class="button button-time" data-type="bed" data-time="09:00">09:00</button>
-														<button type="button" class="button button-time" data-type="bed" data-time="10:00">10:00</button>
-														<button type="button" class="button button-time" data-type="bed" data-time="11:00">11:00</button>
-														<button type="button" class="button button-time" data-type="bed" data-time="12:00">12:00</button>
+                                        				<div class="wrap">
+															<button type="button" class="button button-time" data-type="bed" data-time="07:00">07:00</button>
+															<button type="button" class="button button-time" data-type="bed" data-time="08:00">08:00</button>
+															<button type="button" class="button button-time" data-type="bed" data-time="09:00">09:00</button>
+															<button type="button" class="button button-time" data-type="bed" data-time="10:00">10:00</button>
+															<button type="button" class="button button-time" data-type="bed" data-time="11:00">11:00</button>
+															<button type="button" class="button button-time" data-type="bed" data-time="12:00">12:00</button>
+														</div>
                                         			</div>
                                         			<div class="time-list">
                                         				<span>Ghế ngả</span>
-														<button type="button" class="button button-time" data-type="seat" data-time="07:00">07:00</button>
-														<button type="button" class="button button-time" data-type="seat" data-time="08:00">08:00</button>
-														<button type="button" class="button button-time" data-type="seat" data-time="09:00">09:00</button>
-														<button type="button" class="button button-time" data-type="seat" data-time="10:00">10:00</button>
-														<button type="button" class="button button-time" data-type="seat" data-time="11:00">11:00</button>
-														<button type="button" class="button button-time" data-type="seat" data-time="12:00">12:00</button>
+                                        				<div class="wrap">
+															<button type="button" class="button button-time" data-type="seat" data-time="07:00">07:00</button>
+															<button type="button" class="button button-time" data-type="seat" data-time="08:00">08:00</button>
+															<button type="button" class="button button-time" data-type="seat" data-time="09:00">09:00</button>
+															<button type="button" class="button button-time" data-type="seat" data-time="10:00">10:00</button>
+															<button type="button" class="button button-time" data-type="seat" data-time="11:00">11:00</button>
+															<button type="button" class="button button-time" data-type="seat" data-time="12:00">12:00</button>
+														</div>
                                         			</div>
                                         			<div class="time-list">
                                         				<span>Ghế ngả VIP</span>
-														<button type="button" class="button button-time" data-type="seat-vip" data-time="07:00">07:00</button>
-														<button type="button" class="button button-time" data-type="seat-vip" data-time="08:00">08:00</button>
-														<button type="button" class="button button-time" data-type="seat-vip" data-time="09:00">09:00</button>
-														<button type="button" class="button button-time" data-type="seat-vip" data-time="10:00">10:00</button>
-														<button type="button" class="button button-time" data-type="seat-vip" data-time="11:00">11:00</button>
-														<button type="button" class="button button-time" data-type="seat-vip" data-time="12:00">12:00</button>
+                                        				<div class="wrap">
+															<button type="button" class="button button-time" data-type="seat-vip" data-time="07:00">07:00</button>
+															<button type="button" class="button button-time" data-type="seat-vip" data-time="08:00">08:00</button>
+															<button type="button" class="button button-time" data-type="seat-vip" data-time="09:00">09:00</button>
+															<button type="button" class="button button-time" data-type="seat-vip" data-time="10:00">10:00</button>
+															<button type="button" class="button button-time" data-type="seat-vip" data-time="11:00">11:00</button>
+															<button type="button" class="button button-time" data-type="seat-vip" data-time="12:00">12:00</button>
+														</div>
                                         			</div>
                                         			<input type="hidden" id="type-bus" class="type-bus" name="type-bus" value="">
                                         			<input type="hidden" id="time-bus" class="time-bus" name="time-bus" value="">
@@ -562,30 +568,36 @@
                                         			<h3>Chọn giờ khởi hành khác của Xe Futas Bus Phương Trang</h3>
                                         			<div class="time-list">
                                         				<span>Giường nằm</span>
-														<button type="button" class="button button-time" data-type="bed" data-time="07:00">07:00</button>
-														<button type="button" class="button button-time" data-type="bed" data-time="08:00">08:00</button>
-														<button type="button" class="button button-time" data-type="bed" data-time="09:00">09:00</button>
-														<button type="button" class="button button-time" data-type="bed" data-time="10:00">10:00</button>
-														<button type="button" class="button button-time" data-type="bed" data-time="11:00">11:00</button>
-														<button type="button" class="button button-time" data-type="bed" data-time="12:00">12:00</button>
+                                        				<div class="wrap">
+															<button type="button" class="button button-time" data-type="bed" data-time="07:00">07:00</button>
+															<button type="button" class="button button-time" data-type="bed" data-time="08:00">08:00</button>
+															<button type="button" class="button button-time" data-type="bed" data-time="09:00">09:00</button>
+															<button type="button" class="button button-time" data-type="bed" data-time="10:00">10:00</button>
+															<button type="button" class="button button-time" data-type="bed" data-time="11:00">11:00</button>
+															<button type="button" class="button button-time" data-type="bed" data-time="12:00">12:00</button>
+														</div>
                                         			</div>
                                         			<div class="time-list">
                                         				<span>Ghế ngả</span>
-														<button type="button" class="button button-time" data-type="seat" data-time="07:00">07:00</button>
-														<button type="button" class="button button-time" data-type="seat" data-time="08:00">08:00</button>
-														<button type="button" class="button button-time" data-type="seat" data-time="09:00">09:00</button>
-														<button type="button" class="button button-time" data-type="seat" data-time="10:00">10:00</button>
-														<button type="button" class="button button-time" data-type="seat" data-time="11:00">11:00</button>
-														<button type="button" class="button button-time" data-type="seat" data-time="12:00">12:00</button>
+                                        				<div class="wrap">
+															<button type="button" class="button button-time" data-type="seat" data-time="07:00">07:00</button>
+															<button type="button" class="button button-time" data-type="seat" data-time="08:00">08:00</button>
+															<button type="button" class="button button-time" data-type="seat" data-time="09:00">09:00</button>
+															<button type="button" class="button button-time" data-type="seat" data-time="10:00">10:00</button>
+															<button type="button" class="button button-time" data-type="seat" data-time="11:00">11:00</button>
+															<button type="button" class="button button-time" data-type="seat" data-time="12:00">12:00</button>
+														</div>
                                         			</div>
                                         			<div class="time-list">
                                         				<span>Ghế ngả VIP</span>
-														<button type="button" class="button button-time" data-type="seat-vip" data-time="07:00">07:00</button>
-														<button type="button" class="button button-time" data-type="seat-vip" data-time="08:00">08:00</button>
-														<button type="button" class="button button-time" data-type="seat-vip" data-time="09:00">09:00</button>
-														<button type="button" class="button button-time" data-type="seat-vip" data-time="10:00">10:00</button>
-														<button type="button" class="button button-time" data-type="seat-vip" data-time="11:00">11:00</button>
-														<button type="button" class="button button-time" data-type="seat-vip" data-time="12:00">12:00</button>
+                                        				<div class="wrap">
+															<button type="button" class="button button-time" data-type="seat-vip" data-time="07:00">07:00</button>
+															<button type="button" class="button button-time" data-type="seat-vip" data-time="08:00">08:00</button>
+															<button type="button" class="button button-time" data-type="seat-vip" data-time="09:00">09:00</button>
+															<button type="button" class="button button-time" data-type="seat-vip" data-time="10:00">10:00</button>
+															<button type="button" class="button button-time" data-type="seat-vip" data-time="11:00">11:00</button>
+															<button type="button" class="button button-time" data-type="seat-vip" data-time="12:00">12:00</button>
+														</div>
                                         			</div>
                                         			<input type="hidden" id="type-bus" class="type-bus" name="type-bus" value="">
                                         			<input type="hidden" id="time-bus" class="time-bus" name="time-bus" value="">
@@ -775,30 +787,36 @@
                                         			<h3>Chọn giờ khởi hành khác của Xe Futas Bus Phương Trang</h3>
                                         			<div class="time-list">
                                         				<span>Giường nằm</span>
-														<button type="button" class="button button-time" data-type="bed" data-time="07:00">07:00</button>
-														<button type="button" class="button button-time" data-type="bed" data-time="08:00">08:00</button>
-														<button type="button" class="button button-time" data-type="bed" data-time="09:00">09:00</button>
-														<button type="button" class="button button-time" data-type="bed" data-time="10:00">10:00</button>
-														<button type="button" class="button button-time" data-type="bed" data-time="11:00">11:00</button>
-														<button type="button" class="button button-time" data-type="bed" data-time="12:00">12:00</button>
+                                        				<div class="wrap">
+															<button type="button" class="button button-time" data-type="bed" data-time="07:00">07:00</button>
+															<button type="button" class="button button-time" data-type="bed" data-time="08:00">08:00</button>
+															<button type="button" class="button button-time" data-type="bed" data-time="09:00">09:00</button>
+															<button type="button" class="button button-time" data-type="bed" data-time="10:00">10:00</button>
+															<button type="button" class="button button-time" data-type="bed" data-time="11:00">11:00</button>
+															<button type="button" class="button button-time" data-type="bed" data-time="12:00">12:00</button>
+														</div>
                                         			</div>
                                         			<div class="time-list">
                                         				<span>Ghế ngả</span>
-														<button type="button" class="button button-time" data-type="seat" data-time="07:00">07:00</button>
-														<button type="button" class="button button-time" data-type="seat" data-time="08:00">08:00</button>
-														<button type="button" class="button button-time" data-type="seat" data-time="09:00">09:00</button>
-														<button type="button" class="button button-time" data-type="seat" data-time="10:00">10:00</button>
-														<button type="button" class="button button-time" data-type="seat" data-time="11:00">11:00</button>
-														<button type="button" class="button button-time" data-type="seat" data-time="12:00">12:00</button>
+                                        				<div class="wrap">
+															<button type="button" class="button button-time" data-type="seat" data-time="07:00">07:00</button>
+															<button type="button" class="button button-time" data-type="seat" data-time="08:00">08:00</button>
+															<button type="button" class="button button-time" data-type="seat" data-time="09:00">09:00</button>
+															<button type="button" class="button button-time" data-type="seat" data-time="10:00">10:00</button>
+															<button type="button" class="button button-time" data-type="seat" data-time="11:00">11:00</button>
+															<button type="button" class="button button-time" data-type="seat" data-time="12:00">12:00</button>
+														</div>
                                         			</div>
                                         			<div class="time-list">
                                         				<span>Ghế ngả VIP</span>
-														<button type="button" class="button button-time" data-type="seat-vip" data-time="07:00">07:00</button>
-														<button type="button" class="button button-time" data-type="seat-vip" data-time="08:00">08:00</button>
-														<button type="button" class="button button-time" data-type="seat-vip" data-time="09:00">09:00</button>
-														<button type="button" class="button button-time" data-type="seat-vip" data-time="10:00">10:00</button>
-														<button type="button" class="button button-time" data-type="seat-vip" data-time="11:00">11:00</button>
-														<button type="button" class="button button-time" data-type="seat-vip" data-time="12:00">12:00</button>
+                                        				<div class="wrap">
+															<button type="button" class="button button-time" data-type="seat-vip" data-time="07:00">07:00</button>
+															<button type="button" class="button button-time" data-type="seat-vip" data-time="08:00">08:00</button>
+															<button type="button" class="button button-time" data-type="seat-vip" data-time="09:00">09:00</button>
+															<button type="button" class="button button-time" data-type="seat-vip" data-time="10:00">10:00</button>
+															<button type="button" class="button button-time" data-type="seat-vip" data-time="11:00">11:00</button>
+															<button type="button" class="button button-time" data-type="seat-vip" data-time="12:00">12:00</button>
+														</div>
                                         			</div>
                                         			<input type="hidden" id="type-bus" class="type-bus" name="type-bus" value="">
                                         			<input type="hidden" id="time-bus" class="time-bus" name="time-bus" value="">
@@ -988,30 +1006,36 @@
                                         			<h3>Chọn giờ khởi hành khác của Xe Futas Bus Phương Trang</h3>
                                         			<div class="time-list">
                                         				<span>Giường nằm</span>
-														<button type="button" class="button button-time" data-type="bed" data-time="07:00">07:00</button>
-														<button type="button" class="button button-time" data-type="bed" data-time="08:00">08:00</button>
-														<button type="button" class="button button-time" data-type="bed" data-time="09:00">09:00</button>
-														<button type="button" class="button button-time" data-type="bed" data-time="10:00">10:00</button>
-														<button type="button" class="button button-time" data-type="bed" data-time="11:00">11:00</button>
-														<button type="button" class="button button-time" data-type="bed" data-time="12:00">12:00</button>
+                                        				<div class="wrap">
+															<button type="button" class="button button-time" data-type="bed" data-time="07:00">07:00</button>
+															<button type="button" class="button button-time" data-type="bed" data-time="08:00">08:00</button>
+															<button type="button" class="button button-time" data-type="bed" data-time="09:00">09:00</button>
+															<button type="button" class="button button-time" data-type="bed" data-time="10:00">10:00</button>
+															<button type="button" class="button button-time" data-type="bed" data-time="11:00">11:00</button>
+															<button type="button" class="button button-time" data-type="bed" data-time="12:00">12:00</button>
+														</div>
                                         			</div>
                                         			<div class="time-list">
                                         				<span>Ghế ngả</span>
-														<button type="button" class="button button-time" data-type="seat" data-time="07:00">07:00</button>
-														<button type="button" class="button button-time" data-type="seat" data-time="08:00">08:00</button>
-														<button type="button" class="button button-time" data-type="seat" data-time="09:00">09:00</button>
-														<button type="button" class="button button-time" data-type="seat" data-time="10:00">10:00</button>
-														<button type="button" class="button button-time" data-type="seat" data-time="11:00">11:00</button>
-														<button type="button" class="button button-time" data-type="seat" data-time="12:00">12:00</button>
+                                        				<div class="wrap">
+															<button type="button" class="button button-time" data-type="seat" data-time="07:00">07:00</button>
+															<button type="button" class="button button-time" data-type="seat" data-time="08:00">08:00</button>
+															<button type="button" class="button button-time" data-type="seat" data-time="09:00">09:00</button>
+															<button type="button" class="button button-time" data-type="seat" data-time="10:00">10:00</button>
+															<button type="button" class="button button-time" data-type="seat" data-time="11:00">11:00</button>
+															<button type="button" class="button button-time" data-type="seat" data-time="12:00">12:00</button>
+														</div>
                                         			</div>
                                         			<div class="time-list">
                                         				<span>Ghế ngả VIP</span>
-														<button type="button" class="button button-time" data-type="seat-vip" data-time="07:00">07:00</button>
-														<button type="button" class="button button-time" data-type="seat-vip" data-time="08:00">08:00</button>
-														<button type="button" class="button button-time" data-type="seat-vip" data-time="09:00">09:00</button>
-														<button type="button" class="button button-time" data-type="seat-vip" data-time="10:00">10:00</button>
-														<button type="button" class="button button-time" data-type="seat-vip" data-time="11:00">11:00</button>
-														<button type="button" class="button button-time" data-type="seat-vip" data-time="12:00">12:00</button>
+                                        				<div class="wrap">
+															<button type="button" class="button button-time" data-type="seat-vip" data-time="07:00">07:00</button>
+															<button type="button" class="button button-time" data-type="seat-vip" data-time="08:00">08:00</button>
+															<button type="button" class="button button-time" data-type="seat-vip" data-time="09:00">09:00</button>
+															<button type="button" class="button button-time" data-type="seat-vip" data-time="10:00">10:00</button>
+															<button type="button" class="button button-time" data-type="seat-vip" data-time="11:00">11:00</button>
+															<button type="button" class="button button-time" data-type="seat-vip" data-time="12:00">12:00</button>
+														</div>
                                         			</div>
                                         			<input type="hidden" id="type-bus" class="type-bus" name="type-bus" value="">
                                         			<input type="hidden" id="time-bus" class="time-bus" name="time-bus" value="">

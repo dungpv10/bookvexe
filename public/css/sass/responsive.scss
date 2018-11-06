@@ -596,6 +596,23 @@
 	.wrap-pagination .pagination li.hide-on-mobile {
 		display: none;
 	}
+	.widget-ticket-history {
+		.label-submit {
+			display: none;
+		}
+		#form-ticket-history .button-submit {
+			margin-left: 0px;
+		}
+		.datetime-picker .datepicker {
+			width: 100%;
+		}
+		#form-ticket-history .form-group {
+			display: block;
+		}
+		.widget-content {
+			overflow-x:scroll;
+		}
+	}
 }
 @media only screen and (max-width: 480px) {
 	.header-rigth li {
