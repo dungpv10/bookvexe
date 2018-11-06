@@ -6,7 +6,7 @@
 			<div class="col-lg-6 col-md-6">
 				<div class="widget widget-info-customer widget-has-border">
 					<div class="widget-title style-1">
-						<h3 class="title">Đăng ký</h3>
+						<h3 class="title">Đăng Nhập</h3>
 					</div>
 					<div class="widget-content">
 						<form method="post" action="#" id="form-customer-info" enctype="multipart/form-data">
