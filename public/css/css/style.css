@@ -2038,7 +2038,8 @@ table.style-1 tbody tr {
   border-radius: 5px;
   position: relative;
   height: 100%;
-  background-color: #fff; }
+  background-color: #fff;
+  overflow: hidden; }
   .widget-has-border .widget-content {
     padding-left: 25px;
     padding-right: 25px;
