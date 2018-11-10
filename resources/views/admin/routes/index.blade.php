@@ -1,51 +1,67 @@
-@extends('admin.layouts.dashboard')
+@extends('admin.layouts.master_layout')
 
 @section('content')
-
-    <div class="row">
-        <div class="col-md-3">
-            <div class="form-group">
-                <select class="form-control" id="bus_id">
-                    <option value="">Chọn xe</option>
-                    @foreach($buses as $bus)
-                        <option value="{{ $bus->id }}">{{ $bus->bus_name }}</option>
-                    @endforeach
-                </select>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="form-group">
-                <select class="form-control" id="route_id">
-                    <option value="">Chọn Tuyến</option>
-                    @foreach($routes as $route)
-                        <option value="{{ $route->id }}">{{ $route->route_name }}</option>
-                    @endforeach
-                </select>
+    
+    <div class="breadcomb-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="breadcomb-list">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <select class="selectpicker" id="bus_id">
+                                        <option value="">Chọn xe</option>
+                                        @foreach($buses as $bus)
+                                            <option value="{{ $bus->id }}">{{ $bus->bus_name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <select class="selectpicker" id="route_id">
+                                        <option value="">Chọn Tuyến</option>
+                                        @foreach($routes as $route)
+                                            <option value="{{ $route->id }}">{{ $route->route_name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            @if(Gate::allows('admin'))
+                                <button type="button" class="btn btn-primary" id="createRouteBtn">
+                                    <i class="fa fa-plus-circle" aria-hidden="true"></i>Thêm mới
+                                </button>
+                            @endif
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="box">
-                <div class="box-header with-border margin-bottom-10">
-                    <h3 class="box-title">Danh sách Tuyến</h3>
-                    @if(Gate::allows('admin'))
-                        <button type="button" class="btn btn-primary" id="createRouteBtn">
-                            <i class="fa fa-plus-circle" aria-hidden="true"></i>Thêm mới
-                        </button>
-                    @endif
+    <div class="data-table-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+                    <div class="data-table-list">
+                        <div class="basic-tb-hd">
+                            <h2>Danh sách tuyến</h2>
+                            <p>
+                                Dưới đây là danh sách các tuyến thuộc quyền quản lý của bạn
+                            </p>
+                        </div>
+                        <div class="table-responsive">
+
+                            <table class="table table-striped" id="route_table">
+
+                            </table>
+
+                        </div>
+                    </div>
                 </div>
-
-
-                <div class="table-responsive">
-
-                    <table class="table table-bordered " id="route_table">
-
-                    </table>
-
-                </div>
-
             </div>
+
         </div>
     </div>
 
@@ -79,7 +95,7 @@
 
 @stop
 @section('js')
-	<script type="text/javascript">
+    <script type="text/javascript">
     var routeTable;
     var dataLocation = function( request, response ) {
         $.ajax({
@@ -106,14 +122,14 @@
         });
     };
     $(function() {
-        $('#bus_id').select2({
-            theme: 'bootstrap',
-            with: '100%'
-        });
-        $('#route_id').select2({
-            theme: 'bootstrap',
-            with: '100%'
-        });
+        // $('#bus_id').select2({
+        //     theme: 'bootstrap',
+        //     with: '100%'
+        // });
+        // $('#route_id').select2({
+        //     theme: 'bootstrap',
+        //     with: '100%'
+        // });
 
         $('#bus_id').on('change', function(){
             if ($(this).val() !="") {
@@ -173,8 +189,8 @@
                     visible: visible,
                     render: function(data, type, row, meta){
                         var routeId = "'" + row['id'] + "'";
-                        let actionLink = '<a href="javascript:;" data-toggle="tooltip" title="Xoá '+ row['route_name'] +'!" onclick="deleteRouteById('+ routeId +')"><i class=" fa-2x fa fa-trash" aria-hidden="true"></i></a>';
-                        actionLink += '&nbsp;&nbsp;&nbsp;<a href="javascript:;" onclick="editRoute('+ routeId +')" data-toggle="tooltip" title="Sửa '+ row['route_name'] +'!" ><i class="fa fa-2x fa-pencil-square-o" aria-hidden="true"></i></a>';
+                        let actionLink = '<a href="javascript:;" data-toggle="tooltip" title="Xoá '+ row['route_name'] +'!" onclick="deleteRouteById('+ routeId +')"><i class="fa fa-trash" aria-hidden="true"></i></a>';
+                        actionLink += '&nbsp;&nbsp;&nbsp;<a href="javascript:;" onclick="editRoute('+ routeId +')" data-toggle="tooltip" title="Sửa '+ row['route_name'] +'!" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>';
                         return actionLink;
                     }
                 }
@@ -455,5 +471,5 @@
             $("#editRouteModal").modal();
     }
 
-	</script>
+    </script>
 @stop

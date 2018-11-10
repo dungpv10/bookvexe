@@ -1,41 +1,66 @@
-@extends('admin.layouts.dashboard')
+@extends('admin.layouts.master_layout')
 
 @section('content')
-    <div class="col-md-3">
-        <div class="form-group">
-            {!! Form::select('point_type_id', ['' => 'Chọn kiểu điểm dừng'] + $pointTypes->toArray(), null, ['class' => 'form-control', 'id' => 'point_type_id_search']) !!}
+
+    <div class="breadcomb-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="breadcomb-list">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    {!! Form::select('point_type_id', ['' => 'Chọn kiểu điểm dừng'] + $pointTypes->toArray(), null, ['class' => 'selectpicker', 'id' => 'point_type_id_search']) !!}
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <select class="selectpicker" id="bus_id">
+                                        <option value="">Chọn Bus</option>
+                                        @foreach($buses as $bus)
+                                            <option value="{{ $bus->id }}">{{ $bus->bus_name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            @if(Gate::allows('admin'))
+                                <button class="btn btn-primary" type="button" onclick="showViewCreatePoint()">
+                                    <i class="fa fa-plus-circle" aria-hidden="true"></i> Thêm mới
+                                </button>
+                                <button class="btn btn-danger" type="button" onclick="deleteManyRow()">
+                                    <i class="fa fa-trash" aria-hidden="true"></i> Xóa
+                                </button>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="col-md-3">
-            <div class="form-group">
-                <select class="form-control" id="bus_id">
-                    <option value="">Chọn Bus</option>
-                    @foreach($buses as $bus)
-                        <option value="{{ $bus->id }}">{{ $bus->bus_name }}</option>
-                    @endforeach
-                </select>
-            </div>
-        </div>
-    <div class="col-md-12">
-        <div class="box">
-            <div class="box-header with-border margin-bottom-10">
-                <h3 class="box-title">Danh sách điểm dừng</h3>
-                @if(Gate::allows('admin'))
-                    <button class="btn btn-primary" type="button" onclick="showViewCreatePoint()">
-                        <i class="fa fa-plus-circle" aria-hidden="true"></i> Thêm mới
-                    </button>
-                    <button class="btn btn-danger" type="button" onclick="deleteManyRow()">
-                        <i class="fa fa-trash" aria-hidden="true"></i> Xóa
-                    </button>
-                @endif
-            </div>
-            <div class="table-responsive">
+    <div class="data-table-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
-                <table class="table table-bordered " id="point_table">
+                    <div class="data-table-list">
+                        <div class="basic-tb-hd">
+                            <h2>Danh sách điểm dừng</h2>
+                            <p>
+                                Dưới đây là danh sách các điểm dừng thuộc quyền quản lý của bạn
+                            </p>
+                        </div>
+                        <div class="table-responsive">
 
-                </table>
+                            <table class="table table-striped" id="point_table">
 
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
             </div>
+
         </div>
     </div>
     <div class="modal fade" id="createPointModal" role="dialog">
@@ -103,8 +128,8 @@
             });
         };
         $(document).ready(function() {
-            $('#point_type_id_search').select2({});
-            $('#bus_id').select2({});
+            // $('#point_type_id_search').select2({});
+            // $('#bus_id').select2({});
             $('#point_type_id_search,#bus_id').on('change', function(){
                 pointTable.ajax.reload();
             });
@@ -155,9 +180,9 @@
                         visible: visible,
                         render: function(data, type, row, meta){
                             var pointId = "'" + data + "'";
-                            var actionLink = '<a href="javascript:;" data-toggle="tooltip" title="Xoá '+ row['boardingPoint'] +'!" onclick="deletePointById('+ pointId +')"><i class=" fa-2x fa fa-trash" aria-hidden="true"></i></a>';
-                            actionLink += '&nbsp;&nbsp;&nbsp;<a href="javascript:;" onclick="showViewEditPoint('+ pointId +')" data-toggle="tooltip" title="Sửa '+ row['boardingPoint'] +'!" ><i class="fa fa-2x fa-pencil-square-o" aria-hidden="true"></i></a>';
-                            actionLink += '&nbsp;&nbsp;&nbsp;<a href="javascript:;" onclick="showDetailPoint('+ pointId +')" class="show-detail" data-toggle="tooltip" title="View detail" ><i class="fa fa-2x fa-sign-in" aria-hidden="true"></i></a>';
+                            var actionLink = '<a href="javascript:;" data-toggle="tooltip" title="Xoá '+ row['boardingPoint'] +'!" onclick="deletePointById('+ pointId +')"><i class="fa fa-trash" aria-hidden="true"></i></a>';
+                            actionLink += '&nbsp;&nbsp;&nbsp;<a href="javascript:;" onclick="showViewEditPoint('+ pointId +')" data-toggle="tooltip" title="Sửa '+ row['boardingPoint'] +'!" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>';
+                            actionLink += '&nbsp;&nbsp;&nbsp;<a href="javascript:;" onclick="showDetailPoint('+ pointId +')" class="show-detail" data-toggle="tooltip" title="View detail" ><i class="fa fa-sign-in" aria-hidden="true"></i></a>';
                             return actionLink;
                         }
                     }
