@@ -224,8 +224,18 @@ div[class^="wrap_location"] {
 }
 div[class^="wrap_location"] .ui-widget-content{
     width: 100% !important;
+    border: 1px solid #e6e6e6;
+    background: #ffffff;
+    position: absolute;
+    padding-left: 10px;
+    z-index: 999999999999;
 }
 button i.fa{
     margin-right: 0;
 }
-
+.datetimepicker .form-control {
+    height: 35px;
+}
+.bootstrap-timepicker-widget.dropdown-menu.open {
+    z-index: 999999999999999;
+}
