@@ -1,7 +1,7 @@
 @extends('front-end/layouts/layouts')
 @section('css')
 	<!-- TODO update fontawesome miss icon-->
-	<link href="{{ asset('css/jquery.seat-charts.css') }}" rel="stylesheet" type="text/css" />
+	<link href="{{ asset('front_end/css/jquery.seat-charts.css') }}" rel="stylesheet" type="text/css" />
 @stop
 @section('content')
 <section class="bg-section section-page-payment-choose-seat">
@@ -240,7 +240,7 @@
 									Còn trống
 								</div>
 							</div>
-						</div>	
+						</div>
 					</div>
 				</div>
 			</form>
@@ -360,7 +360,7 @@
 </div>
 @stop
 @section('js')
-	<script src="{{asset('js/jquery.seat-charts.js')}}" type="text/javascript"></script>
+	<script src="{{asset('front_end/js/jquery.seat-charts.js')}}" type="text/javascript"></script>
 	<script type="text/javascript">
 		var firstSeatLabel = 1;
 
@@ -390,8 +390,8 @@
 			          price   : 40.000,
 			          classes : 'economy-class seat-bed', //your custom CSS class
 			          category: 'Economy Class'
-			        }         
-			      
+			        }
+
 			    },
 			    naming : {
 			        top : false,
@@ -405,7 +405,7 @@
 			          [ 'g', 'available',   'First Class' ],
 			          [ 'h', 'available',   'Economy Class'],
 			          [ 'g', 'unavailable', 'Already Booked']
-			          ]         
+			          ]
 			    },
 			    click: function () {
 			        if (this.status() == 'available') {
@@ -421,20 +421,20 @@
 			            .data('seatId', this.settings.id)
 			            .appendTo($cart);
 			          }
-			          
+
 			          $counter.text(sc.find('selected').length+1);
 			          $total.text(recalculateTotal(sc)+this.data().price);
-			          
+
 			          return 'selected';
 			        } else if (this.status() == 'selected') {
 			          //update the counter
 			          $counter.text(sc.find('selected').length-1);
 			          //and total
 			          $total.text(recalculateTotal(sc)-this.data().price);
-			        
+
 			          //remove the item from our cart
 			          $('#cart-item-'+this.settings.id).remove();
-			        
+
 			          //seat has been vacated
 			          return 'available';
 			        } else if (this.status() == 'unavailable') {
@@ -468,8 +468,8 @@
 			          price   : 40.000,
 			          classes : 'economy-class seat-bed', //your custom CSS class
 			          category: 'Economy Class'
-			        }         
-			      
+			        }
+
 			    },
 			    naming : {
 			        top : false,
@@ -483,7 +483,7 @@
 			          [ 'g', 'available',   'First Class' ],
 			          [ 'h', 'available',   'Economy Class'],
 			          [ 'g', 'unavailable', 'Already Booked']
-			          ]         
+			          ]
 			    },
 			    click: function () {
 			        if (this.status() == 'available') {
@@ -499,20 +499,20 @@
 			            .data('seatId', this.settings.id)
 			            .appendTo($cart);
 			          }
-			          
+
 			          $counter.text(sc.find('selected').length+1);
 			          $total.text(recalculateTotal(sc)+this.data().price);
-			          
+
 			          return 'selected';
 			        } else if (this.status() == 'selected') {
 			          //update the counter
 			          $counter.text(sc.find('selected').length-1);
 			          //and total
 			          $total.text(recalculateTotal(sc)-this.data().price);
-			        
+
 			          //remove the item from our cart
 			          $('#cart-item-'+this.settings.id).remove();
-			        
+
 			          //seat has been vacated
 			          return 'available';
 			        } else if (this.status() == 'unavailable') {
@@ -542,7 +542,7 @@
 		  sc.find('selected').each(function () {
 		    total += this.data().price;
 		  });
-		  
+
 		  return total;
 		}
 	</script>
