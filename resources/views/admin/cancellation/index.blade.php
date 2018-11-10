@@ -1,28 +1,61 @@
-@extends('admin.layouts.dashboard')
+@extends('admin.layouts.master_layout')
 @section('content')
-    <div class="col-md-3">
-        <div class="form-group">
-            {!! Form::select('filter_cancel_type', array_replace(['' => 'Chọn theo loại phí'],$cancelTypes), '', ['class' => 'form-control', 'id' => 'filter_cancel_type']) !!}
+
+<div class="breadcomb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="breadcomb-list">
+                    <div class="row">
+                      <div class="col-md-3">
+                          <div class="form-group">
+                              {!! Form::select('filter_cancel_type', array_replace(['' => 'Chọn theo loại phí'],$cancelTypes), '', ['class' => 'selectpicker', 'id' => 'filter_cancel_type']) !!}
+                          </div>
+                      </div>
+                      <div class="col-md-3">
+                          <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#createCancellation">
+                              <i class="fa fa-plus-circle" aria-hidden="true"></i> Thêm mới
+                          </button>
+                      </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+</div>
 
-    <div class="col-md-12">
-        <div class="box">
-            <div class="box-header with-border margin-bottom-10">
-                <h3 class="box-title">Danh sách cài đặt</h3>
-                <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#createCancellation">
-                    <i class="fa fa-plus-circle" aria-hidden="true"></i> Thêm mới
-                </button>
-            </div>
-            <div class="table-responsive">
 
-                <table class="table table-bordered " id="cancellation_table">
 
-                </table>
+<div class="data-table-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
+                <div class="data-table-list">
+                    <div class="basic-tb-hd">
+                        <h2>Danh sách xe</h2>
+                        <p>
+                            Dưới đây là danh sách các xe thuộc quyền quản lý của bạn
+                        </p>
+                    </div>
+                    <div class="table-responsive">
+
+                        <table class="table table-striped" id="cancellation_table">
+
+                        </table>
+
+                    </div>
+                </div>
             </div>
         </div>
+
     </div>
+</div>
+
+
+
+
     <div class="modal fade" id="editBusTypeModal" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
