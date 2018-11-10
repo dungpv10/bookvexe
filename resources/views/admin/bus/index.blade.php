@@ -411,9 +411,9 @@
                 method: 'GET'
             }).success(function (data) {
                 $('#createBusModal .modal-body').html(data).promise().done(function () {
-                    // $('#bus_type_id').select2({
-                    //     placeholder: "Chọn Bus Type",
-                    // });
+                    $('#bus_type_id').select2({
+                        placeholder: "Chọn Bus Type",
+                    });
                     $('.select2-container--default').css({width: '100%'});
 
                     $(".datetimepicker input").timepicker();
@@ -480,10 +480,9 @@
                     });
                 });
             }).error(function (data) {
-
             });
             $("#createBusModal").modal();
-        }
+        };
 
         // add element seat for detail#
         function buildElementSeatHead(element, rowSeat, totalSeat, position, typeSeat, type, sleeper) {
