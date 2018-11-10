@@ -200,12 +200,23 @@
 
 
 <script type="text/javascript" src="{{ asset('vendors/datetimepicker/js/moment.min.js') }}" ></script>
+<script src="{{asset('vendors/livicons/minified/raphael-min.js')}}" type="text/javascript"></script>
+<script src="{{asset('vendors/livicons/minified/livicons-1.4.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('vendors/holder/holder.js')}}" type="text/javascript"></script>
+<script type="text/javascript" src="{{ asset('vendors/datatables/js/jquery.dataTables.min.js') }}" >
+
+</script>
+<script type="text/javascript" src="{{ asset('vendors/datatables/js/dataTables.bootstrap.js') }}" ></script>
+<script type="text/javascript" src="{{ asset('vendors/validation/js/bootstrapValidator.min.js') }}" ></script>
 <script type="text/javascript" src="{{ asset('vendors/select2/select2.min.js') }}" ></script>
+<script type="text/javascript" src="{{ asset('vendors/datetimepicker/js/bootstrap-datetimepicker.min.js') }}" ></script>
+<script type="text/javascript" src="{{ asset('vendors/tags/dist/bootstrap-tagsinput.js') }}" ></script>
+<script type="text/javascript" src="{{ asset('vendors/tags/bower_components/typeahead.js/dist/typeahead.jquery.js') }}" ></script>
+<script type="text/javascript" src="{{ asset('vendors/tags/bower_components/typeahead.js/dist/bloodhound.js') }}" ></script>
 <script src="{{asset('vendors/datetimepicker/js/bootstrap-datetimepicker.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('vendors/timepicker/js/bootstrap-timepicker.js')}}" type="text/javascript"></script>
 <script src="{{asset('vendors/toastr/toastr.js')}}" type="text/javascript"></script>
-<script type="text/javascript" src="{{ asset('vendors/tags/dist/bootstrap-tagsinput.js') }}" ></script>
-
+<script src="{{ asset("js/pages/jquery-ui.js") }}"></script>
 
 <script type="text/javascript">
     $(function () {
