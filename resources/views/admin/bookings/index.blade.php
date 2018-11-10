@@ -1,26 +1,57 @@
-@extends('admin.layouts.dashboard')
+@extends('admin.layouts.master_layout')
 
 @section('content')
-    <div class="col-md-3">
-        <div class="form-group">
-            {!! Form::select('status', $statuses, '', ['class' => 'form-control filter_status', 'id' => 'filter_status']) !!}
+
+<div class="breadcomb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="breadcomb-list">
+                    <div class="row">
+                      <div class="col-md-3">
+                          <div class="form-group">
+                              {!! Form::select('status', $statuses, '', ['class' => 'selectpicker filter_status', 'id' => 'filter_status']) !!}
+                          </div>
+                      </div>
+
+
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="col-md-12">
-        <div class="box">
-            <div class="box-header with-border margin-bottom-10">
-                <h3 class="box-title">Bookings</h3>
+</div>
 
-            </div>
-            <div class="table-responsive">
 
-                <table class="table table-bordered " id="booking_table">
 
-                </table>
+<div class="data-table-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
+                <div class="data-table-list">
+                    <div class="basic-tb-hd">
+                        <h2>Quản lý đặt vé</h2>
+                        <p>
+                            Dưới đây là danh sách các xe thuộc quyền quản lý của bạn
+                        </p>
+                    </div>
+                    <div class="table-responsive">
+
+                        <table class="table table-striped" id="booking_table">
+
+                        </table>
+
+                    </div>
+                </div>
             </div>
         </div>
+
     </div>
+</div>
+
+<!------------------------>
+
 
     <div class="modal fade" id="viewBooking" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
@@ -86,7 +117,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        {!! Form::select('status', $statuses, '', ['class' => 'form-control filter_status', 'id' => 'booking_status']) !!}
+                        {!! Form::select('status', $statuses, '', ['class' => 'selectpicker filter_status', 'id' => 'booking_status']) !!}
                         {!! Form::hidden('booking_id', '', ['class' => 'booking_id']) !!}
                     </div>
                 </div>
@@ -106,8 +137,6 @@
     <script type="text/javascript">
         $(function () {
             var filterStatus = $('#filter_status');
-            $('.filter_status').select2();
-            $('.select2-container--default').css({width: '100%'});
 
             var bookingTable = $('#booking_table').DataTable({
                 processing: true,
@@ -139,7 +168,7 @@
                             var classBtn = paymentStatus == 0 ? 'btn-default'
                                 : (paymentStatus == 1 ? 'btn-primary' : (paymentStatus == 2 ? 'btn-success' : 'btn-danger'));
                             return '<button data-id="' + row['id'] + '" data-status="' + paymentStatus + '" class="btn ' + classBtn + '" data-toggle="modal" data-target="#changeProcessStatus">' +
-                                '<i class="fa fa-2x fa-pencil-square-o"></i> ' + row['status_name'] +
+                                '<i class="fa fa-pencil-square-o"></i> ' + row['status_name'] +
                                 '</button>';
                         }
                     },
@@ -152,7 +181,7 @@
                         "orderable": false,
                         render: function (data, type, row, meta) {
                             return '<a style="cursor: pointer" data-toggle="modal" data-target="#viewBooking" data-id=' + row['id'] + '>' +
-                                '<i class="fa fa-2x fa-eye" aria-hidden="true"></i>' +
+                                '<i class="fa fa-eye" aria-hidden="true"></i>' +
                                 '</a>';
                         }
                     }
@@ -208,7 +237,9 @@
             changeProcessStatus.on('shown.bs.modal', function(e){
                 var relatedTarget = $(e.relatedTarget);
                 bookingId.val(relatedTarget.data('id'));
-                bookingStatus.select2().select2('val', relatedTarget.data('status'));
+                bookingStatus.val(relatedTarget.data('status'));
+                bookingStatus.selectpicker('refresh');
+                //bookingStatus.select2().select2('val', relatedTarget.data('status'));
             });
 
             $('#updateStatus').on('click', function (e) {

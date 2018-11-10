@@ -250,8 +250,8 @@
                         "orderable": false,
                         render: function (data, type, row, meta) {
                             var promotionId = row['id'];
-                            var actionLink = '<a href="javascript:;" data-toggle="tooltip" title="Xoá ' + promotionId + '!" onclick="deletePromotion(' + promotionId + ')"><i class=" fa-2x fa fa-trash" aria-hidden="true"></i></a>';
-                            actionLink += '&nbsp;&nbsp;&nbsp;<a href="javascript:;" onclick="editPromotion(' + promotionId + ')" data-toggle="tooltip" title="Sửa ' + row['code'] + ' !" ><i class="fa fa-2x fa-pencil-square-o" aria-hidden="true"></i></a>';
+                            var actionLink = '<a href="javascript:;" data-toggle="tooltip" title="Xoá ' + promotionId + '!" onclick="deletePromotion(' + promotionId + ')"><i class="fa fa-trash" aria-hidden="true"></i></a>';
+                            actionLink += '&nbsp;&nbsp;&nbsp;<a href="javascript:;" onclick="editPromotion(' + promotionId + ')" data-toggle="tooltip" title="Sửa ' + row['code'] + ' !" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>';
                             return actionLink;
                         }
                     }
