@@ -3,34 +3,42 @@
     <input name="_method" type="hidden" value="PATCH">
     <input type="hidden" name="_token" value="{{csrf_token()}}">
 
-    <div class="row form-group">
+    <div class=" form-group ">
         <label for="Email">Email</label>
-        <input id="email" class="form-control" type="email" name="email" value="{{ $user->email }}">
+        <div class="nk-int-st">
+          <input id="email" class="form-control" type="email" name="email" value="{{ $user->email }}">
+        </div>
     </div>
 
-    <div class="row form-group">
+    <div class=" form-group">
         <label for="name">Họ tên</label>
+        <div class="nk-int-st">
         <input id="name" class="form-control" type="text" name="name" value="{{ $user->name }}">
+      </div>
     </div>
-    <div class="row form-group">
+    <div class=" form-group">
         <label for="username">Tên đăng nhập</label>
+        <div class="nk-int-st">
         <input id="username" class="form-control" type="text" name="username" value="{{ $user->username }}">
+      </div>
     </div>
-    <div class="row">
+    <div class="">
         <label for="dob">Ngày sinh</label>
         <div class="form-group">
             <div class='input-group date datetimepicker'>
+                <div class="nk-int-st">
                 <input type='text' value="{{ $user->dob }}" name="dob" id="dob" class="form-control" />
-                <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span>
-                </span>
+              </div>
+                <!-- <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span>
+                </span> -->
             </div>
         </div>
     </div>
-    <div class="row form-group">
+    <div class=" form-group">
         <label for="mobile">Số điện thoại</label>
         <input id="mobile" class="form-control" type="text" name="mobile" value="{{ $user->mobile }}">
     </div>
-    <div class="row form-group">
+    <div class=" form-group">
         <label for="gender">Giới tính</label>
         <select id="gender" class="form-control" name="gender">
             <option value="0" {{ $user->gender == 0 ? 'selected' :'' }}>Nam</option>
@@ -50,13 +58,12 @@
     @else
         {!! Form::hidden('agent_id', auth()->user()->agent->id) !!}
     @endif
-    <div class="row  form-group">
+    <div class="  form-group">
         <label for="Role">Quyền</label>
         {!! Form::select('role_id', $roles, $user->role->id, ['class' => 'form-control', 'id' => 'roles']) !!}
     </div>
-    <div class="row text-center">
+    <div class=" text-center">
         <button class="btn btn-primary" type="submit"><i class="fa fa-check" aria-hidden="true"></i>Cập nhật</button>
     </div>
 </form>
 </div>
-

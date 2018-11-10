@@ -64,6 +64,13 @@
     <script src="/js/vendor/modernizr-2.8.3.min.js"></script>
     <link rel="stylesheet" href="/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="/vendor/sweetalert2/dist/sweetalert2.css">
+
+    <link href="{{ asset('vendors/validation/css/bootstrapValidator.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('vendors/tags/bootstrap-tagsinput.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('vendors/datetimepicker/css/bootstrap-datetimepicker.min.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('vendors/timepicker/css/bootstrap-timepicker.css')}}" rel="stylesheet" type="text/css" />
+
+    <link href="{{asset('vendors/toastr/toastr.css')}}" rel="stylesheet" type="text/css" />
     <style rel="stylesheet">
         table.dataTable.no-footer {
             border-bottom: none;
@@ -198,6 +205,14 @@
 <script type="text/javascript" src="{{ asset('vendors/datetimepicker/js/moment.min.js') }}" ></script>
 <script type="text/javascript" src="{{ asset('vendors/select2/select2.min.js') }}" ></script>
 <script src="{{asset('vendors/datetimepicker/js/bootstrap-datetimepicker.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('vendors/datetimepicker/js/bootstrap-datetimepicker.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('vendors/timepicker/js/bootstrap-timepicker.js')}}" type="text/javascript"></script>
+
+<script type="text/javascript" src="{{ asset('vendors/validation/js/bootstrapValidator.min.js') }}" ></script>
+<script type="text/javascript" src="{{ asset('vendors/select2/select2.min.js') }}" ></script>
+<script type="text/javascript" src="{{ asset('vendors/datetimepicker/js/bootstrap-datetimepicker.min.js') }}" ></script>
+
+<script src="{{asset('vendors/toastr/toastr.js')}}" type="text/javascript"></script>
 <script type="text/javascript">
     $(function () {
         $('body').on('hidden.bs.modal', '.modal', function () {
