@@ -1,0 +1,92 @@
+.section-page-payment-method-bus {
+	@extend .section-page-payment-bus;
+}
+.widget-info-ticket {
+	.widget-content {
+		padding-top: 5px;
+		padding-bottom: 10px;
+	}
+	.table {
+		margin-bottom: 40px;
+		tr {
+			border-bottom: 1px solid $bg-list-pay;
+		}
+		td {
+			&:first-child {
+				font-weight: bold;
+				padding-left: 0px;
+			}
+		}
+	}
+	.button-back {
+		background-color: $primary;
+		font-weight: normal;
+		font-size: 16px;
+		line-height: 18px;
+		padding: 8px 20px;
+		&:hover {
+			background-color: $bg-percent;
+		}
+	}
+}
+.widget-select-payment {
+	padding-bottom: 50px;
+	position: relative;
+	.widget-content {
+		padding-top: 15px;
+	}
+	.match_height>div{
+		margin-bottom: 20px;
+	}
+	.entry-item-payment-method {
+		background-color: $color-bg-section;
+		border: 1px solid $color-border-11;
+		text-align: center;
+		border-radius: 5px;
+		padding: 20px;
+		padding-bottom: 13px;
+	}
+	img {
+		width: 100%;
+		margin-bottom: 15px;
+	}
+	.name-method {
+		font-size: 13px;
+		line-height: 14px;
+		color: $color-text-5;
+		font-weight: 500;
+		margin-bottom: 20px;
+	}
+	input {
+		height: 16px;
+		width: 16px;
+	}
+	.button-submit {
+		display: block;
+		font-weight: normal;
+		width: 100%;
+	    font-size: 16px;
+	    line-height: 18px;
+	    padding: 8px 20px;
+	    margin-top: 0px;
+	    &:hover {
+	    	background-color: $primary;
+	    }
+	}
+	.hot-line {
+		font-size: 24px;
+	    line-height: 26px;
+	    font-weight: bold;
+	    display: block;
+	    margin-top: 30px;
+	    position: absolute;
+	    left: 25px;
+	    bottom: 20px;
+	    span {
+	    	font-size: 24px;
+		    line-height: 26px;
+		    font-weight: bold;
+	    	color: $color-text-7;
+	    }
+	}
+}

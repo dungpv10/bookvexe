@@ -1,0 +1,95 @@
+.list-step.style-1 {
+	li {
+		background-color: $primary;
+		&.active {
+			background-color: $color-text-7;
+		}
+		a {
+			color: $white;
+		}
+		i {
+			margin-right: 5px;
+		}
+	}
+}
+.widget-reward-points {
+	table {
+		width: 100%;
+		margin-top: 25px;
+		margin-bottom: 40px;
+	}
+	td {
+		width: 50%;
+		font-size: 13px;
+		line-height: 14px;
+		color: $color-text-7;
+		font-weight: bold;
+		padding-bottom: 14px;
+		text-transform: uppercase;
+		i {
+			margin-right: 8px;
+		}
+		&:first-child {
+			color: $color-text-5;
+			text-transform: inherit;
+		}
+	}
+	p {
+		color: $color-text-5;
+		margin-bottom: 17px;
+	}
+}
+.widget-ticket-history {
+	.widget-content {
+		padding-top: 15px;
+		padding-bottom: 40px;
+	}
+	table {
+		margin-bottom: 0px;
+	}
+	#form-ticket-history .form-group {
+		margin-bottom: 20px;
+	}
+}
+.registration-diff-acc {
+	span {
+		font-size: 13px;
+		color: $color-text-5;
+		display: inline-block;
+		margin-bottom: 10px;
+		font-weight: bold;
+	}
+	>a {
+		font-size: 13px;
+		color: $color-text-5;
+		display: inline-block;
+		margin-top: 10px;
+		&:hover {
+			color: $primary;
+		}
+	}
+}
+.back-login {
+	>a {
+		font-size: 13px;
+		color: $color-text-5;
+		display: inline-block;
+		margin-bottom: 20px;
+		&:hover {
+			color: $primary;
+		}
+	}
+}
+.widget-info-customer {
+	.registration-diff-acc {
+		margin-bottom: 25px;
+	}
+}
+.widget-welcome-customer {
+	.widget-content {
+		padding: 0px;
+		img {
+			width: 100%;
+		}
+	}
+}

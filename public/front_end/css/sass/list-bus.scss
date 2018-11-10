@@ -1,0 +1,142 @@
+.side-bar .widget-search{
+	.widget-content {
+		background-color: $primary;
+		display: inline-block;
+		padding-top: 20px;
+		padding-left: 15px;
+		padding-right: 15px;
+		text-align: left;
+		padding-bottom: 75px;
+		position: relative;
+		.icon-image {
+			position: absolute;
+			bottom: 15px;
+			right: 20px;
+		}
+	}
+	label {
+		font-size: 13px;
+		color: $white;
+		font-weight: bold;
+		i{
+			font-size: 20px;
+			display: inline-block;
+			margin-right: 10px;
+		}
+	}
+	.input-group .form-control {
+		padding-top: 2px;
+		padding-bottom: 2px;
+		padding-left: 35px;
+		height: 32px;
+		font-size: 13px;
+		border-radius: 5px;
+		color: $color-text;
+	}
+	.input-group i {
+		font-size: 20px;
+		top: 5px;
+		left: 10px;
+		color: $color-text;
+	}
+	.datetime-picker .datepicker {
+		width: 100%;
+	}
+	.select2-container {
+		width: 75px !important;
+		display: block;
+	}
+	.form-check {
+		.form-check-input {
+			margin-top: 0px;
+			position: relative;
+			top: 3px;
+		}
+		.form-check-label {
+			margin-bottom: 0px;
+		}
+	}
+	.button-submit {
+		font-size: 18px;
+		width: 100%;
+		background-color: $bg-percent;
+		padding: 7px 5px;
+		margin-bottom: 15px;
+		&:hover {
+			background-color: $color-hover;
+		}
+	}
+	.action {
+		margin-top: 15px;
+		p {
+			color: $white;
+			font-size: 15px;
+			line-height: 19px;
+			margin-bottom: 0px;
+			&.hight-line {
+				font-weight: bold;
+			}
+		}
+	}
+}
+.side-bar {
+	.widget {
+		margin-bottom: 16px;
+		&:last-child {
+			margin-bottom: 0px;
+		}
+	}
+}
+.widget-filter {
+	border: 1px solid $primary;
+	.widget-content {
+		padding-left: 15px;
+		padding-right: 15px;
+		padding-bottom: 40px;
+	}
+	.widget-title {
+		margin-bottom: 18px;
+		position: relative;
+		.show-hidden {
+			position: absolute;
+			display: none;
+			top: 13px;
+			right: 20px;
+			color: $white;
+		}
+	}
+	.wrap-filter-type {
+		margin-bottom: 15px;
+		.type {
+			font-weight: bold;
+			color: $black;
+		}
+		.form-check-label {
+			margin-bottom: 0px;
+			font-size: 13px;
+			color: $primary;
+			position: relative;
+			top: -3px;
+			margin-left: 3px;
+		}
+		.form-check-input {
+			margin-top: 0px;
+			border: 1px solid $color-border-4;
+		}
+	}
+}
+.widget-list-bus {
+	.result_search {
+		font-size: 18px;
+		line-height: 18px;
+		color: $color-text-5;
+		margin-bottom: 20px;
+		font-weight: bold;
+	}
+	.filter-type-best {
+		margin-bottom: 15px;
+	}
+	.entry-item-bus {
+		margin-top: 15px; 
+	}
+}

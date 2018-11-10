@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AACC,6CAAc;EACb,aAAa,EAAE,GAAG;EAClB,WAAW,EAAE,IAAI",
+"sources": ["../sass/choose-seat.scss"],
+"names": [],
+"file": "choose-seat.css"
+}
