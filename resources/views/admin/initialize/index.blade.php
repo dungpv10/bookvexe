@@ -101,19 +101,18 @@
 
                     <div class="form-group">
                         <label for="driver_id">Lái xe</label>
-                        {!! Form::select('driver_id', $allUserOfAgent, '', ['class' => 'form-control select2']) !!}
+                        {!! Form::select('driver_id', $allUserOfAgent, '', ['class' => 'selectpicker']) !!}
 
                     </div>
 
                     <div class="form-group">
                         <label for="car_accessory_id">Phụ xe</label>
-
-                        {!! Form::select('car_accessory_id', $allUserOfAgent, '', ['class' => 'form-control select2']) !!}
+                        {!! Form::select('car_accessory_id', $allUserOfAgent, '', ['class' => 'selectpicker']) !!}
                     </div>
 
                     <div class="form-group">
                         <label for="bus_id">Ch xe</label>
-                        {!! Form::select('bus_id', $buses, '', ['class' => 'form-control select2']) !!}
+                        {!! Form::select('bus_id', $buses, '', ['class' => 'selectpicker']) !!}
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -237,8 +236,8 @@
                     {data : 'action', name: 'action', searchable: false, orderable: false, title: 'Thao tác',
                         render: function(data, type, row, meta){
                             var initializeId = row['id'];
-                            var actionLink = '<a href="javascript:;" data-toggle="tooltip" title="Xoá '+ row['boardingPoint'] +'!" onclick="deleteInitialize('+ initializeId +')"><i class=" fa-2x fa fa-trash" aria-hidden="true"></i></a>';
-                            actionLink += '&nbsp;&nbsp;&nbsp;<a href="javascript:;" onclick="editInitialize('+ initializeId +')" data-toggle="tooltip" title="Sửa '+ row['initialize_name'] +'!" ><i class="fa fa-2x fa-pencil-square-o" aria-hidden="true"></i></a>';
+                            var actionLink = '<a href="javascript:;" data-toggle="tooltip" title="Xoá '+ row['boardingPoint'] +'!" onclick="deleteInitialize('+ initializeId +')"><i class="fa fa-trash" aria-hidden="true"></i></a>';
+                            actionLink += '&nbsp;&nbsp;&nbsp;<a href="javascript:;" onclick="editInitialize('+ initializeId +')" data-toggle="tooltip" title="Sửa '+ row['initialize_name'] +'!" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>';
                             return actionLink;
                         }
                     }
