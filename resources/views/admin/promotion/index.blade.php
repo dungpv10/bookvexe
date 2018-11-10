@@ -1,7 +1,6 @@
 @extends('admin.layouts.master_layout')
 @section('css')
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker-standalone.css"
-          rel="stylesheet"/>
+
 @stop
 @section('content')
 <div class="breadcomb-area">
@@ -69,7 +68,7 @@
 
   <!------------------------->
 
-    <div class="row">
+
 
         <div class="modal fade" id="editBusTypeModal" role="dialog">
             <div class="modal-dialog">
@@ -94,12 +93,16 @@
                         {!! Form::open(['route' => 'promotions.store', 'method' => 'post']) !!}
                         <div class="form-group">
                             <label>Mã giảm giá</label>
-                            <input type="text" class="form-control" name="code"/>
+                            <div class="nk-int-st">
+                              <input type="text" class="form-control" name="code"/>
+                            </div>
                         </div>
 
                         <div class="form-group">
                             <label>Số lượng </label>
+                            <div class="nk-int-st">
                             <input type="number" class="form-control" name="amount"/>
+                          </div>
                         </div>
 
                         <div class="form-group">
@@ -121,7 +124,9 @@
 
                         <div class="form-group">
                             <label>Ngày hết hạn </label>
+                            <div class="nk-int-st">
                             <input type="text" class="form-control datepicker" name="expiry_date"/>
+                          </div>
                         </div>
 
                         <div class="form-group text-right">
@@ -144,35 +149,41 @@
                         {!! Form::open(['route' => 'promotions.store', 'method' => 'PUT']) !!}
                         <div class="form-group">
                             <label>Mã giảm giá</label>
+                            <div class="nk-int-st">
                             <input type="text" class="form-control" id="update-code" name="code"/>
+                          </div>
                         </div>
 
                         <div class="form-group">
                             <label>Số lượng </label>
+                            <div class="nk-int-st">
                             <input type="number" class="form-control" id="update-amount" name="amount"/>
+                          </div>
                         </div>
 
                         <div class="form-group">
                             <label>Trạng thái </label>
-                            {!! Form::select('status', $statuses, '', ['class' => 'form-control select2', 'id' => 'update-status']) !!}
+                            {!! Form::select('status', $statuses, '', ['class' => ' selectpicker', 'id' => 'update-status']) !!}
                         </div>
 
                         @if(Auth::user()->role_id != 1)
                             <div class="form-group">
                                 <label>Nhà xe </label>
-                                {!! Form::select('agent_id', $agents, '', ['class' => 'form-control select2', 'id' => 'update-agent_id']) !!}
+                                {!! Form::select('agent_id', $agents, '', ['class' => ' selectpicker', 'id' => 'update-agent_id']) !!}
                             </div>
                         @endif
 
                         <div class="form-group">
                             <label>Loại mã </label>
-                            {!! Form::select('promotion_type', $promotionTypes, '', ['class' => 'form-control select2', 'id' => 'update-promotion_type']) !!}
+                            {!! Form::select('promotion_type', $promotionTypes, '', ['class' => 'selectpicker', 'id' => 'update-promotion_type']) !!}
                         </div>
 
                         <div class="form-group">
                             <label>Ngày hết hạn </label>
+                            <div class="nk-int-st">
                             <input type="text" class="form-control datepicker" name="expiry_date"
                                    id="update-expiry_date"/>
+                                 </div>
                         </div>
 
                         <div class="form-group text-right">
@@ -185,7 +196,7 @@
         </div>
 
 
-    </div>
+
 @stop
 @section('js')
 
@@ -195,7 +206,7 @@
         $('.datepicker').datetimepicker({
             format: 'YYYY-MM-DD HH:mm:ss'
         });
-        $('.select2').css({width: '100%'}).select2();
+        // $('.select2').css({width: '100%'}).select2();
         var promotionTable;
 
         $(function () {
@@ -325,11 +336,11 @@
                     $('#update-code').val(response.data.code);
                     $('#update-amount').val(response.data.amount);
                     $('#update-expiry_date').val(response.data.expiry_date);
-                    $('#update-status').select2().select2('val',response.data.status);
+                    $('#update-status').val(response.data.status).selectpicker('refresh');
                     if ($('#update-agent_id').length) {
-                        $('#update-agent_id').select2().select2('val',response.data.agent_id);
+                        $('#update-agent_id').val(response.data.agent_id).selectpicker('refresh');
                     }
-                    $('#update-promotion_type').select2().select2('val',response.data.promotion_type);
+                    $('#update-promotion_type').val(response.data.promotion_type).selectpicker('refresh');
 
                     $('#updatePromotionModal').modal('show');
                 } else {

@@ -67,8 +67,6 @@
 
     <link href="{{ asset('vendors/validation/css/bootstrapValidator.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('vendors/tags/bootstrap-tagsinput.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{asset('vendors/datetimepicker/css/bootstrap-datetimepicker.min.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{asset('vendors/timepicker/css/bootstrap-timepicker.css')}}" rel="stylesheet" type="text/css" />
 
     <link href="{{asset('vendors/toastr/toastr.css')}}" rel="stylesheet" type="text/css" />
     <style rel="stylesheet">
@@ -86,6 +84,9 @@
 <!-- style CSS
 		============================================ -->
     <link rel="stylesheet" href="/style.css">
+
+    <link href="{{asset('vendors/datetimepicker/css/bootstrap-datetimepicker.min.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('vendors/timepicker/css/bootstrap-timepicker.css')}}" rel="stylesheet" type="text/css" />
 </head>
 
 <body>

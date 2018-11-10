@@ -62,7 +62,7 @@
                         {!! Form::hidden('id', '', ['id' => 'agent_status_id']) !!}
                         <div class="form-group">
                             <label for="status">Trạng thái</label>
-                            {!! Form::select('status', $statuses, '', ['class' => 'form-control', 'id' => 'update_agent_status']) !!}
+                            {!! Form::select('status', $statuses, '', ['class' => 'selectpicker', 'id' => 'update_agent_status']) !!}
                         </div>
 
                         <div class="form-group text-right">
@@ -85,42 +85,60 @@
                     {!! Form::open(['route' => 'agents.store', 'id' => 'agentForm']) !!}
                         <div class="form-group">
                             <label for="agent_name">Tên nhà xe</label>
-                            <input name="agent_name" id="agent_name" class="form-control"/>
+                            <div class="nk-int-st">
+                              <input type="text" name="agent_name" id="agent_name" class="form-control"/>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="agent_license">Mã số thuế</label>
-                            <input name="agent_license" id="agent_license" class="form-control"/>
+                            <div class="nk-int-st">
+                            <input type="text" name="agent_license" id="agent_license" class="form-control"/>
+                          </div>
                         </div>
                         <div class="form-group">
                             <label for="agent_address">Địa chỉ nhà xe</label>
-                            <input name="agent_address" id="agent_address" class="form-control"/>
+                            <div class="nk-int-st">
+                            <input type="text" name="agent_address" id="agent_address" class="form-control"/>
+                          </div>
                         </div>
-                        <div class="form-group">
-                            <label for="agent_mobile">SĐT</label>
-                            <input name="agent_mobile" id="agent_mobile" class="form-control"/>
-                        </div>
-                        <div class="form-group">
-                            <label for="agent_email">Email</label>
-                            <input name="agent_email" id="agent_email" class="form-control"/>
-                        </div>
-                        <div class="form-group">
-                            <label for="agent_website">Website</label>
-                            <input name="agent_website" id="agent_website" class="form-control"/>
-                        </div>
-                        <div class="form-group">
-                            <label for="agent_representation">Người đại diện</label>
-                            <input name="agent_representation" id="agent_representation" class="form-control"/>
-                        </div>
-                        <div class="form-group">
-                            <label for="agent_representation_mobile">SĐT Người đại diện</label>
-                            <input name="agent_representation_mobile" id="agent_representation_mobile" class="form-control"/>
-                        </div>
-                        
 
                         <div class="form-group">
                             <label for="status">Trạng thái</label>
-                            {!! Form::select('status', $statuses, '', ['class' => 'form-control', 'id' => 'agent_status']) !!}
+                            {!! Form::select('status', $statuses, '', ['class' => 'selectpicker', 'id' => 'agent_status']) !!}
                         </div>
+
+
+                        <div class="form-group">
+                            <label for="agent_mobile">SĐT</label>
+                            <div class="nk-int-st">
+                            <input type="text" name="agent_mobile" id="agent_mobile" class="form-control"/>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="agent_email">Email</label>
+                            <div class="nk-int-st">
+                            <input type="text" name="agent_email" id="agent_email" class="form-control"/>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="agent_website">Website</label>
+                            <div class="nk-int-st">
+                            <input type="text" name="agent_website" id="agent_website" class="form-control"/>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="agent_representation">Người đại diện</label>
+                            <div class="nk-int-st">
+                            <input type="text" name="agent_representation" id="agent_representation" class="form-control"/>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="agent_representation_mobile">SĐT Người đại diện</label>
+                            <div class="nk-int-st">
+                            <input type="text" name="agent_representation_mobile" id="agent_representation_mobile" class="form-control"/>
+                          </div>
+                        </div>
+
 
                         <div class="form-group text-right">
                             <button class="btn btn-primary" type="submit"><i class="fa fa-check" aria-hidden="true"></i>Tạo
@@ -202,7 +220,7 @@
                 $('#agent_name').val(response.data.agent_name);
                 $('#agent_address').val(response.data.agent_address);
                 $('#agent_license').val(response.data.agent_license);
-                $('#agent_status').val(response.data.status);
+                $('#agent_status').val(response.data.status).selectpicker('refresh');
                 $('#agent_mobile').val(response.data.agent_mobile);
                 $('#agent_email').val(response.data.agent_email);
                 $('#agent_representation').val(response.data.agent_representation);
@@ -227,7 +245,7 @@
         });
 
         var updateStatus = function(id, status){
-            $('#update_agent_status').val(status);
+            $('#update_agent_status').val(status).selectpicker('refresh');
             $('#agent_status_id').val(id);
             $('#updateStatusModal').modal('show');
         };
