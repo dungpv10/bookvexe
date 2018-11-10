@@ -81,6 +81,7 @@
 <!-- style CSS
 		============================================ -->
     <link rel="stylesheet" href="/style.css">
+    <link href="{{ asset('css/admin/custom.css') }}" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
@@ -203,10 +204,6 @@
 <script src="{{asset('vendors/livicons/minified/raphael-min.js')}}" type="text/javascript"></script>
 <script src="{{asset('vendors/livicons/minified/livicons-1.4.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('vendors/holder/holder.js')}}" type="text/javascript"></script>
-<script type="text/javascript" src="{{ asset('vendors/datatables/js/jquery.dataTables.min.js') }}" >
-
-</script>
-<script type="text/javascript" src="{{ asset('vendors/datatables/js/dataTables.bootstrap.js') }}" ></script>
 <script type="text/javascript" src="{{ asset('vendors/validation/js/bootstrapValidator.min.js') }}" ></script>
 <script type="text/javascript" src="{{ asset('vendors/select2/select2.min.js') }}" ></script>
 <script type="text/javascript" src="{{ asset('vendors/datetimepicker/js/bootstrap-datetimepicker.min.js') }}" ></script>
