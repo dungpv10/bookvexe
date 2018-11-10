@@ -1,4 +1,4 @@
-@extends('admin.layouts.dashboard')
+@extends('admin.layouts.master_layout')
 @section('css')
 
     <link href='/vendors/fullcalendar/css/fullcalendar.min.css' rel='stylesheet' />

@@ -1,47 +1,69 @@
-@extends('admin.layouts.dashboard')
+@extends('admin.layouts.master_layout')
 @section('css')
 
 @stop
 @section('content')
-    @if(Gate::allows('admin'))
-    <div class="row">
-        <div class="col-md-3">
-            <div class="form-group">
-                <select class="form-control" id="role_id">
-                    <option value="">Chọn quyền</option>
-                    @foreach($roles as $role)
-                        <option value="{{ $role->id }}">{{ $role->label }}</option>
-                    @endforeach
-                </select>
+
+    <div class="breadcomb-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="breadcomb-list">
+                        <div class="row">
+                            @if(Gate::allows('admin'))
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <select class="selectpicker" id="role_id">
+                                            <option value="">Chọn quyền</option>
+                                            @foreach($roles as $role)
+                                                <option value="{{ $role->id }}">{{ $role->label }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            @endif
+
+                            @if(Gate::allows('admin'))
+                                <div class="col-md-3">
+                                <button type="button" class="btn btn-primary" id="createUserBtn">
+                                    <i class="fa fa-plus-circle" aria-hidden="true"></i>Thêm mới
+                                </button>
+                                <button class="btn btn-danger" type="button" onclick="deleteManyRow()">
+                                    <i class="fa fa-trash" aria-hidden="true"></i> Xóa
+                                </button>
+                                </div>
+                            @endif
+
+
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    @endif
-    <div class="row">
-        <div class="col-md-12">
-            <div class="box">
-                <div class="box-header with-border margin-bottom-10">
-                    <h3 class="box-title">Danh sách thành viên</h3>
-                    @if(Gate::allows('admin'))
-                        <button type="button" class="btn btn-primary" id="createUserBtn">
-                            <i class="fa fa-plus-circle" aria-hidden="true"></i>Thêm mới
-                        </button>
-                        <button class="btn btn-danger" type="button" onclick="deleteManyRow()">
-                            <i class="fa fa-trash" aria-hidden="true"></i> Xóa
-                        </button>
-                    @endif
+    <div class="data-table-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+                    <div class="data-table-list">
+                        <div class="basic-tb-hd">
+                            <h2>Danh sách thành viên</h2>
+                            <p>
+                                Dưới đây là danh sách các thành viên thuộc quyền quản lý của bạn
+                            </p>
+                        </div>
+                        <div class="table-responsive">
+
+                            <table class="table table-striped" id="user_table">
+
+                            </table>
+
+                        </div>
+                    </div>
                 </div>
-
-
-                <div class="table-responsive">
-
-                    <table class="table table-bordered " id="user_table">
-
-                    </table>
-
-                </div>
-
             </div>
+
         </div>
     </div>
 
@@ -76,13 +98,13 @@
 @stop
 @section('js')
 	<script type="text/javascript">
-        $('#role_id').select2();
+        //$('#role_id').select2();
     var userTable;
     $(function() {
-        $('#m_role_id').select2({
-            theme: 'bootstrap',
-            with: '100%'
-        });
+        // $('#m_role_id').select2({
+        //     theme: 'bootstrap',
+        //     with: '100%'
+        // });
 
         $('#role_id').on('change', function(){
             userTable.ajax.reload();
@@ -120,8 +142,8 @@
                         var userId = "'" + row['id'] + "'";
                         let urlEdit = window.location.origin + '/admin/users/' + data + '/edit';
                         let switchUrl = window.location.origin + '/admin/users/switch/' + data;
-                        let actionLink = '<a href="javascript:;" data-toggle="tooltip" title="Xoá '+ row['name'] +'!" onclick="deleteUserById('+ userId +')"><i class=" fa-2x fa fa-trash" aria-hidden="true"></i></a>';
-                        actionLink += '&nbsp;&nbsp;&nbsp;<a href="javascript:;" onclick="editUser('+ userId +')" data-toggle="tooltip" title="Sửa '+ row['name'] +'!" ><i class="fa fa-2x fa-pencil-square-o" aria-hidden="true"></i></a>';
+                        let actionLink = '<a href="javascript:;" data-toggle="tooltip" title="Xoá '+ row['name'] +'!" onclick="deleteUserById('+ userId +')"><i class="fa fa-trash" aria-hidden="true"></i></a>';
+                        actionLink += '&nbsp;&nbsp;&nbsp;<a href="javascript:;" onclick="editUser('+ userId +')" data-toggle="tooltip" title="Sửa '+ row['name'] +'!" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>';
                         return actionLink;
                     }
                 }
