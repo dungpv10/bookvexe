@@ -1,8 +1,10 @@
 
     <div class="row">
+        <div class="col-md-12">
             <div class="box box-warning">
                 <form method="POST" action="{{ route('bus.store') }}" id="frmCreateNewBus" enctype="multipart/form-data">
                     <input type="hidden" name="_token" value="{{csrf_token()}}">
+                        <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="bus_name">Tên xe</label>
@@ -17,6 +19,8 @@
                                            placeholder="Biển đăng ký" required>
                                 </div>
                             </div>
+                        </div>
+                        <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="bus_type">Kiểu xe</label>
@@ -30,6 +34,8 @@
                                            placeholder="Chỗ ngồi" required>
                                 </div>
                             </div>
+                        </div>
+                        <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="start_point">Điểm bắt đầu</label>
@@ -46,6 +52,8 @@
                                     <div class="wrap_location_end"></div>
                                 </div>
                             </div>
+                        </div>
+                        <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="start_time">Thời gian bắt đầu</label>
@@ -70,7 +78,8 @@
                                     </div>
                                 </div>
                             </div>
-                            
+                        </div>
+                        <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="amenities">Tiện nghi</label>
@@ -96,6 +105,7 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
                         <div class="row text-center">
                             <button class="btn btn-primary" type="submit"><i class="fa fa-plus-circle" aria-hidden="true"></i>Thêm mới
                             </button>

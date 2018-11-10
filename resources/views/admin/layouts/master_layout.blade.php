@@ -65,6 +65,7 @@
     <script src="/js/vendor/modernizr-2.8.3.min.js"></script>
     <link rel="stylesheet" href="/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="/vendor/sweetalert2/dist/sweetalert2.css">
+    <link href="{{asset('vendors/timepicker/css/bootstrap-timepicker.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('vendors/toastr/toastr.css')}}" rel="stylesheet" type="text/css" />
     <style rel="stylesheet">
         table.dataTable.no-footer {
