@@ -1,49 +1,76 @@
-@extends('admin.layouts.dashboard')
+@extends('admin.layouts.master_layout')
 @section('css')
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker-standalone.css"
           rel="stylesheet"/>
 @stop
 @section('content')
-    <div class="row">
-        <div class="col-md-3">
-            <div class="form-group">
-                {!! Form::select('promotion_type', $promotionTypes, '', ['class' => 'form-control select2', 'id' => 'filter_promotion_type']) !!}
-            </div>
-        </div>
+<div class="breadcomb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="breadcomb-list">
+                    <div class="row">
 
-        <div class="col-md-3">
-            <div class="form-group">
-                {!! Form::select('status', $statuses, '', ['class' => 'form-control select2', 'id' => 'filter_status']) !!}
-            </div>
-        </div>
-        @if(Gate::allows('root'))
-            <div class="col-md-3">
-                <div class="form-group">
-                    {!! Form::select('agent_id', $agents, '', ['class' => 'form-control select2', 'id' => 'filter_agent_id']) !!}
+                      <div class="col-md-3">
+                          <div class="form-group">
+                              {!! Form::select('promotion_type', $promotionTypes, '', ['class' => 'selectpicker', 'id' => 'filter_promotion_type']) !!}
+                          </div>
+                      </div>
+
+                      <div class="col-md-3">
+                          <div class="form-group">
+                              {!! Form::select('status', $statuses, '', ['class' => 'selectpicker', 'id' => 'filter_status']) !!}
+                          </div>
+                      </div>
+                      @if(Gate::allows('root'))
+                          <div class="col-md-3">
+                              <div class="form-group">
+                                  {!! Form::select('agent_id', $agents, '', ['class' => 'selectpicker', 'id' => 'filter_agent_id']) !!}
+                              </div>
+                          </div>
+                      @endif
+                      <div class="col-md-3">
+                        <button class="btn btn-primary" type="button" id="addPromotionBtn">
+                            <i class="fa fa-plus-circle" aria-hidden="true"></i> Thêm mới
+                        </button>
+                      </div>
+
+                    </div>
                 </div>
             </div>
-        @endif
+        </div>
+    </div>
+</div>
+<div class="data-table-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
+                <div class="data-table-list">
+                    <div class="basic-tb-hd">
+                        <h2>Danh sách mã giảm giá</h2>
+                        <p>
+
+                        </p>
+                    </div>
+                    <div class="table-responsive">
+
+                        <table class="table table-striped" id="bus_type_table">
+
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
+</div>
+
+  <!------------------------->
+
     <div class="row">
-        <div class="col-md-12">
-            <div class="box">
-                <div class="box-header with-border margin-bottom-10">
-                    <h3 class="box-title">Danh sách mã giảm giá</h3>
-                    <button class="btn btn-primary" type="button" id="addPromotionBtn">
-                        <i class="fa fa-plus-circle" aria-hidden="true"></i> Thêm mới
-                    </button>
-                </div>
-                <div class="table-responsive">
 
-                    <table class="table table-bordered " id="bus_type_table">
-
-                    </table>
-
-                </div>
-            </div>
-        </div>
         <div class="modal fade" id="editBusTypeModal" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -77,19 +104,19 @@
 
                         <div class="form-group">
                             <label>Trạng thái </label>
-                            {!! Form::select('status', $statuses, '', ['class' => 'form-control select2']) !!}
+                            {!! Form::select('status', $statuses, '', ['class' => 'selectpicker']) !!}
                         </div>
 
                         @if(Auth::user()->role_id != 1)
                             <div class="form-group">
                                 <label>Nhà xe </label>
-                                {!! Form::select('agent_id', $agents, '', ['class' => 'form-control select2']) !!}
+                                {!! Form::select('agent_id', $agents, '', ['class' => 'selectpicker']) !!}
                             </div>
                         @endif
 
                         <div class="form-group">
                             <label>Loại mã </label>
-                            {!! Form::select('promotion_type', $promotionTypes, '', ['class' => 'form-control select2']) !!}
+                            {!! Form::select('promotion_type', $promotionTypes, '', ['class' => ' selectpicker']) !!}
                         </div>
 
                         <div class="form-group">

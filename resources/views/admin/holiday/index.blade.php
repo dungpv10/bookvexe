@@ -51,7 +51,6 @@
 </div>
 
 
-  <!------------------------------->
 
     <div class="modal fade bd-example-modal-lg" id="createHoliday" role="dialog">
         <div class="modal-dialog">
