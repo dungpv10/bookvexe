@@ -13,35 +13,66 @@
           rel="stylesheet"/>
 @stop
 @section('content')
-    <div class="row">
-        <div class="col-md-12">
 
-            <div class="box">
-                <div class="box-header with-border margin-bottom-10">
-                    <h3 class="box-title">Quản lý khởi hành</h3>
-{{--                    @if(\Gate::allows('agent'))--}}
-                    <button type="button" class="btn btn-primary" id="createInitializeBtn">
-                        <i class="fa fa-plus-circle" aria-hidden="true"></i>Thêm mới
-                    </button>
-                    {{--@endif--}}
+    <div class="breadcomb-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="breadcomb-list">
+                        <div class="row">
+                            {{--@if(\Gate::allows('agent'))--}}
+                                <div class="col-md-3">
+                                <button type="button" class="btn btn-primary" id="createInitializeBtn">
+                                    <i class="fa fa-plus-circle" aria-hidden="true"></i>Thêm mới
+                                </button>
+                                </div>
+                            {{--@endif--}}
+                        </div>
+                    </div>
                 </div>
-                <table class="table table-bordered" id="initialize_table">
-
-                </table>
             </div>
         </div>
     </div>
 
-    <div class="col-md-12">
-        <div class="box">
-            <div class="box-header with-border margin-bottom-10">
-                <h3 class="box-title">Lịch khởi hành</h3>
+    <div class="data-table-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+                    <div class="data-table-list">
+                        <div class="basic-tb-hd">
+                            <h2>Danh sách xe khởi hành</h2>
+                            <p>
+                                Dưới đây là danh sách các xe khởi hành thuộc quyền quản lý của bạn
+                            </p>
+                        </div>
+                        <div class="table-responsive">
+
+                            <table class="table table-striped" id="initialize_table">
+
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div id='calendar'></div>
 
         </div>
     </div>
+    <br>
+    <div class="container">
+            <div class="row">
+            <div class="col-md-12">
+                <div class="box">
+                    <div class="box-header with-border margin-bottom-10">
+                        <h3 class="box-title">Lịch khởi hành</h3>
+                    </div>
+                    <div id='calendar'></div>
 
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="modal fade" id="createInitializeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">

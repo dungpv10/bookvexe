@@ -17,6 +17,8 @@
     <!-- Bootstrap CSS
 		============================================ -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link href="{{ asset('vendors/select2/select2.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('vendors/select2/select2-bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- Bootstrap CSS
 		============================================ -->
     <link rel="stylesheet" href="/css/font-awesome.min.css">
@@ -193,7 +195,9 @@
     ============================================ -->
 <script src="/vendor/sweetalert2/dist/sweetalert2.all.min.js"></script>
 <script src="/js/data-table/jquery.dataTables.min.js"></script>
-
+<script type="text/javascript" src="{{ asset('vendors/datetimepicker/js/moment.min.js') }}" ></script>
+<script type="text/javascript" src="{{ asset('vendors/select2/select2.min.js') }}" ></script>
+<script src="{{asset('vendors/datetimepicker/js/bootstrap-datetimepicker.min.js')}}" type="text/javascript"></script>
 <script type="text/javascript">
     $(function () {
         $('body').on('hidden.bs.modal', '.modal', function () {
