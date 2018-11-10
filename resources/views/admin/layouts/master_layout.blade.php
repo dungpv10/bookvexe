@@ -79,6 +79,10 @@
             margin: 0px 0px 14px 0;
             border-bottom: 1px solid #ece5dd;
         }
+
+        .has-error .form-control{
+          border: none;
+        }
     </style>
 @yield('css')
 <!-- style CSS
@@ -212,8 +216,10 @@
 <script type="text/javascript" src="{{ asset('vendors/validation/js/bootstrapValidator.min.js') }}" ></script>
 <script type="text/javascript" src="{{ asset('vendors/select2/select2.min.js') }}" ></script>
 <script type="text/javascript" src="{{ asset('vendors/datetimepicker/js/bootstrap-datetimepicker.min.js') }}" ></script>
-
+<script src="{{asset('vendors/timepicker/js/bootstrap-timepicker.js')}}" type="text/javascript"></script>
+<script type="text/javascript" src="{{ asset('vendors/tags/dist/bootstrap-tagsinput.js') }}" ></script>
 <script src="{{asset('vendors/toastr/toastr.js')}}" type="text/javascript"></script>
+<script src="{{ asset("js/pages/jquery-ui.js") }}"></script>
 <script type="text/javascript">
     $(function () {
         $('body').on('hidden.bs.modal', '.modal', function () {

@@ -1,5 +1,17 @@
 @extends('admin.layouts.master_layout')
-
+@section('css')
+  <style>
+    .bootstrap-tagsinput{
+      background-color: none;
+      border: none;
+      box-shadow: none;
+      width : 100%;
+    }
+    .bootstrap-tagsinput input{
+      width: 100%;
+    }
+  </style>
+@stop
 @section('content')
     <div class="breadcomb-area">
         <div class="container">
@@ -330,11 +342,11 @@
                 method: 'GET'
             }).success(function (data) {
                 $('#editBusModal .modal-body').html(data).promise().done(function () {
-                    $('#bus_type_id').select2({
-                        placeholder: "Chọn Bus Type",
-                    });
-                    $('.select2-container--default').css({width: '100%'});
-
+                    // $('#bus_type_id').select2({
+                    //     placeholder: "Chọn Bus Type",
+                    // });
+                    // $('.select2-container--default').css({width: '100%'});
+                    $('#bus_type_id').selectpicker();
                     $(".datetimepicker input").timepicker();
 
                     $('#amenities').tagsinput();
@@ -414,10 +426,10 @@
                     // $('#bus_type_id').select2({
                     //     placeholder: "Chọn Bus Type",
                     // });
-                    $('.select2-container--default').css({width: '100%'});
+                    // $('.select2-container--default').css({width: '100%'});
 
                     $(".datetimepicker input").timepicker();
-
+                    $('#bus_type_id').selectpicker();
                     $('#amenities').tagsinput();
 
                     $("#start_point").autocomplete({
