@@ -36,7 +36,9 @@ class UserController extends Controller
         if (Gate::allows('admin')) {
             $roles = $this->roleService->all();
         }
-        return view('admin.users.index')->with('roles', $roles);
+        $roleCs = $this->roleService->pluckSelection();
+        $teams = $this->agentService->all();
+        return view('admin.users.index')->with('roleCs', $roleCs)->with('roles', $roles)->with('teams', $teams);
     }
 
     /**
@@ -118,10 +120,18 @@ class UserController extends Controller
     {
         $user = $this->service->find($id);
 
-        $roles = $this->roleService->pluckSelection();
-        $teams = $this->agentService->all();
+        if(!$user){
+            return response()->json([
+                'code' => 400,
+                'msg' => 'Promotion not found'
+            ]);
+        }
 
-        return view('admin.users.edit')->with('user', $user)->with('roles', $roles)->with('teams', $teams);
+        return response()->json([
+            'code' => 200,
+            'data' => $user,
+            'msg' => 'get promotion info successfully'
+        ]);
     }
 
     /**
