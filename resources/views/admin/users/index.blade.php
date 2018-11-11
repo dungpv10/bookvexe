@@ -208,7 +208,7 @@
                         @endif
                         <div class=" form-group">
                             <label for="Role">Quyền</label>
-                            {!! Form::select('role_id', $roleCs, '', ['class' => 'selectpicker', 'id' =>'role_id']) !!}
+                            {!! Form::select('role_id', $roleCs, '', ['class' => 'selectpicker', 'id' =>'role_id_e']) !!}
                         </div>
                         <div class="form-group text-right">
                             <button class="btn btn-primary" type="submit"><i class="fa fa-check" aria-hidden="true"></i>Cập nhật</button>
@@ -232,6 +232,10 @@
 
         $('#role_id').on('change', function(){
             userTable.ajax.reload();
+        });
+
+        $('.datetimepicker').datetimepicker({
+            format: 'YYYY-MM-DD'
         });
 
         userTable = $('#user_table').DataTable({
@@ -429,7 +433,6 @@
                 method: 'GET'
             }).success(function(response){
                 if (response.code == 200) {
-                    console.log(response);
                     $('#editUserModal').find('form').attr('action', window.location.origin + '/admin/users/' + uId );
                     $('#email').val(response.data.email);
                     $('#name').val(response.data.name);
@@ -439,7 +442,7 @@
                     $('#address').val(response.data.address);
                     $('#gender').val(response.data.gender).selectpicker('refresh');
                     $('#team_id').val(response.data.agent_id).selectpicker('refresh');
-                    $('#role_id').val(response.data.role_id).selectpicker('refresh');
+                    $('#role_id_e').val(response.data.role_id).selectpicker('refresh');
                     $("#editUserModal").modal();
                 } else {
                     swal(
