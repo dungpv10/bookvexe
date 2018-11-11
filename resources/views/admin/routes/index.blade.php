@@ -74,6 +74,68 @@
                     <h3 class="box-title">Tạo mới tuyến</h3>
                 </div>
                 <div class="modal-body">
+                    <form method="POST" action="{{ route('routes.store') }}" id="frmCreateRoute">
+                        <input type="hidden" name="_token" value="{{csrf_token()}}">
+                        <div class="form-group">
+                            <label for="route_name">Tuyến</label>
+                            <div class="nk-int-st">
+                                <input id="route_name" class="form-control" type="text" name="route_name" 
+                                value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="bus_id">Xe</label>
+                            <select class="selectpicker" name="bus_id" id="bus_id">
+                                <option value="">Chọn Xe</option>
+                                @foreach($buses as $bus)
+                                <option value="{{ $bus->id }}" >{{ $bus->bus_name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="price">Giá</label>
+                            <div class="nk-int-st">
+                                <input id="price" class="form-control" type="number" name="price" value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="from_place">Điểm đi</label>
+                            <div class="nk-int-st">
+                                <input id="from_place" class="form-control geo_location" type="text" name="from_place" value="">
+                                <div class="wrap_location_from_place"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="arrived_place">Điểm đến</label>
+                            <div class="nk-int-st">
+                                <input id="arrived_place" class="form-control geo_location" type="text" name="arrived_place" value="">
+                                <div class="wrap_location_arrived_place"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="start_time">Giờ đi</label>
+                            <div class="input-group date datetimepicker" style="width: 100%">
+                                <div class="nk-int-st">
+                                    <input id="start_time" class="form-control" type="text" name="start_time"
+                                       value="" placeholder="Thời gian bắt đầu" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="arrived_time">Giờ đến</label>
+                            <div class="input-group date datetimepicker" style="width: 100%">
+                                <div class="nk-int-st">
+                                    <input id="arrived_time" class="form-control" type="text" name="arrived_time"
+                                       value="" placeholder="Thời gian kết thúc" required>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row text-center">
+                            <button class="btn btn-primary" type="submit"><i class="fa fa-check" aria-hidden="true"></i>Thêm mới</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -88,6 +150,70 @@
                     <h3 class="box-title">Sửa thông tin tuyến </h3>
                 </div>
                 <div class="modal-body">
+                    <form method="POST" action="" id="frmEditRoute">
+                        <input name="_method" type="hidden" value="PATCH">
+                        <input type="hidden" name="_token" value="{{csrf_token()}}">
+
+                        <div class="form-group">
+                            <label for="route_name">Tuyến</label>
+                            <div class="nk-int-st">
+                                <input id="route_name_edit" class="form-control" type="text" name="route_name" 
+                                value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Role">Xe</label>
+                            <select class="selectpicker" name="bus_id" id="bus_id_edit">
+                                <option value="">Chọn Xe</option>
+                                @foreach($buses as $bus)
+                                <option value="{{ $bus->id }}" >{{ $bus->bus_name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="price">Giá</label>
+                            <div class="nk-int-st">
+                                <input id="price_edit" class="form-control" type="number" name="price" value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="from_place">Điểm đi</label>
+                            <div class="nk-int-st">
+                                <input id="from_place_edit" class="form-control geo_location" type="text" name="from_place" value="">
+                                <div class="wrap_location_from_place_edit"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="arrived_place">Điểm đến</label>
+                            <div class="nk-int-st">
+                                <input id="arrived_place_edit" class="form-control geo_location" type="text" name="arrived_place" value="">
+                                <div class="wrap_location_arrived_place_edit"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="start_time">Giờ đi</label>
+                            <div class="input-group date datetimepicker" style="width: 100%">
+                                <div class="nk-int-st">
+                                    <input id="start_time_edit" class="form-control" type="text" name="start_time"
+                                       value="" placeholder="Thời gian bắt đầu" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="arrived_time">Giờ đến</label>
+                            <div class="input-group date datetimepicker" style="width: 100%;">
+                                <div class="nk-int-st">
+                                    <input id="arrived_time_edit" class="form-control" type="text" name="arrived_time"
+                                       value="" placeholder="Thời gian kết thúc" required>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row text-center">
+                            <button class="btn btn-primary" type="submit"><i class="fa fa-check" aria-hidden="true"></i>Cập nhật</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -122,14 +248,51 @@
         });
     };
     $(function() {
-        // $('#bus_id').select2({
-        //     theme: 'bootstrap',
-        //     with: '100%'
-        // });
-        // $('#route_id').select2({
-        //     theme: 'bootstrap',
-        //     with: '100%'
-        // });
+        $(".datetimepicker input").timepicker();
+
+        $( "#from_place" ).autocomplete({
+            source: dataLocation,
+            minLength: 0,
+            delay: 0,
+            appendTo: ".wrap_location_from_place",
+            close: function() {
+                //UI plugin not removing loading gif, lets force it
+                $( '#from_place' ).removeClass( "ui-autocomplete-loading" );
+            }
+        });
+
+        $( "#arrived_place" ).autocomplete({
+            source: dataLocation,
+            minLength: 0,
+            delay: 0,
+            appendTo: ".wrap_location_arrived_place",
+            close: function() {
+                //UI plugin not removing loading gif, lets force it
+                $( '#arrived_place' ).removeClass( "ui-autocomplete-loading" );
+            }
+        });
+
+        $( "#from_place_edit" ).autocomplete({
+            source: dataLocation,
+            minLength: 0,
+            delay: 0,
+            appendTo: ".wrap_location_from_place_edit",
+            close: function() {
+                //UI plugin not removing loading gif, lets force it
+                $( '#from_place_edit' ).removeClass( "ui-autocomplete-loading" );
+            }
+        });
+
+        $( "#arrived_place_edit" ).autocomplete({
+            source: dataLocation,
+            minLength: 0,
+            delay: 0,
+            appendTo: ".wrap_location_arrived_place_edit",
+            close: function() {
+                //UI plugin not removing loading gif, lets force it
+                $( '#from_place_edit' ).removeClass( "ui-autocomplete-loading" );
+            }
+        });
 
         $('#bus_id').on('change', function(){
             if ($(this).val() !="") {
@@ -197,6 +360,10 @@
             ]
         });
 
+        //validateSetup('frmEditRoute');
+
+        validateSetup('frmCreateRoute');
+
     });
     function deleteRouteById(id) {
         swal({
@@ -256,45 +423,7 @@
     var createRouter = "{{ route('routes.create') }}";
 
     $('#createRouteBtn').on('click', function () {
-        $.get(createRouter).done(function(view){
-            $('#registerRouteModal').find('.modal-body').html(view).promise().done(function(){
-                $('#registerRouteModal').modal('show');
-                $('#roles').select2({
-                    placeholder: "Chọn quyền thành viên",
-                });
-                $('.select2-container--default').css({width: '100%'});
-
-                $(".datetimepicker input").timepicker();
-
-                $( "#from_place" ).autocomplete({
-                    source: dataLocation,
-                    minLength: 0,
-                    delay: 0,
-                    appendTo: ".wrap_location_from_place",
-                    close: function() {
-                        //UI plugin not removing loading gif, lets force it
-                        $( '#from_place' ).removeClass( "ui-autocomplete-loading" );
-                    }
-                });
-
-                $( "#arrived_place" ).autocomplete({
-                    source: dataLocation,
-                    minLength: 0,
-                    delay: 0,
-                    appendTo: ".wrap_location_arrived_place",
-                    close: function() {
-                        //UI plugin not removing loading gif, lets force it
-                        $( '#arrived_place' ).removeClass( "ui-autocomplete-loading" );
-                    }
-                });
-
-            });
-            validateSetup('frmCreateRoute');
-
-        }).fail(function(error){
-            console.log(error);
-        });
-
+        $('#registerRouteModal').modal('show');
     });
 
     function validateSetup(formId) {
@@ -430,45 +559,27 @@
         $.ajax({
                 url: '{!! route("routes.index") !!}' +'/'+ rId + '/edit',
                 method: 'GET'
-            }).success(function(data){
-                $('#editRouteModal .modal-body').html(data).promise().done(function(){
-
-                    validateSetup('frmEditRoute');
-
-                    $('#bus').select2({
-                        placeholder: "Chọn xe",
-                    });
-                    $('.select2-container--default').css({width: '100%'});
-
-                    $(".datetimepicker input").timepicker();
-
-                    $( "#from_place" ).autocomplete({
-                        source: dataLocation,
-                        minLength: 0,
-                        delay: 0,
-                        appendTo: ".wrap_location_from_place",
-                        close: function() {
-                            //UI plugin not removing loading gif, lets force it
-                            $( '#from_place' ).removeClass( "ui-autocomplete-loading" );
-                        }
-                    });
-
-                    $( "#arrived_place" ).autocomplete({
-                        source: dataLocation,
-                        minLength: 0,
-                        delay: 0,
-                        appendTo: ".wrap_location_arrived_place",
-                        close: function() {
-                            //UI plugin not removing loading gif, lets force it
-                            $( '#arrived_place' ).removeClass( "ui-autocomplete-loading" );
-                        }
-                    });
-
-                });
+            }).success(function(response){
+                if (response.code == 200) {
+                    $('#editRouteModal').find('form').attr('action', window.location.origin + '/admin/routes/' + rId );
+                    $('#route_name_edit').val(response.data.route_name);
+                    $('#bus_id_edit').val(response.data.bus_id).selectpicker('refresh');
+                    $('#price_edit').val(response.data.price);
+                    $('#from_place_edit').val(response.data.from_place);
+                    $('#arrived_place_edit').val(response.data.arrived_place);
+                    $('#start_time_edit').val(response.data.start_time);
+                    $('#arrived_time_edit').val(response.data.arrived_time);
+                    $("#editRouteModal").modal();
+                } else {
+                    swal(
+                        'Thất bại',
+                        'Thao tác thất bại',
+                        'error'
+                    );
+                }
             }).error(function(data){
 
             });
-            $("#editRouteModal").modal();
     }
 
     </script>
