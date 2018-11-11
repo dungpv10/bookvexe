@@ -71,6 +71,60 @@
                     <h3 class="box-title">Tạo mới điểm dừng</h3>
                 </div>
                 <div class="modal-body">
+                    <form method="POST" action="{{ route('points.store') }}" id="frmCreateNewPoint" enctype="multipart/form-data">
+                        <input type="hidden" name="_token" value="{{csrf_token()}}">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="point_type_id">Kiểu điểm dừng</label>
+                                    {!! Form::select('point_type_id', $pointTypes, null, ['class' => 'selectpicker']) !!}
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="landmark">Dấu đất</label>
+                                    <div class="nk-int-st">
+                                        <input id="landmark" class="form-control geo_location" type="text" name="landmark" value="" placeholder="Dấu đất" required >
+                                        <div class="wrap_location_landmark"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="route_id">Tuyến đường</label>
+                                    {!! Form::select('route_id', $routes, null, ['class' => 'selectpicker']) !!}
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="address">Địa chỉ</label>
+                                    <div class="nk-int-st">
+                                        <input id="address" class="form-control geo_location" type="text" name="address" value="" placeholder="Địa chỉ" required >
+                                        <div class="wrap_location_address"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="drop_time">Thời gian giảm</label>
+                                    <div class="input-group date datetimepicker" style="width: 100%;">
+                                        <div class="nk-int-st">
+                                            <input class="form-control" type="text" name="drop_time" value=""
+                                               placeholder="Thời gian giảm" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row text-center">
+                            <button class="btn btn-primary" type="submit"><i class="fa fa-plus-circle" aria-hidden="true"></i>Thêm mới
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -83,6 +137,61 @@
                     <h3 class="box-title">Sửa điểm dừng</h3>
                 </div>
                 <div class="modal-body">
+                    <form method="POST" action="" id="frmEditPoint" enctype="multipart/form-data">
+                        <input name="_method" type="hidden" value="PATCH">
+                        <input type="hidden" name="_token" value="{{csrf_token()}}">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="point_type_id">Kiểu điểm dừng</label>
+                                    {!! Form::select('point_type_id', $pointTypes, '', ['class' => 'selectpicker', 'id' => 'point_type_id_eidt']) !!}
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="landmark">Dấu đất</label>
+                                    <div class="nk-int-st">
+                                        <input id="landmark_eidt" class="form-control geo_location" type="text" name="landmark" value="" placeholder="Dấu đất" required >
+                                        <div class="wrap_location_landmark"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="route_id">Tuyến đường</label>
+                                    {!! Form::select('route_id', $routes, '', ['class' => 'selectpicker', 'id' => 'route_id_eidt']) !!}
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="address">Địa chỉ</label>
+                                    <div class="nk-int-st">
+                                        <input id="address_eidt" class="form-control geo_location" type="text" name="address" value="" placeholder="Địa chỉ" required >
+                                        <div class="wrap_location_address"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="drop_time">Thời gian giảm</label>
+                                    <div class="input-group date datetimepicker" style="width: 100%">
+                                        <div class="nk-int-st">
+                                            <input id="drop_time_eidt" class="form-control" type="text" name="drop_time" value=""
+                                               placeholder="Thời gian giảm" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row text-center">
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-edit" aria-hidden="true"></i>Cập nhật
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -132,6 +241,55 @@
             // $('#bus_id').select2({});
             $('#point_type_id_search,#bus_id').on('change', function(){
                 pointTable.ajax.reload();
+            });
+            $(".datetimepicker input").timepicker();
+
+            $('#frmCreateNewPoint').bootstrapValidator({});
+
+            $('#frmEditPoint').bootstrapValidator({});
+
+            $( "#landmark" ).autocomplete({
+                source: dataLocation,
+                minLength: 0,
+                delay: 0,
+                appendTo: ".wrap_location_landmark",
+                close: function() {
+                    //UI plugin not removing loading gif, lets force it
+                    $( '#landmark' ).removeClass( "ui-autocomplete-loading" );
+                }
+            });
+
+            $( "#address" ).autocomplete({
+                source: dataLocation,
+                minLength: 0,
+                delay: 0,
+                appendTo: ".wrap_location_address",
+                close: function() {
+                    //UI plugin not removing loading gif, lets force it
+                    $( '#address' ).removeClass( "ui-autocomplete-loading" );
+                }
+            });
+
+            $( "#landmark_eidt" ).autocomplete({
+                source: dataLocation,
+                minLength: 0,
+                delay: 0,
+                appendTo: ".wrap_location_landmark",
+                close: function() {
+                    //UI plugin not removing loading gif, lets force it
+                    $( '#landmark' ).removeClass( "ui-autocomplete-loading" );
+                }
+            });
+
+            $( "#address_eidt" ).autocomplete({
+                source: dataLocation,
+                minLength: 0,
+                delay: 0,
+                appendTo: ".wrap_location_address",
+                close: function() {
+                    //UI plugin not removing loading gif, lets force it
+                    $( '#address' ).removeClass( "ui-autocomplete-loading" );
+                }
             });
         });
         $(function() {
@@ -244,49 +402,6 @@
         }
         // SHOW create point
         function showViewCreatePoint() {
-            $.ajax({
-                url: '{!! route('points.create') !!}',
-                method: 'GET'
-            }).success(function(data){
-                $('#createPointModal .modal-body').html(data).promise().done(function(){
-                    $('#point_type_id').select2({
-                        placeholder: "Chọn kiểu điểm dừng",
-                    });
-                    $('#route_id').select2({
-                        placeholder: "Chọn tuyến đường",
-                    });
-                    $('.select2-container--default').css({width: '100%'});
-
-                    $(".datetimepicker input").timepicker();
-
-                    $('#frmCreateNewPoint').bootstrapValidator({});
-
-                    $( "#landmark" ).autocomplete({
-                        source: dataLocation,
-                        minLength: 0,
-                        delay: 0,
-                        appendTo: ".wrap_location_landmark",
-                        close: function() {
-                            //UI plugin not removing loading gif, lets force it
-                            $( '#landmark' ).removeClass( "ui-autocomplete-loading" );
-                        }
-                    });
-
-                    $( "#address" ).autocomplete({
-                        source: dataLocation,
-                        minLength: 0,
-                        delay: 0,
-                        appendTo: ".wrap_location_address",
-                        close: function() {
-                            //UI plugin not removing loading gif, lets force it
-                            $( '#address' ).removeClass( "ui-autocomplete-loading" );
-                        }
-                    });
-
-                });
-            }).error(function(data){
-
-            });
             $("#createPointModal").modal();
         }
         // SHOW edit bus
@@ -294,46 +409,25 @@
             $.ajax({
                 url: '{!! route('points.index') !!}' +'/'+ id + '/edit',
                 method: 'GET'
-            }).success(function(data){
-                $('#editPointModal .modal-body').html(data).promise().done(function(){
-                    $('#point_type_id').select2({
-                        placeholder: "Chọn kiểu điểm dừng",
-                    });
-                    $('#route_id').select2({
-                        placeholder: "Chọn tuyến đường",
-                    });
-                    $('.select2-container--default').css({width: '100%'});
-
-                    $(".datetimepicker input").timepicker();
-
-                    $('#frmEditPoint').bootstrapValidator({});
-
-                    $( "#landmark" ).autocomplete({
-                        source: dataLocation,
-                        minLength: 0,
-                        delay: 0,
-                        appendTo: ".wrap_location_landmark",
-                        close: function() {
-                            //UI plugin not removing loading gif, lets force it
-                            $( '#landmark' ).removeClass( "ui-autocomplete-loading" );
-                        }
-                    });
-
-                    $( "#address" ).autocomplete({
-                        source: dataLocation,
-                        minLength: 0,
-                        delay: 0,
-                        appendTo: ".wrap_location_address",
-                        close: function() {
-                            //UI plugin not removing loading gif, lets force it
-                            $( '#address' ).removeClass( "ui-autocomplete-loading" );
-                        }
-                    });
-                });
+            }).success(function(response){
+                if (response.code == 200) {
+                    $('#editPointModal').find('form').attr('action', window.location.origin + '/admin/points/' + id );
+                    $('#point_type_id_eidt').val(response.data.point_type_id).selectpicker('refresh');
+                    $('#landmark_eidt').val(response.data.landmark);
+                    $('#address_eidt').val(response.data.address);
+                    $('#drop_time_eidt').val(response.data.drop_time);
+                    $('#route_id_eidt').val(response.data.route_id).selectpicker('refresh');
+                    $("#editPointModal").modal();
+                } else {
+                    swal(
+                        'Thất bại',
+                        'Thao tác thất bại',
+                        'error'
+                    );
+                }
             }).error(function(data){
 
             });
-            $("#editPointModal").modal();
         }
         // SHOW detail point
         function showDetailPoint(id){
