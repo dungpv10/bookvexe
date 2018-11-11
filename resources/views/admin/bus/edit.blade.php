@@ -1,7 +1,6 @@
 <form method="post" action="{{ route('bus.update.bus', $busDetail->id) }}" id="frmEditBus"
               enctype="multipart/form-data">
     <input type="hidden" name="_token" value="{{csrf_token()}}">
-
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">

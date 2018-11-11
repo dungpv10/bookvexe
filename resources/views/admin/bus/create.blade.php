@@ -1,5 +1,5 @@
 <form method="POST" action="{{ route('bus.store') }}" id="frmCreateNewBus" enctype="multipart/form-data">
-<input type="hidden" name="_token" value="{{csrf_token()}}">
+    <input type="hidden" name="_token" value="{{csrf_token()}}">
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">

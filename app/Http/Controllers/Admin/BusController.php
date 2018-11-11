@@ -45,7 +45,10 @@ class BusController extends Controller
         $result = $this->busService->all();
         $busTypes = $this->busTypeService->getAllBusType();
         $agents = $this->agentService->all();
-        return view('admin.bus.index')->with('listBus', $result)->with('busTypes', $busTypes)->with('agents', $agents);
+        $busNames = $this->busService->getAllBusName();
+        $busRegs = $this->busService->getAllBusReg()->toArray();
+        return view('admin.bus.index')->with('listBus', $result)->with('busTypes', $busTypes)->with('agents', $agents)
+        ->with('busNames', json_encode($busNames))->with('busRegs', json_encode($busRegs));
     }
 
     /**
@@ -115,14 +118,19 @@ class BusController extends Controller
     public function edit($id)
     {
         $busDetail = $this->busService->findById($id);
-        $busTypes = $this->busTypeService->getAllBusType();
         $busNames = $this->busService->getAllBusName($id);
         $busRegs = $this->busService->getAllBusReg($id)->toArray();
-        return view('admin.bus.edit',[
-            'busDetail' => $busDetail,
-            'busTypes' => $busTypes,
-            'busNames' => json_encode($busNames),
-            'busRegs' => json_encode($busRegs)
+        if(!$busDetail){
+            return response()->json([
+                'code' => 400,
+                'msg' => 'Promotion not found'
+            ]);
+        }
+
+        return response()->json([
+            'code' => 200,
+            'data' => $busDetail,
+            'msg' => 'get promotion info successfully'
         ]);
     }
 
