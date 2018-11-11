@@ -24,9 +24,7 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label for="bus_type">Kiểu xe</label>
-                <div class="nk-int-st">
-                    {!! Form::select('bus_type_id', $busTypes, null, ['class' => 'selectpicker', 'id' => 'bus_type_id']) !!}
-                </div>
+                {!! Form::select('bus_type_id', $busTypes, isset($busDetail->bus_type_id) ? $busDetail->bus_type_id : null, ['class' => 'selectpicker', 'id' => 'bus_type_id']) !!}
             </div>
         </div>
         <div class="col-md-6">
