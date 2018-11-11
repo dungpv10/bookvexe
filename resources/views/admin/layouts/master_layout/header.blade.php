@@ -64,10 +64,10 @@
                                 <div class="hd-mg-va">
                                     <a onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();"
-                                       href="{{ route('logout') }}"> Đăng
+                                       > Đăng
                                         xuất</a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                    <form id="logout-form" action="{{ route('logout') }}" method="GET"
                                           style="display: none;">
                                         @csrf
                                     </form>

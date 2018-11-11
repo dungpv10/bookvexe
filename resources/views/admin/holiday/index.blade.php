@@ -1,32 +1,56 @@
-@extends('admin.layouts.dashboard')
+@extends('admin.layouts.master_layout')
 
 @section('content')
 
-    <div class="row">
-        <div class="col-md-12">
-            <div class="box">
-                <div class="box-header with-border margin-bottom-10">
-                    <h3 class="box-title">Quản lý ngày nghỉ</h3>
-                    <button type="button" class="btn btn-primary" id="createHolidayBtn">
-                        <i class="fa fa-plus-circle" aria-hidden="true"></i>Thêm mới
-                    </button>
+<div class="breadcomb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="breadcomb-list">
+                    <div class="row">
+
+                      <div class="col-md-3">
+                        <button type="button" class="btn btn-primary" id="createHolidayBtn">
+                            <i class="fa fa-plus-circle" aria-hidden="true"></i>Thêm mới
+                        </button>
+                      </div>
+
+                    </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
-                <div class="table-responsive">
 
-                    <table class="table table-bordered " id="holiday_table">
+<div class="data-table-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
-                    </table>
+                <div class="data-table-list">
+                    <div class="basic-tb-hd">
+                        <h2>Danh sách ngày nghỉ</h2>
+                        <p>
 
+                        </p>
+                    </div>
+                    <div class="table-responsive">
+
+                        <table class="table table-striped" id="holiday_table">
+
+                        </table>
+
+                    </div>
                 </div>
-
             </div>
         </div>
 
+    </div>
+</div>
 
-    </div>
-    </div>
+
 
     <div class="modal fade bd-example-modal-lg" id="createHoliday" role="dialog">
         <div class="modal-dialog">
@@ -127,7 +151,7 @@
                 $('#date').val(response.data.date);
                 $('#increase_price').val(response.data.increase_price);
                 $('#createForm').attr('action', window.location.origin + '/admin/holidays/' + id).append('<input type="hidden" name="_method" value="PATCH"/>');
-            
+
                 createHoliday.modal('show');
             }).fail(function(err){
                 swal(
@@ -163,8 +187,8 @@
                             let actionLink = '';
 
                             var agentId = "'" + row['id'] + "'";
-                            actionLink = '<a href="javascript:;" data-toggle="tooltip" onclick="deleteHoliday('+ agentId +')"><i class=" fa-2x fa fa-trash" aria-hidden="true"></i></a>';
-                            actionLink += '&nbsp;&nbsp;&nbsp;<a target="javascript:;" onclick="editHoliday(' + row['id'] + ')"><i class="fa fa-2x fa-pencil-square-o" aria-hidden="true"></i></a>';
+                            actionLink = '<a href="javascript:;" data-toggle="tooltip" onclick="deleteHoliday('+ agentId +')"><i class="fa fa-trash" aria-hidden="true"></i></a>';
+                            actionLink += '&nbsp;&nbsp;&nbsp;<a target="javascript:;" onclick="editHoliday(' + row['id'] + ')"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>';
 
                             return actionLink;
                         }

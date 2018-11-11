@@ -34,7 +34,7 @@ Route::group([
     Route::get('/ticket-history', 'HomeController@getTicketHistory');
     Route::get('/registration', 'HomeController@getRegistration');
     Route::get('/customer-login', 'HomeController@getCustomerlogin');
-    Route::get('/forgot-password', 'HomeController@getForgotPassword');
+    Route::get('/forgot-password', ['uses' => 'HomeController@getForgotPassword', 'as' => 'auth.forgot_password']);
 });
 
 

@@ -1,94 +1,61 @@
-@extends('auth.layouts')
+
+@extends('front-end/layouts/layouts')
 @section('content')
-    <!-- login form -->
-    <div id="login" class="animate form">
-        <form action="{{ route('login') }}" autocomplete="on" method="post">
-            <h3 class="black_bg">
-                <img src="/img/logo.png" alt="josh logo">
-            </h3>
-            <p>
-                @include('includes.alert')
-            </p>
-            <p>
-                {!! csrf_field() !!}
-                <label style="margin-bottom:0px;" for="username" class="uname"> <i class="livicon"
-                                                                                   data-name="user"
-                                                                                   data-size="16"
-                                                                                   data-loop="true"
-                                                                                   data-c="#3c8dbc"
-                                                                                   data-hc="#3c8dbc"></i>
-                    Tên đăng nhập
-                </label>
+<section class="bg-section section-page-payment-bus">
+	<div class="container">
+		<div class="row match_height_as">
+			<div class="col-lg-6 col-md-6">
+				<div class="widget widget-info-customer widget-has-border">
+					<div class="widget-title style-1">
+						<h3 class="title">Đăng Nhập</h3>
+					</div>
+					<div class="widget-content">
+            <form action="{{ route('login') }}" id="form-customer-info" autocomplete="on" method="post">
+						        {!! csrf_field() !!}
 
-                <input id="username" name="username" required type="text" placeholder="username"
-                       value="{{ old('username') }}"/>
-            </p>
-            <p>
-                <label style="margin-bottom:0px;" for="password" class="youpasswd"> <i class="livicon"
-                                                                                       data-name="key"
-                                                                                       data-size="16"
-                                                                                       data-loop="true"
-                                                                                       data-c="#3c8dbc"
-                                                                                       data-hc="#3c8dbc"></i>
-                    Mật khẩu
-                </label>
-                <input id="password" name="password" required type="password"
-                       placeholder="eg. X8df!90EO"/>
-            </p>
-            <p class="keeplogin">
-                <input type="checkbox" name="loginkeeping" id="loginkeeping" value="loginkeeping"/>
-                <label for="loginkeeping">Ghi nhớ đăng nhập</label>
-            </p>
-            <p class="login button">
-                <input type="submit" value="Đăng nhập" class="btn btn-success"/>
-            </p>
-            <p class="change_link">
-                <a href="#toforgot">
-                    <button type="button"
-                            class="btn btn-responsive botton-alignment btn-warning btn-sm">Quên mật khẩu
-                    </button>
-                </a>
+							<div class="row">
 
-                <a href="{{ route('register') }}" class="btn btn-responsive botton-alignment btn-success btn-sm"
-                        style="float:right;text-decoration : none; color: #fff">Đăng ký
-                </a>
-
-            </p>
-        </form>
-    </div>
-
-    <!-- register form -->
+								<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12">
+                  <div class="form-group" style="font-size: 12px;">
+                    @include('includes.alert')
+                  </div>
+									<div class="form-group">
+		                				<label for="username">Tên đăng nhập: <span>*</span></label>
+		                				<input type="text" class="form-control username" name="username" value="{{ old('username') }}" placeholder="Tên đăng nhập">
+		                			</div>
+		                			<div class="form-group">
+		                				<label for="password">Mật khẩu: <span>*</span></label>
+		                				<input type="password" class="form-control password" name="password" value="" placeholder="Mật khẩu">
+		                			</div>
+		                			<div class="registration-diff-acc">
+										<span>Đăng ký bằng tài khoản khác:</span>
+										<ul class="registration-list">
+											<li><a href="#" title=""><img src="{{ asset('img/front-end/icon-facebook.png') }}" alt=""></a></li>
+											<li><a href="#" title=""><img src="{{ asset('img/front-end/icon-gg.png') }}" alt=""></a></li>
+											<li><a href="#" title=""><img src="{{ asset('img/front-end/icon-tw.png') }}" alt=""></a></li>
+										</ul>
+										<a href="{{ route('auth.forgot_password') }}" title="">Quên mật khẩu?</a>
+									</div>
+									<button type="submit" class="button button-submit">Đăng nhập</button>
+								</div>
+							</div>
+						</form>
 
 
-    <!-- forgot password form -->
-    <div id="forgot" class="animate form">
-        <form action="/password/email" autocomplete="on" method="post">
-            <h3 class="black_bg">
-                <img src="img/logo.png" alt="josh logo">Password</h3>
-            <p>
-                Enter your email address below and we'll send a special reset password link to your
-                inbox.
-            </p>
-            <p>
-                <label style="margin-bottom:0px;" for="emailsignup1" class="youmai">
-                    <i class="livicon" data-name="mail" data-size="16" data-loop="true" data-c="#3c8dbc"
-                       data-hc="#3c8dbc"></i>
-                    Your email
-                </label>
-                <input id="emailsignup1" name="email" value="{{ old('email') }}" required type="email"
-                       placeholder="your@mail.com"/>
-            </p>
-            <p class="login button">
-                {!! csrf_field() !!}
-                <input type="submit" value="Send Password Reset Link" class="btn btn-success"/>
-            </p>
-            <p class="change_link">
-                <a href="#tologin" class="to_register">
-                    <button type="button"
-                            class="btn btn-responsive botton-alignment btn-warning btn-sm">Back
-                    </button>
-                </a>
-            </p>
-        </form>
-    </div>
-    @stop
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-6 col-md-6">
+				<div class="widget widget-welcome-customer widget-has-border">
+					<div class="widget-title style-1">
+						<h3 class="title">WELCOME TO BOOKVEXE</h3>
+					</div>
+					<div class="widget-content">
+						<img src="{{ asset('img/front-end/welcome-customer.png') }}" alt="">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+@stop
