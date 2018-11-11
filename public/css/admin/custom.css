@@ -134,6 +134,7 @@
 
 .bootstrap-tagsinput {
     display: block;
+    border: 1px solid #ccc;
 }
 
 .select2-container--default .select2-selection--single .select2-selection__arrow{
@@ -238,4 +239,9 @@ button i.fa{
 }
 .bootstrap-timepicker-widget.dropdown-menu.open {
     z-index: 999999999999999;
+}
+.modal-body .modal-footer {
+    margin-left: -15px;
+    margin-right: -15px;
+    padding-bottom: 0px;
 }

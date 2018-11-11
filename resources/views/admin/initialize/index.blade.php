@@ -80,10 +80,8 @@
             {!! Form::open(['route' => 'initializes.store', 'id' => '', 'method' => 'POST']) !!}
                 <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tạo mới giờ khởi hành</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <h5 class="box-title" id="exampleModalLabel">Tạo mới giờ khởi hành</h5>
+                    <button type="button" class="close" data-dismiss="modal">×</button>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
@@ -111,7 +109,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="bus_id">Ch xe</label>
+                        <label for="bus_id">Chọn xe</label>
                         {!! Form::select('bus_id', $buses, '', ['class' => 'selectpicker']) !!}
                     </div>
                 </div>
@@ -132,7 +130,7 @@
             {!! Form::open(['route' => 'initializes.index', 'id' => '', 'method' => 'PUT']) !!}
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Cập nhật giờ khởi hành</h5>
+                    <h5 class="box-title" id="exampleModalLabel">Cập nhật giờ khởi hành</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
