@@ -162,6 +162,7 @@ return [
 
         Yajra\DataTables\DataTablesServiceProvider::class,
 //        Thomaswelton\LaravelGravatar\LaravelGravatarServiceProvider::class
+        Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider::class,
     ],
 
     /*
@@ -211,6 +212,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 //        'Gravatar' => Thomaswelton\LaravelGravatar\Facades\Gravatar::class
+        'LaravelLocalization' => Mcamara\LaravelLocalization\Facades\LaravelLocalization::class,
     ],
 
 ];
