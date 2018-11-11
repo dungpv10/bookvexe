@@ -203,7 +203,7 @@
                 createInitializeModal.modal('show');
             });
 
-            $('.select2').select2();
+            //$('.select2').select2();
             $('.select2-container--default').css({width: '100%'});
 
             var busIdElm = $('#bus_id'), initializeId = $('#initialize_id'), changeBusModal = $('#changeBus');
@@ -212,7 +212,7 @@
 
                 busIdElm.val(relatedTarget.data('bus_id'));
                 initializeId.val(relatedTarget.data('id'));
-                busIdElm.select2().select2('val', relatedTarget.data('bus_id'));
+                //busIdElm.select2().select2('val', relatedTarget.data('bus_id'));
             });
 
 
@@ -403,9 +403,9 @@
                         $('#update_' + field).val(initialize[field]);
                     }
                     ['driver_id', 'car_accessory_id', 'bus_id'].forEach(function(attr){
-                        $('#update_' + attr).select2().select2('val', initialize[attr]);
+                        //$('#update_' + attr).select2().select2('val', initialize[attr]);
                     });
-                    $('.select2').select2();
+                    //$('.select2').select2();
                     $('.select2-container--default').css({width: '100%'});
                     updateInitializeModal.find('form').attr('action', initializeRoute + '/' + initialize.id ).append('<input type="hidden" name="_method" value="PUT"/>');
                     updateInitializeModal.modal('show');
