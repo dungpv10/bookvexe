@@ -38,11 +38,11 @@ Route::group([
     Route::get('/info-customer', 'HomeController@getInfoCustomer');
     Route::get('/payment-method', 'HomeController@getPaymentMethod');
     Route::get('/reward-points', 'HomeController@getRewardPoints');
-    Route::get('/personal-information', 'HomeController@getPersonalInformation');
+    Route::get('/personal-information', 'HomeController@getPersonalInformation')->name('personal-information');
     Route::get('/change-password', 'HomeController@getChangePassword');
     Route::get('/ticket-history', 'HomeController@getTicketHistory');
     Route::get('/registration', 'HomeController@getRegistration');
-    Route::get('/customer-login', 'HomeController@getCustomerlogin');
+    Route::get('/customer-login', 'HomeController@getCustomerlogin')->name('customer-login');
     Route::get('/forgot-password', ['uses' => 'HomeController@getForgotPassword', 'as' => 'auth.forgot_password']);
 });
 
