@@ -120,8 +120,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row text-center">
-                            <button class="btn btn-primary" type="submit"><i class="fa fa-plus-circle" aria-hidden="true"></i>Thêm mới
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                            <button class="btn btn-primary waves-effect" type="submit"><i class="fa fa-plus-circle" aria-hidden="true"></i>Thêm mới
                             </button>
                         </div>
                     </form>
@@ -187,8 +188,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row text-center">
-                            <button type="submit" class="btn btn-primary"><i class="fa fa-edit" aria-hidden="true"></i>Cập nhật
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                            <button type="submit" class="btn btn-primary waves-effect"><i class="fa fa-edit" aria-hidden="true"></i>Cập nhật
                             </button>
                         </div>
                     </form>
