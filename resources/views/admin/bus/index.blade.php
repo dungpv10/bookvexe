@@ -474,7 +474,7 @@
 
             $('#frmEditBus').bootstrapValidator({
                 fields: {
-                    bus_name_edit: {
+                    bus_name: {
                         validators: {
                             callback: {
                                 message: 'Tên xe đã tồn tại, nhập tên khác !',
@@ -490,7 +490,7 @@
                             }
                         }
                     },
-                    bus_reg_number_edit: {
+                    bus_reg_number: {
                         validators: {
                             callback: {
                                 message: 'Biển số xe đã tồn tại, nhập tên khác !',

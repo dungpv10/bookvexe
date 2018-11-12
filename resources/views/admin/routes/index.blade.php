@@ -131,9 +131,9 @@
                                 </div>
                             </div>
                         </div>
-                        
-                        <div class="row text-center">
-                            <button class="btn btn-primary" type="submit"><i class="fa fa-check" aria-hidden="true"></i>Thêm mới</button>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                            <button class="btn btn-primary waves-effect" type="submit"><i class="fa fa-check" aria-hidden="true"></i>Thêm mới</button>
                         </div>
                     </form>
                 </div>
@@ -155,7 +155,7 @@
                         <input type="hidden" name="_token" value="{{csrf_token()}}">
 
                         <div class="form-group">
-                            <label for="route_name">Tuyến</label>
+                            <label for="route_name_edit">Tuyến</label>
                             <div class="nk-int-st">
                                 <input id="route_name_edit" class="form-control" type="text" name="route_name" 
                                 value="">
@@ -210,8 +210,9 @@
                             </div>
                         </div>
                         
-                        <div class="row text-center">
-                            <button class="btn btn-primary" type="submit"><i class="fa fa-check" aria-hidden="true"></i>Cập nhật</button>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                            <button class="btn btn-primary waves-effect" type="submit"><i class="fa fa-check" aria-hidden="true"></i>Cập nhật</button>
                         </div>
                     </form>
                 </div>
@@ -360,7 +361,7 @@
             ]
         });
 
-        //validateSetup('frmEditRoute');
+        validateSetup('frmEditRoute');
 
         validateSetup('frmCreateRoute');
 

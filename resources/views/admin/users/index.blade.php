@@ -125,8 +125,9 @@
                             <label for="Role">Quyền</label>
                             {!! Form::select('role_id', $roleCs, '', ['class' => 'selectpicker']) !!}
                         </div>
-                        <div class="form-group text-right">
-                            <button class="btn btn-primary" id="addUser" type="submit"><i class="fa fa-check" aria-hidden="true"></i>Tạo
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                            <button class="btn btn-primary waves-effect" id="addUser" type="submit"><i class="fa fa-check" aria-hidden="true"></i>Tạo
                                 mới
                             </button>
                         </div>
@@ -210,8 +211,9 @@
                             <label for="Role">Quyền</label>
                             {!! Form::select('role_id', $roleCs, '', ['class' => 'selectpicker', 'id' =>'role_id_e']) !!}
                         </div>
-                        <div class="form-group text-right">
-                            <button class="btn btn-primary" type="submit"><i class="fa fa-check" aria-hidden="true"></i>Cập nhật</button>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                            <button class="btn btn-primary waves-effect" type="submit"><i class="fa fa-check" aria-hidden="true"></i>Cập nhật</button>
                         </div>
                     </form>
                 </div>
@@ -286,6 +288,10 @@
                }
             } ],
         });
+
+        validateSetup('editUserModal');
+
+        validateSetup('registerUserModal')
 
     });
     function deleteUserById(id) {
