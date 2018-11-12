@@ -245,3 +245,28 @@ button i.fa{
     margin-right: -15px;
     padding-bottom: 0px;
 }
+.bootstrap-timepicker-widget table td a {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}
+.icon-chevron-up::before {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    content: "\f077";
+}
+.icon-chevron-down::before {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    content: "\f078";
+}
+button.btn-toggle.active {
+    background-color: rgb(0, 194, 146);
+}
