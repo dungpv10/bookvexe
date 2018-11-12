@@ -96,6 +96,136 @@
                     <h3 class="box-title">Sửa thông tin xe</h3>
                 </div>
                 <div class="modal-body">
+                    <form method="post" action="" id="frmEditBus"
+              enctype="multipart/form-data">
+                        <input type="hidden" name="_token" value="{{csrf_token()}}">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="bus_name">Tên xe</label>
+                                    <div class="nk-int-st">
+                                    <input id="bus_name_edit" class="form-control" type="text" name="bus_name"
+                                           value="" placeholder="Tên xe buýt" required>
+                                         </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="bus_reg_number">Biển đăng ký</label>
+                                    <div class="nk-int-st">
+                                    <input id="bus_reg_number_edit" class="form-control" type="text" name="bus_reg_number"
+                                           value="" placeholder="Biển đăng ký buýt" required>
+                                         </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="bus_type">Kiểu xe</label>
+                                    {!! Form::select('bus_type_id', $busTypes, '', ['class' => 'selectpicker', 'id' => 'bus_type_id_edit']) !!}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="number_seats">Chỗ ngồi</label>
+                                    <div class="nk-int-st">
+                                    <input id="number_seats_edit" class="form-control" type="number" name="number_seats"
+                                           value="" placeholder="Chỗ ngồi" required>
+                                         </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="start_point">Điểm bắt đầu</label>
+                                    <div class="nk-int-st">
+                                    <input id="start_point_edit" class="form-control geo_location" type="text" name="start_point"
+                                           value="" placeholder="Điểm bắt đầu" required>
+                                         </div>
+                                    <div class="wrap_location_start_edit"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="end_point">Điểm kết thúc</label>
+                                    <div class="nk-int-st">
+                                    <input id="end_point_edit" class="form-control geo_location" type="text" name="end_point"
+                                           value="" placeholder="Điểm kết thúc" required>
+                                         </div>
+                                    <div class="wrap_location_end_edit"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="start_time">Thời gian bắt đầu</label>
+                                    <div class="input-group date datetimepicker" style="width: 100%">
+                                      <div class="nk-int-st">
+                                        <input id="start_time_edit" class="form-control" type="text" name="start_time"
+                                               value="" placeholder="Thời gian bắt đầu" required>
+                                             </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="end_time">Thời gian kết thúc</label>
+                                    <div class="input-group date datetimepicker" style="width: 100%">
+                                      <div class="nk-int-st">
+                                        <input id="end_time_edit" class="form-control" type="text" name="end_time"
+                                               value="" placeholder="Thời gian kết thúc" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="amenities">Tiện nghi</label>
+                                    <div class="nk-int-st">
+                                    {!! Form::text('amenities', '', ['class' => 'form-control', 'id' => 'amenities_edit', 'required', 'data-role' => "tagsinput"]) !!}
+                                  </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group custom-lable">
+                                    <label for="">Chọn ảnh</label>
+                                    <div class=" increment control-group input-group">
+                                        <input type="file" name="image_bus[]" class="form-control input_file">
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-success add-image" type="button"><i class="glyphicon glyphicon-plus"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group custom_row image_list">
+                                    {{-- @foreach($busDetail->images as $key => $image)
+                                        <div class="col-md-6 remove_image_edit">
+                                            <i class="fa fa-times-circle remove_edit"></i>
+                                            <img class="image_bus" data-name="{{ $image->image_path }}" src="{{ asset('images/' . $image->image_path) }}" alt="{{ $image->image_path }}">
+                                            <input type="hidden" name="image_remove_bus[]" value="">
+                                        </div>
+                                    @endforeach --}}
+                                </div>
+                                <div class="clone hide">
+                                    <div class="control-group input-group" style="margin-top:10px">
+                                        <input type="file" name="image_bus[]" class="form-control input_file">
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-danger remove-image" type="button"><i class="glyphicon glyphicon-remove"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                            <button type="submit" class="btn btn-primary waves-effect"><i class="fa fa-edit" aria-hidden="true"></i>Cập nhật
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -108,6 +238,124 @@
                     <h3 class="box-title">Tạo mới xe</h3>
                 </div>
                 <div class="modal-body">
+                    <form method="POST" action="{{ route('bus.store') }}" id="frmCreateNewBus" enctype="multipart/form-data">
+                        <input type="hidden" name="_token" value="{{csrf_token()}}">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="bus_name">Tên xe</label>
+                                    <div class="nk-int-st">
+                                    <input id="bus_name" class="form-control" type="text" name="bus_name" value=""
+                                           placeholder="Tên xe buýt" required>
+                                       </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="bus_reg_number">Biển đăng ký</label>
+                                    <div class="nk-int-st">
+                                    <input id="bus_reg_number" class="form-control" type="text" name="bus_reg_number" value=""
+                                           placeholder="Biển đăng ký" required>
+                                       </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="bus_type">Kiểu xe</label>
+                                    {!! Form::select('bus_type_id', $busTypes, isset($busDetail->bus_type_id) ? $busDetail->bus_type_id : null, ['class' => 'selectpicker', 'id' => 'bus_type_id']) !!}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="number_seats">Chỗ ngồi</label>
+                                    <div class="nk-int-st">
+                                    <input id="number_seats" class="form-control" type="number" name="number_seats" value=""
+                                           placeholder="Chỗ ngồi" required>
+                                       </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="start_point">Điểm bắt đầu</label>
+                                    <div class="nk-int-st">
+                                    <input id="start_point" class="form-control geo_location" type="text" name="start_point" value=""
+                                           placeholder="Điểm bắt đầu" required>
+                                    <div class="wrap_location_start"></div>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="end_point">Điểm kết thúc</label>
+                                    <div class="nk-int-st">
+                                    <input id="end_point" class="form-control geo_location" type="text" name="end_point" value=""
+                                           placeholder="Điểm kết thúc" required>
+                                    <div class="wrap_location_end"></div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="start_time">Thời gian bắt đầu</label>
+                                    <div class="input-group date datetimepicker" style="width: 100%">
+                                        <div class="nk-int-st">
+                                        <input id="start_time" class="form-control" type="text" name="start_time" value=""
+                                               placeholder="Thời gian bắt đầu" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="end_time">Thời gian kết thúc</label>
+                                    <div class="input-group date datetimepicker" style="width: 100%">
+                                        <div class="nk-int-st">
+                                        <input id="end_time" class="form-control" type="text" name="end_time" value=""
+                                               placeholder="Thời gian kết thúc" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="amenities">Tiện nghi</label>
+                                    {!! Form::text('amenities', null, ['class' => 'form-control', 'id' => 'amenities', 'required', "data-role" => "tagsinput"]) !!}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group custom-lable">
+                                    <label for="">Chọn ảnh</label>
+                                    <div class="increment control-group input-group">
+                                        <input type="file" name="image_bus[]" class="form-control input_file">
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-success add-image" type="button"><i class="glyphicon glyphicon-plus"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clone hide">
+                                    <div class="control-group input-group" style="margin-top:10px">
+                                        <input type="file" name="image_bus[]" class="form-control input_file">
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-danger remove-image" type="button"><i class="glyphicon glyphicon-remove"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                            <button class="btn btn-primary waves-effect" type="submit"><i class="fa fa-plus-circle" aria-hidden="true"></i>Thêm mới
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -117,6 +365,8 @@
     <script type="text/javascript">
         var busTable;
         var sleeperSeat;
+        var busNames = JSON.parse('<?= $busNames; ?>');
+        var busRegs = JSON.parse('<?= $busRegs; ?>');
         var dataLocation = function (request, response) {
             $.ajax({
                 url: "http://ws.geonames.org/searchJSON",
@@ -171,6 +421,130 @@
                 parent.find("i").hide();
                 parent.addClass('remove');
             })
+
+            $(".datetimepicker input").timepicker();
+
+            $('#amenities').tagsinput();
+
+            $('#amenities_edit').tagsinput();
+
+            $("#start_point_edit").autocomplete({
+                source: dataLocation,
+                minLength: 0,
+                delay: 0,
+                appendTo: ".wrap_location_start_edit",
+                close: function () {
+                    //UI plugin not removing loading gif, lets force it
+                    $('#start_point_edit').removeClass("ui-autocomplete-loading");
+                }
+            });
+
+            $("#end_point_edit").autocomplete({
+                source: dataLocation,
+                minLength: 0,
+                delay: 0,
+                appendTo: ".wrap_location_end_edit",
+                close: function () {
+                    //UI plugin not removing loading gif, lets force it
+                    $('#end_point_edit').removeClass("ui-autocomplete-loading");
+                }
+            });
+
+            $("#start_point").autocomplete({
+                source: dataLocation,
+                minLength: 0,
+                delay: 0,
+                appendTo: ".wrap_location_start",
+                close: function () {
+                    //UI plugin not removing loading gif, lets force it
+                    $('#start_point').removeClass("ui-autocomplete-loading");
+                }
+            });
+
+            $("#end_point_edit").autocomplete({
+                source: dataLocation,
+                minLength: 0,
+                delay: 0,
+                appendTo: ".wrap_location_end",
+                close: function () {
+                    //UI plugin not removing loading gif, lets force it
+                    $('#end_point').removeClass("ui-autocomplete-loading");
+                }
+            });
+
+            $('#frmEditBus').bootstrapValidator({
+                fields: {
+                    bus_name_edit: {
+                        validators: {
+                            callback: {
+                                message: 'Tên xe đã tồn tại, nhập tên khác !',
+                                callback: function () {
+                                    var busName = $('#bus_name').val();
+                                    for (var key in busNames) {
+                                        if (busNames.hasOwnProperty(key)) {
+                                            if (busNames[key] == busName) return false;
+                                        }
+                                    }
+                                    return true;
+                                }
+                            }
+                        }
+                    },
+                    bus_reg_number_edit: {
+                        validators: {
+                            callback: {
+                                message: 'Biển số xe đã tồn tại, nhập tên khác !',
+                                callback: function () {
+                                    var busReg = $('#bus_reg_number').val();
+                                    for (var key in busRegs) {
+                                        if (busRegs.hasOwnProperty(key)) {
+                                            if (busRegs[key] == busReg) return false;
+                                        }
+                                    }
+                                    return true;
+                                }
+                            }
+                        }
+                    },
+                }
+            });
+
+            $('#frmCreateNewBus').bootstrapValidator({
+                fields: {
+                    bus_name: {
+                        validators: {
+                            callback: {
+                                message: 'Tên xe đã tồn tại, nhập tên khác !',
+                                callback: function () {
+                                    var busName = $('#bus_name').val();
+                                    for (var key in busNames) {
+                                        if (busNames.hasOwnProperty(key)) {
+                                            if (busNames[key] == busName) return false;
+                                        }
+                                    }
+                                    return true;
+                                }
+                            }
+                        }
+                    },
+                    bus_reg_number: {
+                        validators: {
+                            callback: {
+                                message: 'Biển số xe đã tồn tại, nhập tên khác !',
+                                callback: function () {
+                                    var busReg = $('#bus_reg_number').val();
+                                    for (var key in busRegs) {
+                                        if (busRegs.hasOwnProperty(key)) {
+                                            if (busRegs[key] == busReg) return false;
+                                        }
+                                    }
+                                    return true;
+                                }
+                            }
+                        }
+                    },
+                }
+            });
         });
         $(function () {
             busTable = $('#bus_table').DataTable({
@@ -340,162 +714,42 @@
             $.ajax({
                 url: '{!! route('bus.index') !!}' + '/' + id + '/edit',
                 method: 'GET'
-            }).success(function (data) {
-                $('#editBusModal .modal-body').html(data).promise().done(function () {
-                    // $('#bus_type_id').select2({
-                    //     placeholder: "Chọn Bus Type",
-                    // });
-                    // $('.select2-container--default').css({width: '100%'});
-                    $('#bus_type_id').selectpicker();
-                    $(".datetimepicker input").timepicker();
-
-                    $('#amenities').tagsinput();
-
-                    $("#start_point").autocomplete({
-                        source: dataLocation,
-                        minLength: 0,
-                        delay: 0,
-                        appendTo: ".wrap_location_start",
-                        close: function () {
-                            //UI plugin not removing loading gif, lets force it
-                            $('#start_point').removeClass("ui-autocomplete-loading");
-                        }
-                    });
-
-                    $("#end_point").autocomplete({
-                        source: dataLocation,
-                        minLength: 0,
-                        delay: 0,
-                        appendTo: ".wrap_location_end",
-                        close: function () {
-                            //UI plugin not removing loading gif, lets force it
-                            $('#end_point').removeClass("ui-autocomplete-loading");
-                        }
-                    });
-
-                    $('#frmEditBus').bootstrapValidator({
-                        fields: {
-                            bus_name: {
-                                validators: {
-                                    callback: {
-                                        message: 'Tên xe đã tồn tại, nhập tên khác !',
-                                        callback: function () {
-                                            var busName = $('#bus_name').val();
-                                            for (var key in busNames) {
-                                                if (busNames.hasOwnProperty(key)) {
-                                                    if (busNames[key] == busName) return false;
-                                                }
-                                            }
-                                            return true;
-                                        }
-                                    }
-                                }
-                            },
-                            bus_reg_number: {
-                                validators: {
-                                    callback: {
-                                        message: 'Biển số xe đã tồn tại, nhập tên khác !',
-                                        callback: function () {
-                                            var busReg = $('#bus_reg_number').val();
-                                            for (var key in busRegs) {
-                                                if (busRegs.hasOwnProperty(key)) {
-                                                    if (busRegs[key] == busReg) return false;
-                                                }
-                                            }
-                                            return true;
-                                        }
-                                    }
-                                }
-                            },
-                        }
-                    });
-                });
+            }).success(function (response) {
+                if (response.code == 200) {
+                    $('#editBusModal').find('form').attr('action', window.location.origin + '/admin/bus/update/' + id );
+                    $('#bus_name_edit').val(response.data.bus_name);
+                    $('#bus_reg_number_edit').val(response.data.bus_reg_number);
+                    $('#bus_type_id_edit').val(response.data.bus_type_id).selectpicker('refresh');
+                    $('#number_seats_edit').val(response.data.number_seats);
+                    $('#start_point_edit').val(response.data.start_point);
+                    $('#end_point_edit').val(response.data.end_point);
+                    $('#start_time_edit').val(response.data.start_time);
+                    $('#end_time_edit').val(response.data.end_time);
+                    $('#amenities_edit').tagsinput('add', response.data.amenities);
+                    var html_image = '';
+                    for (var i = response.data.images.length - 1; i >= 0; i--) {
+                        var dataImage = response.data.images[i];
+                        var html_image = html_image + '<div class="col-md-6 remove_image_edit"><i class="fa fa-times-circle remove_edit"></i>'
+                                            +'<img class="image_bus" data-name="'+dataImage.image_path+'" src="{{ asset('images')}}/'+dataImage.image_path+'" alt="'+dataImage.image_path+'">'+'<input type="hidden" name="image_remove_bus[]" value=""></div>';
+                    }
+                    jQuery('#frmEditBus .image_list').html(html_image);
+                    $("#editBusModal").modal();
+                } else {
+                    swal(
+                        'Thất bại',
+                        'Thao tác thất bại',
+                        'error'
+                    );
+                } 
             }).error(function (data) {
 
             });
-            $("#editBusModal").modal();
         }
 
         // show create bus
         function showViewCreateBus() {
-            $.ajax({
-                url: '{!! route('bus.create') !!}',
-                method: 'GET'
-            }).success(function (data) {
-                $('#createBusModal .modal-body').html(data).promise().done(function () {
-                    // $('#bus_type_id').select2({
-                    //     placeholder: "Chọn Bus Type",
-                    // });
-                    // $('.select2-container--default').css({width: '100%'});
-
-                    $(".datetimepicker input").timepicker();
-                    $('#bus_type_id').selectpicker();
-                    $('#amenities').tagsinput();
-
-                    $("#start_point").autocomplete({
-                        source: dataLocation,
-                        minLength: 0,
-                        delay: 0,
-                        appendTo: ".wrap_location_start",
-                        close: function () {
-                            //UI plugin not removing loading gif, lets force it
-                            $('#start_point').removeClass("ui-autocomplete-loading");
-                        }
-                    });
-
-                    $("#end_point").autocomplete({
-                        source: dataLocation,
-                        minLength: 0,
-                        delay: 0,
-                        appendTo: ".wrap_location_end",
-                        close: function () {
-                            //UI plugin not removing loading gif, lets force it
-                            $('#end_point').removeClass("ui-autocomplete-loading");
-                        }
-                    });
-
-                    $('#frmCreateNewBus').bootstrapValidator({
-                        fields: {
-                            bus_name: {
-                                validators: {
-                                    callback: {
-                                        message: 'Tên xe đã tồn tại, nhập tên khác !',
-                                        callback: function () {
-                                            var busName = $('#bus_name').val();
-                                            for (var key in busNames) {
-                                                if (busNames.hasOwnProperty(key)) {
-                                                    if (busNames[key] == busName) return false;
-                                                }
-                                            }
-                                            return true;
-                                        }
-                                    }
-                                }
-                            },
-                            bus_reg_number: {
-                                validators: {
-                                    callback: {
-                                        message: 'Biển số xe đã tồn tại, nhập tên khác !',
-                                        callback: function () {
-                                            var busReg = $('#bus_reg_number').val();
-                                            for (var key in busRegs) {
-                                                if (busRegs.hasOwnProperty(key)) {
-                                                    if (busRegs[key] == busReg) return false;
-                                                }
-                                            }
-                                            return true;
-                                        }
-                                    }
-                                }
-                            },
-                        }
-                    });
-                });
-            }).error(function (data) {
-
-            });
             $("#createBusModal").modal();
-        }
+        };
 
         // add element seat for detail#
         function buildElementSeatHead(element, rowSeat, totalSeat, position, typeSeat, type, sleeper) {

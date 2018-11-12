@@ -2,14 +2,12 @@
 <form method="POST" action="{{ route('users.update', $user->id) }}" id="frmEditUser">
     <input name="_method" type="hidden" value="PATCH">
     <input type="hidden" name="_token" value="{{csrf_token()}}">
-
     <div class=" form-group ">
         <label for="Email">Email</label>
         <div class="nk-int-st">
           <input id="email" class="form-control" type="email" name="email" value="{{ $user->email }}">
         </div>
     </div>
-
     <div class=" form-group">
         <label for="name">Họ tên</label>
         <div class="nk-int-st">
@@ -45,13 +43,13 @@
             <option value="1" {{ $user->gender == 1 ? 'selected' :'' }}>Nữ</option>
         </select>
     </div>
-    <div class="row form-group">
+    <div class="form-group">
         <label for="address">Địa chỉ</label>
         <input id="address" class="form-control" type="text" name="address" value="{{ $user->address }}">
     </div>
 
     @if(Gate::allows('root'))
-        <div class="row form-group" id="slect_agent">
+        <div class="form-group" id="slect_agent">
             <label for="team_id">Agent</label>
             {!! Form::select('agent_id', $teams, '', ['id' => 'team_id', 'class' => 'form-control']) !!}
         </div>

@@ -76,6 +76,61 @@
                     <h3 class="box-title">Tạo mới thành viên</h3>
                 </div>
                 <div class="modal-body">
+                    <form method="POST" action="{{ route('users.store') }}" id="frmCreateUser">
+                        <input type="hidden" name="_token" value="{{csrf_token()}}">
+                        <div class="form-group">
+                            <label for="Email">Họ và tên</label>
+                            <div class="nk-int-st">
+                                <input class="form-control" type="text" name="name" value="" placeholder="ex : Nguyễn Văn A">
+                            </div>
+                        </div>
+                        <div class=" form-group">
+                            <label for="Email">Tên đăng nhập</label>
+                            <div class="nk-int-st">
+                                <input class="form-control" type="text" name="username" value="" placeholder="ex : customer">
+                            </div>
+                        </div>
+                        <div class=" form-group">
+                            <label for="Email">Email</label>
+                            <div class="nk-int-st">
+                                <input class="form-control" type="email" name="email" value="" placeholder="abc@gmail.com">
+                            </div>
+                        </div>
+                        <div class=" form-group">
+                            <label for="Email">Số điện thoại</label>
+                            <div class="nk-int-st">
+                                <input class="form-control" type="text" name="mobile" value="" placeholder="">
+                            </div>
+                        </div>
+                        <div class=" form-group">
+                            <label for="gender">Giới tính</label>
+                            <select class="selectpicker" name="gender">
+                                <option value="0">Nam</option>
+                                <option value="1">Nữ</option>
+                            </select>
+                        </div>
+
+                        @if(Gate::allows('root'))
+                            <div class=" form-group" id="slect_agent">
+
+                                <label for="team_id">Agent</label>
+                                {!! Form::select('agent_id', $teams, '', ['class' => 'selectpicker']) !!}
+                            </div>
+
+                        @else
+                            {!! Form::hidden('agent_id', auth()->user()->agent->id) !!}
+                        @endif
+
+                        <div class=" form-group">
+                            <label for="Role">Quyền</label>
+                            {!! Form::select('role_id', $roleCs, '', ['class' => 'selectpicker']) !!}
+                        </div>
+                        <div class="form-group text-right">
+                            <button class="btn btn-primary" id="addUser" type="submit"><i class="fa fa-check" aria-hidden="true"></i>Tạo
+                                mới
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -90,6 +145,75 @@
                     <h3 class="box-title">Sửa thông tin người dùng</h3>
                 </div>
                 <div class="modal-body">
+                    <form method="POST" action="" id="frmEditUser">
+                        <input name="_method" type="hidden" value="PATCH">
+                        <input type="hidden" name="_token" value="{{csrf_token()}}">
+                        <div class=" form-group ">
+                            <label for="Email">Email</label>
+                            <div class="nk-int-st">
+                                <input id="email" class="form-control" type="email" name="email" value="">
+                            </div>
+                        </div>
+                        <div class=" form-group">
+                            <label for="name">Họ tên</label>
+                            <div class="nk-int-st">
+                                <input id="name" class="form-control" type="text" name="name" value="">
+                            </div>
+                        </div>
+                        <div class=" form-group">
+                            <label for="username">Tên đăng nhập</label>
+                            <div class="nk-int-st">
+                                <input id="username" class="form-control" type="text" name="username" value="">
+                            </div>
+                        </div>
+                        <div class="">
+                            <label for="dob">Ngày sinh</label>
+                            <div class="form-group">
+                                <div class='input-group date datetimepicker' style="width: 100%">
+                                    <div class="nk-int-st">
+                                        <input type='text' value="" name="dob" id="dob" class="form-control" />
+                                    </div>
+                                    <!-- <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span>
+                                    </span> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class=" form-group">
+                            <label for="mobile">Số điện thoại</label>
+                            <div class="nk-int-st">
+                                <input id="mobile" class="form-control" type="text" name="mobile" value="">
+                            </div>
+                        </div>
+                        <div class=" form-group">
+                            <label for="gender">Giới tính</label>
+                            <select id="gender" class="selectpicker" name="gender">
+                                <option value="0" >Nam</option>
+                                <option value="1" >Nữ</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Địa chỉ</label>
+                            <div class="nk-int-st">
+                                <input id="address" class="form-control" type="text" name="address" value="">
+                            </div>
+                        </div>
+
+                        @if(Gate::allows('root'))
+                            <div class="form-group" id="slect_agent">
+                                <label for="team_id">Agent</label>
+                                {!! Form::select('agent_id', $teams, '', ['id' => 'team_id', 'class' => 'selectpicker']) !!}
+                            </div>
+                        @else
+                            {!! Form::hidden('agent_id', auth()->user()->agent->id) !!}
+                        @endif
+                        <div class=" form-group">
+                            <label for="Role">Quyền</label>
+                            {!! Form::select('role_id', $roleCs, '', ['class' => 'selectpicker', 'id' =>'role_id_e']) !!}
+                        </div>
+                        <div class="form-group text-right">
+                            <button class="btn btn-primary" type="submit"><i class="fa fa-check" aria-hidden="true"></i>Cập nhật</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -108,6 +232,10 @@
 
         $('#role_id').on('change', function(){
             userTable.ajax.reload();
+        });
+
+        $('.datetimepicker').datetimepicker({
+            format: 'YYYY-MM-DD'
         });
 
         userTable = $('#user_table').DataTable({
@@ -218,26 +346,7 @@
     var createRouter = "{{ route('users.create') }}";
 
     $('#createUserBtn').on('click', function () {
-        $.get(createRouter).done(function(view){
-            $('#registerUserModal').find('.modal-body').html(view).promise().done(function(){
-                $('#registerUserModal').modal('show');
-                $('#roles').select2({
-                    placeholder: "Chọn quyền thành viên",
-                });
-                $('#team_id').select2({
-                    placeholder: "Chọn Agent",
-                });
-
-                $('.select2-container--default').css({width: '100%'});
-                controlAgent();
-
-            });
-            validateSetup('frmCreateUser');
-
-        }).fail(function(error){
-            console.log(error);
-        });
-
+        $('#registerUserModal').modal('show');
     });
 
     function validateSetup(formId) {
@@ -322,27 +431,29 @@
         $.ajax({
                 url: '{!! route("users.index") !!}' +'/'+ uId + '/edit',
                 method: 'GET'
-            }).success(function(data){
-                $('#editUserModal .modal-body').html(data).promise().done(function(){
-
-                    validateSetup('frmEditUser');
-
-                    $('#roles').select2({
-                        placeholder: "Chọn quyền",
-                    });
-                    $('.select2-container--default').css({width: '100%'});
-                    $('.datetimepicker').datetimepicker({
-                        format: 'YYYY-MM-DD'
-                    });
-                    controlAgent();
-                    $('#team_id').select2({
-                        placeholder: "Chọn Agent",
-                    });
-                });
-            }).error(function(data){
+            }).success(function(response){
+                if (response.code == 200) {
+                    $('#editUserModal').find('form').attr('action', window.location.origin + '/admin/users/' + uId );
+                    $('#email').val(response.data.email);
+                    $('#name').val(response.data.name);
+                    $('#username').val(response.data.username);
+                    $('#dob').val(response.data.dob);
+                    $('#mobile').val(response.data.mobile);
+                    $('#address').val(response.data.address);
+                    $('#gender').val(response.data.gender).selectpicker('refresh');
+                    $('#team_id').val(response.data.agent_id).selectpicker('refresh');
+                    $('#role_id_e').val(response.data.role_id).selectpicker('refresh');
+                    $("#editUserModal").modal();
+                } else {
+                    swal(
+                        'Thất bại',
+                        'Thao tác thất bại',
+                        'error'
+                    );
+                }
+            }).error(function(response){
 
             });
-            $("#editUserModal").modal();
     }
 
     // delete bus in checkbox

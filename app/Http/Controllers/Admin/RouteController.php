@@ -80,9 +80,18 @@ class RouteController extends Controller
     public function edit($id)
     {
         $route = $this->service->find($id);
-        $buses = $this->busService->all();
+        if(!$route){
+            return response()->json([
+                'code' => 400,
+                'msg' => 'Promotion not found'
+            ]);
+        }
 
-        return view('admin.routes.edit')->with(compact('route', 'buses'));
+        return response()->json([
+            'code' => 200,
+            'data' => $route,
+            'msg' => 'get promotion info successfully'
+        ]);
     }
 
     /**

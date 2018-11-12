@@ -32,9 +32,11 @@ class PointController extends Controller
     {
         $pointTypes = $this->pointTypeService->getAllPointType();
         $buses = $this->busService->all();
+        $routes = $this->routeService->getAllRoute();
         return view('admin.point.index', [
             'pointTypes' => $pointTypes,
-            'buses' => $buses
+            'buses' => $buses,
+            'routes' => $routes,
         ]);
     }
 
@@ -92,13 +94,18 @@ class PointController extends Controller
      */
     public function edit($id)
     {
-        $routes = $this->routeService->getAllRoute();
-        $pointTypes = $this->pointTypeService->getAllPointType();
         $point = $this->pointService->getPointById($id);
-        return view('admin.point.edit', [
-            'routes' => $routes,
-            'pointTypes' => $pointTypes,
-            'point' => $point,
+        if(!$point){
+            return response()->json([
+                'code' => 400,
+                'msg' => 'Promotion not found'
+            ]);
+        }
+
+        return response()->json([
+            'code' => 200,
+            'data' => $point,
+            'msg' => 'get promotion info successfully'
         ]);
     }
 

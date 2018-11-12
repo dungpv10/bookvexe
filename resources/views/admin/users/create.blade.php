@@ -11,24 +11,18 @@
                         <input id="name" class="form-control" type="text" name="name" value="" placeholder="ex : Nguyễn Văn A">
 
                     </div>
-
-
                     <div class=" form-group">
                         <label for="Email">Tên đăng nhập</label>
                         <input id="username" class="form-control" type="text" name="username" value="" placeholder="ex : customer">
                     </div>
-
-
                     <div class=" form-group">
                         <label for="Email">Email</label>
                         <input id="email" class="form-control" type="email" name="email" value="" placeholder="abc@gmail.com">
                     </div>
-
                     <div class=" form-group">
                         <label for="Email">Số điện thoại</label>
                         <input id="mobile" class="form-control" type="text" name="mobile" value="" placeholder="">
                     </div>
-
                     <div class=" form-group">
                         <label for="gender">Giới tính</label>
                         <select id="gender" class="form-control" name="gender">
@@ -38,7 +32,6 @@
                     </div>
 
                     @if(Gate::allows('root'))
-
                         <div class=" form-group" id="slect_agent">
 
                             <label for="team_id">Agent</label>
@@ -58,7 +51,6 @@
                             mới
                         </button>
                     </div>
-                </div>
             </form>
         <!-- </div>
     </div>

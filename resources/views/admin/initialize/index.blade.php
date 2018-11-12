@@ -80,23 +80,27 @@
             {!! Form::open(['route' => 'initializes.store', 'id' => '', 'method' => 'POST']) !!}
                 <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tạo mới giờ khởi hành</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <h5 class="box-title" id="exampleModalLabel">Tạo mới giờ khởi hành</h5>
+                    <button type="button" class="close" data-dismiss="modal">×</button>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="initialize_name">Tên chuyến</label>
-                        {!! Form::text('initialize_name', '', ['class' => 'form-control', 'id' => 'initialize_name']) !!}
+                        <div class="nk-int-st">
+                            {!! Form::text('initialize_name', '', ['class' => 'form-control', 'id' => 'initialize_name']) !!}
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="start_time">Giờ khởi hành</label>
-                        {!! Form::text('start_time', '', ['class' => 'form-control datepicker']) !!}
+                        <div class="nk-int-st">
+                            {!! Form::text('start_time', '', ['class' => 'form-control datepicker']) !!}
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="number_customer">Số khách hàng</label>
-                        {!! Form::number('number_customer', '', ['class' => 'form-control', 'id' => 'number_customer']) !!}
+                        <div class="nk-int-st">
+                            {!! Form::number('number_customer', '', ['class' => 'form-control', 'id' => 'number_customer']) !!}
+                        </div>
                     </div>
 
                     <div class="form-group">
@@ -111,7 +115,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="bus_id">Ch xe</label>
+                        <label for="bus_id">Chọn xe</label>
                         {!! Form::select('bus_id', $buses, '', ['class' => 'selectpicker']) !!}
                     </div>
                 </div>
@@ -132,7 +136,7 @@
             {!! Form::open(['route' => 'initializes.index', 'id' => '', 'method' => 'PUT']) !!}
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Cập nhật giờ khởi hành</h5>
+                    <h5 class="box-title" id="exampleModalLabel">Cập nhật giờ khởi hành</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -140,32 +144,38 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="update_initialize_name">Tên chuyến</label>
-                        {!! Form::text('initialize_name', '', ['class' => 'form-control', 'id' => 'update_initialize_name']) !!}
+                        <div class="nk-int-st">
+                            {!! Form::text('initialize_name', '', ['class' => 'form-control', 'id' => 'update_initialize_name']) !!}
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="start_time">Giờ khởi hành</label>
-                        {!! Form::text('start_time', '', ['class' => 'form-control datepicker', 'id' => 'update_start_time']) !!}
+                        <div class="nk-int-st">
+                            {!! Form::text('start_time', '', ['class' => 'form-control datepicker', 'id' => 'update_start_time']) !!}
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="update_number_customer">Số khách hàng</label>
-                        {!! Form::number('number_customer', '', ['class' => 'form-control', 'id' => 'update_number_customer']) !!}
+                        <div class="nk-int-st">
+                            {!! Form::number('number_customer', '', ['class' => 'form-control', 'id' => 'update_number_customer']) !!}
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <label for="update_driver_id">Lái xe</label>
-                        {!! Form::select('driver_id', $allUserOfAgent, '', ['class' => 'form-control select2', 'id' => 'update_driver_id']) !!}
+                        {!! Form::select('driver_id', $allUserOfAgent, '', ['class' => 'selectpicker', 'id' => 'update_driver_id']) !!}
                         {!! Form::hidden('id', '', ['id' => 'update_id']) !!}
                     </div>
 
                     <div class="form-group">
                         <label for="update_car_accessory_id">Phụ xe</label>
 
-                        {!! Form::select('car_accessory_id', $allUserOfAgent, '', ['class' => 'form-control select2', 'id' => 'update_car_accessory_id']) !!}
+                        {!! Form::select('car_accessory_id', $allUserOfAgent, '', ['class' => 'selectpicker', 'id' => 'update_car_accessory_id']) !!}
                     </div>
 
                     <div class="form-group">
                         <label for="update_bus_id">Chọn xe</label>
-                        {!! Form::select('bus_id', $buses, '', ['class' => 'form-control select2', 'id' => 'update_bus_id']) !!}
+                        {!! Form::select('bus_id', $buses, '', ['class' => 'selectpicker', 'id' => 'update_bus_id']) !!}
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -193,7 +203,7 @@
                 createInitializeModal.modal('show');
             });
 
-            $('.select2').select2();
+            //$('.select2').select2();
             $('.select2-container--default').css({width: '100%'});
 
             var busIdElm = $('#bus_id'), initializeId = $('#initialize_id'), changeBusModal = $('#changeBus');
@@ -202,7 +212,7 @@
 
                 busIdElm.val(relatedTarget.data('bus_id'));
                 initializeId.val(relatedTarget.data('id'));
-                busIdElm.select2().select2('val', relatedTarget.data('bus_id'));
+                //busIdElm.select2().select2('val', relatedTarget.data('bus_id'));
             });
 
 
@@ -393,9 +403,9 @@
                         $('#update_' + field).val(initialize[field]);
                     }
                     ['driver_id', 'car_accessory_id', 'bus_id'].forEach(function(attr){
-                        $('#update_' + attr).select2().select2('val', initialize[attr]);
+                        //$('#update_' + attr).select2().select2('val', initialize[attr]);
                     });
-                    $('.select2').select2();
+                    //$('.select2').select2();
                     $('.select2-container--default').css({width: '100%'});
                     updateInitializeModal.find('form').attr('action', initializeRoute + '/' + initialize.id ).append('<input type="hidden" name="_method" value="PUT"/>');
                     updateInitializeModal.modal('show');
