@@ -49,10 +49,10 @@
                             <option>Dịch vụ chăm sóc khách hàng 2</option>
                         </select>
                         <span></span>
-                        <select class="selectpicker list-support" data-width="fit">
+                        <select class="selectpicker list-support" data-width="fit" onchange="location = this.value;">
                             <option disabled selected value style="display:none">Đăng nhập và tài khoản</option>
-                            <option>Đăng nhập</option>
-                            <option>Thông tin tài khoản</option>
+                            <option value="home.html">Đăng nhập</option>
+                            <option value="team.html">Thông tin tài khoản</option>
                         </select>
                     </div>
                 </div>
