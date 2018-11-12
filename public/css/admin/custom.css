@@ -267,3 +267,6 @@ button i.fa{
     -moz-osx-font-smoothing: grayscale;
     content: "\f078";
 }
+button.btn-toggle.active {
+    background-color: rgb(0, 194, 146);
+}
