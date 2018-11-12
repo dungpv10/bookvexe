@@ -18,6 +18,15 @@ use Illuminate\Support\Facades\Route;
 | Welcome Page
 |--------------------------------------------------------------------------
 */
+Route::get('/lang/{lang}', function($lang){
+    \LaravelLocalization::setLocale($lang);
+    $url = \LaravelLocalization::getLocalizedURL($lang, url()->previous());
+    return Redirect::to($url);
+});
+
+Route::group(['prefix' => LaravelLocalization::setLocale()], function()
+{
+
 
 Route::group([
     'namespace' => 'FrontEnd'
@@ -314,4 +323,5 @@ Route::group(['middleware' => ['auth', 'active']], function () {
         });
 
     });
+});
 });

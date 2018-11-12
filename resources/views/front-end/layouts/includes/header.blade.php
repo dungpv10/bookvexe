@@ -33,9 +33,9 @@
                     </div>
                     <div class="wrap-line">
                         <select class="selectpicker choose-language" data-width="fit">
-                            <option disabled selected value style="display:none" data-content='<img style="margin-right: 5px;" class="language-image" src="{{ asset("img/front-end/vn-flag.png") }}" alt=""> Ngôn Ngữ'>Ngôn Ngữ</option>
+                            <option disabled selected value style="display:none" data-content='<img style="margin-right: 5px;" class="language-image" src="{{ asset("img/front-end/vn-flag.png") }}" alt=""> {{trans('header.language')}}'>{{trans('header.language')}}</option>
                             <option data-content='<img style="margin-right: 5px;" class="language-image" src="{{ asset("img/front-end/vn-flag.png") }}" alt=""> Việt Nam'>Việt Nam</option>
-                            <option  data-content='<img style="margin-right: 5px;" class="language-image" src="{{ asset("img/front-end/vn-flag.png") }}" alt=""> Engnish'>Engnish</option>
+                            <option  data-content='<img style="margin-right: 5px;" class="language-image" src="{{ asset("img/front-end/vn-flag.png") }}" alt=""> English'>English</option>
                         </select>
                         <a href="callto:" class="call-support" title="Hỗ trợ"><i class="fa fa-phone"></i>Tổng đài hỗ trợ 18001091</a>
                     </div>
