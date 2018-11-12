@@ -140,8 +140,9 @@
                         </div>
 
 
-                        <div class="form-group text-right">
-                            <button class="btn btn-primary" type="submit"><i class="fa fa-check" aria-hidden="true"></i>Tạo
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                            <button class="btn btn-primary waves-effect" type="submit"><i class="fa fa-check" aria-hidden="true"></i>Tạo
                                 mới
                             </button>
                         </div>
