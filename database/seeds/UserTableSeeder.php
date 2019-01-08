@@ -55,7 +55,15 @@ class UserTableSeeder extends Seeder
                 ]);
             }
         }
-
+        for($i = 1; $i < 10; $i++) {
+            $users[] = array_merge($dataSeeder, [
+                'email' => 'customer_' . $i . '_' . '@gmail.com',
+                'username' => 'customer_' . $i . '_',
+                'name' => 'Khách hàng ' . $i . ' ',
+                'role_id' => 4,
+                'agent_id' => null
+            ]);
+        }
         \App\Models\User::insert($users);
 
     }

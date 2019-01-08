@@ -24,6 +24,10 @@ class RolesTableSeeder extends Seeder
             [
                 'name' => 'staff',
                 'label' => 'Nhân viên',
+            ],
+            [
+                'name' => 'customer',
+                'label' => 'Khách hàng',
             ]
         ]);
     }
