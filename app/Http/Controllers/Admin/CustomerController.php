@@ -11,6 +11,7 @@ use Gate;
 class CustomerController extends Controller
 {
     protected $service;
+    private const ROLE_CUSTOMER = 4;
     public function __construct(UserService $userService)
     {
         $this->service = $userService;
@@ -30,7 +31,7 @@ class CustomerController extends Controller
      */
     public function getJSONData(Request $request)
     {
-        $roleId = 4;
+        $roleId = self::ROLE_CUSTOMER;
         $search = $request->get('search')['value'];
         return $this->service->getJSONData($roleId, $search);
     }
