@@ -2,24 +2,19 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Services\CustomerService;
 use Illuminate\Http\Request;
+use App\Services\UserService;
 use App\Http\Controllers\Controller;
+use Log;
+use Gate;
 
 class CustomerController extends Controller
 {
-    /**
-     * @var CustomerService
-     */
-    protected $customerService;
-
-    /**
-     * CustomerController constructor.
-     * @param CustomerService $customerService
-     */
-    public function __construct(CustomerService $customerService)
+    protected $service;
+    private const ROLE_CUSTOMER = 4;
+    public function __construct(UserService $userService)
     {
-        $this->customerService = $customerService;
+        $this->service = $userService;
     }
 
     /**
@@ -32,29 +27,12 @@ class CustomerController extends Controller
 
     /**
      * @param Request $request
-     * @return mixed
+     * @return \Illuminate\Http\JsonResponse
      */
     public function getJSONData(Request $request)
     {
-        $filters = $request->get('search')['value'];
-        return $this->customerService->getJSONData($filters);
-    }
-
-    public function destroy(Request $request, $id)
-    {
-        $result = $this->customerService->destroy($id);
-        if ($result) {
-            if($request->ajax())
-            {
-                return response()->json(['code' => 200, 'message' => 'Xoá Thành công']);
-            }
-            return redirect('admin/customer')->with('message', 'Xoá thành công');
-        }
-        if($request->ajax())
-        {
-            return response()->json(['code' => 500, 'message' => 'Xoá Thất bại']);
-        }
-
-        return redirect('admin/customer')->with('message', 'Failed to delete');
+        $roleId = self::ROLE_CUSTOMER;
+        $search = $request->get('search')['value'];
+        return $this->service->getJSONData($roleId, $search);
     }
 }

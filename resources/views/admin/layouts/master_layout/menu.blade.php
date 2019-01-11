@@ -202,6 +202,9 @@
                                 <li><a href="{{ route('users.index') }}">Thành viên</a>
                                 </li>
                             @endif
+                            @if(Gate::allows('customer_perm'))
+                                <li><a href="{{ route('customer.index') }}">Khách hàng</a></li>
+                            @endif
                             @if(Gate::allows('agent_perm'))
                                 <li><a href="{{ route('agents.index') }}">Nhà xe</a>
                                 </li>
