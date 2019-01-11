@@ -4,17 +4,98 @@
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="mobile-menu">
-                    <nav id="dropdown">
+                    <div class="mean-push"></div>
+                    <nav id="dropdown" style="display: none;">
                         <ul class="mobile-menu-nav">
-                            <li><a href="">Kèo trong ngày</a>
+                            @if(Gate::allows('dashboard_perm'))
+                                <li><a href="{{ route('admin.dashboard') }}">Dashboard</a>
+                                </li>
+                            @endif
+                            @if(Gate::allows('bus_perm'))
+                                <li>
+                                    <a data-toggle="collapse" data-target="#demoevent" href="#">Phương tiện</a>
+                                    <ul id="demoevent" class="collapse dropdown-header-top">
+                                        @if(Gate::allows('initialize_perm'))
+                                            <li><a href="{{ route('initializes.index') }}">Khởi hành</a>
+                                            </li>
+                                        @endif
+                                        @if(Gate::allows('bus_perm'))
+                                            <li><a href="{{ route('bus.index') }}">Q.Lý xe</a>
+                                            </li>
+                                        @endif
+                                        @if(Gate::allows('route_perm'))
+                                            <li><a href="{{ route('routes.index') }}">Tuyến đường</a>
+                                            </li>
+                                        @endif
+                                        @if(Gate::allows('point_perm'))
+                                            <li><a href="{{ route('points.index') }}">Điểm dừng</a>
+                                            </li>
+                                        @endif
+                                        @if(Gate::allows('rating_perm'))
+                                            <li><a href="{{ route('ratings.index') }}">Đánh giá</a>
+                                            </li>
+                                        @endif
+                                    </ul>
+                                </li>
+                            @endif
+                            <li>
+                                <a data-toggle="collapse" data-target="#m-user" href="#">Quản lý người dùng</a>
+                                <ul id="m-user" class="collapse dropdown-header-top">
+                                    @if(Gate::allows('user_perm'))
+                                        <li><a href="{{ route('users.index') }}">Thành viên</a>
+                                        </li>
+                                    @endif
+                                    @if(Gate::allows('agent_perm'))
+                                        <li><a href="{{ route('agents.index') }}">Nhà xe</a>
+                                        </li>
+                                    @endif
 
+                                    @if(Gate::allows('role_perm'))
+                                        <li><a href="{{ route('roles.index') }}">Nhóm quyền</a>
+                                        </li>
+                                    @endif
+                                </ul>
                             </li>
-                            <li><a href="">Thành viên</a>
+                            <li><a data-toggle="collapse" data-target="#m-setting" href="#">Cài đặt</a>
+                                <ul id="m-setting" class="collapse dropdown-header-top">
+                                    @if(Gate::allows('cancellation_perm'))
+                                        <li><a href="{{ route('cancellations.index') }}">Huỷ vé</a>
+                                        </li>
+                                    @endif
 
-                            </li>
-                            <li><a href="">Lịch sử cộng/trừ điểm</a>
+                                    @if(Gate::allows('holiday_perm'))
+                                        <li><a href="{{ route('holidays.index') }}">Ngày nghỉ</a>
+                                        </li>
+                                    @endif
+                                    @if(Gate::allows('setting_perm'))
+                                        <li><a href="{{ route('setting.index') }}">Hệ thống</a>
+                                        </li>
+                                    @endif
+                                </ul>
                             </li>
 
+                            @if(Gate::allows('promotion_perm'))
+                                <li><a href="{{ route('promotions.index') }}">Quản lý khuyến mại</a>
+                                </li>
+                            @endif
+
+
+                                @if(Gate::allows('booking_perm'))
+                                    <li>
+                                        <a href="{{ route('bookings.index') }}">Bookings</a>
+                                    </li>
+                                @endif
+
+
+
+                            <li><a data-toggle="collapse" data-target="#demolibra" href="#">Charts</a>
+                                <ul id="demolibra" class="collapse dropdown-header-top">
+                                    <li><a href="flot-charts.html">Flot Charts</a></li>
+                                    <li><a href="bar-charts.html">Bar Charts</a></li>
+                                    <li><a href="line-charts.html">Line Charts</a></li>
+                                    <li><a href="area-charts.html">Area Charts</a></li>
+                                </ul>
+                            </li>
                         </ul>
                     </nav>
                 </div>
