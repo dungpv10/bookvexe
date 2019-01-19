@@ -43,8 +43,8 @@ class SeatLayoutsController extends Controller
     	$dataRequet = $request->except('_token');
     	$result = $this->seatLayoutService->updateSeat($dataRequet);
     	if ($result) {
-    		return back()->with('message', 'Cập nhật thành công')->with('busId', $dataRequet['bus_id']);
+    		return back()->with('response', ['type' => 'success', 'msg' => 'Cập nhật thành công.'])->with('busId', $dataRequet['bus_id']);
     	}
-    	return back()->with('message', 'Cập nhật thất bại')->with('busId', $dataRequet['bus_id']);
+    	return back()->with('response', ['type' => 'error', 'msg' => 'Cập nhật thành công.'])->with('busId', $dataRequet['bus_id']);
     }
 }

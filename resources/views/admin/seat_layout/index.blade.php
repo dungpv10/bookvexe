@@ -47,14 +47,14 @@
                                         <div class="form-group">
                                             <label for="sleeper_seat">Số ghế ngủ</label>
                                             <div class="nk-int-st">
-                                            <input id="sleeper_seat" class="form-control" type="text" name="sleeper_seat"
+                                            <input id="sleeper_seat" class="form-control" type="number" name="sleeper_seat"
                                                    value="" placeholder="Số ghế ngủ" required>
                                                  </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="total_seat">Tổng số ghế</label>
                                             <div class="nk-int-st">
-                                            <input id="total_seat" class="form-control" type="text" name="total_seat"
+                                            <input id="total_seat" class="form-control" type="number" name="total_seat"
                                                    value="" placeholder="Tổng số ghế" required>
                                                  </div>
                                         </div>
@@ -67,7 +67,7 @@
                                         <div class="form-group">
                                             <label for="last_row_seat">Số ghế cuối cùng</label>
                                             <div class="nk-int-st">
-                                            <input id="last_row_seat" class="form-control" type="text" name="last_row_seat"
+                                            <input id="last_row_seat" class="form-control" type="number" name="last_row_seat"
                                                    value="" placeholder="Số ghế cuối cùng" required>
                                                  </div>
                                         </div>
