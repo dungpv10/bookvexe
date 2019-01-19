@@ -13,5 +13,6 @@ return [
     AGENT_ROLE => 'Nhà xe',
     HOLIDAY_ROLE => 'Cài đặt ngày nghỉ',
     PERMISSION_ROLE => 'Quyền',
-    SETTING_ROLE => 'Cài đặt chung'
+    SETTING_ROLE => 'Cài đặt chung',
+    LAYOUT_BUS_ROLE => 'Cài đặt layout xe'
 ];

@@ -113,6 +113,10 @@
                                 <li><a href="{{ route('ratings.index') }}">Đánh giá</a>
                                 </li>
                             @endif
+                            @if(Gate::allows('layout_bus_perm'))
+                                <li><a href="{{ route('layout_bus.index') }}">Ghế ngồi</a>
+                                </li>
+                            @endif
                         </ul>
                     </div>
                     <div id="users" class="tab-pane notika-tab-menu-bg animated flipInX">

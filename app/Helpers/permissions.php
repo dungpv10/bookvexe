@@ -13,3 +13,4 @@ define('AGENT_ROLE', 10);
 define('HOLIDAY_ROLE', 11);
 define('PERMISSION_ROLE', 12);
 define('SETTING_ROLE', 13);
+define('LAYOUT_BUS_ROLE', 14);
