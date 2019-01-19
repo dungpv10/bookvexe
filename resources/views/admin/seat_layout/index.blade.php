@@ -9,7 +9,7 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    {!! Form::select('bus', $bus, null, ['class' => 'selectpicker', 'id' => 'bus']) !!}
+                                    {!! Form::select('bus', $bus, Session::has('busId') ? Session::get('busId') : null, ['class' => 'selectpicker', 'id' => 'bus']) !!}
                                 </div>
                             </div>
                         </div>
