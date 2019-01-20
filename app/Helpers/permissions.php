@@ -14,3 +14,5 @@ define('HOLIDAY_ROLE', 11);
 define('PERMISSION_ROLE', 12);
 define('SETTING_ROLE', 13);
 define('CUSTOMER_ROLE', 14);
+define('LAYOUT_BUS_ROLE', 14);
+

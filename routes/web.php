@@ -322,6 +322,11 @@ Route::group(['middleware' => ['auth', 'active']], function () {
             Route::get('holidays/getJSONData', ['as' => 'holidays.datatable', 'uses' => 'ManagerHolidayController@getJSONData']);
             Route::resource('holidays', 'ManagerHolidayController');
         });
+        Route::group(['middleware' => 'roles:' . LAYOUT_BUS_ROLE], function () {
+            Route::get('layout_bus/setting', ['as' => 'layout_bus.index', 'uses' => 'SeatLayoutsController@index']);
+            Route::get('layout_bus/setting/{bus_id}', ['as' => 'layout_bus.detail', 'uses' => 'SeatLayoutsController@detail']);
+            Route::post('layout_bus/setting/update', ['as' => 'layout_bus.update', 'uses' => 'SeatLayoutsController@update']);
+        });
 
     });
 });

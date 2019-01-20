@@ -14,5 +14,7 @@ return [
     HOLIDAY_ROLE => 'Cài đặt ngày nghỉ',
     PERMISSION_ROLE => 'Quyền',
     SETTING_ROLE => 'Cài đặt chung',
-    CUSTOMER_ROLE => 'Quản lý khách hàng'
+    CUSTOMER_ROLE => 'Quản lý khách hàng',
+    LAYOUT_BUS_ROLE => 'Cài đặt layout xe'
+
 ];
