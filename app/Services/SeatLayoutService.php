@@ -36,6 +36,13 @@ class SeatLayoutService
         return $result;
     }
 
+    public function updateSeat($dataSeat)
+    {
+        $seat = $this->seatLayout->where('bus_id', $dataSeat['bus_id']);
+        $seat->update($dataSeat);
+        return true;
+    }
+
     private function getSeatType($seatTypeId)
     {
         $result = '';

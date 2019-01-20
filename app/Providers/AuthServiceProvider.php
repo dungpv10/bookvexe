@@ -79,10 +79,9 @@ class AuthServiceProvider extends ServiceProvider
             return in_array(CUSTOMER_ROLE, $user->role->module_ids_as_array);
         });
 
-
-
-
-
+        Gate::define('layout_bus_perm', function ($user) {
+            return in_array(LAYOUT_BUS_ROLE, $user->role->module_ids_as_array);
+        });
 
         Gate::define('root', function ($user) {
             return $this->hasRole($user, ['root']);
