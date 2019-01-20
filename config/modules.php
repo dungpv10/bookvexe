@@ -16,5 +16,4 @@ return [
     SETTING_ROLE => 'Cài đặt chung',
     CUSTOMER_ROLE => 'Quản lý khách hàng',
     LAYOUT_BUS_ROLE => 'Cài đặt layout xe'
-
 ];
