@@ -123,7 +123,7 @@
                     @if(Gate::allows('bus_perm'))
                     <!--Bus-->
                         <li>
-                            <a data-toggle="tab" href="#bus-management"><i class="notika-icon notika-mail"></i>
+                            <a data-toggle="tab" href="#bus-management"><i class="notika-icon notika-tax"></i>
                                 Phương tiện
                             </a>
                         </li>
@@ -133,7 +133,7 @@
                     @if(Gate::allows('user_perm'))
                     <!--Bus-->
                         <li>
-                            <a data-toggle="tab" href="#users"><i class="notika-icon notika-mail"></i>
+                            <a data-toggle="tab" href="#users"><i class="notika-icon notika-support"></i>
                                 Quản lý người dùng
                             </a>
                         </li>
@@ -143,7 +143,7 @@
                     @if(Gate::allows('setting_perm'))
                     <!--Bus-->
                         <li>
-                            <a data-toggle="tab" href="#settings"><i class="notika-icon notika-mail"></i>
+                            <a data-toggle="tab" href="#settings"><i class="notika-icon notika-app"></i>
                                 Cài đặt
                             </a>
                         </li>
@@ -153,7 +153,7 @@
                     @if(Gate::allows('promotion_perm'))
                         <li>
                             <a href="{{ route('promotions.index') }}">
-                                <i class="notika-icon notika-house"></i>
+                                <i class="notika-icon notika-star"></i>
                                 <span class="title">Quản lý khuyến mại</span>
                             </a>
 
@@ -163,7 +163,7 @@
                     @if(Gate::allows('booking_perm'))
                         <li>
                             <a href="{{ route('bookings.index') }}">
-                                <i class="notika-icon notika-house"></i>
+                                <i class="notika-icon notika-windows"></i>
                                 <span class="title">Bookings</span>
                             </a>
 
