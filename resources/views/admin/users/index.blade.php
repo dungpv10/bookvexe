@@ -289,9 +289,9 @@
             } ],
         });
 
-        validateSetup('editUserModal');
+        validateSetup('frmEditUser');
 
-        validateSetup('registerUserModal')
+        validateSetup('frmCreateUser')
 
     });
     function deleteUserById(id) {
